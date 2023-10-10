@@ -60,4 +60,6 @@ dependencies {
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.4")
 
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
+    implementation("androidx.room:room-runtime:2.3.0")
 }

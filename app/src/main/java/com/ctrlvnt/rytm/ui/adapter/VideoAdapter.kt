@@ -39,7 +39,7 @@ class VideoAdapter(private val videoList: List<VideoItem>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_song_item, parent, false)
+            .inflate(R.layout.item_song, parent, false)
         return VideoViewHolder(itemView)
     }
 

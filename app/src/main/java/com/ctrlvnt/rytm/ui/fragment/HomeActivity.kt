@@ -15,7 +15,7 @@ import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.APYKEY
+import com.ctrlvnt.rytm.utils.APIKEY
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,9 +27,9 @@ class HomeActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home_activity, container, false)
-        val searchButton: SearchView = rootView.findViewById(R.id.search_titles)
+        val searchBar: SearchView = rootView.findViewById(R.id.search_titles)
 
-        searchButton.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(title: String?): Boolean {
                 if (!title.isNullOrBlank()) {
                     rootView.findViewById<TextView>(R.id.welcome).apply {
@@ -53,7 +53,7 @@ class HomeActivity : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         val apiManager = YouTubeApiManager()
-        apiManager.searchVideos(searchQuery, APYKEY, object : Callback<SearchResponse> {
+        apiManager.searchVideos(searchQuery, APIKEY, object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items
