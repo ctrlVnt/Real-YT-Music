@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -28,19 +29,41 @@ class HomeActivity : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home_activity, container, false)
         val searchBar: SearchView = rootView.findViewById(R.id.search_titles)
+        val appName: TextView = rootView.findViewById(R.id.welcome)
+        val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
+        val playlistsButton: ImageButton = rootView.findViewById(R.id.playlist)
+
+        settingsButton.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_activity, Settings())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        playlistsButton.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.main_activity, Playlist())
+                .addToBackStack(null)
+                .commit()
+        }
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(title: String?): Boolean {
-                if (!title.isNullOrBlank()) {
-                    rootView.findViewById<TextView>(R.id.welcome).apply {
-                        visibility = View.GONE
-                    }
-                    titleSearch(title, rootView)
-                }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (!newText.isNullOrBlank()) {
+                    appName.visibility = View.GONE
+                    settingsButton.visibility = View.GONE
+                    playlistsButton.visibility = View.GONE
+                    titleSearch(newText, rootView)
+                }else{
+                    clearRecyclerView(rootView)
+                    appName.visibility = View.VISIBLE
+                    settingsButton.visibility = View.VISIBLE
+                    playlistsButton.visibility = View.VISIBLE
+                }
                 return true
             }
         })
@@ -48,11 +71,17 @@ class HomeActivity : Fragment() {
         return rootView
     }
 
+    private fun clearRecyclerView(rootView: View) {
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
+        recyclerView.adapter = null
+    }
+
     private fun titleSearch(searchQuery : String, rootView: View){
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         val apiManager = YouTubeApiManager()
+
         apiManager.searchVideos(searchQuery, APIKEY, object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 if (response.isSuccessful) {
