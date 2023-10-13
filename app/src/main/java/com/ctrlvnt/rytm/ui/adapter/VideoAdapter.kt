@@ -52,7 +52,9 @@ class VideoAdapter(private val videoList: List<VideoItem>) :
 
         holder.itemView.setOnClickListener {
             var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
-            MainActivity.database.insertVideo(video)
+            if (!exist(video)){
+                MainActivity.database.insertVideo(video)
+            }
             val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId)
             val transaction = (holder.itemView.context as AppCompatActivity)
                 .supportFragmentManager.beginTransaction()
@@ -60,6 +62,11 @@ class VideoAdapter(private val videoList: List<VideoItem>) :
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    private fun exist(video: Video): Boolean {
+        val count = MainActivity.database.alreadyExist(video)
+        return count > 0
     }
 
     override fun getItemCount() = videoList.size

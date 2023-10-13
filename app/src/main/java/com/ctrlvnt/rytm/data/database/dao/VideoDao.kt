@@ -12,4 +12,10 @@ interface VideoDao {
 
     @Insert
     fun insert(yourEntity: Video)
+
+    @Query("DELETE FROM videos")
+    fun deleteAll()
+
+    @Query("SELECT COUNT(*) FROM videos WHERE id = :videoId")
+    fun alreadyExist(videoId: String): Int
 }

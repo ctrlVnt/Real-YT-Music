@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Rational
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.main_activity, HomeActivity())
                 .commit()
         }
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         database = LocalDataBase.getDatabase(this)
     }
 

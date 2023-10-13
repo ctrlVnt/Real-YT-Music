@@ -14,6 +14,14 @@ abstract class LocalDataBase : RoomDatabase() {
         videoDao().insert(video)
     }
 
+    fun deleteAllVideos(){
+        videoDao().deleteAll()
+    }
+
+    fun alreadyExist(video: Video):Int {
+        return videoDao().alreadyExist(video.id)
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: LocalDataBase? = null

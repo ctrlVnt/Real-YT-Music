@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">RYTM</string>
     <string name="hello_blank_fragment">Real YT Music</string>
+    <string name="caches">Elimina caches applicazione</string>
+    <string name="prev_search">Ricerche recenti</string>
+    <string name="settings">Impostazioni</string>
+    <string name="deleted_caches">Tutti gli elementi sono stati eliminati</string>
     <string name="about">ABOUT \n
-    L\'applicazione è nata dall\'esigienza di poter ascoltare la musica su YouTube potendo utilizzare altre applicazioni nel frattempo.
-    Per non violare le condizioni e i termini dell\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, è stata creata la possibilità di minimizzare l\'app in una bolla.</string>
+    L\'applicazione permette di poter riprodurre video su YouTube potendo comunque utilizzare altre applicazioni nel frattempo.
+    Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.
+    </string>
+    <string name="my_info">Visita il mio sito web: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
 </resources>

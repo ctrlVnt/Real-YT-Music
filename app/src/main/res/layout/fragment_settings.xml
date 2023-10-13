@@ -16,18 +16,35 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="32sp"
-            android:text="Settings"
+            android:text="@string/settings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/caches_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/about_section">
+
+        <Button
+            android:id="@+id/delete_caches"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/caches"
+            android:textColor="@color/black"
+            android:backgroundTint="@android:color/darker_gray"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginBottom="50dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
@@ -36,7 +53,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/about"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/my_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/my_info"
+                android:gravity="center"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
