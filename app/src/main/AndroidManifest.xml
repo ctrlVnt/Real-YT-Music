@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -19,7 +19,9 @@
 
     <activity
         android:name=".ui.MainActivity"
-        android:exported="true">
+        android:exported="true"
+        android:supportsPictureInPicture="true"
+        android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

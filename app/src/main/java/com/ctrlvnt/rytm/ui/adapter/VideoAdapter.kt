@@ -7,7 +7,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
+import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.VideoItem
+import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 
 class VideoAdapter(private val videoList: List<VideoItem>) :
@@ -49,8 +51,9 @@ class VideoAdapter(private val videoList: List<VideoItem>) :
         holder.channelTitle.text = currentItem.snippet.channelTitle
 
         holder.itemView.setOnClickListener {
+            var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
+            MainActivity.database.insertVideo(video)
             val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId)
-
             val transaction = (holder.itemView.context as AppCompatActivity)
                 .supportFragmentManager.beginTransaction()
                 .replace(R.id.main_activity, fragment)

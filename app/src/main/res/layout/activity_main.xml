@@ -16,27 +16,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/playlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_list_48"/>
-
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_search_48"/>
-
-        <ImageButton
-            android:id="@+id/settings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_settings_48"/>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

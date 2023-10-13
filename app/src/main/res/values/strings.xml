@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">RYTM</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Real YT Music</string>
+    <string name="about">ABOUT \n
+    L\'applicazione è nata dall\'esigienza di poter ascoltare la musica su YouTube potendo utilizzare altre applicazioni nel frattempo.
+    Per non violare le condizioni e i termini dell\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, è stata creata la possibilità di minimizzare l\'app in una bolla.</string>
 </resources>

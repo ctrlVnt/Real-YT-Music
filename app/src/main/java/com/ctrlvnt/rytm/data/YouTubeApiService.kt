@@ -11,8 +11,7 @@ interface YouTubeApiService {
         @Query("key") apiKey: String,
         @Query("q") query: String,
         @Query("part") part: String = "snippet",
-        @Query("maxResults") maxResults: Int = 20,
+        @Query("maxResults") maxResults: Int = 10,
         @Query("type") type: String = "video"
     ): Call<SearchResponse>
-
 }
