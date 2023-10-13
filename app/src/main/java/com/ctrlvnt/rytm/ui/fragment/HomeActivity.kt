@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,8 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -136,6 +139,16 @@ class HomeActivity : Fragment() {
                     val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
                     recyclerView.adapter = VideoAdapter(videoItems)
                 } else {
+                    val errorBody = response.errorBody()?.string()
+                    try {
+                        val errorJson = JSONObject(errorBody)
+                        val errorMessage = errorJson.getJSONObject("error").getString("message")
+                        Toast.makeText(requireContext(), "$errorMessage", Toast.LENGTH_LONG).show()
+                    } catch (e: JSONException) {
+                        Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
+                        Toast.makeText(requireContext(), "Errore sconosciuto", Toast.LENGTH_SHORT).show()
+                    }
+
                     Log.e("API Error", response.toString())
                 }
             }
