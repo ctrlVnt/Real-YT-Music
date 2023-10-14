@@ -12,7 +12,7 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 
-class VideoAdapter(private val videoList: List<VideoItem>) :
+class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLongClick: ((VideoItem) -> Unit)? = null) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     interface OnItemClickListener {
@@ -61,6 +61,11 @@ class VideoAdapter(private val videoList: List<VideoItem>) :
                 .replace(R.id.main_activity, fragment)
                 .addToBackStack(null)
                 .commit()
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onItemLongClick?.let { it1 -> it1(currentItem) }
+            true
         }
     }
 

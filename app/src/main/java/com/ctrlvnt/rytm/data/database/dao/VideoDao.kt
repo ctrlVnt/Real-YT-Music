@@ -13,6 +13,9 @@ interface VideoDao {
     @Insert
     fun insert(yourEntity: Video)
 
+    @Query("DELETE FROM videos WHERE id = :videoId")
+    fun delete(videoId: String)
+
     @Query("DELETE FROM videos")
     fun deleteAll()
 

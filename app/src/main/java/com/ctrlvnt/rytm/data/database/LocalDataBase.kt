@@ -14,6 +14,10 @@ abstract class LocalDataBase : RoomDatabase() {
         videoDao().insert(video)
     }
 
+    fun deleteVideo(video: Video) {
+        videoDao().delete(video.id)
+    }
+
     fun deleteAllVideos(){
         videoDao().deleteAll()
     }
