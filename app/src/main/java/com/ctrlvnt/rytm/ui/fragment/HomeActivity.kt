@@ -71,8 +71,6 @@ class HomeActivity : Fragment() {
                 .commit()
         }
 
-        playlistsButton.visibility = View.GONE //da riattivare in seguito
-
         playlistsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.main_activity, Playlist())

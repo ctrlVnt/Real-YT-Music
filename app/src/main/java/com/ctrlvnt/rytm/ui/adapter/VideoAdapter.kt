@@ -15,6 +15,8 @@ import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLongClick: ((VideoItem) -> Unit)? = null) :
     RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
+    //private var branoInRiproduzionePosition: Int? = null
+
     interface OnItemClickListener {
         fun onItemClick(videoItem: VideoItem)
     }
@@ -50,7 +52,15 @@ class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLon
         holder.videoTitle.text = currentItem.snippet.title
         holder.channelTitle.text = currentItem.snippet.channelTitle
 
+        /*if (position == branoInRiproduzionePosition) {
+            holder.videoTitle.setTypeface(null, Typeface.BOLD)
+        } else {
+            holder.videoTitle.setTypeface(null, Typeface.NORMAL)
+        }*/
+
         holder.itemView.setOnClickListener {
+            /*branoInRiproduzionePosition = position
+            notifyDataSetChanged()*/
             var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
             if (!exist(video)){
                 MainActivity.database.insertVideo(video)

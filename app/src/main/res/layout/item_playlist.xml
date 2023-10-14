@@ -7,22 +7,15 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/playlist_name"
+        android:id="@+id/playlist_title_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Playlist Title"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="description"
-        android:textSize="14sp" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/edit_name_playlist"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
