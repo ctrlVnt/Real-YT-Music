@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/playlist_title_item"
@@ -13,14 +13,5 @@
         android:text="Playlist Title"
         android:textSize="18sp"
         android:textStyle="bold" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_name_playlist"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
 
 </LinearLayout>

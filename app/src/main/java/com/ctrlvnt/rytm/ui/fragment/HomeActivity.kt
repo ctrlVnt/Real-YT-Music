@@ -73,7 +73,7 @@ class HomeActivity : Fragment() {
 
         playlistsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.main_activity, Playlist())
+                .replace(R.id.main_activity, Playlist_fragment())
                 .addToBackStack(null)
                 .commit()
         }

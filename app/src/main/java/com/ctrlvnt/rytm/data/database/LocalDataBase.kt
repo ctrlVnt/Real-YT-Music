@@ -32,10 +32,6 @@ abstract class LocalDataBase : RoomDatabase() {
         return videoDao().alreadyExist(video.id)
     }
 
-    fun insertPlaylist(playlist: Playlist){
-        playlistDao().insertPlaylist(playlist)
-    }
-
     fun deletePlaylist(playlist: Playlist){
         playlistDao().deletePlaylist(playlist)
     }
