@@ -44,7 +44,7 @@ class Playlist_fragment : Fragment(){
 
     private fun showCustomDialog() {
         val builder = AlertDialog.Builder(requireContext())
-        val dialogView = layoutInflater.inflate(R.layout.dialog_playlist, null)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
 
         val editTextName: EditText = dialogView.findViewById(R.id.editTextName)
 
@@ -72,7 +72,7 @@ class Playlist_fragment : Fragment(){
         alertDialogBuilder.setMessage("Sei sicuro di voler eliminare questo elemento?")
 
         alertDialogBuilder.setPositiveButton("Elimina") { _, _ ->
-            MainActivity.database.playlistDao().deletePlaylist(playlistItem)
+            MainActivity.database.deletePlaylist(playlistItem)
             refreshAdapter()
         }
         alertDialogBuilder.setNegativeButton("Annulla") { dialog, _ ->

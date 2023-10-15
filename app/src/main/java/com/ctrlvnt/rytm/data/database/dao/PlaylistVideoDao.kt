@@ -15,4 +15,14 @@ interface PlaylistVideoDao {
     @Insert
     fun insertVideoToPlaylist(playlistVideo: PlaylistVideo)
 
+    @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName")
+    fun deletePlaylistVideos(playlistName: String)
+
+    @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName AND title = :video")
+    fun deleteVideoFromPlaylist(playlistName: String, video: String)
+
+    @Query("UPDATE playlistvideo SET playlistName = :newName WHERE playlistName = :oldName")
+    fun updatePlaylistName(oldName: String, newName: String)
+    @Query("SELECT COUNT(*) FROM playlistvideo WHERE playlistName = :playlistName AND videoId = :video")
+     fun alreadyExist(playlistName:String, video:String): Int
 }

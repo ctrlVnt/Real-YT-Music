@@ -21,6 +21,11 @@ class VideoAdapter(private val videoList: List<VideoItem>,
 
     private var branoInRiproduzionePosition: Int? = null
 
+    fun setBranoInRiproduzionePosition(position: Int?) {
+        branoInRiproduzionePosition = position
+        notifyDataSetChanged()
+    }
+
     interface OnItemClickListener {
         fun onItemClick(videoItem: VideoItem)
     }

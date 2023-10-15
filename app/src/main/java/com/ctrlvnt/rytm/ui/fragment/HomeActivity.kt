@@ -94,7 +94,7 @@ class HomeActivity : Fragment() {
                     line.visibility = View.GONE
                     cronologia.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
-                    //playlistsButton.visibility = View.GONE
+                    playlistsButton.visibility = View.GONE
                     titleSearch(newText, rootView)
                 }else{
                     clearRecyclerView(rootView)
@@ -103,7 +103,7 @@ class HomeActivity : Fragment() {
                     line.visibility = View.VISIBLE
                     cronologia.visibility = View.VISIBLE
                     cronologiaText.visibility = View.VISIBLE
-                    //playlistsButton.visibility = View.VISIBLE
+                    playlistsButton.visibility = View.VISIBLE
                 }
                 return true
             }

@@ -23,10 +23,6 @@ abstract class LocalDataBase : RoomDatabase() {
         videoDao().insert(video)
     }
 
-    fun deleteVideo(video: Video) {
-        videoDao().delete(video.id)
-    }
-
     fun deleteAllVideos(){
         videoDao().deleteAll()
     }
@@ -35,12 +31,14 @@ abstract class LocalDataBase : RoomDatabase() {
         return videoDao().alreadyExist(video.id)
     }
 
-    fun deletePlaylist(playlist: Playlist){
-        playlistDao().deletePlaylist(playlist)
+    fun editPlaylistName(oldName: String, newName: String){
+        playlistDao().updatePlaylistName(oldName, newName)
+        playlisVideotDao().updatePlaylistName(oldName,newName)
     }
 
-    fun updatePlaylistName(playlist: Playlist){
-        playlistDao().updatePlaylistName(playlist.id, playlist.playlistName)
+    fun deletePlaylist(playlistItem: Playlist){
+        playlistDao().deletePlaylist(playlistItem)
+        playlisVideotDao().deletePlaylistVideos(playlistItem.playlistName)
     }
 
     companion object {

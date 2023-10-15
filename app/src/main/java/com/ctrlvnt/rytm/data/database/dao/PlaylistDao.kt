@@ -20,6 +20,6 @@ interface PlaylistDao {
     @Delete
     fun deletePlaylist(playlist: Playlist)
 
-    @Query("UPDATE playlist SET playlistName = :newName WHERE id = :playlistId")
-    fun updatePlaylistName(playlistId: Long, newName: String)
+    @Query("UPDATE playlist SET playlistName = :newName WHERE playlistName = :oldName")
+    fun updatePlaylistName(oldName: String, newName: String)
 }
