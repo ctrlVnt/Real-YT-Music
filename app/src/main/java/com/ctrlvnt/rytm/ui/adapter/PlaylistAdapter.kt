@@ -1,9 +1,11 @@
 package com.ctrlvnt.rytm.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
@@ -69,7 +71,7 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
             var videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistList[position].playlistName)
 
             if (videos.isEmpty()){
-
+                infoDialog(holder.itemView.context)
             }else{
                 val fragment = YouTubePlayerSupport.newInstance(videos[0].id, playlistList[position].playlistName)
                 val transaction = (holder.itemView.context as AppCompatActivity)
@@ -84,6 +86,16 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
             onItemLongClick?.let { it1 -> it1(currentItem) }
             true
         }
+    }
+
+    private fun infoDialog(context: Context) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Playlist Vuota")
+        builder.setMessage("Questa playlist è vuota. Aggiungi dei brani alla playlist prima di riprodurre.")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     override fun getItemCount() = playlistList.size

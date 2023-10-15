@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Playlists"
-            android:textSize="40sp"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,8 +24,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_playlist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

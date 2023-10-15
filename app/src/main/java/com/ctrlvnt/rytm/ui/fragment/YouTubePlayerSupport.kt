@@ -167,6 +167,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 videoId?.let {
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
+                    indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, 0f)
 
