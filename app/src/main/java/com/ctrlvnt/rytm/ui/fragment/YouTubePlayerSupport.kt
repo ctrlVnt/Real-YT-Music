@@ -1,6 +1,7 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 
+import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +31,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlin.random.Random
@@ -52,6 +53,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var youTubePlayerView: YouTubePlayerView
     private lateinit var playlisName: TextView
     private lateinit var playlistAdd: ImageButton
+    private lateinit var buttonPannel: ConstraintLayout
+    private var originalMarginTop: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,11 +64,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val playlistTitle = arguments?.getString("playlist_name")
         val lockButton: FloatingActionButton = rootView.findViewById(R.id.lock_screen)
         val overlay: Button = rootView.findViewById(R.id.mask_lock)
-        youTubePlayerView = rootView.findViewById(R.id.youtube_player_view)
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
-        playlistAdd = rootView.findViewById(R.id.add_playlist)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
+        buttonPannel = rootView.findViewById(R.id.button_pannel)
+        youTubePlayerView = rootView.findViewById(R.id.youtube_player_view)
+        playlistAdd = rootView.findViewById(R.id.add_playlist)
         playlisName = rootView.findViewById(R.id.playlist_name)
         val videos: List<Video>
 
@@ -216,18 +220,29 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
             }
         })
-
-        youTubePlayerView.addFullscreenListener(object : FullscreenListener {
-           override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: () -> Unit) {
-               lockButton.visibility = View.GONE
-            }
-
-            override fun onExitFullscreen() {
-                lockButton.visibility = View.VISIBLE
-            }
-        })
+        originalMarginTop = (youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams).topMargin
 
         return rootView
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = 0
+            youTubePlayerView.layoutParams = params
+            buttonPannel.visibility = View.GONE
+            playlistAdd.visibility = View.GONE
+        } else {
+            val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
+            params.topMargin = originalMarginTop
+            youTubePlayerView.layoutParams = params
+
+            buttonPannel.visibility = View.VISIBLE
+            playlistAdd.visibility = View.VISIBLE
+        }
     }
 
     private fun showPlaylistDialog(videoId: String) {
