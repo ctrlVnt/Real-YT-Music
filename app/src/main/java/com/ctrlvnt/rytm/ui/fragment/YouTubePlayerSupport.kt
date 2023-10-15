@@ -165,6 +165,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             var indexVideo = if (nextVideo.size > 1) nextVideo.size - 1 else 0
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
+                youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
                 videoId?.let {
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
                     indexVideo = position
