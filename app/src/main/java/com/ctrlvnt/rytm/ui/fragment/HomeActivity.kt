@@ -55,14 +55,14 @@ class HomeActivity : Fragment() {
             VideoItem(videoid, snippet)
         } ?: emptyList()
 
-        val videoAdapter = VideoAdapter(videoItems) { videoItem ->
+        val videoAdapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
-        }
+        }, "home")
 
         cronologia.adapter = videoAdapter
 
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
-        recyclerView.adapter = VideoAdapter(videoItems)
+        recyclerView.adapter = VideoAdapter(videoItems, null, "home")
 
         settingsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
@@ -135,9 +135,9 @@ class HomeActivity : Fragment() {
             var snippet = Snippet(it.title, it.channelTitle)
             VideoItem(videoid, snippet)
         } ?: emptyList()
-        cronologia.adapter = VideoAdapter(videoItems) { videoItem ->
+        cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
-        }
+        },"home")
     }
 
     private fun titleSearch(searchQuery : String, rootView: View){
@@ -156,7 +156,7 @@ class HomeActivity : Fragment() {
 
                     // Creare un'istanza dell'adapter e collegarla alla RecyclerView
                     val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
-                    recyclerView.adapter = VideoAdapter(videoItems)
+                    recyclerView.adapter = VideoAdapter(videoItems, null,"home")
                 } else {
                     val errorBody = response.errorBody()?.string()
                     try {

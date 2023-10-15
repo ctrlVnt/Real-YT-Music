@@ -1,5 +1,7 @@
 package com.ctrlvnt.rytm.ui.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +14,12 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 
-class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLongClick: ((VideoItem) -> Unit)? = null) :
-    RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
+class VideoAdapter(private val videoList: List<VideoItem>,
+                   private val onItemLongClick: ((VideoItem) -> Unit)? = null,
+                   private val currentFragmentTag: String
+) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
-    //private var branoInRiproduzionePosition: Int? = null
+    private var branoInRiproduzionePosition: Int? = null
 
     interface OnItemClickListener {
         fun onItemClick(videoItem: VideoItem)
@@ -23,8 +27,12 @@ class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLon
 
     private var onItemClickListener: OnItemClickListener? = null
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.onItemClickListener = listener
+    private var onPlaybackClickListener: OnPlaybackClickListener? = null
+    fun setOnPlaybackClickListener(listener: OnPlaybackClickListener) {
+        this.onPlaybackClickListener = listener
+    }
+    interface OnPlaybackClickListener {
+        fun onPlaybackClick(videoItem: VideoItem)
     }
 
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,31 +55,39 @@ class VideoAdapter(private val videoList: List<VideoItem>, private val onItemLon
         return VideoViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: VideoViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val currentItem = videoList[position]
         holder.videoTitle.text = currentItem.snippet.title
         holder.channelTitle.text = currentItem.snippet.channelTitle
 
-        /*if (position == branoInRiproduzionePosition) {
+        if (position == branoInRiproduzionePosition) {
             holder.videoTitle.setTypeface(null, Typeface.BOLD)
         } else {
             holder.videoTitle.setTypeface(null, Typeface.NORMAL)
-        }*/
-
-        holder.itemView.setOnClickListener {
-            /*branoInRiproduzionePosition = position
-            notifyDataSetChanged()*/
-            var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
-            if (!exist(video)){
-                MainActivity.database.insertVideo(video)
-            }
-            val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId)
-            val transaction = (holder.itemView.context as AppCompatActivity)
-                .supportFragmentManager.beginTransaction()
-                .replace(R.id.main_activity, fragment)
-                .addToBackStack(null)
-                .commit()
         }
+
+        if(currentFragmentTag == "home"){
+            holder.itemView.setOnClickListener {
+                var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
+                if (!exist(video)){
+                    MainActivity.database.insertVideo(video)
+                }
+                val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId, "")
+                val transaction = (holder.itemView.context as AppCompatActivity)
+                    .supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_activity, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }else{
+            holder.itemView.setOnClickListener {
+                branoInRiproduzionePosition = position
+                notifyDataSetChanged()
+
+                onPlaybackClickListener?.onPlaybackClick(videoList[position])
+            }
+        }
+
 
         holder.itemView.setOnLongClickListener {
             onItemLongClick?.let { it1 -> it1(currentItem) }

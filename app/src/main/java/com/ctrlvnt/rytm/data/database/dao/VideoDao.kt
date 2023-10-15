@@ -10,6 +10,9 @@ interface VideoDao {
     @Query("SELECT * FROM videos")
     fun getAll(): List<Video>
 
+    @Query("SELECT * FROM videos WHERE id = :videoId")
+    fun getVideo(videoId: String): Video
+
     @Insert
     fun insert(yourEntity: Video)
 
