@@ -54,6 +54,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var playlisName: TextView
     private lateinit var playlistAdd: ImageButton
     private lateinit var buttonPannel: ConstraintLayout
+    private lateinit var prevButton: ImageButton
+    private lateinit var nextButton: ImageButton
     private var originalMarginTop: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +69,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
+        prevButton = rootView.findViewById(R.id.prev_video)
+        nextButton = rootView.findViewById(R.id.next_video)
         buttonPannel = rootView.findViewById(R.id.button_pannel)
         youTubePlayerView = rootView.findViewById(R.id.youtube_player_view)
         playlistAdd = rootView.findViewById(R.id.add_playlist)
@@ -142,6 +146,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             if(lock){
                 lockButton.setImageResource(R.drawable.baseline_lock_24)
                 overlay.visibility = View.VISIBLE
+                playlistAdd.visibility = View.GONE
+                prevButton.visibility = View.GONE
+                nextButton.visibility = View.GONE
+                shuffle.visibility = View.GONE
+                repeat.visibility = View.GONE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -151,6 +160,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }else{
                 lockButton.setImageResource(R.drawable.baseline_lock_open_24)
                 overlay.visibility = View.GONE
+                playlistAdd.visibility = View.VISIBLE
+                prevButton.visibility = View.VISIBLE
+                nextButton.visibility = View.VISIBLE
+                shuffle.visibility = View.VISIBLE
+                repeat.visibility = View.VISIBLE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -178,6 +192,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                     playlistAdd.setOnClickListener {
                         showPlaylistDialog(videoId)
+                    }
+
+                    prevButton.setOnClickListener{
+                        indexVideo++
+                        videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                        youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                    }
+                    nextButton.setOnClickListener{
+                        indexVideo--
+                        videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                        youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
                     }
                 }
             }

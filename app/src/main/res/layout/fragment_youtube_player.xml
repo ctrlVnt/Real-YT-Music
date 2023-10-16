@@ -101,7 +101,7 @@
             android:src="@drawable/baseline_shuffle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lock_screen"
+            app:layout_constraintStart_toEndOf="@+id/next_video"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
@@ -111,8 +111,30 @@
             android:background="@android:color/transparent"
             android:src="@drawable/baseline_repeat_one_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/lock_screen"
+            app:layout_constraintEnd_toStartOf="@+id/prev_video"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/next_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_skip_next_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/shuffle"
+            app:layout_constraintStart_toEndOf="@+id/lock_screen"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/prev_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_skip_previous_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/lock_screen"
+            app:layout_constraintStart_toEndOf="@+id/repeat"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
