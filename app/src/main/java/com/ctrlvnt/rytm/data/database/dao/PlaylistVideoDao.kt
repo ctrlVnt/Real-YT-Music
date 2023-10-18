@@ -18,7 +18,7 @@ interface PlaylistVideoDao {
     @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName")
     fun deletePlaylistVideos(playlistName: String)
 
-    @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName AND title = :video")
+    @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName AND videoId = :video")
     fun deleteVideoFromPlaylist(playlistName: String, video: String)
 
     @Query("UPDATE playlistvideo SET playlistName = :newName WHERE playlistName = :oldName")
