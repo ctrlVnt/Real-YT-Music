@@ -176,14 +176,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         val nextVideo = videos
+        var shuffleMode = mutableListOf<Int>()
+        var shuffleindex = 0
 
-        viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView)
+        viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you use playback mode
+        //youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             var indexVideo = if (nextVideo.size > 1) nextVideo.size - 1 else 0
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
                 videoId?.let {
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
                     indexVideo = position
@@ -194,15 +196,44 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         showPlaylistDialog(videoId)
                     }
 
-                    prevButton.setOnClickListener{
-                        indexVideo++
-                        videoAdapter.setBranoInRiproduzionePosition(indexVideo)
-                        youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                    }
                     nextButton.setOnClickListener{
-                        indexVideo--
-                        videoAdapter.setBranoInRiproduzionePosition(indexVideo)
-                        youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                        if(shuffleOption){
+                            if(shuffleindex >= shuffleMode.size - 1){
+                                val randomIndex = Random.nextInt(0, nextVideo.size)
+                                videoAdapter.setBranoInRiproduzionePosition(randomIndex)
+                                youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
+                                shuffleMode.add(randomIndex)
+                                shuffleindex++
+                            }else{
+                                shuffleindex++
+                                videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
+                                youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
+                            }
+                        }else {
+                            indexVideo++
+                            if (indexVideo >= nextVideo.size) {
+                                indexVideo = 0
+                            }
+                            videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                            youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                        }
+                    }
+                    prevButton.setOnClickListener{
+                        if(shuffleOption){
+                            if(shuffleindex <= 0){
+                                shuffleindex = shuffleMode.size
+                            }
+                            shuffleindex--
+                            videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
+                            youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
+                        }else {
+                            indexVideo--
+                            if (indexVideo < 0) {
+                                indexVideo = nextVideo.size - 1
+                            }
+                            videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                            youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                        }
                     }
                 }
             }
@@ -227,6 +258,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         playlistAdd.setOnClickListener {
                             showPlaylistDialog(nextVideo[randomIndex].id)
                         }
+                        shuffleMode.add(randomIndex)
                     }else{
                         if(indexVideo < 0){
                             indexVideo = nextVideo.size - 1
@@ -236,7 +268,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                        indexVideo--
+                        indexVideo++
 
                         playlistAdd.setOnClickListener {
                             showPlaylistDialog(nextVideo[indexVideo+1].id)
