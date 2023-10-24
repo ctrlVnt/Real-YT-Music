@@ -88,7 +88,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         videoList.layoutManager = layoutManager
 
         if(playlistTitle == null || playlistTitle == ""){
-            playlisName.text = "Cronologia"
+            playlisName.text = getString(R.string.prev_search)
             buttonEditName.visibility = View.GONE
             videos = MainActivity.database.videoDao().getAll()
 
@@ -321,7 +321,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val playlistNames = playlists.map { it.playlistName }.toTypedArray()
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Seleziona una playlist")
+        builder.setTitle(R.string.select_playlist)
             .setItems(playlistNames) { _, which ->
 
                 val selectedPlaylist = playlists[which]
@@ -331,7 +331,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 if(!alreadyExist(selectedPlaylist.playlistName, videoId)){
                     MainActivity.database.playlisVideotDao().insertVideoToPlaylist(element)
                 }else{
-                    Toast.makeText(requireContext(), "Video già presente in questa playlist", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.error_element_playlist_already_exist, Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -345,14 +345,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem, playlistName: String) {
         val alertDialogBuilder = android.app.AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Eliminare questo elemento?")
-        alertDialogBuilder.setMessage("Sei sicuro di voler eliminare questo elemento?")
+        alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
+        alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
-        alertDialogBuilder.setPositiveButton("Elimina") { _, _ ->
+        alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
             MainActivity.database.playlisVideotDao().deleteVideoFromPlaylist(playlistName, videoItem.id.videoId)
             refreshAdapter(playlistName)
         }
-        alertDialogBuilder.setNegativeButton("Annulla") { dialog, _ ->
+        alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
             dialog.dismiss()
         }
         val alertDialog = alertDialogBuilder.create()
@@ -389,7 +389,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         editTextName.setText(currentName)
 
         builder.setView(dialogView)
-            .setTitle("Modifica nome Playlist")
+            .setTitle(R.string.edit_playlist_name)
             .setPositiveButton("OK") { dialog, _ ->
                 val name =  editTextName.text.toString()
                 if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
@@ -399,19 +399,19 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     if (name.isBlank()) {
                         Toast.makeText(
                             requireContext(),
-                            "Il nome della playlist non può essere vuoto",
+                            R.string.error_empty_name,
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Il nome inserito è già esistente",
+                            R.string.error_already_exist,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
             }
-            .setNegativeButton("Annulla") { dialog, _ ->
+            .setNegativeButton(R.string.restore) { dialog, _ ->
                 dialog.dismiss()
             }
 

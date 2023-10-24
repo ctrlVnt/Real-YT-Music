@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RYTM</string>
+    <string name="caches">Delete caches</string>
+    <string name="prev_search">Recent research</string>
+    <string name="settings">Informations</string>
+    <string name="deleted_caches">All items have been deleted</string>
+    <string name="how_to_use"><b>SOME INSTRUCTIONS</b>\n\n
+         <b>SCREEN LOCK:</b> while playing a video, thanks to the central button, it is possible to block accidental touches to the screen by reducing the brightness to minimum to increase battery life.\n\n
+         <b>PLAYBACK:</b> the function is available by pressing the home button on the phone, showing the currently playing content in the bubble. Music control is achieved by reopening the application.\n\n
+         <b>DELETION:</b> deleting playlists or songs is done with a long click. NB: for history videos you must do this on the main screen and not on the player screen.\n\n
+         <b>PLAYLISTS:</b> adding songs is possible thanks to the button at the top right of the video player.\n\n</string>
+    <string name="about"><b>ABOUT</b>\n\n
+         The application allows you to play videos on YouTube while still being able to use other applications in the meantime.
+         To avoid violating the terms and conditions of use of the YouTube API, which prevent videos from being listened to in the background, the application is shown in miniature.\n\n
+         <i>No data is collected, the app is totally free.</i></string>
+    <string name="my_info">Developer website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Enter title...</string>
+    <string name="delete_confirmation_title">Delete this item?</string>
+    <string name="delete_confirmation">Are you sure you want to delete this item?</string>
+    <string name="delete">Delete</string>
+    <string name="restore">Canel</string>
+    <string name="add_playlist">Add playlist</string>
+    <string name="error_empty_name">The playlist name cannot be empty</string>
+    <string name="error_already_exist">The name entered already exists</string>
+    <string name="select_playlist">Select a playlist</string>
+    <string name="edit_playlist_name">Edit Playlist name</string>
+    <string name="error_element_playlist_already_exist">Item already exists within the selected playlist</string>
+</resources>

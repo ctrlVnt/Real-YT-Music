@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RYTM</string>
+
+    <string name="caches">Supprimer les caches</string>
+    <string name="prev_search">Recherche récente</string>
+    <string name="settings">Information</string>
+    <string name="deleted_caches">Tous les éléments ont été supprimés</string>
+    <string name="how_to_use"><b>QUELQUES INSTRUCTIONS</b>\n\n
+          <b>VERROUILLAGE DE L\'ÉCRAN :</b> lors de la lecture d\'une vidéo, grâce au bouton central, il est possible de bloquer les contacts accidentels sur l\'écran en réduisant la luminosité au minimum pour augmenter la durée de vie de la batterie.\n\n
+          <b>LECTURE :</b> la fonction est disponible en appuyant sur le bouton d\'accueil du téléphone, affichant le contenu en cours de lecture dans la bulle. Le contrôle de la musique est obtenu en rouvrant l\'application.\n\n
+          <b>SUPPRESSION :</b> la suppression de playlists ou de chansons se fait par un clic long. NB : pour les vidéos d\'historique vous devez le faire sur l\'écran principal et non sur l\'écran du lecteur.\n\n
+          <b>PLAYLISTES :</b> l\'ajout de chansons est possible grâce au bouton en haut à droite du lecteur vidéo.\n\n
+    </string>
+    <string name="my_info">Site Web du développeur : <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Entrez le titre…</string>
+    <string name="delete_confirmation_title">Supprimer cet élément ?</string>
+    <string name="delete_confirmation">Êtes-vous sûr de bien vouloir supprimer cet élément?</string>
+    <string name="delete">Supprimer</string>
+    <string name="restore">Annuler</string>
+    <string name="add_playlist">Ajouter une playlist</string>
+    <string name="error_empty_name">Le nom de la playlist ne peut pas être vide</string>
+    <string name="error_already_exist">Le nom saisi existe déjà</string>
+    <string name="select_playlist">Sélectionnez une playlist</string>
+    <string name="edit_playlist_name">Modifier le nom de playlist</string>
+    <string name="error_element_playlist_already_exist">L\'élément existe déjà dans la playlist sélectionnée</string>
+    <string name="about"><b>À PROPOS</b>\n\n
+         L\'application vous permet de lire des vidéos sur YouTube tout en pouvant utiliser d\'autres applications en attendant.
+         Pour éviter de violer les conditions et conditions d\'utilisation de l\'API YouTube, qui empêchent l\'écoute des vidéos en arrière-plan, l\'application est affichée en miniature.\n\n
+         <i>Aucune donnée n\'est collectée, l\'application est totalement gratuite.</i>
+    </string>
+</resources>

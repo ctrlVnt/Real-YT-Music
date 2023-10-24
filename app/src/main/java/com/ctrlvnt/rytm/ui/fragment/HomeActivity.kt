@@ -46,7 +46,6 @@ class HomeActivity : Fragment() {
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
         val playlistsButton: FloatingActionButton = rootView.findViewById(R.id.playlist)
-        val line: View = rootView.findViewById(R.id.line)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
@@ -100,12 +99,8 @@ class HomeActivity : Fragment() {
 
             override fun onQueryTextChange(text: String?): Boolean {
                 if (!text.isNullOrBlank()) {
-                    /*val slideUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-                    searchBar.startAnimation(slideUp)
-                    val params = searchBar.layoutParams as ViewGroup.MarginLayoutParams
-                    params.topMargin = 0
-                    searchBar.layoutParams = params
-                    middlePart.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
+
+                    /*logo.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
                         duration = 500
                         fillAfter = true
                     })
@@ -117,18 +112,16 @@ class HomeActivity : Fragment() {
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
-                    line.visibility = View.GONE
+
                     cronologia.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
                 }else{
-                    /*searchBar.clearAnimation()*/
                     clearRecyclerView(rootView)
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
-                    line.visibility = View.VISIBLE
                     cronologia.visibility = View.VISIBLE
                     cronologiaText.visibility = View.VISIBLE
                     playlistsButton.visibility = View.VISIBLE
@@ -143,14 +136,14 @@ class HomeActivity : Fragment() {
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem) {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Eliminare questo elemento?")
-        alertDialogBuilder.setMessage("Sei sicuro di voler eliminare questo elemento?")
+        alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
+        alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
-        alertDialogBuilder.setPositiveButton("Elimina") { _, _ ->
+        alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
             MainActivity.database.videoDao().delete(videoItem.id.videoId)
             refreshAdapter()
         }
-        alertDialogBuilder.setNegativeButton("Annulla") { dialog, _ ->
+        alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
             dialog.dismiss()
         }
         val alertDialog = alertDialogBuilder.create()

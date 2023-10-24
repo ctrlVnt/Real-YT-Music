@@ -50,7 +50,7 @@ class Playlist_fragment : Fragment(){
         val editTextName: EditText = dialogView.findViewById(R.id.editTextName)
 
         builder.setView(dialogView)
-            .setTitle("Aggiungi Playlist")
+            .setTitle(R.string.add_playlist)
             .setPositiveButton("OK") { dialog, _ ->
                 val name =  editTextName.text.toString()
 
@@ -62,13 +62,13 @@ class Playlist_fragment : Fragment(){
                     (playlistList.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
                 } else {
                     if(name.isBlank()){
-                        Toast.makeText(requireContext(), "Il nome della playlist non può essere vuoto", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(requireContext(), "Il nome inserito è già esistente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
-            .setNegativeButton("Annulla") { dialog, _ ->
+            .setNegativeButton(R.string.restore) { dialog, _ ->
                 dialog.dismiss()
             }
 
@@ -78,14 +78,14 @@ class Playlist_fragment : Fragment(){
 
     private fun showDeleteConfirmationDialog(playlistItem: Playlist) {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Eliminare questo elemento?")
-        alertDialogBuilder.setMessage("Sei sicuro di voler eliminare questo elemento?")
+        alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
+        alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
-        alertDialogBuilder.setPositiveButton("Elimina") { _, _ ->
+        alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
             MainActivity.database.deletePlaylist(playlistItem)
             refreshAdapter()
         }
-        alertDialogBuilder.setNegativeButton("Annulla") { dialog, _ ->
+        alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
             dialog.dismiss()
         }
         val alertDialog = alertDialogBuilder.create()

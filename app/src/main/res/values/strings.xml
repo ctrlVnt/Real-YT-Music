@@ -1,22 +1,39 @@
 <resources>
     <string name="app_name">RYTM</string>
-    <string name="hello_blank_fragment">Real YT Music</string>
+    <string name="hello_blank_fragment" translatable="false">Real YT Music</string>
     <string name="caches">Elimina caches applicazione</string>
     <string name="prev_search">Ricerche recenti</string>
     <string name="settings">Informazioni</string>
     <string name="deleted_caches">Tutti gli elementi sono stati eliminati</string>
-    <string name="about">ABOUT\n\n
-        L\'applicazione permette di poter riprodurre video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.
+
+    <string name="how_to_use"><b>ALCUNE ISTRUZIONI</b> \n\n
+        <b>BLOCCO SCHERMO:</b> durante la riproduzione di un video, grazie al bottone centrale, è possibile bloccare touch accidentali allo schermo riducendo la luminosità al minimo per aumentare la durata della batteria.\n\n
+        <b>PLAYBACK:</b> la funzione è disponibile premento il bottone home del telefono, mostrando il bolla il contenuto in esecuzione. Il controllo musicale lo si ha riaprendo l\'applicazione.\n\n
+        <b>ELIMINAZIONE:</b> l\'eliminazione di playlist o canzoni viene effettuato con un click prolungato. NB: per i video della cronologia bisogna farlo nella schermata principale e non in quella del player.\n\n
+        <b>PLAYLISTS:</b> l\'aggiunta dei brani è possibile grazie al bottone in alto a destra nel lettore video.\n\n
+    </string>
+
+    <string name="about"><b>ABOUT</b>\n\n
+        L\'applicazione permette la riproduzione dei video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.
         Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.\n\n
-        <i>Non colleziono alcun dato, l\'app è totalmente libera.</i>
+        <i>Non viene collezionato alcun dato, l\'app è totalmente libera.</i>
     </string>
-    <string name="how_to_use">ISTRUZIONI \n\n
-        PLAY: per poter vedere un video basterà scrivere il nome del testo nella barra all\'interno della home e fare invio. Anche aprendo le playlists si aprirà direttamente il video.\n\n
-        BLOCCO: Se si vuole ascoltare della musica con il teledono in tasca si può utilizzare il bottone di blocco per impedire dei tocchi fatti per errore. Inoltre diminuisce la luminosità al minimo per una maggiore durata della batteria\n\n
-        PLAYBACK: per ascoltare i video in playback, basterà uscire dall\'applicazione grazie al tasto home del telefono, verrà mostrata l\'applicazione in una bolla.\n\n
-        ELIMINAZIONE: per poter eliminare playlist e canzoni bisogna solamente effettuare un click prolungato. NB: Per la cronologia farlo nella schermata home e non in quella di play.\n\n
-        PLAYLISTS: Per aggiungere una playlist c\'è il bottone di aggiunta nella schermata playlist, mentre per aggiungere le canzoni si deve farlo direttamente dalla schermata play del brano corrente.\n\n
-    </string>
-    <string name="my_info">Visita il mio sito web: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Inserisci titolo...</string>
+
+    <string name="my_info">Sito web sviluppatore: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Inserisci titolo…</string>
+
+    <string name="delete_confirmation_title">Eliminare questo elemento?</string>
+    <string name="delete_confirmation">Sei sicuro di voler eliminare questo elemento?</string>
+    <string name="delete">Elimina</string>
+    <string name="restore">Annulla</string>
+
+    <string name="add_playlist">Aggiungi Playlist</string>
+    <string name="error_empty_name">Il nome della playlist non può essere vuoto</string>
+    <string name="error_already_exist">Il nome inserito è già esistente</string>
+
+    <string name="select_playlist">Seleziona una playlist</string>
+
+    <string name="error_element_playlist_already_exist">Elemento già esistente all\'interno della playlist selezionata</string>
+
+    <string name="edit_playlist_name">Modifica nome Playlist</string>
 </resources>
