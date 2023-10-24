@@ -13,4 +13,5 @@
     Con una lunga pressione sugli elementi delle playlist e della cronologia si possono eliminare gli elementi. Il bottone di blocco dello schermo serve per evitarne il tocco quando si vuole ascoltare un video mettendo, per esempio, il telefono nella tasca. Se si esce dall\'appliczione il video verrà mostrato in bolla, così da permettere di fare altre operazioni nel mentre.
     </string>
     <string name="my_info">Visita il mio sito web: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Inserisci titolo...</string>
 </resources>

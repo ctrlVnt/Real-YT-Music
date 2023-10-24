@@ -74,6 +74,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            app:queryHint="@string/placeholder"
+            app:iconifiedByDefault="false"
             app:layout_constraintBottom_toTopOf="@+id/songs_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
