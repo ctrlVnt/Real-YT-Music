@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -22,6 +23,7 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -31,18 +33,22 @@ import retrofit2.Response
 class HomeActivity : Fragment() {
 
     lateinit var cronologia:RecyclerView
+    lateinit var searchBar: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home_activity, container, false)
-        val searchBar: SearchView = rootView.findViewById(R.id.search_titles)
+        searchBar = rootView.findViewById(R.id.search_titles)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
-        val playlistsButton: ImageButton = rootView.findViewById(R.id.playlist)
+        val playlistsButton: FloatingActionButton = rootView.findViewById(R.id.playlist)
         val line: View = rootView.findViewById(R.id.line)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
+        val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
+        //val background: ConstraintLayout = rootView.findViewById(R.id.home)
+        val logo: ImageView = rootView.findViewById(R.id.logo)
 
        cronologia = rootView.findViewById(R.id.last_search)
         val layoutManager = LinearLayoutManager(context)
@@ -83,27 +89,50 @@ class HomeActivity : Fragment() {
         }
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(title: String?): Boolean {
+            override fun onQueryTextSubmit(text: String?): Boolean {
+                if (!text.isNullOrBlank()) {
+                    titleSearch(text, rootView)
+                }
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if (!newText.isNullOrBlank()) {
+            override fun onQueryTextChange(text: String?): Boolean {
+                if (!text.isNullOrBlank()) {
+                    /*val slideUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+                    searchBar.startAnimation(slideUp)
+                    val params = searchBar.layoutParams as ViewGroup.MarginLayoutParams
+                    params.topMargin = 0
+                    searchBar.layoutParams = params
+                    middlePart.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
+                        duration = 500
+                        fillAfter = true
+                    })
+                    bottomPart.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
+                        duration = 500
+                        fillAfter = true
+                    })*/
+
+                    logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
                     line.visibility = View.GONE
                     cronologia.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
-                    titleSearch(newText, rootView)
+                    bottomPart.visibility = View.GONE
+                    //background.setBackgroundColor(resources.getColor(R.color.black))
                 }else{
+                    /*searchBar.clearAnimation()*/
                     clearRecyclerView(rootView)
+                    logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
                     line.visibility = View.VISIBLE
                     cronologia.visibility = View.VISIBLE
                     cronologiaText.visibility = View.VISIBLE
                     playlistsButton.visibility = View.VISIBLE
+                    bottomPart.visibility = View.VISIBLE
+                    //background.setBackgroundColor(resources.getColor(R.color.red))
                 }
                 return true
             }

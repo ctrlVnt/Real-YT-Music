@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="horizontal">
+    android:padding="10dp">
 
-    <TextView
-        android:id="@+id/playlist_title_item"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Playlist Title"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:background="@drawable/playlist_item">
 
+        <TextView
+            android:id="@+id/playlist_title_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Playlist Title"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
 </LinearLayout>

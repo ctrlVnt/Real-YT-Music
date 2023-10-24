@@ -119,7 +119,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         repeat.setOnClickListener {
             repeatOption = !repeatOption
             if (repeatOption){
-                repeat.setColorFilter(resources.getColor(R.color.yt_red), PorterDuff.Mode.SRC_IN)
+                repeat.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
             }else{
                 repeat.clearColorFilter()
             }
@@ -128,7 +128,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         shuffle.setOnClickListener {
             shuffleOption = !shuffleOption
             if (shuffleOption){
-                shuffle.setColorFilter(resources.getColor(R.color.yt_red), PorterDuff.Mode.SRC_IN)
+                shuffle.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
             }else{
                 shuffle.clearColorFilter()
             }
@@ -289,6 +289,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
             val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = 0
+            val displayMetrics = resources.displayMetrics
+            val screenHeight = displayMetrics.heightPixels
+            params.height = screenHeight
             youTubePlayerView.layoutParams = params
             buttonPannel.visibility = View.GONE
             playlistAdd.visibility = View.GONE
@@ -379,8 +382,24 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             .setTitle("Modifica nome Playlist")
             .setPositiveButton("OK") { dialog, _ ->
                 val name =  editTextName.text.toString()
-                MainActivity.database.editPlaylistName(currentName, name)
-                playlisName.text = name
+                if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
+                    MainActivity.database.editPlaylistName(currentName, name)
+                    playlisName.text = name
+                }else {
+                    if (name.isBlank()) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Il nome della playlist non può essere vuoto",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Il nome inserito è già esistente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
             .setNegativeButton("Annulla") { dialog, _ ->
                 dialog.dismiss()

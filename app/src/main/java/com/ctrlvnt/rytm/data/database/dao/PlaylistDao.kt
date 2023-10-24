@@ -22,4 +22,7 @@ interface PlaylistDao {
 
     @Query("UPDATE playlist SET playlistName = :newName WHERE playlistName = :oldName")
     fun updatePlaylistName(oldName: String, newName: String)
+
+    @Query("SELECT COUNT(*) FROM playlist WHERE playlistName = :playlistName")
+    fun alreadyExist(playlistName: String): Int
 }

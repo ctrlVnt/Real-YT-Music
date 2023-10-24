@@ -14,38 +14,41 @@
             android:id="@+id/SettingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:textSize="32sp"
             android:text="@string/settings"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            android:textColor="@color/text"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/caches_section"
-            android:layout_width="match_parent"
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/about_section">
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/delete_caches"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/caches"
-            android:textColor="@color/black"
-            android:backgroundTint="@android:color/darker_gray"/>
-        </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/how_to_use" />
+        </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/about_section"
-            android:layout_width="match_parent"
+        <ScrollView
+            android:id="@+id/scrollView4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="50dp"
             android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/my_info"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/about"
@@ -53,19 +56,35 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/about"
+                android:textColor="@color/text"
                 android:textSize="16sp" />
+        </ScrollView>
 
-            <TextView
-                android:id="@+id/my_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/my_info"
-                android:gravity="center"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/my_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/my_info"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/delete_caches"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/delete_caches"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="@string/caches"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

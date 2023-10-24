@@ -10,6 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/triangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
@@ -17,6 +26,8 @@
             android:layout_marginTop="30dp"
             android:text="Playlists"
             android:textSize="32sp"
+            android:textColor="@color/red"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +39,6 @@
             android:layout_marginTop="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
@@ -36,11 +46,17 @@
             android:id="@+id/add_playlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@color/red"
             android:clickable="true"
             android:src="@android:drawable/ic_input_add"
+            android:tint="@color/red_dark"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/red_dark"
+            app:tint="@color/text" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

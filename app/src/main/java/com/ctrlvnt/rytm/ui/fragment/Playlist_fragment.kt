@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,11 +53,20 @@ class Playlist_fragment : Fragment(){
             .setTitle("Aggiungi Playlist")
             .setPositiveButton("OK") { dialog, _ ->
                 val name =  editTextName.text.toString()
-                val newPlaylist = Playlist(playlistName = name)
-                MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
 
-                val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
-                (playlistList.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
+                    val newPlaylist = Playlist(playlistName = name)
+                    MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+
+                    val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
+                    (playlistList.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                } else {
+                    if(name.isBlank()){
+                        Toast.makeText(requireContext(), "Il nome della playlist non può essere vuoto", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "Il nome inserito è già esistente", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             .setNegativeButton("Annulla") { dialog, _ ->
                 dialog.dismiss()
