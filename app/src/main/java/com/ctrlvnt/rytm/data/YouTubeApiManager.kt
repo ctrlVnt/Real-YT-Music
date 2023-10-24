@@ -14,8 +14,8 @@ class YouTubeApiManager {
 
     private val apiService = retrofit.create(YouTubeApiService::class.java)
 
-    fun searchVideos(query: String, apiKey: String, callback: Callback<SearchResponse>) {
-        val call = apiService.searchVideos(apiKey, query)
+    fun searchVideos(query: String, apiKey: String, geoCode: String, callback: Callback<SearchResponse>) {
+        val call = apiService.searchVideos(apiKey, query, geoCode)
         call.enqueue(callback)
     }
 }

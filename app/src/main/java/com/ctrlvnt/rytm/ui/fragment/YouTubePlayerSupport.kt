@@ -191,7 +191,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, 0f)
-                    indexVideo++
+                    if(nextVideo.size > 1){
+                        indexVideo++
+                    }
 
                     playlistAdd.setOnClickListener {
                         showPlaylistDialog(videoId)

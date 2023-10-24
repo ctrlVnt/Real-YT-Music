@@ -2,6 +2,7 @@ package com.ctrlvnt.rytm.ui.fragment
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +30,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale
 
 class HomeActivity : Fragment() {
 
@@ -47,7 +49,6 @@ class HomeActivity : Fragment() {
         val line: View = rootView.findViewById(R.id.line)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
-        //val background: ConstraintLayout = rootView.findViewById(R.id.home)
         val logo: ImageView = rootView.findViewById(R.id.logo)
 
        cronologia = rootView.findViewById(R.id.last_search)
@@ -57,7 +58,8 @@ class HomeActivity : Fragment() {
         val videos = MainActivity.database.videoDao().getAll()
         val videoItems = videos?.map {
             var videoid = VideoId(it.id)
-            var snippet = Snippet(it.title, it.channelTitle)
+
+            var snippet = Snippet(Html.fromHtml(it.title, Html.FROM_HTML_MODE_LEGACY).toString(), Html.fromHtml(it.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString())
             VideoItem(videoid, snippet)
         } ?: emptyList()
 
@@ -120,7 +122,6 @@ class HomeActivity : Fragment() {
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
-                    //background.setBackgroundColor(resources.getColor(R.color.black))
                 }else{
                     /*searchBar.clearAnimation()*/
                     clearRecyclerView(rootView)
@@ -132,7 +133,6 @@ class HomeActivity : Fragment() {
                     cronologiaText.visibility = View.VISIBLE
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE
-                    //background.setBackgroundColor(resources.getColor(R.color.red))
                 }
                 return true
             }
@@ -175,7 +175,10 @@ class HomeActivity : Fragment() {
         recyclerView.layoutManager = layoutManager
         val apiManager = YouTubeApiManager()
 
-        apiManager.searchVideos(searchQuery, APIKEY, object : Callback<SearchResponse> {
+        val locale = Locale.getDefault()
+        val country = locale.country
+
+        apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 if (response.isSuccessful) {
                     val videos = response.body()?.items
