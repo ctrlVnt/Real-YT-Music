@@ -15,27 +15,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="32sp"
             android:text="@string/settings"
             android:textColor="@color/text"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
             android:id="@+id/scrollView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:padding="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SettingsText">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="16sp"
                 android:text="@string/how_to_use" />
         </ScrollView>
 
@@ -43,8 +46,8 @@
             android:id="@+id/scrollView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginBottom="20dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@+id/my_info"
             app:layout_constraintEnd_toEndOf="parent"
 
@@ -53,7 +56,7 @@
             <TextView
                 android:id="@+id/about"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/about"
                 android:textColor="@color/text"
@@ -64,12 +67,12 @@
             android:id="@+id/my_info"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/my_info"
             android:textColor="@color/text"
             android:textSize="16sp"
-            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/delete_caches"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -78,13 +81,13 @@
             android:id="@+id/delete_caches"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@android:color/darker_gray"
             android:text="@string/caches"
             android:textColor="@color/black"
-            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

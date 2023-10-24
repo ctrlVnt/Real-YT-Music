@@ -5,12 +5,17 @@
     <string name="prev_search">Ricerche recenti</string>
     <string name="settings">Informazioni</string>
     <string name="deleted_caches">Tutti gli elementi sono stati eliminati</string>
-    <string name="about">ABOUT ME \n
-    L\'applicazione permette di poter riprodurre video su YouTube potendo comunque utilizzare altre applicazioni nel frattempo.
-    Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.
+    <string name="about">ABOUT\n\n
+        L\'applicazione permette di poter riprodurre video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.
+        Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.\n\n
+        <i>Non colleziono alcun dato, l\'app è totalmente libera.</i>
     </string>
-    <string name="how_to_use">QUALCHE ISTRUZIONE \n
-    Con una lunga pressione sugli elementi delle playlist e della cronologia si possono eliminare gli elementi. Il bottone di blocco dello schermo serve per evitarne il tocco quando si vuole ascoltare un video mettendo, per esempio, il telefono nella tasca. Se si esce dall\'appliczione il video verrà mostrato in bolla, così da permettere di fare altre operazioni nel mentre.
+    <string name="how_to_use">ISTRUZIONI \n\n
+        PLAY: per poter vedere un video basterà scrivere il nome del testo nella barra all\'interno della home e fare invio. Anche aprendo le playlists si aprirà direttamente il video.\n\n
+        BLOCCO: Se si vuole ascoltare della musica con il teledono in tasca si può utilizzare il bottone di blocco per impedire dei tocchi fatti per errore. Inoltre diminuisce la luminosità al minimo per una maggiore durata della batteria\n\n
+        PLAYBACK: per ascoltare i video in playback, basterà uscire dall\'applicazione grazie al tasto home del telefono, verrà mostrata l\'applicazione in una bolla.\n\n
+        ELIMINAZIONE: per poter eliminare playlist e canzoni bisogna solamente effettuare un click prolungato. NB: Per la cronologia farlo nella schermata home e non in quella di play.\n\n
+        PLAYLISTS: Per aggiungere una playlist c\'è il bottone di aggiunta nella schermata playlist, mentre per aggiungere le canzoni si deve farlo direttamente dalla schermata play del brano corrente.\n\n
     </string>
     <string name="my_info">Visita il mio sito web: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
     <string name="placeholder">Inserisci titolo...</string>

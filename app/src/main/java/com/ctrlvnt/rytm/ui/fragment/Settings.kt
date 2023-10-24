@@ -1,10 +1,12 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ctrlvnt.rytm.R
@@ -22,6 +24,10 @@ class Settings : Fragment(){
             MainActivity.database.deleteAllVideos()
             Toast.makeText(this.context, getString(R.string.deleted_caches), Toast.LENGTH_SHORT).show()
         }
+
+        val mTextView: TextView = rootView.findViewById(R.id.my_info)
+        mTextView.movementMethod = LinkMovementMethod.getInstance()
+
         return rootView
     }
 }
