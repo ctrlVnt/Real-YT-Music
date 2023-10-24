@@ -191,6 +191,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, 0f)
+                    indexVideo++
 
                     playlistAdd.setOnClickListener {
                         showPlaylistDialog(videoId)
@@ -287,6 +288,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
+            activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            //activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN)
+            activity?.actionBar?.hide()
+
             val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = 0
             val displayMetrics = resources.displayMetrics
@@ -299,6 +304,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = originalMarginTop
             youTubePlayerView.layoutParams = params
+
+            activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+            activity?.actionBar?.show()
 
             buttonPannel.visibility = View.VISIBLE
             playlistAdd.visibility = View.VISIBLE
