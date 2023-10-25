@@ -350,6 +350,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         if(nextVideo.size == 0){
                             indexVideo = 0
                         }
+                        if (indexVideo >= nextVideo.size) {
+                            indexVideo = 0
+                        }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
                         indexVideo++
@@ -575,7 +578,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         // Costruire la notifica
         val notification = NotificationCompat.Builder(requireContext(), "your_channel_id")
-            .setSmallIcon(R.drawable.logo)
+            .setSmallIcon(R.drawable.notify_logo)
             .setContentTitle(getString(R.string.noty_title))
             .setContentText(getString(R.string.noty_text))
             .setColor(ContextCompat.getColor(requireContext(), R.color.red))

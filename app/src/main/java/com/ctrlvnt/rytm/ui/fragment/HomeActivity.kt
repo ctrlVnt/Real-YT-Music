@@ -2,7 +2,6 @@ package com.ctrlvnt.rytm.ui.fragment
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -60,7 +59,7 @@ class HomeActivity : Fragment() {
         val videoItems = videos?.map {
             var videoid = VideoId(it.id)
 
-            var snippet = Snippet(Html.fromHtml(it.title, Html.FROM_HTML_MODE_LEGACY).toString(), Html.fromHtml(it.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString())
+            var snippet = Snippet(it.title, it.channelTitle)
             VideoItem(videoid, snippet)
         } ?: emptyList()
 

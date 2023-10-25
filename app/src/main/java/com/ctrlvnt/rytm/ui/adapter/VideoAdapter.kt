@@ -2,6 +2,7 @@ package com.ctrlvnt.rytm.ui.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,8 +63,8 @@ class VideoAdapter(private val videoList: List<VideoItem>,
 
     override fun onBindViewHolder(holder: VideoViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val currentItem = videoList[position]
-        holder.videoTitle.text = currentItem.snippet.title
-        holder.channelTitle.text = currentItem.snippet.channelTitle
+        holder.videoTitle.text = Html.fromHtml(currentItem.snippet.title, Html.FROM_HTML_MODE_LEGACY).toString()
+        holder.channelTitle.text = Html.fromHtml(currentItem.snippet.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString()
 
         if (position == branoInRiproduzionePosition) {
             holder.videoTitle.setTypeface(null, Typeface.BOLD)
