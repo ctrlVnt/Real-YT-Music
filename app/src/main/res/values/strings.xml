@@ -16,7 +16,7 @@
     <string name="about"><b>ABOUT</b>\n\n
         L\'applicazione permette la riproduzione dei video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.
         Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.\n\n
-        <i>Non viene collezionato alcun dato, l\'app è totalmente libera.</i>
+        <i>Alcuni dati potrebbero essere manipolati dal proprietario delle API, ovvero Youtube, come indicato nei <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
     </string>
 
     <string name="my_info">Sito web sviluppatore: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
@@ -44,4 +44,8 @@
     <string name="empty_cronology">Cronologia vuota, cerca la tua prima canzone!</string>
 
     <string name="generic_error">Errore sconosciuto</string>
+
+    <string name="terms_title">Termini e condizioni d\'uso</string>
+    <string name="terms_text">L\'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> </string>
+    <string name="accept">Accetta</string>
 </resources>

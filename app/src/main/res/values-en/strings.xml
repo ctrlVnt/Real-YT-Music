@@ -13,7 +13,7 @@
     <string name="about"><b>ABOUT</b>\n\n
          The application allows you to play videos on YouTube while still being able to use other applications in the meantime.
          To avoid violating the terms and conditions of use of the YouTube API, which prevent videos from being listened to in the background, the application is shown in miniature.\n\n
-         <i>No data is collected, the app is totally free.</i></string>
+         <i>Some data may be manipulated by the owner of the API, i.e. Youtube, as indicated in the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i></string>
     <string name="my_info">Developer website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
     <string name="placeholder">Enter title...</string>
     <string name="delete_confirmation_title">Delete this item?</string>
@@ -31,4 +31,7 @@
     <string name="empty_playlists">No playlist present</string>
     <string name="empty_cronology">Empty history, search for your first song!</string>
     <string name="generic_error">Unknown error</string>
+    <string name="terms_title">Terms and Conditions</string>
+    <string name="terms_text">The application uses the YouTube API service, before continuing please view and accept the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a></string>
+    <string name="accept">Accept</string>
 </resources>

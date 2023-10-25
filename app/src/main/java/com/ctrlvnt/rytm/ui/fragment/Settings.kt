@@ -28,6 +28,9 @@ class Settings : Fragment(){
         val mTextView: TextView = rootView.findViewById(R.id.my_info)
         mTextView.movementMethod = LinkMovementMethod.getInstance()
 
+        val mTextViewAbout: TextView = rootView.findViewById(R.id.about)
+        mTextViewAbout.movementMethod = LinkMovementMethod.getInstance()
+
         return rootView
     }
 }

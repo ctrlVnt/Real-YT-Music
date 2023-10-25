@@ -27,11 +27,14 @@
     <string name="about"><b>À PROPOS</b>\n\n
          L\'application vous permet de lire des vidéos sur YouTube tout en pouvant utiliser d\'autres applications en attendant.
          Pour éviter de violer les conditions et conditions d\'utilisation de l\'API YouTube, qui empêchent l\'écoute des vidéos en arrière-plan, l\'application est affichée en miniature.\n\n
-         <i>Aucune donnée n\'est collectée, l\'application est totalement gratuite.</i>
+         <i>Certaines données peuvent être manipulées par le propriétaire de l\'API, à savoir Youtube, comme indiqué dans les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Règles de confidentialité</a>.</i>
     </string>
     <string name="noty_title">RYTM est en cours d\'exécution</string>
     <string name="noty_text">Cliquez sur la notification pour revenir au joueur</string>
     <string name="empty_playlists">Aucune playlist présente</string>
     <string name="empty_cronology">Historique vide, recherchez votre première chanson !</string>
     <string name="generic_error">Erreur inconnue</string>
+    <string name="terms_title">Termes et Conditions</string>
+    <string name="terms_text">L\'application utilise le service API YouTube. Avant de continuer, veuillez consulter et accepter les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Politique de confidentialité</a></string>
+    <string name="accept">Accepter</string>
 </resources>
