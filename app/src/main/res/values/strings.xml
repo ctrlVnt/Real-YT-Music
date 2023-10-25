@@ -36,4 +36,7 @@
     <string name="error_element_playlist_already_exist">Elemento già esistente all\'interno della playlist selezionata</string>
 
     <string name="edit_playlist_name">Modifica nome Playlist</string>
+
+    <string name="noty_title">RYTM è in esecuzione</string>
+    <string name="noty_text">Cliccare sulla notifica per tornare al player</string>
 </resources>

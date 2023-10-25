@@ -26,4 +26,6 @@
     <string name="select_playlist">Select a playlist</string>
     <string name="edit_playlist_name">Edit Playlist name</string>
     <string name="error_element_playlist_already_exist">Item already exists within the selected playlist</string>
+    <string name="noty_title">RYTM is running</string>
+    <string name="noty_text">Click on the notification to return to the player</string>
 </resources>

@@ -29,4 +29,6 @@
          Pour éviter de violer les conditions et conditions d\'utilisation de l\'API YouTube, qui empêchent l\'écoute des vidéos en arrière-plan, l\'application est affichée en miniature.\n\n
          <i>Aucune donnée n\'est collectée, l\'application est totalement gratuite.</i>
     </string>
+    <string name="noty_title">RYTM est en cours d\'exécution</string>
+    <string name="noty_text">Cliquez sur la notification pour revenir au joueur</string>
 </resources>

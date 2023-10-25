@@ -1,8 +1,17 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +27,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,6 +81,44 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var nextButton: ImageButton
     lateinit var searchBar: SearchView
     private var originalMarginTop: Int = 0
+
+    private val playbackReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when (intent?.action) {
+                "ACTION_PLAY" -> {
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.play()
+                        }
+                    }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+                }
+                "ACTION_PAUSE" -> {
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.pause()
+                        }
+                    }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+                }
+                "OPEN_ACTIVITY" -> {
+                }
+            }
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        val intentFilter = IntentFilter().apply {
+            addAction("ACTION_PLAY")
+            addAction("ACTION_PAUSE")
+        }
+        requireContext().registerReceiver(playbackReceiver, intentFilter)
+    }
+    override fun onStop() {
+        super.onStop()
+        requireContext().unregisterReceiver(playbackReceiver)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -217,6 +267,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 videoId?.let {
+                    createNotification()
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
@@ -488,6 +539,57 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         })
     }
 
+    @SuppressLint("MissingPermission")
+    private fun createNotification() {
+        val notificationManager = NotificationManagerCompat.from(requireContext())
+
+        // Creare un canale di notifica (richiesto per le versioni Android Oreo e successive)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "your_channel_id"
+            val channelName = "Your Channel Name"
+            val channelDescription = "Your Channel Description"
+            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+            channel.description = channelDescription
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Creare un'azione per aprire l'app quando la notifica viene selezionata
+        val openAppIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)
+        //openAppIntent.putExtra("videoId", videoId.videoId) // Sostituisci con il tuo dato
+        //openAppIntent.action = "OPEN_ACTIVITY"
+        val openAppPendingIntent = PendingIntent.getActivity(requireContext(), 0, openAppIntent, PendingIntent.FLAG_IMMUTABLE)
+
+        // Creare un'azione di riproduzione
+        val playIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)  // Sostituisci con il tuo servizio di riproduzione
+        playIntent.action = "ACTION_PLAY"
+        val playPendingIntent = PendingIntent.getService(requireContext(), 0, playIntent, PendingIntent.FLAG_IMMUTABLE)
+
+        // Creare un'azione di pausa
+        val pauseIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)  // Sostituisci con il tuo servizio di riproduzione
+        pauseIntent.action = "ACTION_PAUSE"
+        val pausePendingIntent = PendingIntent.getService(requireContext(), 0, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
+
+        // Creare uno stile MediaStyle per la notifica
+        val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
+            .setShowActionsInCompactView(0, 1) // Posizioni delle azioni nel layout compatto
+
+        // Costruire la notifica
+        val notification = NotificationCompat.Builder(requireContext(), "your_channel_id")
+            .setSmallIcon(R.drawable.logo)
+            .setContentTitle(getString(R.string.noty_title))
+            .setContentText(getString(R.string.noty_text))
+            .setColor(ContextCompat.getColor(requireContext(), R.color.red))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(openAppPendingIntent)
+            .setAutoCancel(true)
+            //.setStyle(mediaStyle) // Imposta lo stile MediaStyle
+            //.addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent) // Aggiungi azione di pausa
+            //.addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent) // Aggiungi azione di riproduzione
+            //.setVibrate(longArrayOf(0L))
+
+        notificationManager.notify(1, notification.build())
+    }
+
     override fun onItemClick(videoItem: VideoItem) {
         val videoId = videoItem.id
 
@@ -502,4 +604,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
         youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val notificationManager = NotificationManagerCompat.from(requireContext())
+        notificationManager.cancel(1)
+    }
+
 }
