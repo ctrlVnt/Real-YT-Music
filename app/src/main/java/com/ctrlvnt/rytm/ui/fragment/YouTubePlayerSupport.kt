@@ -588,7 +588,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             //.setStyle(mediaStyle) // Imposta lo stile MediaStyle
             //.addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent) // Aggiungi azione di pausa
             //.addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent) // Aggiungi azione di riproduzione
-            //.setVibrate(longArrayOf(0L))
+            .setVibrate(longArrayOf(0L))
 
         notificationManager.notify(1, notification.build())
     }
