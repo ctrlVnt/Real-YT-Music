@@ -179,8 +179,7 @@ class HomeActivity : Fragment() {
                         VideoItem(it.id, it.snippet)
                     } ?: emptyList()
 
-                    // Creare un'istanza dell'adapter e collegarla alla RecyclerView
-                    val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
+                    //val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
                     recyclerView.adapter = VideoAdapter(videoItems, null,"home")
                 } else {
                     val errorBody = response.errorBody()?.string()

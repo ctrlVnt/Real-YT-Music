@@ -4,6 +4,7 @@ package com.ctrlvnt.rytm.ui.fragment
 import android.content.res.Configuration
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,24 +16,34 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
+import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.Video
+import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
+import com.ctrlvnt.rytm.utils.APIKEY
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.util.Locale
 import kotlin.random.Random
 
 
@@ -56,6 +67,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var buttonPannel: ConstraintLayout
     private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
+    lateinit var searchBar: SearchView
     private var originalMarginTop: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +87,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         youTubePlayerView = rootView.findViewById(R.id.youtube_player_view)
         playlistAdd = rootView.findViewById(R.id.add_playlist)
         playlisName = rootView.findViewById(R.id.playlist_name)
+        searchBar = rootView.findViewById(R.id.search_bar_player)
         val videos: List<Video>
 
         var lock = false
@@ -174,6 +187,23 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
             }
         }
+
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(text: String?): Boolean {
+                if (!text.isNullOrBlank()) {
+                    titleSearch(text, rootView)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(text: String?): Boolean {
+                if(text.isNullOrBlank()){
+                    val recyclerView = rootView.findViewById<RecyclerView>(R.id.videos_list_player)
+                    recyclerView.adapter = null
+                }
+                return true
+            }
+        })
 
         val nextVideo = videos
         var shuffleMode = mutableListOf<Int>()
@@ -417,6 +447,45 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         val alertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun titleSearch(searchQuery : String, rootView: View){
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.videos_list_player)
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+        val apiManager = YouTubeApiManager()
+
+        val locale = Locale.getDefault()
+        val country = locale.country
+
+        apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
+            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                if (response.isSuccessful) {
+                    val videos = response.body()?.items
+                    val videoItems = videos?.map {
+                        VideoItem(it.id, it.snippet)
+                    } ?: emptyList()
+
+                    recyclerView.adapter = VideoAdapter(videoItems, null,"home")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    try {
+                        val errorJson = JSONObject(errorBody)
+                        val errorMessage = errorJson.getJSONObject("error").getString("message")
+                        Toast.makeText(requireContext(), "$errorMessage", Toast.LENGTH_LONG).show()
+                    } catch (e: JSONException) {
+                        Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
+                        Toast.makeText(requireContext(), "Errore sconosciuto", Toast.LENGTH_SHORT).show()
+                    }
+
+                    Log.e("API Error", response.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                Log.e("ERROR", t.message.toString())
+            }
+        })
     }
 
     override fun onItemClick(videoItem: VideoItem) {
