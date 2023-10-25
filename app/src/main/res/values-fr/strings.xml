@@ -7,10 +7,10 @@
     <string name="settings">Information</string>
     <string name="deleted_caches">Tous les éléments ont été supprimés</string>
     <string name="how_to_use"><b>QUELQUES INSTRUCTIONS</b>\n\n
-          <b>VERROUILLAGE DE L\'ÉCRAN :</b> lors de la lecture d\'une vidéo, grâce au bouton central, il est possible de bloquer les contacts accidentels sur l\'écran en réduisant la luminosité au minimum pour augmenter la durée de vie de la batterie.\n\n
-          <b>LECTURE :</b> la fonction est disponible en appuyant sur le bouton d\'accueil du téléphone, affichant le contenu en cours de lecture dans la bulle. Le contrôle de la musique est obtenu en rouvrant l\'application.\n\n
-          <b>SUPPRESSION :</b> la suppression de playlists ou de chansons se fait par un clic long. NB : pour les vidéos d\'historique vous devez le faire sur l\'écran principal et non sur l\'écran du lecteur.\n\n
-          <b>PLAYLISTES :</b> l\'ajout de chansons est possible grâce au bouton en haut à droite du lecteur vidéo.\n\n
+          <i>VERROUILLAGE DE L\'ÉCRAN :</i> lors de la lecture d\'une vidéo, grâce au bouton central, il est possible de bloquer les contacts accidentels sur l\'écran en réduisant la luminosité au minimum pour augmenter la durée de vie de la batterie.\n\n
+          <i>LECTURE :</i> la fonction est disponible en appuyant sur le bouton d\'accueil du téléphone, affichant le contenu en cours de lecture dans la bulle. Le contrôle de la musique est obtenu en rouvrant l\'application.\n\n
+          <i>SUPPRESSION :</i> la suppression de playlists ou de chansons se fait par un clic long. NB : pour les vidéos d\'historique vous devez le faire sur l\'écran principal et non sur l\'écran du lecteur.\n\n
+          <i>PLAYLISTES :</i> l\'ajout de chansons est possible grâce au bouton en haut à droite du lecteur vidéo.\n\n
     </string>
     <string name="my_info">Site Web du développeur : <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
     <string name="placeholder">Entrez le titre…</string>
@@ -31,4 +31,7 @@
     </string>
     <string name="noty_title">RYTM est en cours d\'exécution</string>
     <string name="noty_text">Cliquez sur la notification pour revenir au joueur</string>
+    <string name="empty_playlists">Aucune playlist présente</string>
+    <string name="empty_cronology">Historique vide, recherchez votre première chanson !</string>
+    <string name="generic_error">Erreur inconnue</string>
 </resources>

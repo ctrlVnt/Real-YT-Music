@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +20,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class Playlist_fragment : Fragment(){
 
     lateinit var playlistList: RecyclerView
+    lateinit var playlistText: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_playlist, container, false)
         val addButton: FloatingActionButton = rootView.findViewById(R.id.add_playlist)
+        playlistText = rootView.findViewById(R.id.empty_playlists)
 
         playlistList = rootView.findViewById(R.id.list_playlist)
         val layoutManager = LinearLayoutManager(context)
@@ -35,6 +38,12 @@ class Playlist_fragment : Fragment(){
             showDeleteConfirmationDialog(playlistItem)
         }
         playlistList.adapter = playlistAdapter
+
+        if(playlists.isEmpty()){
+            playlistText.visibility = View.VISIBLE
+        }else{
+            playlistText.visibility = View.GONE
+        }
 
         addButton.setOnClickListener{
             showCustomDialog()
@@ -60,6 +69,7 @@ class Playlist_fragment : Fragment(){
 
                     val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
                     (playlistList.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                    playlistText.visibility = View.GONE
                 } else {
                     if(name.isBlank()){
                         Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
@@ -96,6 +106,9 @@ class Playlist_fragment : Fragment(){
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
         playlistList.adapter = PlaylistAdapter(playlists) { playlistItem ->
             showDeleteConfirmationDialog(playlistItem)
+        }
+        if(playlists.isEmpty()){
+            playlistText.visibility = View.VISIBLE
         }
     }
 }

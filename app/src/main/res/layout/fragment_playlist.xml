@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
+            android:layout_height="430dp"
             android:src="@drawable/triangle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +57,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/red_dark"
             app:tint="@color/text" />
+
+        <TextView
+            android:id="@+id/empty_playlists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_playlists"
+            android:textColor="@color/light_grey"
+            android:textSize="18sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

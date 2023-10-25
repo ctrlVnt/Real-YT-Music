@@ -36,6 +36,7 @@ class HomeActivity : Fragment() {
 
     lateinit var cronologia:RecyclerView
     lateinit var searchBar: SearchView
+    lateinit var historyText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +44,7 @@ class HomeActivity : Fragment() {
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_home_activity, container, false)
         searchBar = rootView.findViewById(R.id.search_titles)
+        historyText = rootView.findViewById(R.id.empty_history)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
         val playlistsButton: FloatingActionButton = rootView.findViewById(R.id.playlist)
@@ -61,6 +63,12 @@ class HomeActivity : Fragment() {
             var snippet = Snippet(Html.fromHtml(it.title, Html.FROM_HTML_MODE_LEGACY).toString(), Html.fromHtml(it.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString())
             VideoItem(videoid, snippet)
         } ?: emptyList()
+
+        if(videos.isEmpty()){
+            historyText.visibility = View.VISIBLE
+        }else{
+            historyText.visibility = View.GONE
+        }
 
         val videoAdapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
@@ -112,13 +120,16 @@ class HomeActivity : Fragment() {
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
-
+                    historyText.visibility = View.GONE
                     cronologia.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
+                    if(videos.isEmpty()){
+                        historyText.visibility = View.VISIBLE
+                    }
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
@@ -160,6 +171,10 @@ class HomeActivity : Fragment() {
         cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
         },"home")
+
+        if(videos.isEmpty()){
+            historyText.visibility = View.VISIBLE
+        }
     }
 
     private fun titleSearch(searchQuery : String, rootView: View){
@@ -189,7 +204,7 @@ class HomeActivity : Fragment() {
                         Toast.makeText(requireContext(), "$errorMessage", Toast.LENGTH_LONG).show()
                     } catch (e: JSONException) {
                         Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
-                        Toast.makeText(requireContext(), "Errore sconosciuto", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
                     }
 
                     Log.e("API Error", response.toString())

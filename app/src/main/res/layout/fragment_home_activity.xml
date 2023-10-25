@@ -137,5 +137,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/welcome" />
 
+        <TextView
+            android:id="@+id/empty_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_cronology"
+            android:textSize="18sp"
+            android:textColor="@color/dark_grey"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottom" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

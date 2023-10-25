@@ -6,10 +6,10 @@
     <string name="settings">Informations</string>
     <string name="deleted_caches">All items have been deleted</string>
     <string name="how_to_use"><b>SOME INSTRUCTIONS</b>\n\n
-         <b>SCREEN LOCK:</b> while playing a video, thanks to the central button, it is possible to block accidental touches to the screen by reducing the brightness to minimum to increase battery life.\n\n
-         <b>PLAYBACK:</b> the function is available by pressing the home button on the phone, showing the currently playing content in the bubble. Music control is achieved by reopening the application.\n\n
-         <b>DELETION:</b> deleting playlists or songs is done with a long click. NB: for history videos you must do this on the main screen and not on the player screen.\n\n
-         <b>PLAYLISTS:</b> adding songs is possible thanks to the button at the top right of the video player.\n\n</string>
+         <i>SCREEN LOCK:</i> while playing a video, thanks to the central button, it is possible to block accidental touches to the screen by reducing the brightness to minimum to increase battery life.\n\n
+         <i>PLAYBACK:</i> the function is available by pressing the home button on the phone, showing the currently playing content in the bubble. Music control is achieved by reopening the application.\n\n
+         <i>DELETION:</i> deleting playlists or songs is done with a long click. NB: for history videos you must do this on the main screen and not on the player screen.\n\n
+         <i>PLAYLISTS:</i> adding songs is possible thanks to the button at the top right of the video player.\n\n</string>
     <string name="about"><b>ABOUT</b>\n\n
          The application allows you to play videos on YouTube while still being able to use other applications in the meantime.
          To avoid violating the terms and conditions of use of the YouTube API, which prevent videos from being listened to in the background, the application is shown in miniature.\n\n
@@ -28,4 +28,7 @@
     <string name="error_element_playlist_already_exist">Item already exists within the selected playlist</string>
     <string name="noty_title">RYTM is running</string>
     <string name="noty_text">Click on the notification to return to the player</string>
+    <string name="empty_playlists">No playlist present</string>
+    <string name="empty_cronology">Empty history, search for your first song!</string>
+    <string name="generic_error">Unknown error</string>
 </resources>
