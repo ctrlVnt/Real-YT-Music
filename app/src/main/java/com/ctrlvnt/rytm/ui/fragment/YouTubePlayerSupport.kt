@@ -147,9 +147,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
         try {
             requireContext().registerReceiver(playbackReceiver, intentFilter)
-            // La registrazione è avvenuta con successo
         } catch (e: Exception) {
-            // Errore durante la registrazione del BroadcastReceiver
             Log.e("BroadcastReceiver", "Errore durante la registrazione del BroadcastReceiver: ${e.message}")
         }
     }
@@ -301,7 +299,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         var shuffleindex = 0
 
         viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you use playback mode
-        //youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
+        //youTubePlayerView.enableBackgroundPlayback(true) //not legal! playback mode
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -417,7 +415,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-            //activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN)
             activity?.actionBar?.hide()
 
             val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
@@ -593,7 +590,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private fun createNotification() {
         val notificationManager = NotificationManagerCompat.from(requireContext())
 
-        // Creare un canale di notifica (richiesto per le versioni Android Oreo e successive)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "your_channel_id"
             val channelName = "Your Channel Name"
