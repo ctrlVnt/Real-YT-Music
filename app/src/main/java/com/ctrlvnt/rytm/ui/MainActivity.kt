@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Rational
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -81,6 +82,12 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onUserLeaveHint() {
+
+        val layoutParams = window.attributes
+        layoutParams.screenBrightness =
+            WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+        window.attributes = layoutParams
+
         enterPictureInPictureMode(
             PictureInPictureParams.Builder()
             .setAspectRatio(Rational(2, 3))

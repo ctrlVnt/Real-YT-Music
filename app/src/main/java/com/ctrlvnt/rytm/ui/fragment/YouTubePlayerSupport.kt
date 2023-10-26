@@ -258,7 +258,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
-                    layoutParams.screenBrightness = 0.1f
+                    layoutParams.screenBrightness = 0f
                     it.window.attributes = layoutParams
                 }
             }else{
