@@ -80,6 +80,7 @@ class HomeActivity : Fragment() {
 
         settingsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_right, 0)
                 .replace(R.id.main_activity, Settings())
                 .addToBackStack(null)
                 .commit()
@@ -87,6 +88,7 @@ class HomeActivity : Fragment() {
 
         playlistsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.slide_left, 0)
                 .replace(R.id.main_activity, Playlist_fragment())
                 .addToBackStack(null)
                 .commit()
@@ -106,16 +108,6 @@ class HomeActivity : Fragment() {
 
             override fun onQueryTextChange(text: String?): Boolean {
                 if (!text.isNullOrBlank()) {
-
-                    /*logo.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
-                        duration = 500
-                        fillAfter = true
-                    })
-                    bottomPart.startAnimation(AlphaAnimation(1.0f, 0.0f).apply {
-                        duration = 500
-                        fillAfter = true
-                    })*/
-
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
