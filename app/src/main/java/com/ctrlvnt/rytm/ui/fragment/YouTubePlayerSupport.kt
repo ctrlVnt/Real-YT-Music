@@ -189,11 +189,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         shuffle.setOnClickListener {
-            shuffleOption = !shuffleOption
-            if (shuffleOption){
-                shuffle.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
-            }else{
-                shuffle.clearColorFilter()
+            if(videos.size > 1){
+                shuffleOption = !shuffleOption
+                if (shuffleOption){
+                    shuffle.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
+                }else{
+                    shuffle.clearColorFilter()
+                }
             }
         }
 
@@ -280,7 +282,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     nextButton.setOnClickListener{
                         if(shuffleOption){
                             if(shuffleindex >= shuffleMode.size - 1){
-                                val randomIndex = Random.nextInt(0, nextVideo.size)
+                                var randomIndex: Int
+                                do{
+                                    randomIndex = Random.nextInt(0, nextVideo.size)
+                                }while (randomIndex == indexVideo)
+
                                 videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                                 youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                                 shuffleMode.add(randomIndex)
@@ -333,7 +339,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                             }
                         }
                     }else if(shuffleOption) {
-                        val randomIndex = Random.nextInt(0, nextVideo.size)
+                        var randomIndex: Int
+                        do{
+                            randomIndex = Random.nextInt(0, nextVideo.size)
+                        }while (randomIndex == indexVideo)
                         videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                         youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                         playlistAdd.setOnClickListener {
