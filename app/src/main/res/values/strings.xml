@@ -38,7 +38,7 @@
     <string name="edit_playlist_name">Modifica nome Playlist</string>
 
     <string name="noty_title">RYTM è in esecuzione</string>
-    <string name="noty_text">Cliccare sulla notifica per tornare al player</string>
+    <string name="noty_text">Cliccare sulla notifica per cancellarla</string>
 
     <string name="empty_playlists">Nessuna playlist presente</string>
     <string name="empty_cronology">Cronologia vuota, cerca la tua prima canzone!</string>

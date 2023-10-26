@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationManagerCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
@@ -86,11 +85,5 @@ class MainActivity : AppCompatActivity() {
             PictureInPictureParams.Builder()
             .setAspectRatio(Rational(2, 3))
             .build())
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val notificationManager = NotificationManagerCompat.from(this)
-        notificationManager.cancel(1)
     }
 }

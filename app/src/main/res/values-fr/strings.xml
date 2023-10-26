@@ -30,7 +30,7 @@
          <i>Certaines données peuvent être manipulées par le propriétaire de l\'API, à savoir Youtube, comme indiqué dans les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Règles de confidentialité</a>.</i>
     </string>
     <string name="noty_title">RYTM est en cours d\'exécution</string>
-    <string name="noty_text">Cliquez sur la notification pour revenir au joueur</string>
+    <string name="noty_text">Cliquez sur la notification pour la supprimer</string>
     <string name="empty_playlists">Aucune playlist présente</string>
     <string name="empty_cronology">Historique vide, recherchez votre première chanson !</string>
     <string name="generic_error">Erreur inconnue</string>

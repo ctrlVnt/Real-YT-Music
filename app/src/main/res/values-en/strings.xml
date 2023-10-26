@@ -27,7 +27,7 @@
     <string name="edit_playlist_name">Edit Playlist name</string>
     <string name="error_element_playlist_already_exist">Item already exists within the selected playlist</string>
     <string name="noty_title">RYTM is running</string>
-    <string name="noty_text">Click on the notification to return to the player</string>
+    <string name="noty_text">Click on the notification to delete it</string>
     <string name="empty_playlists">No playlist present</string>
     <string name="empty_cronology">Empty history, search for your first song!</string>
     <string name="generic_error">Unknown error</string>

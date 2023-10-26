@@ -81,6 +81,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var nextButton: ImageButton
     lateinit var searchBar: SearchView
     private var originalMarginTop: Int = 0
+    private var indexVideo = 0
 
     private val playbackReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -101,6 +102,38 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
                     youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
                 }
+                "ACTION_NEXT" -> {
+                    val videos : List<Video>
+                    val playlistName = arguments?.getString("playlist_name")
+                    if(playlistName == null || playlistName == ""){
+                        videos = MainActivity.database.videoDao().getAll()
+                    }else{
+                        videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
+                    }
+                    indexVideo++
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.loadVideo(videos[indexVideo].id, 0F)
+                        }
+                    }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+                }
+                "ACTION_PREV" -> {
+                    val videos : List<Video>
+                    val playlistName = arguments?.getString("playlist_name")
+                    if(playlistName == null || playlistName == ""){
+                        videos = MainActivity.database.videoDao().getAll()
+                    }else{
+                        videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
+                    }
+                    indexVideo--
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.loadVideo(videos[indexVideo].id, 0F)
+                        }
+                    }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+                }
             }
         }
     }
@@ -109,6 +142,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val intentFilter = IntentFilter().apply {
             addAction("ACTION_PLAY")
             addAction("ACTION_PAUSE")
+            addAction("ACTION_NEXT")
+            addAction("ACTION_PREV")
         }
         try {
             requireContext().registerReceiver(playbackReceiver, intentFilter)
@@ -268,8 +303,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you use playback mode
         //youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-
-            var indexVideo = 0
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 videoId?.let {
@@ -579,8 +612,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val pauseIntent = Intent("ACTION_PAUSE")
         val pausePendingIntent = PendingIntent.getBroadcast(requireContext(), 1, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
 
+        val nextIntent = Intent("ACTION_NEXT")
+        val nextPendingIntent = PendingIntent.getBroadcast(requireContext(), 2, nextIntent, PendingIntent.FLAG_IMMUTABLE)
+
+        val prevIntent = Intent("ACTION_PREV")
+        val prevPendingIntent = PendingIntent.getBroadcast(requireContext(), 3, prevIntent, PendingIntent.FLAG_IMMUTABLE)
+
         val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
-            .setShowActionsInCompactView(0, 1)
+            .setShowActionsInCompactView(0, 1, 3)
 
         val notification = NotificationCompat.Builder(requireContext(), "your_channel_id")
             .setSmallIcon(R.drawable.notify_logo)
@@ -590,10 +629,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentIntent(openAppPendingIntent)
             .setOngoing(true)
-            .setAutoCancel(false)
+            .setAutoCancel(true)
             .setStyle(mediaStyle)
+            .addAction(R.drawable.baseline_skip_previous, "Prev", prevPendingIntent)
             .addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent)
             .addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent)
+            .addAction(R.drawable.baseline_skip_next, "Next", nextPendingIntent)
 
         notificationManager.notify(1, notification.build())
     }
@@ -616,7 +657,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     override fun onDestroy() {
         super.onDestroy()
         val notificationManager = NotificationManagerCompat.from(requireContext())
-        notificationManager.cancel(1)
+        notificationManager.cancelAll()
     }
-
 }
