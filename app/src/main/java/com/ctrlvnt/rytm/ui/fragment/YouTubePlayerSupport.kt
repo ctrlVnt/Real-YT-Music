@@ -101,8 +101,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
                     youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
                 }
-                "OPEN_ACTIVITY" -> {
-                }
             }
         }
     }
@@ -112,7 +110,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             addAction("ACTION_PLAY")
             addAction("ACTION_PAUSE")
         }
-        requireContext().registerReceiver(playbackReceiver, intentFilter)
+        try {
+            requireContext().registerReceiver(playbackReceiver, intentFilter)
+            // La registrazione è avvenuta con successo
+        } catch (e: Exception) {
+            // Errore durante la registrazione del BroadcastReceiver
+            Log.e("BroadcastReceiver", "Errore durante la registrazione del BroadcastReceiver: ${e.message}")
+        }
     }
     override fun onStop() {
         super.onStop()
@@ -566,27 +570,18 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             notificationManager.createNotificationChannel(channel)
         }
 
-        // Creare un'azione per aprire l'app quando la notifica viene selezionata
         val openAppIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)
-        //openAppIntent.putExtra("videoId", videoId.videoId) // Sostituisci con il tuo dato
-        //openAppIntent.action = "OPEN_ACTIVITY"
-        val openAppPendingIntent = PendingIntent.getActivity(requireContext(), 0, openAppIntent, PendingIntent.FLAG_IMMUTABLE)
+        val openAppPendingIntent = PendingIntent.getActivity(requireContext(), 99, openAppIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        // Creare un'azione di riproduzione
-        val playIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)  // Sostituisci con il tuo servizio di riproduzione
-        playIntent.action = "ACTION_PLAY"
-        val playPendingIntent = PendingIntent.getService(requireContext(), 0, playIntent, PendingIntent.FLAG_IMMUTABLE)
+        val playIntent = Intent("ACTION_PLAY")
+        val playPendingIntent = PendingIntent.getBroadcast(requireContext(), 0, playIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        // Creare un'azione di pausa
-        val pauseIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)  // Sostituisci con il tuo servizio di riproduzione
-        pauseIntent.action = "ACTION_PAUSE"
-        val pausePendingIntent = PendingIntent.getService(requireContext(), 0, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
+        val pauseIntent = Intent("ACTION_PAUSE")
+        val pausePendingIntent = PendingIntent.getBroadcast(requireContext(), 1, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        // Creare uno stile MediaStyle per la notifica
         val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
-            .setShowActionsInCompactView(0, 1) // Posizioni delle azioni nel layout compatto
+            .setShowActionsInCompactView(0, 1)
 
-        // Costruire la notifica
         val notification = NotificationCompat.Builder(requireContext(), "your_channel_id")
             .setSmallIcon(R.drawable.notify_logo)
             .setContentTitle(getString(R.string.noty_title))
@@ -594,10 +589,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             .setColor(ContextCompat.getColor(requireContext(), R.color.red))
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentIntent(openAppPendingIntent)
-            .setAutoCancel(true)
-            //.setStyle(mediaStyle) // Imposta lo stile MediaStyle
-            //.addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent) // Aggiungi azione di pausa
-            //.addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent) // Aggiungi azione di riproduzione
+            .setOngoing(true)
+            .setAutoCancel(false)
+            .setStyle(mediaStyle)
+            .addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent)
+            .addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent)
 
         notificationManager.notify(1, notification.build())
     }
