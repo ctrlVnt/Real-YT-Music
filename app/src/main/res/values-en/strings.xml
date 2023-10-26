@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RYTM</string>
-    <string name="caches">Delete caches</string>
+    <string name="caches">Delete history</string>
     <string name="prev_search">Recent research</string>
     <string name="settings">Informations</string>
     <string name="deleted_caches">All items have been deleted</string>
@@ -34,4 +34,8 @@
     <string name="terms_title">Terms and Conditions</string>
     <string name="terms_text">The application uses the YouTube API service, before continuing please view and accept the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a></string>
     <string name="accept">Accept</string>
+    <string name="confirm_delete_history">Confirm deletion of history</string>
+    <string name="confirm_delete_history_message">Are you sure you want to eliminate all the chronology?</string>
+    <string name="deleted_history">History deleted</string>
+    <string name="create_playlist_first">Please create at least one playlist before proceeding.</string>
 </resources>

@@ -44,8 +44,8 @@
 
         <ScrollView
             android:id="@+id/scrollView4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@+id/my_info"
@@ -56,7 +56,7 @@
             <TextView
                 android:id="@+id/about"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/about"
                 android:textColor="@color/text"

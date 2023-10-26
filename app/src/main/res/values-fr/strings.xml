@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">RYTM</string>
 
-    <string name="caches">Supprimer les caches</string>
+    <string name="caches">Effacer l\'historique</string>
     <string name="prev_search">Recherche récente</string>
     <string name="settings">Information</string>
     <string name="deleted_caches">Tous les éléments ont été supprimés</string>
@@ -37,4 +37,8 @@
     <string name="terms_title">Termes et Conditions</string>
     <string name="terms_text">L\'application utilise le service API YouTube. Avant de continuer, veuillez consulter et accepter les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Politique de confidentialité</a></string>
     <string name="accept">Accepter</string>
+    <string name="confirm_delete_history">Confirmer la suppression de l\'historique</string>
+    <string name="confirm_delete_history_message">Etes-vous sûr de vouloir supprimer tout l\'historique ?</string>
+    <string name="deleted_history">Historique supprimé</string>
+    <string name="create_playlist_first">Veuillez créer au moins une playlist avant de continuer.</string>
 </resources>

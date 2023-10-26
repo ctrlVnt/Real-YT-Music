@@ -263,7 +263,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         //youTubePlayerView.enableBackgroundPlayback(true) //not legal, to comment!
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
-            var indexVideo = if (nextVideo.size > 1) nextVideo.size - 1 else 0
+            var indexVideo = 0
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 videoId?.let {
@@ -272,9 +272,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, 0f)
-                    if(nextVideo.size > 1){
-                        indexVideo++
-                    }
 
                     playlistAdd.setOnClickListener {
                         showPlaylistDialog(videoId)
@@ -344,18 +341,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         shuffleMode.add(randomIndex)
                     }else{
-                        if(indexVideo < 0){
+                        if(nextVideo.size == 1){
+                            indexVideo = 0
+                        }else if(indexVideo < 0){
                             indexVideo = nextVideo.size - 1
-                        }
-                        if(nextVideo.size == 0){
+                        } else if (indexVideo >= nextVideo.size) {
                             indexVideo = 0
-                        }
-                        if (indexVideo >= nextVideo.size) {
-                            indexVideo = 0
+                        }else{
+                            indexVideo++
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                        indexVideo++
 
                         playlistAdd.setOnClickListener {
                             showPlaylistDialog(nextVideo[indexVideo+1].id)
@@ -403,6 +399,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val video = MainActivity.database.videoDao().getVideo(videoId)
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
         val playlistNames = playlists.map { it.playlistName }.toTypedArray()
+
+        if (playlists.isEmpty()) {
+            Toast.makeText(requireContext(), R.string.create_playlist_first, Toast.LENGTH_LONG).show()
+            return
+        }
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.select_playlist)
@@ -551,7 +552,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             val channelId = "your_channel_id"
             val channelName = "Your Channel Name"
             val channelDescription = "Your Channel Description"
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW)
             channel.description = channelDescription
             notificationManager.createNotificationChannel(channel)
         }
@@ -582,13 +583,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             .setContentTitle(getString(R.string.noty_title))
             .setContentText(getString(R.string.noty_text))
             .setColor(ContextCompat.getColor(requireContext(), R.color.red))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
             .setContentIntent(openAppPendingIntent)
             .setAutoCancel(true)
             //.setStyle(mediaStyle) // Imposta lo stile MediaStyle
             //.addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent) // Aggiungi azione di pausa
             //.addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent) // Aggiungi azione di riproduzione
-            .setVibrate(longArrayOf(0L))
 
         notificationManager.notify(1, notification.build())
     }
