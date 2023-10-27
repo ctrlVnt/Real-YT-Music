@@ -4,7 +4,7 @@ Real YT Music, or RYTM for short, is a versatile YouTube application that seamle
 
 ## Features
 
-1. **Music Discovery**: RYTM allows you to search and explore a vast library of music content available on YouTube. Discover new songs, artists, and genres with ease.
+1. **Music Discovery**: RYTM allows you to search and explore a vast library of music content available on YouTube. Discover new songs, artists, and genres with ease. **without ads** !
 
 2. **Playlist Management**: Create and manage playlists within RYTM that are not synchronized with your YouTube account. This means you can curate your music without cluttering your YouTube playlists.
 
