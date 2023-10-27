@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">Borrar historial</string>
+    <string name="prev_search">Borrar historial</string>
+    <string name="settings">Información</string>
+    <string name="deleted_caches">Todos los elementos han sido eliminados</string>
+
+    <string name="how_to_use"><b>INSTRUCCIONES</b>\n\n
+        <i>BLOQUEO DE PANTALLA:</i> mientras se reproduce un video, gracias al botón central, es posible bloquear toques accidentales en la pantalla reduciendo el brillo al mínimo para aumentar la duración de la batería.\n\n
+        <i>REPRODUCCIÓN:</i> la función está disponible presionando el botón de inicio en el teléfono, mostrando el contenido que se está reproduciendo en la burbuja. El control de la música se logra volviendo a abrir la aplicación.\n\n
+        <i>ELIMINACIÓN:</i> la eliminación de listas de reproducción o canciones se realiza con una pulsación larga. NB: para los videos de historial, debes hacerlo en la pantalla principal y no en la pantalla del reproductor.\n\n
+        <i>LISTAS DE REPRODUCCIÓN:</i> agregar canciones es posible gracias al botón en la esquina superior derecha del reproductor de video.\n\n
+    </string>
+
+    <string name="about"><b>ACERCA DE</b>\n\n
+        La aplicación te permite reproducir videos en YouTube mientras aún puedes usar otras aplicaciones en el ínterin.
+        Para evitar violar los términos y condiciones de uso de la API de YouTube, que prohíben escuchar videos en segundo plano, la aplicación se muestra en miniatura.\n\n
+        <i>Algunos datos pueden ser manipulados por el propietario de la API, es decir, YouTube, como se indica en los <a href="https://www.youtube.com/t/terms?hl=it">Términos y Condiciones</a> y la <a href="http://www.google.com/policies/privacy">Política de Privacidad</a>.</i>
+    </string>
+
+    <string name="my_info">Sitio web del desarrollador: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Introduce el título…</string>
+
+    <string name="delete_confirmation_title">¿Eliminar este elemento?</string>
+    <string name="delete_confirmation">¿Estás seguro de que deseas eliminar este elemento?</string>
+    <string name="delete">Eliminar</string>
+    <string name="restore">Cancelar</string>
+
+    <string name="add_playlist">Añadir lista de reproducción</string>
+    <string name="error_empty_name">El nombre de la lista de reproducción no puede estar vacío</string>
+    <string name="error_already_exist">El nombre introducido ya existe</string>
+
+    <string name="select_playlist">Selecciona una lista de reproducción</string>
+
+    <string name="error_element_playlist_already_exist">El elemento ya existe en la lista de reproducción seleccionada</string>
+
+    <string name="edit_playlist_name">Editar nombre de la lista de reproducción</string>
+
+    <string name="noty_title">RYTM está en funcionamiento</string>
+    <string name="noty_text">Haz clic en la notificación para eliminarla</string>
+
+    <string name="empty_playlists">No hay listas de reproducción presentes</string>
+    <string name="empty_cronology">Historial vacío, busca tu primera canción</string>
+
+    <string name="generic_error">Error desconocido</string>
+
+    <string name="terms_title">Términos y Condiciones</string>
+    <string name="terms_text">La aplicación utiliza el servicio de API de YouTube, antes de continuar, consulta y acepta los <a href="https://www.youtube.com/t/terms?hl=it">Términos y Condiciones</a> y la <a href="http://www.google.com/policies/privacy">Política de Privacidad</a></string>
+    <string name="accept">Aceptar</string>
+
+    <string name="confirm_delete_history">Confirmar eliminación del historial</string>
+    <string name="confirm_delete_history_message">¿Estás seguro de que quieres eliminar todo el historial?</string>
+    <string name="deleted_history">Historial eliminado</string>
+
+    <string name="create_playlist_first">Por favor, crea al menos una lista de reproducción antes de continuar.</string>
+</resources>

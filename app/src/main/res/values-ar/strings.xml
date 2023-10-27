@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">حذف التاريخ</string>
+    <string name="prev_search">حذف التاريخ</string>
+    <string name="settings">معلومات</string>
+    <string name="deleted_caches">تم حذف جميع العناصر</string>
+
+    <string name="how_to_use"><b>بعض التعليمات</b>\n\n
+        <i>قفل الشاشة:</i> أثناء تشغيل الفيديو، يمكنك استخدام الزر الوسطي لقفل اللمسات العرضية على الشاشة من خلال تقليل سطوعها إلى الحد الأدنى لزيادة عمر البطارية.\n\n
+        <i>التشغيل:</i> يمكن الوصول إلى الوظيفة عن طريق الضغط على زر الصفحة الرئيسية على الهاتف، مما يعرض المحتوى الجاري في الفقاعة. يمكن التحكم في الموسيقى عند إعادة فتح التطبيق.\n\n
+        <i>الحذف:</i> يتم حذف القوائم التشغيل أو الأغاني بالنقر المطول. ملاحظة: بالنسبة لمقاطع الفيديو في التاريخ، يجب القيام بذلك على الشاشة الرئيسية وليس على شاشة المشغل.\n\n
+        <i>قوائم التشغيل:</i> يمكن إضافة الأغاني بفضل الزر في الزاوية العلوية اليمنى لمشغل الفيديو.\n\n
+    </string>
+
+    <string name="about"><b>حول التطبيق</b>\n\n
+        يتيح التطبيق لك تشغيل مقاطع الفيديو على YouTube مع القدرة على استخدام تطبيقات أخرى في الوقت نفسه. لتجنب انتهاك شروط وأحكام استخدام خدمة API YouTube، والتي تمنع سماع مقاطع الفيديو في الخلفية، يتم عرض التطبيق بحجم صغير.\n\n
+        <i>قد يتم التلاعب ببعض البيانات من قبل مالك API، وهو يوتيوب، كما هو مشار إليه في <a href="https://www.youtube.com/t/terms?hl=it">الشروط والأحكام</a> و <a href="http://www.google.com/policies/privacy">سياسة الخصوصية</a>.</i>
+    </string>
+
+    <string name="my_info">موقع المطور: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">أدخل العنوان...</string>
+
+    <string name="delete_confirmation_title">حذف هذا العنصر؟</string>
+    <string name="delete_confirmation">هل أنت متأكد أنك تريد حذف هذا العنصر؟</string>
+    <string name="delete">حذف</string>
+    <string name="restore">إلغاء</string>
+
+    <string name="add_playlist">إضافة قائمة تشغيل</string>
+    <string name="error_empty_name">اسم قائمة التشغيل لا يمكن أن يكون فارغًا</string>
+    <string name="error_already_exist">الاسم الذي تم إدخاله موجود بالفعل</string>
+
+    <string name="select_playlist">حدد قائمة تشغيل</string>
+
+    <string name="error_element_playlist_already_exist">العنصر موجود بالفعل في القائمة التشغيل المحددة</string>
+
+    <string name="edit_playlist_name">تحرير اسم قائمة التشغيل</string>
+
+    <string name="noty_title">RYTM قيد التشغيل</string>
+    <string name="noty_text">انقر على الإشعار لحذفه</string>
+
+    <string name="empty_playlists">لا توجد قوائم تشغيل متاحة</string>
+    <string name="empty_cronology">التاريخ فارغ، ابحث عن أول أغنية!</string>
+
+    <string name="generic_error">خطأ غير معروف</string>
+
+    <string name="terms_title">الشروط والأحكام</string>
+    <string name="terms_text">التطبيق يستخدم خدمة API YouTube، قبل المتابعة يرجى عرض وقبول <a href="https://www.youtube.com/t/terms?hl=it">الشروط والأحكام</a> و <a href="http://www.google.com/policies/privacy">سياسة الخصوصية</a>.</string>
+    <string name="accept">قبول</string>
+
+    <string name="confirm_delete_history">تأكيد حذف التاريخ</string>
+    <string name="confirm_delete_history_message">هل أنت متأكد أنك تريد القضاء على جميع السجلات؟</string>
+    <string name="deleted_history">تم حذف التاريخ</string>
+
+    <string name="create_playlist_first">الرجاء إنشاء على الأقل قائمة تشغيل واحدة قبل المتابعة.</string>
+</resources>

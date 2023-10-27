@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">履歴を削除</string>
+    <string name="prev_search">履歴を削除</string>
+    <string name="settings">情報</string>
+    <string name="deleted_caches">すべてのアイテムが削除されました</string>
+
+    <string name="how_to_use"><b>ご使用の手引き</b>\n\n
+        <i>画面ロック：</i> ビデオを再生中に、中央のボタンを使用して画面への誤タッチを防ぐことができ、明るさを最小限にしてバッテリー寿命を延ばすことができます。\n\n
+        <i>再生：</i> ホームボタンを押すことで、現在再生中のコンテンツをバブルで表示できます。 音楽の制御はアプリを再度開いて行います。\n\n
+        <i>削除：</i> プレイリストや曲の削除は長押しで行います。 注意：履歴ビデオの場合、メイン画面ではなくプレイヤー画面で行う必要があります。\n\n
+        <i>プレイリスト：</i> 曲を追加するには、ビデオプレーヤーの右上にあるボタンを使用できます。\n\n
+    </string>
+
+    <string name="about"><b>アプリについて</b>\n\n
+        このアプリを使用すると、他のアプリを使用しながらYouTubeの動画を再生できます。 バックグラウンドでのビデオ視聴を防ぐため、アプリはミニチュア表示されます。\n\n
+        <i>一部のデータは、YouTubeの所有者によって操作される可能性があります。 つまり、<a href="https://www.youtube.com/t/terms?hl=it">利用規約</a>および<a href="http://www.google.com/policies/privacy">プライバシーポリシー</a>で指定されています。</i>
+    </string>
+
+    <string name="my_info">開発者ウェブサイト：<a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">タイトルを入力…</string>
+
+    <string name="delete_confirmation_title">このアイテムを削除しますか？</string>
+    <string name="delete_confirmation">このアイテムを削除してもよろしいですか？</string>
+    <string name="delete">削除</string>
+    <string name="restore">キャンセル</string>
+
+    <string name="add_playlist">プレイリストを追加</string>
+    <string name="error_empty_name">プレイリスト名は空白にできません</string>
+    <string name="error_already_exist">入力された名前は既に存在します</string>
+
+    <string name="select_playlist">プレイリストを選択</string>
+
+    <string name="error_element_playlist_already_exist">選択したプレイリスト内でアイテムは既に存在します</string>
+
+    <string name="edit_playlist_name">プレイリスト名を編集</string>
+
+    <string name="noty_title">RYTMが実行中</string>
+    <string name="noty_text">通知をクリックして削除します</string>
+
+    <string name="empty_playlists">プレイリストが存在しません</string>
+    <string name="empty_cronology">履歴は空です、最初の曲を検索してください！</string>
+
+    <string name="generic_error">未知のエラー</string>
+
+    <string name="terms_title">利用規約</string>
+    <string name="terms_text">アプリケーションはYouTube APIサービスを使用しています。続行する前に、<a href="https://www.youtube.com/t/terms?hl=it">利用規約</a>と<a href="http://www.google.com/policies/privacy">プライバシーポリシー</a>を表示して同意してください。</string>
+    <string name="accept">同意</string>
+
+    <string name="confirm_delete_history">履歴の削除を確認</string>
+    <string name="confirm_delete_history_message">すべての履歴を削除してもよろしいですか？</string>
+    <string name="deleted_history">履歴が削除されました</string>
+
+    <string name="create_playlist_first">続行する前に、少なくとも1つのプレイリストを作成してください。</string>
+</resources>

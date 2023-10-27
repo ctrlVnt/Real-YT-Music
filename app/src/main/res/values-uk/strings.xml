@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">Видалити історію</string>
+    <string name="prev_search">Видалити історію</string>
+    <string name="settings">Інформація</string>
+    <string name="deleted_caches">Всі елементи були видалені</string>
+
+    <string name="how_to_use"><b>ІНСТРУКЦІЇ</b>\n\n
+        <i>БЛОКУВАННЯ ЕКРАНУ:</i> під час відтворення відео завдяки центральній кнопці можна заблокувати випадкове натискання на екран, знизивши яскравість до мінімуму для збільшення часу роботи батареї.\n\n
+        <i>ВІДТВОРЕННЯ:</i> функція доступна, натиснувши кнопку "Додому" на телефоні, показуючи в діаграмі вміст, що відтворюється наразі. Управління музикою здійснюється після повторного відкриття додатка.\n\n
+        <i>ВИДАЛЕННЯ:</i> видалення плейлистів або пісень виконується довгим натисканням. Примітка: для відео в історії це слід робити на головному екрані, а не на екрані плеєра.\n\n
+        <i>ПЛЕЙЛИСТИ:</i> додавання пісень можливе завдяки кнопці у правому верхньому куті відеоплеєра.\n\n
+    </string>
+
+    <string name="about"><b>ПРО ДОДАТОК</b>\n\n
+        Додаток дозволяє відтворювати відео на YouTube, зберігаючи можливість використовувати інші додатки одночасно. Щоб уникнути порушення умов користування службою API YouTube, які забороняють слухання відео в фоновому режимі, додаток відображається у мініатюрі.\n\n
+        <i>Деякі дані можуть бути змінені власником API, тобто YouTube, як це зазначено в <a href="https://www.youtube.com/t/terms?hl=it">Умовах користування</a> і <a href="http://www.google.com/policies/privacy">Політиці конфіденційності</a>.</i>
+    </string>
+
+    <string name="my_info">Веб-сайт розробника: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Введіть назву…</string>
+
+    <string name="delete_confirmation_title">Видалити цей елемент?</string>
+    <string name="delete_confirmation">Ви впевнені, що бажаєте видалити цей елемент?</string>
+    <string name="delete">Видалити</string>
+    <string name="restore">Скасувати</string>
+
+    <string name="add_playlist">Додати плейлист</string>
+    <string name="error_empty_name">Назва плейлисту не може бути порожньою</string>
+    <string name="error_already_exist">Введена назва вже існує</string>
+
+    <string name="select_playlist">Виберіть плейлист</string>
+
+    <string name="error_element_playlist_already_exist">Елемент вже існує в вибраному плейлисті</string>
+
+    <string name="edit_playlist_name">Змінити назву плейлисту</string>
+
+    <string name="noty_title">RYTM працює</string>
+    <string name="noty_text">Натисніть на сповіщення, щоб його видалити</string>
+
+    <string name="empty_playlists">Немає доступних плейлистів</string>
+    <string name="empty_cronology">Історія порожня, шукайте свою першу пісню!</string>
+
+    <string name="generic_error">Невідома помилка</string>
+
+    <string name="terms_title">Умови та положення</string>
+    <string name="terms_text">Додаток використовує службу API YouTube. Перш ніж продовжити, ознайомтесь і погодьтесь з <a href="https://www.youtube.com/t/terms?hl=it">Умовами користування</a> та <a href="http://www.google.com/policies/privacy">Політикою конфіденційності</a>.</string>
+    <string name="accept">Прийняти</string>
+
+    <string name="confirm_delete_history">Підтвердити видалення історії</string>
+    <string name="confirm_delete_history_message">Ви впевнені, що бажаєте видалити всю історію?</string>
+    <string name="deleted_history">Історія видалена</string>
+
+    <string name="create_playlist_first">Будь ласка, створіть хоча б один плейлист перед продовженням.</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">Verlauf löschen</string>
+    <string name="prev_search">Verlauf löschen</string>
+    <string name="settings">Informationen</string>
+    <string name="deleted_caches">Alle Elemente wurden gelöscht</string>
+
+    <string name="how_to_use"><b>GEBRAUCHSANWEISUNGEN</b>\n\n
+        <i>SPERRE DES BILDSCHIRMS:</i> Während der Videowiedergabe ist es dank der zentralen Taste möglich, versehentliche Berührungen des Bildschirms zu blockieren, indem die Helligkeit auf ein Minimum reduziert wird, um die Batterielaufzeit zu verlängern.\n\n
+        <i>WIEDERGABE:</i> Die Funktion ist verfügbar, indem Sie die Home-Taste auf dem Telefon drücken und den gerade abgespielten Inhalt in der Blase anzeigen. Die Musiksteuerung wird durch erneutes Öffnen der Anwendung erreicht.\n\n
+        <i>LÖSCHEN:</i> Das Löschen von Wiedergabelisten oder Songs erfolgt durch längeres Drücken. NB: Für die Verlaufsvideos müssen Sie dies auf dem Hauptbildschirm und nicht auf dem Playerscreen tun.\n\n
+        <i>WIEDERGABELISTEN:</i> Das Hinzufügen von Songs ist dank der Schaltfläche oben rechts im Videoplayer möglich.\n\n
+    </string>
+
+    <string name="about"><b>ÜBER DIE ANWENDUNG</b>\n\n
+        Die Anwendung ermöglicht das Abspielen von Videos auf YouTube, während Sie weiterhin andere Anwendungen verwenden können. Um zu vermeiden, gegen die Nutzungsbedingungen der YouTube API zu verstoßen, die das Hören von Videos im Hintergrund verhindern, wird die Anwendung in Miniaturansicht angezeigt.\n\n
+        <i>Einige Daten können vom Besitzer der API, d.h. YouTube, wie in den <a href="https://www.youtube.com/t/terms?hl=it">Nutzungsbedingungen</a> und der <a href="http://www.google.com/policies/privacy">Datenschutzrichtlinie</a> angegeben, manipuliert werden.</i>
+    </string>
+
+    <string name="my_info">Entwickler-Website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Titel eingeben…</string>
+
+    <string name="delete_confirmation_title">Dieses Element löschen?</string>
+    <string name="delete_confirmation">Sind Sie sicher, dass Sie dieses Element löschen möchten?</string>
+    <string name="delete">Löschen</string>
+    <string name="restore">Abbrechen</string>
+
+    <string name="add_playlist">Playlist hinzufügen</string>
+    <string name="error_empty_name">Der Name der Playlist darf nicht leer sein</string>
+    <string name="error_already_exist">Der eingegebene Name existiert bereits</string>
+
+    <string name="select_playlist">Playlist auswählen</string>
+
+    <string name="error_element_playlist_already_exist">Element ist bereits in der ausgewählten Playlist vorhanden</string>
+
+    <string name="edit_playlist_name">Playlist-Namen bearbeiten</string>
+
+    <string name="noty_title">RYTM läuft</string>
+    <string name="noty_text">Klicken Sie auf die Benachrichtigung, um sie zu löschen</string>
+
+    <string name="empty_playlists">Keine Playlist vorhanden</string>
+    <string name="empty_cronology">Leerer Verlauf, suchen Sie nach Ihrem ersten Song!</string>
+
+    <string name="generic_error">Unbekannter Fehler</string>
+
+    <string name="terms_title">Nutzungsbedingungen</string>
+    <string name="terms_text">Die Anwendung verwendet den YouTube-API-Dienst. Bitte lesen und akzeptieren Sie vor der Fortsetzung die <a href="https://www.youtube.com/t/terms?hl=it">Nutzungsbedingungen</a> und die <a href="http://www.google.com/policies/privacy">Datenschutzrichtlinie</a>.</string>
+    <string name="accept">Akzeptieren</string>
+
+    <string name="confirm_delete_history">Löschen des Verlaufs bestätigen</string>
+    <string name="confirm_delete_history_message">Sind Sie sicher, dass Sie den gesamten Verlauf löschen möchten?</string>
+    <string name="deleted_history">Verlauf gelöscht</string>
+
+    <string name="create_playlist_first">Bitte erstellen Sie mindestens eine Playlist, bevor Sie fortfahren.</string>
+</resources>

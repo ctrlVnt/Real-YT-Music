@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="caches">Apagar histórico</string>
+    <string name="prev_search">Apagar histórico</string>
+    <string name="settings">Informações</string>
+    <string name="deleted_caches">Todos os itens foram excluídos</string>
+
+    <string name="how_to_use"><b>INSTRUÇÕES</b>\n\n
+        <i>BLOQUEIO DE TELA:</i> durante a reprodução de um vídeo, graças ao botão central, é possível bloquear toques acidentais na tela reduzindo o brilho ao mínimo para aumentar a vida da bateria.\n\n
+        <i>REPRODUÇÃO:</i> a função está disponível pressionando o botão inicial no telefone, mostrando o conteúdo atualmente reproduzido na bolha. O controle da música é alcançado reabrindo o aplicativo.\n\n
+        <i>EXCLUSÃO:</i> a exclusão de listas de reprodução ou músicas é feita com um toque longo. Obs.: para vídeos do histórico, você deve fazer isso na tela principal e não na tela do reprodutor.\n\n
+        <i>LISTAS DE REPRODUÇÃO:</i> adicionar músicas é possível graças ao botão no canto superior direito do reprodutor de vídeo.\n\n
+    </string>
+
+    <string name="about"><b>SOBRE</b>\n\n
+        O aplicativo permite reproduzir vídeos no YouTube enquanto ainda é possível usar outras aplicações no intervalo. Para evitar violar os termos e condições de uso da API do YouTube, que impedem a audição de vídeos em segundo plano, o aplicativo é exibido em miniatura.\n\n
+        <i>Alguns dados podem ser manipulados pelo proprietário da API, ou seja, o YouTube, conforme indicado nos <a href="https://www.youtube.com/t/terms?hl=it">Termos e Condições</a> e na <a href="http://www.google.com/policies/privacy">Política de Privacidade</a>.</i>
+    </string>
+
+    <string name="my_info">Site do desenvolvedor: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Insira o título…</string>
+
+    <string name="delete_confirmation_title">Excluir este item?</string>
+    <string name="delete_confirmation">Você tem certeza de que deseja excluir este item?</string>
+    <string name="delete">Excluir</string>
+    <string name="restore">Cancelar</string>
+
+    <string name="add_playlist">Adicionar lista de reprodução</string>
+    <string name="error_empty_name">O nome da lista de reprodução não pode estar vazio</string>
+    <string name="error_already_exist">O nome inserido já existe</string>
+
+    <string name="select_playlist">Selecionar uma lista de reprodução</string>
+
+    <string name="error_element_playlist_already_exist">O item já existe na lista de reprodução selecionada</string>
+
+    <string name="edit_playlist_name">Editar nome da lista de reprodução</string>
+
+    <string name="noty_title">RYTM está em execução</string>
+    <string name="noty_text">Clique na notificação para excluí-la</string>
+
+    <string name="empty_playlists">Nenhuma lista de reprodução presente</string>
+    <string name="empty_cronology">Histórico vazio, procure sua primeira música!</string>
+
+    <string name="generic_error">Erro desconhecido</string>
+
+    <string name="terms_title">Termos e Condições</string>
+    <string name="terms_text">O aplicativo utiliza o serviço de API do YouTube, antes de continuar, consulte e aceite os <a href="https://www.youtube.com/t/terms?hl=it">Termos e Condições</a> e a <a href="http://www.google.com/policies/privacy">Política de Privacidade</a>.</string>
+    <string name="accept">Aceitar</string>
+
+    <string name="confirm_delete_history">Confirmar exclusão do histórico</string>
+    <string name="confirm_delete_history_message">Você tem certeza de que deseja eliminar todo o histórico?</string>
+    <string name="deleted_history">Histórico excluído</string>
+
+    <string name="create_playlist_first">Por favor, crie pelo menos uma lista de reprodução antes de continuar.</string>
+</resources>

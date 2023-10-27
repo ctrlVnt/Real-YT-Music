@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RYTM</string>
 
     <string name="caches">Effacer l\'historique</string>
     <string name="prev_search">Recherche récente</string>

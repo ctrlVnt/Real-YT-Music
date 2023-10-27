@@ -1,57 +1,57 @@
 <resources>
-    <string name="app_name">RYTM</string>
+    <string name="app_name" translatable="false">RYTM</string>
     <string name="hello_blank_fragment" translatable="false">Real YT Music</string>
-    <string name="caches">Elimina cronologia</string>
-    <string name="prev_search">Ricerche recenti</string>
-    <string name="settings">Informazioni</string>
-    <string name="deleted_caches">Tutti gli elementi sono stati eliminati</string>
+    <string name="caches">Delete history</string>
+    <string name="prev_search">Delete history</string>
+    <string name="settings">Informations</string>
+    <string name="deleted_caches">All items have been deleted</string>
 
-    <string name="how_to_use"><b>ALCUNE ISTRUZIONI</b> \n\n
-        <i>BLOCCO SCHERMO:</i> durante la riproduzione di un video, grazie al bottone centrale, è possibile bloccare touch accidentali allo schermo riducendo la luminosità al minimo per aumentare la durata della batteria.\n\n
-        <i>PLAYBACK:</i> la funzione è disponibile premento il bottone home del telefono, mostrando il bolla il contenuto in esecuzione. Il controllo musicale lo si ha riaprendo l\'applicazione.\n\n
-        <i>ELIMINAZIONE:</i> l\'eliminazione di playlist o canzoni viene effettuato con un click prolungato. NB: per i video della cronologia bisogna farlo nella schermata principale e non in quella del player.\n\n
-        <i>PLAYLISTS:</i> l\'aggiunta dei brani è possibile grazie al bottone in alto a destra nel lettore video.\n\n
+    <string name="how_to_use"><b>SOME INSTRUCTIONS</b>\n\n
+        <i>SCREEN LOCK:</i> while playing a video, thanks to the central button, it is possible to block accidental touches to the screen by reducing the brightness to minimum to increase battery life.\n\n
+        <i>PLAYBACK:</i> the function is available by pressing the home button on the phone, showing the currently playing content in the bubble. Music control is achieved by reopening the application.\n\n
+        <i>DELETION:</i> deleting playlists or songs is done with a long click. NB: for history videos you must do this on the main screen and not on the player screen.\n\n
+        <i>PLAYLISTS:</i> adding songs is possible thanks to the button at the top right of the video player.\n\n
     </string>
 
     <string name="about"><b>ABOUT</b>\n\n
-        L\'applicazione permette la riproduzione dei video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.
-        Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.\n\n
-        <i>Alcuni dati potrebbero essere manipolati dal proprietario delle API, ovvero Youtube, come indicato nei <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
+        The application allows you to play videos on YouTube while still being able to use other applications in the meantime.
+        To avoid violating the terms and conditions of use of the YouTube API, which prevent videos from being listened to in the background, the application is shown in miniature.\n\n
+        <i>Some data may be manipulated by the owner of the API, i.e. Youtube, as indicated in the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
     </string>
 
-    <string name="my_info">Sito web sviluppatore: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Inserisci titolo…</string>
+    <string name="my_info">Developer website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">Enter title…</string>
 
-    <string name="delete_confirmation_title">Eliminare questo elemento?</string>
-    <string name="delete_confirmation">Sei sicuro di voler eliminare questo elemento?</string>
-    <string name="delete">Elimina</string>
-    <string name="restore">Annulla</string>
+    <string name="delete_confirmation_title">Delete this item?</string>
+    <string name="delete_confirmation">Are you sure you want to delete this item?</string>
+    <string name="delete">Delete</string>
+    <string name="restore">Cancel</string>
 
-    <string name="add_playlist">Aggiungi Playlist</string>
-    <string name="error_empty_name">Il nome della playlist non può essere vuoto</string>
-    <string name="error_already_exist">Il nome inserito è già esistente</string>
+    <string name="add_playlist">Add playlist</string>
+    <string name="error_empty_name">The playlist name cannot be empty</string>
+    <string name="error_already_exist">The name entered already exists</string>
 
-    <string name="select_playlist">Seleziona una playlist</string>
+    <string name="select_playlist">Select a playlist</string>
 
-    <string name="error_element_playlist_already_exist">Elemento già esistente all\'interno della playlist selezionata</string>
+    <string name="error_element_playlist_already_exist">Item already exists within the selected playlist</string>
 
-    <string name="edit_playlist_name">Modifica nome Playlist</string>
+    <string name="edit_playlist_name">Edit Playlist name</string>
 
-    <string name="noty_title">RYTM è in esecuzione</string>
-    <string name="noty_text">Cliccare sulla notifica per cancellarla</string>
+    <string name="noty_title">RYTM is running</string>
+    <string name="noty_text">Click on the notification to delete it</string>
 
-    <string name="empty_playlists">Nessuna playlist presente</string>
-    <string name="empty_cronology">Cronologia vuota, cerca la tua prima canzone!</string>
+    <string name="empty_playlists">No playlist present</string>
+    <string name="empty_cronology">Empty history, search for your first song!</string>
 
-    <string name="generic_error">Errore sconosciuto</string>
+    <string name="generic_error">Unknown error</string>
 
-    <string name="terms_title">Termini e condizioni d\'uso</string>
-    <string name="terms_text">L\'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> </string>
-    <string name="accept">Accetta</string>
+    <string name="terms_title">Terms and Conditions</string>
+    <string name="terms_text">The application uses the YouTube API service, before continuing please view and accept the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a></string>
+    <string name="accept">Accept</string>
 
-    <string name="confirm_delete_history">Conferma eliminazione cronologia</string>
-    <string name="confirm_delete_history_message">Sei sicuro di voler eliminare tutta la cronologia?</string>
-    <string name="deleted_history">Cronologia eliminata</string>
+    <string name="confirm_delete_history">Confirm deletion of history</string>
+    <string name="confirm_delete_history_message">Are you sure you want to eliminate all the chronology?</string>
+    <string name="deleted_history">History deleted</string>
 
-    <string name="create_playlist_first">Si prega di creare almeno una playlist prima di procedere.</string>
+    <string name="create_playlist_first">Please create at least one playlist before proceeding.</string>
 </resources>
