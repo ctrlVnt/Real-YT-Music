@@ -18,3 +18,5 @@ Avaiable on [Google Play Store](https://play.google.com/store/apps/details?id=co
 
 ## Full playback
 If you want to have videos in full playback mode, we recommend cloning this repository and following the instructions outlined in the comments at [```/*FULL-PLAYBACK MODE*/```](https://github.com/ctrlVnt/Real-YT-Music/blob/master/app/src/main/java/com/ctrlvnt/rytm/ui/fragment/YouTubePlayerSupport.kt) (to search with ctrl+f).
+
+You can download full-playback mode [here](https://www.dropbox.com/scl/fo/gunen6687j8gcna2vzkn5/h?rlkey=sbo6n7hdbrh3ta0kmaubh345m&dl=0)
