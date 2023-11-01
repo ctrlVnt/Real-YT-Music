@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">RYTM</string>
-    <string name="hello_blank_fragment" translatable="false">Real Music from YT</string>
+    <string name="hello_blank_fragment" translatable="false">Real YT Music</string>
     <string name="caches">Delete history</string>
     <string name="prev_search">Delete history</string>
     <string name="settings">Informations</string>
