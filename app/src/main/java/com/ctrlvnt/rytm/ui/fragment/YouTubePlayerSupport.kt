@@ -298,8 +298,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         var shuffleMode = mutableListOf<Int>()
         var shuffleindex = 0
 
-        viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you use playback mode
-        //youTubePlayerView.enableBackgroundPlayback(true) //not legal! playback mode
+        /*FULL-PLAYBACK MODE*/
+        viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you want to use full playback mode
+        //youTubePlayerView.enableBackgroundPlayback(true) //uncomment and enjoy !
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
