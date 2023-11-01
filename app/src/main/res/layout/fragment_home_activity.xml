@@ -62,9 +62,8 @@
             android:textColor="@color/text"
             android:textSize="32sp"
             android:textStyle="bold"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.686"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SearchView
@@ -132,8 +131,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="@+id/welcome"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.167"
+            app:layout_constraintEnd_toStartOf="@+id/welcome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/welcome" />
 
