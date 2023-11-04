@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="hello_blank_fragment">Bem-vindo ao RYTM</string>
     <string name="caches">Apagar histórico</string>
     <string name="prev_search">Apagar histórico</string>
     <string name="settings">Informações</string>

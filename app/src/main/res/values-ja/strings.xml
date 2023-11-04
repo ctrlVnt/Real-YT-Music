@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="hello_blank_fragment">RYTMへようこそ</string>
     <string name="caches">履歴を削除</string>
     <string name="prev_search">履歴を削除</string>
     <string name="settings">情報</string>
