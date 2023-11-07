@@ -11,8 +11,7 @@
         <i>ELIMINAZIONE:</i> l\'eliminazione di playlist o canzoni viene effettuato con un click prolungato. NB: per i video della cronologia bisogna farlo nella schermata principale e non in quella del player.\n\n         
         <i>PLAYLISTS:</i> l\'aggiunta dei brani è possibile grazie al bottone in alto a destra nel lettore video.\n\n
     </string>
-    <string name="about"><b>ABOUT</b>\n\n         L\'applicazione permette la riproduzione dei video su YouTube potendo comunque utilizzare altre applicazioni nel mentre.         
-        Per non violare le condizioni e i termini d\'utilizzo delle API di YouTube, che impediscono l\'ascolto in background dei video, l\'applicazione viene mostrata in miniatura.\n\n         
+    <string name="about"><b>INFO DATI</b>\n\n
         <i>Alcuni dati potrebbero essere manipolati dal proprietario delle API, ovvero Youtube, come indicato nei <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
     </string>
     <string name="my_info">Sito web sviluppatore: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>

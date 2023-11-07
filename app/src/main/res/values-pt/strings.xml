@@ -13,8 +13,7 @@
         <i>LISTAS DE REPRODUÇÃO:</i> adicionar músicas é possível graças ao botão no canto superior direito do reprodutor de vídeo.\n\n
     </string>
 
-    <string name="about"><b>SOBRE</b>\n\n
-        O aplicativo permite reproduzir vídeos no YouTube enquanto ainda é possível usar outras aplicações no intervalo. Para evitar violar os termos e condições de uso da API do YouTube, que impedem a audição de vídeos em segundo plano, o aplicativo é exibido em miniatura.\n\n
+    <string name="about"><b>INFORMAÇÃO DE DADOS</b>\n\n
         <i>Alguns dados podem ser manipulados pelo proprietário da API, ou seja, o YouTube, conforme indicado nos <a href="https://www.youtube.com/t/terms?hl=it">Termos e Condições</a> e na <a href="http://www.google.com/policies/privacy">Política de Privacidade</a>.</i>
     </string>
 

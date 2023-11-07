@@ -13,8 +13,7 @@
         <i>WIEDERGABELISTEN:</i> Das Hinzufügen von Songs ist dank der Schaltfläche oben rechts im Videoplayer möglich.\n\n
     </string>
 
-    <string name="about"><b>ÜBER DIE ANWENDUNG</b>\n\n
-        Die Anwendung ermöglicht das Abspielen von Videos auf YouTube, während Sie weiterhin andere Anwendungen verwenden können. Um zu vermeiden, gegen die Nutzungsbedingungen der YouTube API zu verstoßen, die das Hören von Videos im Hintergrund verhindern, wird die Anwendung in Miniaturansicht angezeigt.\n\n
+    <string name="about"><b>DATENINFORMATIONEN</b>\n\n
         <i>Einige Daten können vom Besitzer der API, d.h. YouTube, wie in den <a href="https://www.youtube.com/t/terms?hl=it">Nutzungsbedingungen</a> und der <a href="http://www.google.com/policies/privacy">Datenschutzrichtlinie</a> angegeben, manipuliert werden.</i>
     </string>
 

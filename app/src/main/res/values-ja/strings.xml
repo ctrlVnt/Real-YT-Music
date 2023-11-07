@@ -13,8 +13,7 @@
         <i>プレイリスト：</i> 曲を追加するには、ビデオプレーヤーの右上にあるボタンを使用できます。\n\n
     </string>
 
-    <string name="about"><b>アプリについて</b>\n\n
-        このアプリを使用すると、他のアプリを使用しながらYouTubeの動画を再生できます。 バックグラウンドでのビデオ視聴を防ぐため、アプリはミニチュア表示されます。\n\n
+    <string name="about"><b>データ情報</b>\n\n
         <i>一部のデータは、YouTubeの所有者によって操作される可能性があります。 つまり、<a href="https://www.youtube.com/t/terms?hl=it">利用規約</a>および<a href="http://www.google.com/policies/privacy">プライバシーポリシー</a>で指定されています。</i>
     </string>
 

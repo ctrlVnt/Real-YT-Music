@@ -24,11 +24,7 @@
     <string name="select_playlist">Sélectionnez une playlist</string>
     <string name="edit_playlist_name">Modifier le nom de playlist</string>
     <string name="error_element_playlist_already_exist">L\'élément existe déjà dans la playlist sélectionnée</string>
-    <string name="about"><b>À PROPOS</b>\n\n
-         L\'application vous permet de lire des vidéos sur YouTube tout en pouvant utiliser d\'autres applications en attendant.
-         Pour éviter de violer les conditions et conditions d\'utilisation de l\'API YouTube, qui empêchent l\'écoute des vidéos en arrière-plan, l\'application est affichée en miniature.\n\n
-         <i>Certaines données peuvent être manipulées par le propriétaire de l\'API, à savoir Youtube, comme indiqué dans les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Règles de confidentialité</a>.</i>
-    </string>
+    <string name="about">"<b>À PROPOS</b>\n\n<i>Certaines données peuvent être manipulées par le propriétaire de l'API, à savoir Youtube, comme indiqué dans les <a href="https://www.youtube.com/t/terms?hl=it">Conditions générales</a> et les <a href="http://www.google.com/policies/privacy">Règles de confidentialité</a>.</i>     "</string>
     <string name="noty_title">RYTM est en cours d\'exécution</string>
     <string name="noty_text">Cliquez sur la notification pour la supprimer</string>
     <string name="empty_playlists">Aucune playlist présente</string>

@@ -13,9 +13,7 @@
         <i>PLAYLISTS:</i> adding songs is possible thanks to the button at the top right of the video player.\n\n
     </string>
 
-    <string name="about"><b>ABOUT</b>\n\n
-        The application allows you to play videos on YouTube while still being able to use other applications in the meantime.
-        To avoid violating the terms and conditions of use of the YouTube API, which prevent videos from being listened to in the background, the application is shown in miniature.\n\n
+    <string name="about"><b>DATA INFO</b>\n\n
         <i>Some data may be manipulated by the owner of the API, i.e. Youtube, as indicated in the <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> and <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
     </string>
 

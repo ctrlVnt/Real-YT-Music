@@ -13,10 +13,7 @@
         <i>قوائم التشغيل:</i> يمكن إضافة الأغاني بفضل الزر في الزاوية العلوية اليمنى لمشغل الفيديو.\n\n
     </string>
 
-    <string name="about"><b>حول التطبيق</b>\n\n
-        يتيح التطبيق لك تشغيل مقاطع الفيديو على YouTube مع القدرة على استخدام تطبيقات أخرى في الوقت نفسه. لتجنب انتهاك شروط وأحكام استخدام خدمة API YouTube، والتي تمنع سماع مقاطع الفيديو في الخلفية، يتم عرض التطبيق بحجم صغير.\n\n
-        <i>قد يتم التلاعب ببعض البيانات من قبل مالك API، وهو يوتيوب، كما هو مشار إليه في <a href="https://www.youtube.com/t/terms?hl=it">الشروط والأحكام</a> و <a href="http://www.google.com/policies/privacy">سياسة الخصوصية</a>.</i>
-    </string>
+    <string name="about"><b>معلومات البيانات</b>\n\n  <i>قد يتم التلاعب ببعض البيانات من قبل مالك API، وهو يوتيوب، كما هو مشار إليه في <a href="https://www.youtube.com/t/terms?hl=it">الشروط والأحكام</a> و <a href="http://www.google.com/policies/privacy">سياسة الخصوصية</a>.</i></string>
 
     <string name="my_info">موقع المطور: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
     <string name="placeholder">أدخل العنوان...</string>

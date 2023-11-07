@@ -13,9 +13,7 @@
         <i>LISTAS DE REPRODUCCIÓN:</i> agregar canciones es posible gracias al botón en la esquina superior derecha del reproductor de video.\n\n
     </string>
 
-    <string name="about"><b>ACERCA DE</b>\n\n
-        La aplicación te permite reproducir videos en YouTube mientras aún puedes usar otras aplicaciones en el ínterin.
-        Para evitar violar los términos y condiciones de uso de la API de YouTube, que prohíben escuchar videos en segundo plano, la aplicación se muestra en miniatura.\n\n
+    <string name="about"><b>INFO DE DATOS</b>\n\n
         <i>Algunos datos pueden ser manipulados por el propietario de la API, es decir, YouTube, como se indica en los <a href="https://www.youtube.com/t/terms?hl=it">Términos y Condiciones</a> y la <a href="http://www.google.com/policies/privacy">Política de Privacidad</a>.</i>
     </string>
 

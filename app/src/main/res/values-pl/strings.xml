@@ -13,8 +13,7 @@
         <i>LISTY ODTWARZANIA:</i> dodawanie utworów jest możliwe dzięki przyciskowi w prawym górnym rogu odtwarzacza wideo.\n\n
     </string>
 
-    <string name="about"><b>O APLIKACJI</b>\n\n
-        Aplikacja umożliwia odtwarzanie wideo na YouTube, pozwalając jednocześnie korzystać z innych aplikacji. Aby uniknąć naruszenia warunków korzystania z interfejsu API YouTube, które zabraniają odtwarzania wideo w tle, aplikacja jest wyświetlana w miniaturze.\n\n
+    <string name="about"><b>INFORMACJE O DANYCH</b>\n\n
         <i>Niektóre dane mogą być manipulowane przez właściciela interfejsu API, czyli YouTube, co jest wskazane w <a href="https://www.youtube.com/t/terms?hl=it">Warunkach korzystania</a> i <a href="http://www.google.com/policies/privacy">Polityce prywatności</a>.</i>
     </string>
 
