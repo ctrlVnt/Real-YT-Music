@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -27,6 +28,7 @@ class Playlist_fragment : Fragment(){
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_playlist, container, false)
         val addButton: FloatingActionButton = rootView.findViewById(R.id.add_playlist)
+        val backButton: ImageButton = rootView.findViewById(R.id.back_button)
         playlistText = rootView.findViewById(R.id.empty_playlists)
 
         playlistList = rootView.findViewById(R.id.list_playlist)
@@ -47,6 +49,10 @@ class Playlist_fragment : Fragment(){
 
         addButton.setOnClickListener{
             showCustomDialog()
+        }
+
+        backButton.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         return rootView

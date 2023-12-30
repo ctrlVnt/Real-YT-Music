@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">RYTM</string>
     <string name="hello_blank_fragment">Welcome to RYTM</string>
     <string name="caches">Delete history</string>
-    <string name="prev_search">Delete history</string>
+    <string name="prev_search">History</string>
     <string name="settings">Informations</string>
     <string name="deleted_caches">All items have been deleted</string>
 
@@ -52,4 +52,5 @@
     <string name="deleted_history">History deleted</string>
 
     <string name="create_playlist_first">Please create at least one playlist before proceeding.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

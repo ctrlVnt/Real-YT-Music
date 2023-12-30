@@ -37,4 +37,5 @@
     <string name="confirm_delete_history_message">Etes-vous sûr de vouloir supprimer tout l\'historique ?</string>
     <string name="deleted_history">Historique supprimé</string>
     <string name="create_playlist_first">Veuillez créer au moins une playlist avant de continuer.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

@@ -50,4 +50,5 @@
     <string name="deleted_history">تم حذف التاريخ</string>
 
     <string name="create_playlist_first">الرجاء إنشاء على الأقل قائمة تشغيل واحدة قبل المتابعة.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

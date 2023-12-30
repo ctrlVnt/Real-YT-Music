@@ -38,4 +38,5 @@
     <string name="deleted_history">Cronologia eliminata</string>
     <string name="create_playlist_first">Si prega di creare almeno una playlist prima di procedere.</string>
     <string name="generic_error">Errore sconosciuto</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

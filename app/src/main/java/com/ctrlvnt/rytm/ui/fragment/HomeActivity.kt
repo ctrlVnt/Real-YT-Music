@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,13 +24,14 @@ import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.APIKEY
+import com.ctrlvnt.rytm.utils.GlobalVariables.APIKEY
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.invoke.ConstantCallSite
 import java.util.Locale
 
 class HomeActivity : Fragment() {
@@ -46,10 +49,11 @@ class HomeActivity : Fragment() {
         historyText = rootView.findViewById(R.id.empty_history)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
-        val playlistsButton: FloatingActionButton = rootView.findViewById(R.id.playlist)
+        val playlistsButton: Button = rootView.findViewById(R.id.playlist)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
+        val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
 
        cronologia = rootView.findViewById(R.id.last_search)
         val layoutManager = LinearLayoutManager(context)
@@ -116,6 +120,7 @@ class HomeActivity : Fragment() {
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
+                    subHome.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
@@ -128,6 +133,7 @@ class HomeActivity : Fragment() {
                     cronologiaText.visibility = View.VISIBLE
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE
+                    subHome.visibility = View.VISIBLE
                 }
                 return true
             }

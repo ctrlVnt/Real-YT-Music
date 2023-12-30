@@ -52,4 +52,5 @@
     <string name="deleted_history">Історія видалена</string>
 
     <string name="create_playlist_first">Будь ласка, створіть хоча б один плейлист перед продовженням.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

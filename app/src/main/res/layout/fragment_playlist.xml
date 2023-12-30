@@ -11,10 +11,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="500dp"
-            android:layout_height="430dp"
-            android:src="@drawable/triangle"
+            android:id="@+id/imageViewelcome"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/light_grey"
+            app:layout_constraintBottom_toTopOf="@+id/list_playlist"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,11 +24,11 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="Playlists"
+            android:textColor="@color/text"
             android:textSize="32sp"
-            android:textColor="@color/red"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewelcome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,11 +37,11 @@
             android:id="@+id/list_playlist"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewelcome" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_playlist"
@@ -68,6 +69,17 @@
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/arrow_back"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

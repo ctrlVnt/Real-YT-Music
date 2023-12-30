@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -20,9 +21,13 @@ class Settings : Fragment(){
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
         val cachesButton: Button = rootView.findViewById(R.id.delete_caches)
-
+        val backButton: ImageButton = rootView.findViewById(R.id.back_button)
         cachesButton.setOnClickListener{
             showConfirmationDialog()
+        }
+
+        backButton.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         val mTextView: TextView = rootView.findViewById(R.id.my_info)

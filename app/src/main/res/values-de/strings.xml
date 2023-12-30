@@ -52,4 +52,5 @@
     <string name="deleted_history">Verlauf gelöscht</string>
 
     <string name="create_playlist_first">Bitte erstellen Sie mindestens eine Playlist, bevor Sie fortfahren.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

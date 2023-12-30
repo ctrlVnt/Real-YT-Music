@@ -52,4 +52,5 @@
     <string name="deleted_history">Histórico excluído</string>
 
     <string name="create_playlist_first">Por favor, crie pelo menos uma lista de reprodução antes de continuar.</string>
+    <string name="playlists_button">Playlists</string>
 </resources>

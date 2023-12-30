@@ -52,4 +52,5 @@
     <string name="deleted_history">履歴が削除されました</string>
 
     <string name="create_playlist_first">続行する前に、少なくとも1つのプレイリストを作成してください。</string>
+    <string name="playlists_button">Playlists</string>
 </resources>
