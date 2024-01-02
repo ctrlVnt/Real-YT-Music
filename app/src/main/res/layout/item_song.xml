@@ -11,13 +11,15 @@
         android:layout_height="wrap_content"
         android:text="Video Title"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="@font/notosansmedium"/>
 
     <TextView
         android:id="@+id/channel_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Channel Title"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:fontFamily="@font/notosansmedium"/>
 
 </LinearLayout>

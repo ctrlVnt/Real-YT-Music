@@ -76,6 +76,7 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
                 val fragment = YouTubePlayerSupport.newInstance(videos[0].id, playlistList[position].playlistName)
                 val transaction = (holder.itemView.context as AppCompatActivity)
                     .supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
                     .replace(R.id.main_activity, fragment)
                     .addToBackStack(null)
                     .commit()

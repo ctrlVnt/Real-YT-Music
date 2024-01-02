@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/light_grey">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/settings"
@@ -40,14 +39,13 @@
                 android:maxWidth="300dp"
                 android:text="@string/hello_blank_fragment"
                 android:textColor="@color/text"
-                android:textSize="28sp"
+                android:textSize="26sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/notosansmedium"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.257" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/logo"
@@ -59,21 +57,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/welcome" />
 
-            <Button
-                android:id="@+id/playlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/red"
-                android:textStyle="bold"
-                android:text="@string/playlists_button"
-                android:textColor="@color/text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/welcome" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
@@ -81,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:src="@drawable/rectangle"
-            app:tint="@color/light_grey"
+            app:tint="@color/items"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,13 +76,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
+            android:fontFamily="@font/notosansmedium"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subhome"
             app:queryHint="@string/placeholder" />
+
+        <Button
+            android:id="@+id/playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/notosansmedium"
+            android:padding="0dp"
+            android:text="@string/playlists_button"
+            android:textAllCaps="false"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_titles" />
 
         <View
             android:id="@+id/line"
@@ -114,17 +114,17 @@
             android:id="@+id/last_search_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/notosansmedium"
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/prev_search"
-            android:textSize="20sp"
+            android:textColor="@color/text"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line"
-            app:layout_constraintVertical_bias="0.119" />
+            app:layout_constraintTop_toBottomOf="@+id/playlist" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/songs_list"
@@ -150,9 +150,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty_cronology"
-            android:textSize="18sp"
-            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:textColor="@color/placeholder"
             android:gravity="center"
+            android:fontFamily="@font/notosansmedium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

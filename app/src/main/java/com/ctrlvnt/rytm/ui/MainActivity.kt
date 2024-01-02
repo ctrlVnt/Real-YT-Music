@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 
+        window.decorView.setBackgroundColor(resources.getColor(R.color.background))
+
         conditionandprivacyaccept(sharedPrefs)
         request_notification_api13_permission()
 

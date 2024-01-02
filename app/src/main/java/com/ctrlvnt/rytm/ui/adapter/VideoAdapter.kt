@@ -81,6 +81,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
                 val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId, "")
                 val transaction = (holder.itemView.context as AppCompatActivity)
                     .supportFragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
                     .replace(R.id.main_activity, fragment)
                     .addToBackStack(null)
                     .commit()

@@ -12,7 +12,7 @@
         android:pathData="M7.08,0.53L105.41,0.53A6.55,6.55 0,0 1,111.97 7.08L111.97,17.38A6.55,6.55 0,0 1,105.41 23.94L7.08,23.94A6.55,6.55 0,0 1,0.53 17.38L0.53,7.08A6.55,6.55 0,0 1,7.08 0.53z"
         android:strokeColor="#ffffff" android:strokeLineCap="round"
         android:strokeLineJoin="round" android:strokeWidth="1.058"/>
-    <path android:fillColor="#000000"
+    <path android:fillColor="@color/items"
         android:pathData="M7.08,0.53L105.41,0.53A6.55,6.55 0,0 1,111.97 7.08L111.97,17.38A6.55,6.55 0,0 1,105.41 23.94L7.08,23.94A6.55,6.55 0,0 1,0.53 17.38L0.53,7.08A6.55,6.55 0,0 1,7.08 0.53z"
         android:strokeColor="#00000000" android:strokeLineCap="round"
         android:strokeLineJoin="round" android:strokeWidth="1.058"/>

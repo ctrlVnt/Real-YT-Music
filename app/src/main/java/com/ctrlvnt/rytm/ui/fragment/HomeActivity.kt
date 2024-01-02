@@ -55,6 +55,8 @@ class HomeActivity : Fragment() {
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
 
+        activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
+
        cronologia = rootView.findViewById(R.id.last_search)
         val layoutManager = LinearLayoutManager(context)
         cronologia.layoutManager = layoutManager
@@ -84,7 +86,7 @@ class HomeActivity : Fragment() {
 
         settingsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_right, 0)
+                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
                 .replace(R.id.main_activity, Settings())
                 .addToBackStack(null)
                 .commit()
@@ -92,7 +94,7 @@ class HomeActivity : Fragment() {
 
         playlistsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.slide_left, 0)
+                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
                 .replace(R.id.main_activity, Playlist_fragment())
                 .addToBackStack(null)
                 .commit()
