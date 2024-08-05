@@ -20,11 +20,7 @@ class Settings : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
-        val cachesButton: Button = rootView.findViewById(R.id.delete_caches)
         val backButton: ImageButton = rootView.findViewById(R.id.back_button)
-        cachesButton.setOnClickListener{
-            showConfirmationDialog()
-        }
 
         backButton.setOnClickListener{
             requireActivity().supportFragmentManager.popBackStack()
@@ -38,24 +34,4 @@ class Settings : Fragment(){
 
         return rootView
     }
-
-    private fun showConfirmationDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle(getString(R.string.confirm_delete_history))
-        alertDialogBuilder.setMessage(getString(R.string.confirm_delete_history_message))
-
-        alertDialogBuilder.setPositiveButton(getString(R.string.accept)) { dialog, _ ->
-            MainActivity.database.deleteAllVideos()
-            Toast.makeText(requireContext(), getString(R.string.deleted_history), Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
-        }
-
-        alertDialogBuilder.setNegativeButton(getString(R.string.restore)) { dialog, _ ->
-            dialog.dismiss()
-        }
-
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.show()
-    }
-
 }

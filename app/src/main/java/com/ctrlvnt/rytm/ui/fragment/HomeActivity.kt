@@ -24,7 +24,7 @@ import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.GlobalVariables.APIKEY
+import com.ctrlvnt.rytm.utils.APIKEY
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
 import org.json.JSONObject
@@ -54,6 +54,7 @@ class HomeActivity : Fragment() {
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
+        val delHistoryButton: Button = rootView.findViewById(R.id.delete_caches)
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
@@ -104,6 +105,10 @@ class HomeActivity : Fragment() {
             searchBar.isIconified = false
         }
 
+        delHistoryButton.setOnClickListener{
+            showConfirmationDialog()
+        }
+
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
                 if (!text.isNullOrBlank()) {
@@ -123,6 +128,7 @@ class HomeActivity : Fragment() {
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
                     subHome.visibility = View.GONE
+                    delHistoryButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
@@ -136,6 +142,7 @@ class HomeActivity : Fragment() {
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
+                    delHistoryButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -219,5 +226,24 @@ class HomeActivity : Fragment() {
     private fun clearRecyclerView(rootView: View) {
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
         recyclerView.adapter = null
+    }
+
+    private fun showConfirmationDialog() {
+        val alertDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle(getString(R.string.confirm_delete_history))
+        alertDialogBuilder.setMessage(getString(R.string.confirm_delete_history_message))
+
+        alertDialogBuilder.setPositiveButton(getString(R.string.accept)) { dialog, _ ->
+            MainActivity.database.deleteAllVideos()
+            Toast.makeText(requireContext(), getString(R.string.deleted_history), Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        alertDialogBuilder.setNegativeButton(getString(R.string.restore)) { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 }

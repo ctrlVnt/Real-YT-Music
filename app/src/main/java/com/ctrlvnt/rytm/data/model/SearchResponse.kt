@@ -17,3 +17,13 @@ data class Snippet(
     val title: String,
     val channelTitle: String
 )
+
+data class Thumbnails(
+    val default: Thumbnail,
+    val medium: Thumbnail,
+    val high: Thumbnail
+)
+
+data class Thumbnail(
+    val url: String
+)
