@@ -18,11 +18,11 @@ Here are some demo screenshots showcasing the main features of Real YT Music:
 
 ### Music Discovery
 
-![Music Discovery Screenshot](path/to/discovery_screenshot_en.png)
+![Music Discovery Screenshot](https://play-lh.googleusercontent.com/Jjt-1pSMqMmm9LJj0aRtdTlquUr-PcY2vnXXhHmxulgrCMrmy5m_YG1-IYFe7kxF9dI=w1052-h592)
 
 ### Picture-in-Picture Mode
 
-![Picture-in-Picture Mode Screenshot](path/to/pip_mode_screenshot_en.png)
+![Picture-in-Picture Mode Screenshot](https://play-lh.googleusercontent.com/BbARoRnfLvV_J4A39dNOqhJ-jHBqjiqg5kj4i54wxwNj3CwkoLMmYNsTIMqm4e18Jews=w1052-h592)
 
 ## Features
 
