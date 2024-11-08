@@ -2,6 +2,12 @@
 
 Real YT Music, or RYTM for short, is a versatile YouTube application that seamlessly integrates YouTube's APIs to offer an enhanced music discovery and playback experience. With RYTM, you can discover, create playlists, and enjoy your favorite music videos like never before.
 
+## Demo
+
+Here are some demo screenshots showcasing the main features of Real YT Music:
+
+<img src = "https://play-lh.googleusercontent.com/NHudYD9zTdRSoHbdE8VGLBqNgdkc0t1AYdMpDxOL_QksEx_Pt6UXaQo_UK_bjUp6LA=w526-h296" width ="200" /><img src = "https://play-lh.googleusercontent.com/Jjt-1pSMqMmm9LJj0aRtdTlquUr-PcY2vnXXhHmxulgrCMrmy5m_YG1-IYFe7kxF9dI=w1052-h592" width ="200" /> <img src = "https://play-lh.googleusercontent.com/BbARoRnfLvV_J4A39dNOqhJ-jHBqjiqg5kj4i54wxwNj3CwkoLMmYNsTIMqm4e18Jews=w1052-h592" width ="200" />
+
 ---
 
 ## Download
@@ -12,11 +18,6 @@ Get Real YT Music on [Google Play Store](https://play.google.com/store/apps/deta
 
 ---
 
-## Demo
-
-Here are some demo screenshots showcasing the main features of Real YT Music:
-
-<img src = "https://play-lh.googleusercontent.com/NHudYD9zTdRSoHbdE8VGLBqNgdkc0t1AYdMpDxOL_QksEx_Pt6UXaQo_UK_bjUp6LA=w526-h296" width ="200" /><img src = "https://play-lh.googleusercontent.com/Jjt-1pSMqMmm9LJj0aRtdTlquUr-PcY2vnXXhHmxulgrCMrmy5m_YG1-IYFe7kxF9dI=w1052-h592" width ="200" /> <img src = "https://play-lh.googleusercontent.com/BbARoRnfLvV_J4A39dNOqhJ-jHBqjiqg5kj4i54wxwNj3CwkoLMmYNsTIMqm4e18Jews=w1052-h592" width ="200" />
 
 ## Features
 
