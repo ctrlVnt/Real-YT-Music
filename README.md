@@ -2,6 +2,28 @@
 
 Real YT Music, or RYTM for short, is a versatile YouTube application that seamlessly integrates YouTube's APIs to offer an enhanced music discovery and playback experience. With RYTM, you can discover, create playlists, and enjoy your favorite music videos like never before.
 
+---
+
+## Download
+
+Get Real YT Music on [Google Play Store](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm).
+
+[![Download Real YT Music on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm)
+
+---
+
+## Demo
+
+Here are some demo screenshots showcasing the main features of Real YT Music:
+
+### Music Discovery
+
+![Music Discovery Screenshot](path/to/discovery_screenshot_en.png)
+
+### Picture-in-Picture Mode
+
+![Picture-in-Picture Mode Screenshot](path/to/pip_mode_screenshot_en.png)
+
 ## Features
 
 1. **Music Discovery**: RYTM allows you to search and explore a vast library of music content available on YouTube. Discover new songs, artists, and genres with ease. **without ads** !
