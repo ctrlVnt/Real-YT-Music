@@ -16,13 +16,7 @@ Get Real YT Music on [Google Play Store](https://play.google.com/store/apps/deta
 
 Here are some demo screenshots showcasing the main features of Real YT Music:
 
-### Music Discovery
-
-![Music Discovery Screenshot](https://play-lh.googleusercontent.com/Jjt-1pSMqMmm9LJj0aRtdTlquUr-PcY2vnXXhHmxulgrCMrmy5m_YG1-IYFe7kxF9dI=w1052-h592)
-
-### Picture-in-Picture Mode
-
-![Picture-in-Picture Mode Screenshot](https://play-lh.googleusercontent.com/BbARoRnfLvV_J4A39dNOqhJ-jHBqjiqg5kj4i54wxwNj3CwkoLMmYNsTIMqm4e18Jews=w1052-h592)
+<img src = "https://play-lh.googleusercontent.com/NHudYD9zTdRSoHbdE8VGLBqNgdkc0t1AYdMpDxOL_QksEx_Pt6UXaQo_UK_bjUp6LA=w526-h296" width ="200" /><img src = "https://play-lh.googleusercontent.com/Jjt-1pSMqMmm9LJj0aRtdTlquUr-PcY2vnXXhHmxulgrCMrmy5m_YG1-IYFe7kxF9dI=w1052-h592" width ="200" /> <img src = "https://play-lh.googleusercontent.com/BbARoRnfLvV_J4A39dNOqhJ-jHBqjiqg5kj4i54wxwNj3CwkoLMmYNsTIMqm4e18Jews=w1052-h592" width ="200" />
 
 ## Features
 
