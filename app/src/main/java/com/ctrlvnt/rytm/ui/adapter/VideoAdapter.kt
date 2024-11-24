@@ -6,9 +6,11 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.VideoItem
@@ -44,6 +46,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val videoTitle: TextView = itemView.findViewById(R.id.video_title)
         val channelTitle: TextView = itemView.findViewById(R.id.channel_title)
+        val videoThumbnail: ImageView = itemView.findViewById(R.id.video_thumbnail)
 
         init {
             itemView.setOnClickListener {
@@ -72,35 +75,42 @@ class VideoAdapter(private val videoList: List<VideoItem>,
             holder.videoTitle.setTypeface(null, Typeface.NORMAL)
         }
 
-        if(currentFragmentTag == "home"){
+        Glide.with(holder.videoThumbnail.context)
+            .load(currentItem.snippet.thumbnails.medium.url)
+            .into(holder.videoThumbnail)
+
+        if (currentFragmentTag == "home") {
             holder.itemView.setOnClickListener {
-                var video = Video(videoList[position].id.videoId, videoList[position].snippet.title, videoList[position].snippet.channelTitle)
-                if (!exist(video)){
+                val video = Video(
+                    videoList[position].id.videoId,
+                    videoList[position].snippet.title,
+                    videoList[position].snippet.channelTitle,
+                    videoList[position].snippet.thumbnails.medium.url
+                )
+                if (!exist(video)) {
                     MainActivity.database.insertVideo(video)
                 }
                 val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId, "")
-                val transaction = (holder.itemView.context as AppCompatActivity)
-                    .supportFragmentManager.beginTransaction()
+                (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
                     .replace(R.id.main_activity, fragment)
                     .addToBackStack(null)
                     .commit()
             }
-        }else{
+        } else {
             holder.itemView.setOnClickListener {
                 branoInRiproduzionePosition = position
                 notifyDataSetChanged()
-
                 onPlaybackClickListener?.onPlaybackClick(videoList[position])
             }
         }
 
-
         holder.itemView.setOnLongClickListener {
-            onItemLongClick?.let { it1 -> it1(currentItem) }
+            onItemLongClick?.invoke(currentItem)
             true
         }
     }
+
 
     private fun exist(video: Video): Boolean {
         val count = MainActivity.database.alreadyExist(video)

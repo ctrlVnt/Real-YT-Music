@@ -20,6 +20,8 @@ import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
+import com.ctrlvnt.rytm.data.model.Thumbnail
+import com.ctrlvnt.rytm.data.model.Thumbnails
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
@@ -64,10 +66,14 @@ class HomeActivity : Fragment() {
 
         val videos = MainActivity.database.videoDao().getAll()
         val videoItems = videos?.map {
-            var videoid = VideoId(it.id)
-
-            var snippet = Snippet(it.title, it.channelTitle)
-            VideoItem(videoid, snippet)
+            val videoId = VideoId(it.id)
+            val thumbnails = Thumbnails(
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl)
+            )
+            val snippet = Snippet(it.title, it.channelTitle, thumbnails)
+            VideoItem(videoId, snippet)
         } ?: emptyList()
 
         if(videos.isEmpty()){
@@ -170,9 +176,14 @@ class HomeActivity : Fragment() {
     private fun refreshAdapter() {
         val videos = MainActivity.database.videoDao().getAll()
         val videoItems = videos?.map {
-            var videoid = VideoId(it.id)
-            var snippet = Snippet(it.title, it.channelTitle)
-            VideoItem(videoid, snippet)
+            val videoId = VideoId(it.id)
+            val thumbnails = Thumbnails(
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl)
+            )
+            val snippet = Snippet(it.title, it.channelTitle, thumbnails)
+            VideoItem(videoId, snippet)
         } ?: emptyList()
         cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)

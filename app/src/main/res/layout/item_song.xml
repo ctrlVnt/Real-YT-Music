@@ -3,23 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/video_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Video Title"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/notosansmedium"/>
+    <ImageView
+        android:id="@+id/video_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/channel_title"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Channel Title"
-        android:textSize="14sp"
-        android:fontFamily="@font/notosansmedium"/>
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/notosansmedium"/>
+
+        <TextView
+            android:id="@+id/channel_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Channel Title"
+            android:textSize="14sp"
+            android:fontFamily="@font/notosansmedium"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -7,5 +7,6 @@ data class PlaylistVideo(
     var playlistName: String,
     var videoId: String,
     val title: String,
-    val channelTitle: String
+    val channelTitle: String,
+    val thumbnailUrl: String
 )

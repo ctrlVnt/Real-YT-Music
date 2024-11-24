@@ -15,7 +15,8 @@ data class VideoId(
 
 data class Snippet(
     val title: String,
-    val channelTitle: String
+    val channelTitle: String,
+    val thumbnails: Thumbnails
 )
 
 data class Thumbnails(

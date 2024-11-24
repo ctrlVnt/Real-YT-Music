@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -64,6 +65,8 @@ dependencies {
 
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+
     implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 }

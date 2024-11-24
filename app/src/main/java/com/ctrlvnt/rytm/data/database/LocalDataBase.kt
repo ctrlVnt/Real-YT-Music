@@ -13,7 +13,7 @@ import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.Video
 
-@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class], version = 5)
+@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class], version = 6)
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun videoDao(): VideoDao
     abstract fun playlistDao(): PlaylistDao
@@ -99,6 +99,28 @@ abstract class LocalDataBase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_5_6: Migration = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `playlistvideo_new` " +
+                        "(`playlistName` TEXT NOT NULL, " +
+                        "`videoId` TEXT NOT NULL, " +
+                        "`title` TEXT NOT NULL, " +
+                        "`channelTitle` TEXT NOT NULL, " +
+                        "`thumbnailUrl` TEXT NOT NULL, " +
+                        "PRIMARY KEY(`playlistName`, `videoId`))")
+
+                database.execSQL("INSERT INTO `playlistvideo_new` " +
+                        "(`playlistName`, `videoId`, `title`, `channelTitle`) " +
+                        "SELECT `playlistName`, `videoId`, 'title', 'channelTitle', '' FROM `playlistvideo`")
+
+                database.execSQL("DROP TABLE `playlistvideo`")
+
+                database.execSQL("ALTER TABLE `playlistvideo_new` RENAME TO `playlistvideo`")
+
+                database.execSQL("ALTER TABLE `videos` ADD COLUMN `thumbnailUrl` TEXT NOT NULL DEFAULT ''")
+            }
+        }
+
         fun getDatabase(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -109,6 +131,7 @@ abstract class LocalDataBase : RoomDatabase() {
                     .addMigrations(MIGRATION_2_3)
                     .addMigrations(MIGRATION_3_4)
                     .addMigrations(MIGRATION_4_5)
+                    .addMigrations(MIGRATION_5_6)
                     .build()
                 INSTANCE = instance
                 instance

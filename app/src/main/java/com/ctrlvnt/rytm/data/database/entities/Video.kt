@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Video(
     @PrimaryKey var id: String,
     val title: String,
-    val channelTitle: String
+    val channelTitle: String,
+    val thumbnailUrl: String
 )

@@ -23,6 +23,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -39,6 +40,8 @@ import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
+import com.ctrlvnt.rytm.data.model.Thumbnail
+import com.ctrlvnt.rytm.data.model.Thumbnails
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
@@ -137,6 +140,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
         val intentFilter = IntentFilter().apply {
@@ -146,7 +150,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             addAction("ACTION_PREV")
         }
         try {
-            requireContext().registerReceiver(playbackReceiver, intentFilter)
+            requireContext().registerReceiver(playbackReceiver, intentFilter,
+                Context.RECEIVER_NOT_EXPORTED)
         } catch (e: Exception) {
             Log.e("BroadcastReceiver", "Errore durante la registrazione del BroadcastReceiver: ${e.message}")
         }
@@ -200,9 +205,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         val videoItems = videos?.map {
-            var videoid = VideoId(it.id)
-            var snippet = Snippet(it.title, it.channelTitle)
-            VideoItem(videoid, snippet)
+            val videoId = VideoId(it.id)
+            val thumbnails = Thumbnails(
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl)
+            )
+            val snippet = Snippet(it.title, it.channelTitle, thumbnails)
+            VideoItem(videoId, snippet)
         } ?: emptyList()
 
         val videoAdapter = VideoAdapter(videoItems,{ videoItem ->
@@ -457,7 +467,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 val selectedPlaylist = playlists[which]
 
-                val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle)
+                val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle, video.thumbnailUrl)
 
                 if(!alreadyExist(selectedPlaylist.playlistName, videoId)){
                     MainActivity.database.playlisVideotDao().insertVideoToPlaylist(element)
@@ -493,10 +503,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private fun refreshAdapter(playlistName:String) {
         val videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
 
-        val videoItems = videos?.map {
-            var videoid = VideoId(it.id)
-            var snippet = Snippet(it.title, it.channelTitle)
-            VideoItem(videoid, snippet)
+        val videoItems = videos.map {
+            val videoId = VideoId(it.id)
+            val thumbnails = Thumbnails(
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl),
+                Thumbnail(it.thumbnailUrl)
+            )
+            val snippet = Snippet(it.title, it.channelTitle, thumbnails)
+            VideoItem(videoId, snippet)
         } ?: emptyList()
 
         val videoAdapter = VideoAdapter(videoItems,{ videoItem ->

@@ -9,7 +9,7 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 @Dao
 interface PlaylistVideoDao {
 
-    @Query("SELECT videoId AS id, title, channelTitle  FROM playlistvideo WHERE playlistName = :playlistName")
+    @Query("SELECT videoId AS id, title, channelTitle, thumbnailUrl  FROM playlistvideo WHERE playlistName = :playlistName")
     fun getPlaylistVideos(playlistName: String): List<Video>
 
     @Insert
