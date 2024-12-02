@@ -91,8 +91,8 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
 
     private fun infoDialog(context: Context) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Playlist Vuota")
-        builder.setMessage("Questa playlist è vuota. Aggiungi dei brani alla playlist prima di riprodurre.")
+        builder.setTitle(R.string.empty_playlist_title)
+        builder.setMessage(R.string.empty_playlist_text)
         builder.setPositiveButton("OK") { dialog, _ ->
             dialog.dismiss()
         }

@@ -40,21 +40,23 @@
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
+            android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@+id/scrollView4"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/SettingsText">
+            app:layout_constraintTop_toBottomOf="@+id/SettingsText"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textSize="16sp"
                 android:fontFamily="@font/notosansmedium"
-                android:text="@string/how_to_use" />
+                android:gravity="center"
+                android:text="@string/how_to_use"
+                android:textSize="16sp" />
         </ScrollView>
 
         <ScrollView

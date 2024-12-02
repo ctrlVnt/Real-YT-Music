@@ -14,8 +14,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.4"
+        versionCode = 7
+        versionName = "1.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -69,4 +69,8 @@ dependencies {
 
     implementation("androidx.room:room-runtime:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
+
+    implementation ("androidx.compose.material:material:1.7.5")
+    implementation ("androidx.compose.ui:ui:1.7.5")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.7.5")
 }

@@ -21,14 +21,15 @@
 
             <ImageButton
                 android:id="@+id/settings"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="10dp"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/baseline_info"
+                android:src="@drawable/baseline_drag_indicator_24"
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/welcome"
+                app:layout_constraintVertical_bias="0.0"
                 app:tint="@color/text" />
 
             <TextView
@@ -84,23 +85,6 @@
             app:layout_constraintTop_toBottomOf="@+id/subhome"
             app:queryHint="@string/placeholder" />
 
-        <Button
-            android:id="@+id/playlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/red"
-            android:fontFamily="@font/notosansmedium"
-            android:padding="0dp"
-            android:text="@string/playlists_button"
-            android:textAllCaps="false"
-            android:textColor="@color/text"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_titles" />
-
         <View
             android:id="@+id/line"
             android:layout_width="0dp"
@@ -124,7 +108,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/playlist" />
+            app:layout_constraintTop_toBottomOf="@+id/search_titles" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/songs_list"
@@ -140,41 +124,55 @@
             android:id="@+id/last_search"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/delete_caches"
-            android:layout_marginBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/last_search_text" />
 
-        <Button
-            android:id="@+id/delete_caches"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/red"
-            android:fontFamily="@font/notosansmedium"
-            android:text="@string/caches"
-            android:textStyle="bold"
-            android:textColor="@color/text"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+
+        <ImageView
+            android:id="@+id/empty_history_img"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/history"
+            app:layout_constraintBottom_toTopOf="@+id/empty_history"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="30dp"/>
 
         <TextView
             android:id="@+id/empty_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty_cronology"
-            android:textSize="16sp"
-            android:textColor="@color/placeholder"
-            android:gravity="center"
             android:fontFamily="@font/notosansmedium"
+            android:gravity="center"
+            android:text="@string/empty_cronology"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bottom" />
+            app:layout_constraintTop_toTopOf="@+id/bottom"
+            app:layout_constraintVertical_bias="0.616" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/red"
+            android:text="@string/playlists_button"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            app:icon="@drawable/baseline_playlist_play"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

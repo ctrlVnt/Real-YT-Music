@@ -37,7 +37,7 @@
     <string name="noty_text">انقر على الإشعار لحذفه</string>
 
     <string name="empty_playlists">لا توجد قوائم تشغيل متاحة</string>
-    <string name="empty_cronology">التاريخ فارغ، ابحث عن أول أغنية!</string>
+    <string name="empty_cronology">التاريخ فارغ</string>
 
     <string name="generic_error">خطأ غير معروف</string>
 
@@ -51,4 +51,6 @@
 
     <string name="create_playlist_first">الرجاء إنشاء على الأقل قائمة تشغيل واحدة قبل المتابعة.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">قائمة تشغيل فارغة</string>
+    <string name="empty_playlist_text">قائمة التشغيل هذه فارغة. أضف بعض الأغاني إلى القائمة قبل التشغيل</string>
 </resources>

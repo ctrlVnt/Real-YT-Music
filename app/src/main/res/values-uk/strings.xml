@@ -39,7 +39,7 @@
     <string name="noty_text">Натисніть на сповіщення, щоб його видалити</string>
 
     <string name="empty_playlists">Немає доступних плейлистів</string>
-    <string name="empty_cronology">Історія порожня, шукайте свою першу пісню!</string>
+    <string name="empty_cronology">Історія порожня</string>
 
     <string name="generic_error">Невідома помилка</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Будь ласка, створіть хоча б один плейлист перед продовженням.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Порожній плейлист</string>
+    <string name="empty_playlist_text">"Цей плейлист порожній. Додайте кілька пісень до плейлиста перед відтворенням. "</string>
 </resources>

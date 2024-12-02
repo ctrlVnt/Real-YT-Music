@@ -1,9 +1,11 @@
 package com.ctrlvnt.rytm.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -11,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -27,6 +30,7 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
 import org.json.JSONObject
@@ -41,7 +45,9 @@ class HomeActivity : Fragment() {
     lateinit var cronologia:RecyclerView
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
+    lateinit var historyImg: ImageView
 
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,14 +55,14 @@ class HomeActivity : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_home_activity, container, false)
         searchBar = rootView.findViewById(R.id.search_titles)
         historyText = rootView.findViewById(R.id.empty_history)
+        historyImg = rootView.findViewById(R.id.empty_history_img)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
-        val playlistsButton: Button = rootView.findViewById(R.id.playlist)
+        val playlistsButton: ExtendedFloatingActionButton = rootView.findViewById(R.id.playlist)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
-        val delHistoryButton: Button = rootView.findViewById(R.id.delete_caches)
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
@@ -65,7 +71,7 @@ class HomeActivity : Fragment() {
         cronologia.layoutManager = layoutManager
 
         val videos = MainActivity.database.videoDao().getAll()
-        val videoItems = videos?.map {
+        val videoItems = videos.map {
             val videoId = VideoId(it.id)
             val thumbnails = Thumbnails(
                 Thumbnail(it.thumbnailUrl),
@@ -77,8 +83,10 @@ class HomeActivity : Fragment() {
         } ?: emptyList()
 
         if(videos.isEmpty()){
+            historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
         }else{
+            historyImg.visibility = View.GONE
             historyText.visibility = View.GONE
         }
 
@@ -92,11 +100,30 @@ class HomeActivity : Fragment() {
         recyclerView.adapter = VideoAdapter(videoItems, null, "home")
 
         settingsButton.setOnClickListener{
-            requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
-                .replace(R.id.main_activity, Settings())
-                .addToBackStack(null)
-                .commit()
+
+            val popupMenu = android.widget.PopupMenu(this.context, settingsButton)
+            popupMenu.menuInflater.inflate(R.menu.options_menu, popupMenu.menu)
+
+
+            popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+                when (item.itemId) {
+                    R.id.option1 -> {
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
+                            .replace(R.id.main_activity, Settings())
+                            .addToBackStack(null)
+                            .commit()
+                        true
+                    }
+                    R.id.option2 -> {
+                        showConfirmationDialog()
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popupMenu.show()
         }
 
         playlistsButton.setOnClickListener{
@@ -109,10 +136,6 @@ class HomeActivity : Fragment() {
 
         searchBar.setOnClickListener {
             searchBar.isIconified = false
-        }
-
-        delHistoryButton.setOnClickListener{
-            showConfirmationDialog()
         }
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -128,16 +151,17 @@ class HomeActivity : Fragment() {
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
+                    historyImg.visibility = View.GONE
                     historyText.visibility = View.GONE
                     cronologia.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
                     subHome.visibility = View.GONE
-                    delHistoryButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
+                        historyImg.visibility = View.VISIBLE
                         historyText.visibility = View.VISIBLE
                     }
                     logo.visibility = View.VISIBLE
@@ -148,7 +172,6 @@ class HomeActivity : Fragment() {
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
-                    delHistoryButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -190,6 +213,7 @@ class HomeActivity : Fragment() {
         },"home")
 
         if(videos.isEmpty()){
+            historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
         }
     }
@@ -246,6 +270,7 @@ class HomeActivity : Fragment() {
 
         alertDialogBuilder.setPositiveButton(getString(R.string.accept)) { dialog, _ ->
             MainActivity.database.deleteAllVideos()
+            refreshAdapter()
             Toast.makeText(requireContext(), getString(R.string.deleted_history), Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }

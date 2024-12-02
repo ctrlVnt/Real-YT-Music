@@ -29,7 +29,7 @@
     <string name="noty_title">RYTM è in esecuzione</string>
     <string name="noty_text">Cliccare sulla notifica per cancellarla</string>
     <string name="empty_playlists">Nessuna playlist presente</string>
-    <string name="empty_cronology">Cronologia vuota, cerca la tua prima canzone!</string>
+    <string name="empty_cronology">Cronologia vuota</string>
     <string name="terms_title">Termini e condizioni d\'uso</string>
     <string name="terms_text">"L'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> "</string>
     <string name="accept">Accetta</string>
@@ -39,4 +39,6 @@
     <string name="create_playlist_first">Si prega di creare almeno una playlist prima di procedere.</string>
     <string name="generic_error">Errore sconosciuto</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Playlist vuota</string>
+    <string name="empty_playlist_text">Questa playlist è vuota. Aggiungi dei brani alla playlist prima di riprodurre.</string>
 </resources>

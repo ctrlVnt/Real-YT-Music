@@ -39,7 +39,7 @@
     <string name="noty_text">通知をクリックして削除します</string>
 
     <string name="empty_playlists">プレイリストが存在しません</string>
-    <string name="empty_cronology">履歴は空です、最初の曲を検索してください！</string>
+    <string name="empty_cronology">履歴は空です</string>
 
     <string name="generic_error">未知のエラー</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">続行する前に、少なくとも1つのプレイリストを作成してください。</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">空のプレイリスト</string>
+    <string name="empty_playlist_text">このプレイリストは空です。再生する前に曲をプレイリストに追加してください。</string>
 </resources>

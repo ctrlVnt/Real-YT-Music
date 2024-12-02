@@ -39,7 +39,7 @@
     <string name="noty_text">Clique na notificação para excluí-la</string>
 
     <string name="empty_playlists">Nenhuma lista de reprodução presente</string>
-    <string name="empty_cronology">Histórico vazio, procure sua primeira música!</string>
+    <string name="empty_cronology">Histórico vazio</string>
 
     <string name="generic_error">Erro desconhecido</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Por favor, crie pelo menos uma lista de reprodução antes de continuar.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Playlist vazia</string>
+    <string name="empty_playlist_text">Esta playlist está vazia. Adicione algumas músicas à playlist antes de reproduzir.</string>
 </resources>

@@ -39,7 +39,7 @@
     <string name="noty_text">Kliknij na powiadomienie, aby je usunąć</string>
 
     <string name="empty_playlists">Brak dostępnych playlist</string>
-    <string name="empty_cronology">Pusta historia, wyszukaj swoją pierwszą piosenkę!</string>
+    <string name="empty_cronology">Pusta historia</string>
 
     <string name="generic_error">Nieznany błąd</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Proszę utworzyć co najmniej jedną playlistę, zanim będziesz kontynuować.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Pusta lista odtwarzania</string>
+    <string name="empty_playlist_text">Ta lista odtwarzania jest pusta. Dodaj kilka utworów do listy przed odtwarzaniem.</string>
 </resources>

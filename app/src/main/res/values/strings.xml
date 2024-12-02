@@ -39,7 +39,7 @@
     <string name="noty_text">Click on the notification to delete it</string>
 
     <string name="empty_playlists">No playlist present</string>
-    <string name="empty_cronology">Empty history, search for your first song!</string>
+    <string name="empty_cronology">Empty history</string>
 
     <string name="generic_error">Unknown error</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Please create at least one playlist before proceeding.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Empty playlist</string>
+    <string name="empty_playlist_text">This playlist is empty. Add some songs to the playlist before playing.</string>
 </resources>

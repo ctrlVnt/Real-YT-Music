@@ -39,7 +39,7 @@
     <string name="noty_text">Нажмите на уведомление, чтобы удалить его</string>
 
     <string name="empty_playlists">Нет доступных плейлистов</string>
-    <string name="empty_cronology">История пуста, найдите свою первую песню!</string>
+    <string name="empty_cronology">История пуста</string>
 
     <string name="generic_error">Неизвестная ошибка</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Пожалуйста, создайте хотя бы один плейлист перед продолжением.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Пустой плейлист</string>
+    <string name="empty_playlist_text">Этот плейлист пуст. Добавьте несколько песен в плейлист перед воспроизведением.</string>
 </resources>

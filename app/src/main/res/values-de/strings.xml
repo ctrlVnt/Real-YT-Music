@@ -39,7 +39,7 @@
     <string name="noty_text">Klicken Sie auf die Benachrichtigung, um sie zu löschen</string>
 
     <string name="empty_playlists">Keine Playlist vorhanden</string>
-    <string name="empty_cronology">Leerer Verlauf, suchen Sie nach Ihrem ersten Song!</string>
+    <string name="empty_cronology">Leerer Verlauf</string>
 
     <string name="generic_error">Unbekannter Fehler</string>
 
@@ -53,4 +53,6 @@
 
     <string name="create_playlist_first">Bitte erstellen Sie mindestens eine Playlist, bevor Sie fortfahren.</string>
     <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">Leere Playlist</string>
+    <string name="empty_playlist_text">Diese Playlist ist leer. Fügen Sie einige Songs zur Playlist hinzu, bevor Sie sie abspielen.</string>
 </resources>

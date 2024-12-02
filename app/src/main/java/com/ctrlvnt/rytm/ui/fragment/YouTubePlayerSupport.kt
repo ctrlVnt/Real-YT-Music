@@ -182,8 +182,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         searchBar = rootView.findViewById(R.id.search_bar_player)
         val videos: List<Video>
 
-        //activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.black))
-
         var lock = false
         var repeatOption = false
         var shuffleOption = false

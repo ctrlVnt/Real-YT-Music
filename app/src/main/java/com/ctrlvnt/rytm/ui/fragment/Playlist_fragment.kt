@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ class Playlist_fragment : Fragment(){
 
     lateinit var playlistList: RecyclerView
     lateinit var playlistText: TextView
+    lateinit var playlistImg: ImageView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +32,7 @@ class Playlist_fragment : Fragment(){
         val addButton: FloatingActionButton = rootView.findViewById(R.id.add_playlist)
         val backButton: ImageButton = rootView.findViewById(R.id.back_button)
         playlistText = rootView.findViewById(R.id.empty_playlists)
+        playlistImg = rootView.findViewById(R.id.empty_playlists_img)
 
         playlistList = rootView.findViewById(R.id.list_playlist)
         val layoutManager = LinearLayoutManager(context)
@@ -42,8 +45,10 @@ class Playlist_fragment : Fragment(){
         playlistList.adapter = playlistAdapter
 
         if(playlists.isEmpty()){
+            playlistImg.visibility = View.VISIBLE
             playlistText.visibility = View.VISIBLE
         }else{
+            playlistImg.visibility = View.GONE
             playlistText.visibility = View.GONE
         }
 
@@ -75,6 +80,7 @@ class Playlist_fragment : Fragment(){
 
                     val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
                     (playlistList.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                    playlistImg.visibility = View.GONE
                     playlistText.visibility = View.GONE
                 } else {
                     if(name.isBlank()){
@@ -114,6 +120,7 @@ class Playlist_fragment : Fragment(){
             showDeleteConfirmationDialog(playlistItem)
         }
         if(playlists.isEmpty()){
+            playlistImg.visibility = View.VISIBLE
             playlistText.visibility = View.VISIBLE
         }
     }
