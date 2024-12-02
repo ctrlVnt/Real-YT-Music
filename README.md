@@ -1,5 +1,7 @@
 # Real YT Music (RYTM)
 
+<img src = "https://riccardoventurini.dev/assets/portfolio/rytm.png" width ="500" />
+
 Real YT Music, or RYTM for short, is a versatile YouTube application that seamlessly integrates YouTube's APIs to offer an enhanced music discovery and playback experience. With RYTM, you can discover, create playlists, and enjoy your favorite music videos like never before.
 
 ## Demo
@@ -36,4 +38,4 @@ Avaiable on [Google Play Store](https://play.google.com/store/apps/details?id=co
 ## Full playback
 If you want to have videos in full playback mode, we recommend cloning this repository and following the instructions outlined in the comments at [```/*FULL-PLAYBACK MODE*/```](https://github.com/ctrlVnt/Real-YT-Music/blob/master/app/src/main/java/com/ctrlvnt/rytm/ui/fragment/YouTubePlayerSupport.kt) (to search with ctrl+f)
 
-You can download full-playback mode [here](https://www.dropbox.com/scl/fo/gunen6687j8gcna2vzkn5/h?rlkey=sbo6n7hdbrh3ta0kmaubh345m&dl=0)
+You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Music/releases/tag/untagged-b273215d03065aa005ca)
