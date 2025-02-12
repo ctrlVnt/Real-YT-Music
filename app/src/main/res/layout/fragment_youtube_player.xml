@@ -50,7 +50,7 @@
         android:text="Playlist_Name"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:fontFamily="@font/notosansmedium"
+        android:fontFamily="@font/bricolagegrotesquemedium"
         app:layout_constraintBottom_toTopOf="@+id/playlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

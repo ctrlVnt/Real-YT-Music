@@ -17,7 +17,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/settings"
             android:textStyle="bold"
-            android:fontFamily="@font/notosansmedium"
+            android:fontFamily="@font/bricolagegrotesquemedium"
             android:textColor="@color/text"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
