@@ -34,3 +34,8 @@ You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Mu
 
 ## How to Contribute
 Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate on the project.
+
+## Support me
+If you want to support me, thank you!
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="v3ntuz" data-color="#FF5F5F" data-emoji="🍺"  data-font="Bree" data-text="Buy me a beer" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
