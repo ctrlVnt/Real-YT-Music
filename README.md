@@ -38,4 +38,5 @@ Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate 
 ## Support me
 If you want to support me, thank you!
 
-<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="v3ntuz" data-color="#FF5F5F" data-emoji="🍺"  data-font="Bree" data-text="Buy me a beer" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+[<img width="545" alt="bmc-button" src="https://github.com/user-attachments/assets/002f8e0b-c0a7-45bf-b73d-92d36dff8090" />](https://www.buymeacoffee.com/v3ntuz)
+
