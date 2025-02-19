@@ -55,4 +55,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Empty playlist</string>
     <string name="empty_playlist_text">This playlist is empty. Add some songs to the playlist before playing.</string>
+    <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
+    <string name="send_me_suggestions">Send me suggestions 📧</string>
+    <string name="support_me">If you want to support me 👇</string>
+    <string name="info_text">App created with ❤️ to watch videos while using other apps. You won\'t see ads because RYTM doesn\'t identify users</string>
 </resources>

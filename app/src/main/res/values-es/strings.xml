@@ -55,4 +55,7 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">" Lista de reproducción vacía"</string>
     <string name="empty_playlist_text">Esta lista de reproducción está vacía. Agrega algunas canciones a la lista antes de reproducir.</string>
+    <string name="send_me_suggestions">Envíame tus sugerencias 📧</string>
+    <string name="support_me">Si te apetece apoyar mi trabajo👇</string>
+    <string name="info_text">Esta aplicación fue creada con ❤️ para ver videos mientras usas otras aplicaciones. No verás publicidad porque RYTM no identifica a los usuarios</string>
 </resources>

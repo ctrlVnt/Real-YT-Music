@@ -24,6 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
@@ -36,50 +37,78 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
-            android:id="@+id/scrollView3"
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/scrollView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosansmedium"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/info_text"
+            android:textColor="@color/text"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/SettingsText"
-            app:layout_constraintVertical_bias="0.0">
+            tools:layout_editor_absoluteX="0dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/notosansmedium"
-                android:gravity="center"
-                android:text="@string/how_to_use"
-                android:textSize="16sp" />
-        </ScrollView>
-
-        <ScrollView
-            android:id="@+id/scrollView4"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/my_info"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosansmedium"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/support_me"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:layout_editor_absoluteX="0dp" />
 
+        <Button
+            android:id="@+id/buymeacoffee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy_me_a_coffee"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bricolagegrotesquemedium"
+            android:backgroundTint="#FFDD00"
+            app:layout_constraintBottom_toTopOf="@+id/sendmeamail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
+        </Button>
+
+        <Button
+            android:id="@+id/sendmeamail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:textAllCaps="false"
+            android:textColor="@color/text"
+
+            android:backgroundTint="@color/red_dark"
+            android:text="@string/send_me_suggestions"
+            app:layout_constraintBottom_toTopOf="@+id/about"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/about"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/about"
-                android:textColor="@color/text"
-                android:fontFamily="@font/notosansmedium"
-                android:textSize="16sp" />
-        </ScrollView>
+        </Button>
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosansmedium"
+            android:gravity="center"
+            android:text="@string/about"
+            android:textColor="@color/text"
+            android:padding="10dp"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/my_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/my_info"
@@ -87,7 +116,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosansmedium"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="20dp"
             android:text="@string/my_info"
             android:textColor="@color/text"
             android:textSize="16sp"

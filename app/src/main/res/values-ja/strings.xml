@@ -55,4 +55,7 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">空のプレイリスト</string>
     <string name="empty_playlist_text">このプレイリストは空です。再生する前に曲をプレイリストに追加してください。</string>
+    <string name="send_me_suggestions">ご意見をお寄せください📧</string>
+    <string name="support_me">私の仕事をサポートしたい場合は</string>
+    <string name="info_text">このアプリは、他のアプリを使用しながらビデオを見るために❤️で作られました。RYTMはユーザーを識別しないため、広告は表示されません</string>
 </resources>

@@ -55,4 +55,7 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Leere Playlist</string>
     <string name="empty_playlist_text">Diese Playlist ist leer. Fügen Sie einige Songs zur Playlist hinzu, bevor Sie sie abspielen.</string>
+    <string name="send_me_suggestions">Schick mir deine Vorschläge 📧</string>
+    <string name="support_me">Wenn du meine Arbeit unterstützen möchtest 👇</string>
+    <string name="info_text">Diese App wurde mit ❤️ erstellt, um Videos anzusehen, während du andere Apps verwendest. Du wirst keine Werbung sehen, weil RYTM keine Benutzer identifiziert</string>
 </resources>

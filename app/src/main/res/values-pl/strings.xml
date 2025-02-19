@@ -55,4 +55,7 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Pusta lista odtwarzania</string>
     <string name="empty_playlist_text">Ta lista odtwarzania jest pusta. Dodaj kilka utworów do listy przed odtwarzaniem.</string>
+    <string name="send_me_suggestions">Prześlij mi swoje sugestie 📧</string>
+    <string name="support_me">Jeśli chcesz wesprzeć moją pracę 👇</string>
+    <string name="info_text">Ta aplikacja została stworzona z ❤️, aby oglądać filmy podczas korzystania z innych aplikacji. Nie zobaczysz reklam, ponieważ RYTM nie identyfikuje użytkowników</string>
 </resources>
