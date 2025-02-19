@@ -30,7 +30,7 @@ Avaiable on [Google Play Store](https://play.google.com/store/apps/details?id=co
 ## Full playback
 If you want to have videos in full playback mode, we recommend cloning this repository and following the instructions outlined in the comments at [```/*FULL-PLAYBACK MODE*/```](https://github.com/ctrlVnt/Real-YT-Music/blob/master/app/src/main/java/com/ctrlvnt/rytm/ui/fragment/YouTubePlayerSupport.kt) (to search with ctrl+f)
 
-You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Music/releases/tag/untagged-b273215d03065aa005ca)
+You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Music/releases)
 
 ## How to Contribute
 Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate on the project.
