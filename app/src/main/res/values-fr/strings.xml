@@ -43,4 +43,5 @@
     <string name="send_me_suggestions">Envoyez-moi vos suggestions 📧</string>
     <string name="support_me">Si vous souhaitez soutenir mon travail 👇</string>
     <string name="info_text">Cette application a été créée avec ❤️ pour regarder des vidéos pendant que vous utilisez d\'autres applications. Vous ne verrez pas de publicité car RYTM n\'identifie pas les utilisateurs</string>
+    <string name="you_don_t_have_already_playlist_create_the_firstone">Vous n\'avez pas encore de playlists. Créez votre première maintenant !</string>
 </resources>

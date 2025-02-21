@@ -28,6 +28,7 @@ import com.ctrlvnt.rytm.data.model.Thumbnails
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
+import com.ctrlvnt.rytm.ui.adapter.PlaylistAdapter
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -43,6 +44,7 @@ import java.util.Locale
 class HomeActivity : Fragment() {
 
     lateinit var cronologia:RecyclerView
+    lateinit var playlists: RecyclerView
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
     lateinit var historyImg: ImageView
@@ -58,17 +60,31 @@ class HomeActivity : Fragment() {
         historyImg = rootView.findViewById(R.id.empty_history_img)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
-        val playlistsButton: ExtendedFloatingActionButton = rootView.findViewById(R.id.playlist)
+        val playlistsButton: TextView = rootView.findViewById(R.id.playlist_btn)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
+        val noPlaylist: TextView = rootView.findViewById(R.id.no_playlists)
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
        cronologia = rootView.findViewById(R.id.last_search)
         val layoutManager = LinearLayoutManager(context)
         cronologia.layoutManager = layoutManager
+
+        playlists = rootView.findViewById(R.id.playlist_list)
+        val layoutManagerPlaylists = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        playlists.layoutManager = layoutManagerPlaylists
+
+        val playlistsData = MainActivity.database.playlistDao().getAllPlaylists()
+        playlists.adapter = PlaylistAdapter(playlistsData)
+
+        if(playlistsData.isEmpty()){
+            noPlaylist.visibility = View.VISIBLE
+        }else{
+            noPlaylist.visibility = View.GONE
+        }
 
         val videos = MainActivity.database.videoDao().getAll()
         val videoItems = videos.map {
@@ -154,20 +170,26 @@ class HomeActivity : Fragment() {
                     historyImg.visibility = View.GONE
                     historyText.visibility = View.GONE
                     cronologia.visibility = View.GONE
+                    playlists.visibility = View.GONE
                     cronologiaText.visibility = View.GONE
                     playlistsButton.visibility = View.GONE
                     bottomPart.visibility = View.GONE
                     subHome.visibility = View.GONE
+                    noPlaylist.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
                         historyImg.visibility = View.VISIBLE
                         historyText.visibility = View.VISIBLE
                     }
+                    if(playlistsData.isEmpty()){ //To change when will be playlist list
+                        noPlaylist.visibility = View.VISIBLE
+                    }
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
                     cronologia.visibility = View.VISIBLE
+                    playlists.visibility = View.VISIBLE
                     cronologiaText.visibility = View.VISIBLE
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE

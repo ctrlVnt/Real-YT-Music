@@ -58,4 +58,5 @@
     <string name="send_me_suggestions">Envíame tus sugerencias 📧</string>
     <string name="support_me">Si te apetece apoyar mi trabajo👇</string>
     <string name="info_text">Esta aplicación fue creada con ❤️ para ver videos mientras usas otras aplicaciones. No verás publicidad porque RYTM no identifica a los usuarios</string>
+    <string name="you_don_t_have_already_playlist_create_the_firstone">Aún no tienes ninguna lista de reproducción. ¡Crea la primera ahora!</string>
 </resources>

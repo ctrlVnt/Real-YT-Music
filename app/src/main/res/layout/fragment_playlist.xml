@@ -10,25 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageViewelcome"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:layout_constraintBottom_toTopOf="@+id/list_playlist"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Playlists"
+            android:layout_marginTop="20dp"
             android:textColor="@color/text"
             android:textSize="32sp"
             android:textStyle="bold"
             android:fontFamily="@font/bricolagegrotesquemedium"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewelcome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,17 +28,16 @@
             android:id="@+id/list_playlist"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewelcome" />
+            app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_playlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
             android:layout_marginBottom="28dp"
             android:backgroundTint="@color/red"
             android:clickable="true"
@@ -56,6 +46,7 @@
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:rippleColor="@color/red_dark"
             app:tint="@color/text" />
 
@@ -89,13 +80,13 @@
             android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:background="@android:color/transparent"
             android:src="@drawable/arrow_back"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            app:tint="@color/text"
+            app:layout_constraintBottom_toBottomOf="@+id/welcome"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/welcome"
+            app:tint="@color/text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

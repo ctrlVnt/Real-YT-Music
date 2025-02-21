@@ -15,6 +15,7 @@
             android:id="@+id/subhome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,47 +30,91 @@
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/welcome"
-                app:layout_constraintVertical_bias="0.0"
                 app:tint="@color/text" />
 
             <TextView
                 android:id="@+id/welcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bricolagegrotesquemedium"
                 android:gravity="center"
                 android:maxWidth="300dp"
                 android:text="@string/hello_blank_fragment"
                 android:textColor="@color/text"
-                android:textSize="26sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/bricolagegrotesquemedium"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/logo"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="20dp"/>
 
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
-                app:layout_constraintEnd_toStartOf="@+id/welcome"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/welcome" />
+                app:layout_constraintTop_toTopOf="@+id/welcome"
+                android:layout_marginStart="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/line">
+
+            <TextView
+                android:id="@+id/playlist_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/bricolagegrotesquemedium"
+                android:text="@string/playlists"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/no_playlists"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:lineHeight="25sp"
+                android:text="@string/you_don_t_have_already_playlist_create_the_firstone"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playlist_btn" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/playlist_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/playlist_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/bottom"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="1500dp"
             android:src="@drawable/rectangle"
-            app:tint="@color/items"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/last_search_text"/>
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            android:layout_marginTop="10dp"
+            app:tint="@color/items" />
 
 
         <androidx.appcompat.widget.SearchView
@@ -108,19 +153,15 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_titles" />
+            app:layout_constraintTop_toTopOf="@+id/bottom" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/songs_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line"
-            app:layout_constraintVertical_bias="0.496" />
+            app:layout_constraintTop_toBottomOf="@+id/line"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/last_search"
@@ -135,7 +176,7 @@
             android:id="@+id/empty_history_img"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/history"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,25 +197,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/empty_history_img"
             android:layout_marginTop="20dp"/>
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/playlist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/red"
-            android:text="@string/playlists_button"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/text"
-            android:textStyle="bold"
-            android:fontFamily="@font/bricolagegrotesquemedium"
-            app:icon="@drawable/baseline_playlist_play"
-            app:iconTint="@color/text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

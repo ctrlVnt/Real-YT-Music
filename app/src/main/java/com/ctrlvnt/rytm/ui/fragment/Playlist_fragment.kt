@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
@@ -35,7 +36,7 @@ class Playlist_fragment : Fragment(){
         playlistImg = rootView.findViewById(R.id.empty_playlists_img)
 
         playlistList = rootView.findViewById(R.id.list_playlist)
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = GridLayoutManager(context, 2)
         playlistList.layoutManager = layoutManager
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
 
