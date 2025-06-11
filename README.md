@@ -1,6 +1,6 @@
 # Real YT Music (RYTM)
 
-<img src = "https://riccardoventurini.dev/assets/portfolio/rytm.png" width ="500" />
+<img src = "https://riccardoventurini.dev/images/rytm.png" width ="500" />
 
 Real YT Music, or RYTM for short, is a versatile YouTube application that seamlessly integrates YouTube's APIs to offer an enhanced music discovery and playback experience. With RYTM, you can discover, create playlists, and enjoy your favorite music videos like never before.
 
