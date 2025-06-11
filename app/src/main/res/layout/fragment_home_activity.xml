@@ -78,7 +78,24 @@
                 android:text="@string/playlists"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/add_playlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_playlist"
+                app:layout_constraintBottom_toBottomOf="@+id/playlist_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/playlist_btn"
+                android:layout_marginEnd="30dp"
+                android:textSize="10sp"
+                android:padding="1dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/red">
+
+            </Button>
 
             <TextView
                 android:id="@+id/no_playlists"

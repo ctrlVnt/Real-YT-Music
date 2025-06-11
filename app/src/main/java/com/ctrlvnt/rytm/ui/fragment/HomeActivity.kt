@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.YouTubeApiManager
+import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
 import com.ctrlvnt.rytm.data.model.Thumbnail
@@ -40,6 +42,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.invoke.ConstantCallSite
 import java.util.Locale
+import androidx.core.net.toUri
+import androidx.core.content.edit
 
 class HomeActivity : Fragment() {
 
@@ -48,6 +52,7 @@ class HomeActivity : Fragment() {
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
     lateinit var historyImg: ImageView
+    lateinit var noPlaylist: TextView
 
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -65,7 +70,8 @@ class HomeActivity : Fragment() {
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
-        val noPlaylist: TextView = rootView.findViewById(R.id.no_playlists)
+        val addButton: Button = rootView.findViewById(R.id.add_playlist)
+        noPlaylist = rootView.findViewById(R.id.no_playlists)
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
@@ -78,7 +84,10 @@ class HomeActivity : Fragment() {
         playlists.layoutManager = layoutManagerPlaylists
 
         val playlistsData = MainActivity.database.playlistDao().getAllPlaylists()
-        playlists.adapter = PlaylistAdapter(playlistsData)
+        val playlistAdapter = PlaylistAdapter(playlistsData) { playlistItem ->
+            showDeleteConfirmationDialogPlaylist(playlistItem)
+        }
+        playlists.adapter = playlistAdapter
 
         if(playlistsData.isEmpty()){
             noPlaylist.visibility = View.VISIBLE
@@ -142,12 +151,16 @@ class HomeActivity : Fragment() {
             popupMenu.show()
         }
 
-        playlistsButton.setOnClickListener{
+        /*playlistsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
                 .replace(R.id.main_activity, Playlist_fragment())
                 .addToBackStack(null)
                 .commit()
+        }*/
+
+        addButton.setOnClickListener{
+            showCustomDialog()
         }
 
         searchBar.setOnClickListener {
@@ -199,8 +212,67 @@ class HomeActivity : Fragment() {
             }
         })
 
+        showDialogEveryTenOpens()
         return rootView
     }
+
+    private fun showCustomDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
+
+        val editTextName: EditText = dialogView.findViewById(R.id.editTextName)
+
+        builder.setView(dialogView)
+            .setTitle(R.string.add_playlist)
+            .setPositiveButton("OK") { dialog, _ ->
+                val name =  editTextName.text.toString()
+
+                if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
+                    val newPlaylist = Playlist(playlistName = name)
+                    MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+
+                    val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
+                    (playlists.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                    noPlaylist.visibility = View.GONE
+                } else {
+                    if(name.isBlank()){
+                        Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton(R.string.restore) { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
+    private fun showDialogEveryTenOpens() {
+        val sharedPreferences = requireContext().getSharedPreferences("app_prefs", android.content.Context.MODE_PRIVATE)
+        val launchCount = sharedPreferences.getInt("launch_count", 0) + 1
+
+        // Save updated launch count
+        sharedPreferences.edit { putInt("launch_count", launchCount) }
+
+        // Show dialog every 10th launch
+        if (launchCount % 10 == 0) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Thanks for using the app!")
+                .setMessage("Would you like a cast feature? Support me on Buy Me a Coffee ☕")
+                .setPositiveButton("Support Me") { _, _ ->
+                    val url = "https://buymeacoffee.com/v3ntuz"
+                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW)
+                    intent.data = url.toUri()
+                    startActivity(intent)
+                }
+                .setNegativeButton("Maybe later") { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
+    }
+
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem) {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
@@ -303,5 +375,33 @@ class HomeActivity : Fragment() {
 
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
+    }
+
+    private fun showDeleteConfirmationDialogPlaylist(playlistItem: Playlist) {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
+        alertDialogBuilder.setMessage(R.string.delete_confirmation)
+
+        alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
+            MainActivity.database.deletePlaylist(playlistItem)
+            refreshAdapterPlaylist()
+        }
+        alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
+            dialog.dismiss()
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun refreshAdapterPlaylist() {
+        val playlistsList = MainActivity.database.playlistDao().getAllPlaylists()
+        playlists.adapter = PlaylistAdapter(playlistsList) { playlistItem ->
+            showDeleteConfirmationDialogPlaylist(playlistItem)
+        }
+        if(playlistsList.isEmpty()){
+            noPlaylist.visibility = View.VISIBLE
+        }else{
+            noPlaylist.visibility = View.GONE
+        }
     }
 }
