@@ -59,4 +59,8 @@
     <string name="support_me">Если вы хотите поддержать мою работу</string>
     <string name="info_text">Это приложение создано с ❤️ для просмотра видео во время использования других приложений. Вы не увидите рекламы, потому что RYTM не идентифицирует пользователей</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">У вас еще нет плейлистов. Создайте свой первый прямо сейчас!</string>
+    <string name="thx">Спасибо за использование приложения!</string>
+    <string name="buymeacoffee">Хотите функцию трансляции? Поддержите меня на Buy Me a Coffee ☕</string>
+    <string name="supme">Поддержать</string>
+    <string name="later">Может быть позже</string>
 </resources>

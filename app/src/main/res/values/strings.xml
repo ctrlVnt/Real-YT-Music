@@ -61,4 +61,8 @@
     <string name="info_text">App created with ❤️ to watch videos while using other apps. You won\'t see ads because RYTM doesn\'t identify users</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">You don\'t have any playlists yet. Create your first one now!</string>
     <string name="playlists" translatable="false">Playlists ></string>
+    <string name="thx">Thanks for using the app!</string>
+    <string name="buymeacoffee">Would you like a cast feature? Support me on Buy Me a Coffee ☕</string>
+    <string name="supme">Support Me</string>
+    <string name="later">Maybe later</string>
 </resources>

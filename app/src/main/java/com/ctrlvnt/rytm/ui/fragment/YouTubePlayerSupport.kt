@@ -47,9 +47,7 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
-import com.google.android.gms.cast.framework.CastButtonFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.pierfrancescosoffritti.androidyoutubeplayer.chromecast.chromecastsender.utils.PlayServicesUtils
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -176,7 +174,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
-        val castButton : androidx.mediarouter.app.MediaRouteButton = rootView.findViewById(R.id.media_route_button)
         prevButton = rootView.findViewById(R.id.prev_video)
         nextButton = rootView.findViewById(R.id.next_video)
         buttonPannel = rootView.findViewById(R.id.button_pannel)

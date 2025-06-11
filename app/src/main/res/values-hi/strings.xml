@@ -45,4 +45,8 @@
     <string name="support_me">Yadi aap meri madad karna chahte hain 👇</string>
     <string name="info_text">App ❤️ ke sath banaya gaya hai taki aap anya apps ka upyog karte samay video dekh saken. Aapko vigyapan nahin dikhenge kyunki RYTM upyogkartaon ki pahchan nahin karta hai</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">Aapke paas abhi tak koi playlist nahin hai. Apna pahla playlist abhi banayein!</string>
+    <string name="thx">ऐप का उपयोग करने के लिए धन्यवाद!</string>
+    <string name="buymeacoffee">क्या आप कास्ट फीचर चाहते हैं? Buy Me a Coffee पर मेरा समर्थन करें ☕</string>
+    <string name="supme">मुझे समर्थन दें</string>
+    <string name="later">शायद बाद में</string>
 </resources>

@@ -59,4 +59,8 @@
     <string name="support_me">私の仕事をサポートしたい場合は</string>
     <string name="info_text">このアプリは、他のアプリを使用しながらビデオを見るために❤️で作られました。RYTMはユーザーを識別しないため、広告は表示されません</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">まだプレイリストがありません。最初のプレイリストを作成しましょう！</string>
+    <string name="thx">アプリをご利用いただきありがとうございます！</string>
+    <string name="buymeacoffee">キャスト機能が欲しいですか？ Buy Me a Coffee でサポートしてください ☕</string>
+    <string name="supme">サポートする</string>
+    <string name="later">あとで考える</string>
 </resources>

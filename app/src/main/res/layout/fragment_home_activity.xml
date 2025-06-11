@@ -72,7 +72,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/bricolagegrotesquemedium"
                 android:text="@string/playlists"
@@ -89,12 +88,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/playlist_btn"
                 android:layout_marginEnd="30dp"
-                android:textSize="10sp"
-                android:padding="1dp"
+                android:fontFamily="@font/bricolagegrotesquemedium"
                 android:textStyle="bold"
                 android:textColor="@color/white"
+                android:textAllCaps="false"
                 android:backgroundTint="@color/red">
-
             </Button>
 
             <TextView

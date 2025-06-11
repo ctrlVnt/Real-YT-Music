@@ -57,4 +57,8 @@
     <string name="support_me">إذا أردت دعم عملي</string>
     <string name="info_text">" تم إنشاء هذا التطبيق بـ ❤️ لمشاهدة مقاطع الفيديو أثناء استخدام تطبيقات أخرى. لن ترى إعلانات لأن RYTM لا يُعرّف المستخدمين"</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">"ليس لديك أي قوائم تشغيل حتى الآن. أنشئ أول قائمة تشغيل الآن! "</string>
+    <string name="thx">شكرًا لاستخدامك التطبيق!</string>
+    <string name="buymeacoffee">هل ترغب في ميزة الإرسال؟ ادعمني على Buy Me a Coffee ☕</string>
+    <string name="supme">ادعمني</string>
+    <string name="later">ربما لاحقًا</string>
 </resources>
