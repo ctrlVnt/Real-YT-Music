@@ -41,7 +41,7 @@
                 android:maxWidth="300dp"
                 android:text="@string/hello_blank_fragment"
                 android:textColor="@color/text"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/logo"
@@ -79,21 +79,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_playlist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_playlist"
-                app:layout_constraintBottom_toBottomOf="@+id/playlist_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/playlist_btn"
-                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/bricolagegrotesquemedium"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
-                android:backgroundTint="@color/red">
-            </Button>
+                android:backgroundTint="@color/red"
+                app:cornerRadius="16dp"
+                app:iconPadding="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/playlist_btn"
+                app:layout_constraintTop_toTopOf="@+id/playlist_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="30dp" />
 
             <TextView
                 android:id="@+id/no_playlists"
@@ -143,7 +144,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subhome"
+            android:layout_marginTop="20dp"
             app:queryHint="@string/placeholder" />
+
+        <TextView
+            android:id="@+id/explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/explain_search"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/search_titles"
+            app:layout_constraintStart_toStartOf="@+id/search_titles"
+            app:layout_constraintTop_toBottomOf="@+id/line">
+
+        </TextView>
 
         <View
             android:id="@+id/line"
@@ -162,7 +176,7 @@
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/prev_search"
-            android:textColor="@color/text"
+            android:textColor="@color/background"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="15dp"
@@ -176,7 +190,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line"/>
+            app:layout_constraintTop_toBottomOf="@+id/explain"
+            android:layout_marginTop="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/last_search"
@@ -192,7 +207,7 @@
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/history"
+            android:src="@drawable/diary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/last_search_text" />
@@ -204,7 +219,7 @@
             android:fontFamily="@font/bricolagegrotesquemedium"
             android:gravity="center"
             android:text="@string/empty_cronology"
-            android:textColor="@color/text"
+            android:textColor="@color/background"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

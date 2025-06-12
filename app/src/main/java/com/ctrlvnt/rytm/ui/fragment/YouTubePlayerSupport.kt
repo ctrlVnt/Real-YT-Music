@@ -47,6 +47,7 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -460,7 +461,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             return
         }
 
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         builder.setTitle(R.string.select_playlist)
             .setItems(playlistNames) { _, which ->
 
@@ -484,7 +485,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     }
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem, playlistName: String) {
-        val alertDialogBuilder = android.app.AlertDialog.Builder(requireContext())
+        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
@@ -527,7 +528,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     }
 
     private fun showCustomDialog(currentName: String) {
-        val builder = android.app.AlertDialog.Builder(requireContext())
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
 
         val editTextName: EditText = dialogView.findViewById(R.id.editTextName)

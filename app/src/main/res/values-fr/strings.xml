@@ -48,4 +48,5 @@
     <string name="buymeacoffee">Souhaitez-vous une fonction de diffusion ? Soutenez-moi sur Buy Me a Coffee ☕</string>
     <string name="supme">Soutenez-moi</string>
     <string name="later">Peut-être plus tard</string>
+    <string name="explain_search">\tAppuyez sur Entrée sur votre clavier pour rechercher</string>
 </resources>

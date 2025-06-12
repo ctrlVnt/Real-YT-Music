@@ -65,4 +65,5 @@
     <string name="buymeacoffee">Would you like a cast feature? Support me on Buy Me a Coffee ☕</string>
     <string name="supme">Support Me</string>
     <string name="later">Maybe later</string>
+    <string name="explain_search">Press enter on your keyboard to search</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.ctrlvnt.rytm.ui.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Typeface
 import android.text.Html
 import android.view.LayoutInflater
@@ -16,10 +17,12 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
+import androidx.core.graphics.toColorInt
 
 class VideoAdapter(private val videoList: List<VideoItem>,
                    private val onItemLongClick: ((VideoItem) -> Unit)? = null,
-                   private val currentFragmentTag: String
+                   private val currentFragmentTag: String,
+                   private val blackText: Boolean = false
 ) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     private var branoInRiproduzionePosition: Int? = null
@@ -73,6 +76,11 @@ class VideoAdapter(private val videoList: List<VideoItem>,
             holder.videoTitle.setTypeface(null, Typeface.BOLD)
         } else {
             holder.videoTitle.setTypeface(null, Typeface.NORMAL)
+        }
+
+        if (blackText) {
+            holder.videoTitle.setTextColor("#282828".toColorInt())
+            holder.channelTitle.setTextColor("#282828".toColorInt())
         }
 
         Glide.with(holder.videoThumbnail.context)

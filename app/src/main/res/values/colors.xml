@@ -10,8 +10,8 @@
 
     <color name="semiTransparentGrey">#E6000000</color>
 
-    <color name="items">#566385</color>
-    <color name="background">#384056</color>
+    <color name="items">#C0C0C0</color>
+    <color name="background">#282828</color>
     <color name="text">#F2F2F2</color>
     <color name="text_dark">#080F26</color>
     <color name="placeholder">#21326B</color>

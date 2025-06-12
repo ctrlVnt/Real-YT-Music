@@ -14,8 +14,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 34
-        versionCode = 13
-        versionName = "2.3"
+        versionCode = 14
+        versionName = "2.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,4 +74,5 @@ dependencies {
     implementation ("androidx.compose.ui:ui:1.7.5")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.7.5")
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.30")
+    implementation ("com.google.android.material:material:1.12.0")
 }

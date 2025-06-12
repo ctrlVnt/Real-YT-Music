@@ -63,4 +63,5 @@
     <string name="buymeacoffee">キャスト機能が欲しいですか？ Buy Me a Coffee でサポートしてください ☕</string>
     <string name="supme">サポートする</string>
     <string name="later">あとで考える</string>
+    <string name="explain_search">検索するにはキーボードの Enter を押してください</string>
 </resources>

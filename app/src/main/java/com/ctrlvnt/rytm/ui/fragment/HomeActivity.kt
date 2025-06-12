@@ -44,6 +44,7 @@ import java.lang.invoke.ConstantCallSite
 import java.util.Locale
 import androidx.core.net.toUri
 import androidx.core.content.edit
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HomeActivity : Fragment() {
 
@@ -71,6 +72,7 @@ class HomeActivity : Fragment() {
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
         val addButton: Button = rootView.findViewById(R.id.add_playlist)
+        val explainText: TextView = rootView.findViewById(R.id.explain)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
@@ -117,7 +119,7 @@ class HomeActivity : Fragment() {
 
         val videoAdapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
-        }, "home")
+        }, "home", blackText = true)
 
         cronologia.adapter = videoAdapter
 
@@ -169,6 +171,7 @@ class HomeActivity : Fragment() {
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
+                explainText.visibility = View.GONE
                 if (!text.isNullOrBlank()) {
                     titleSearch(text, rootView)
                 }
@@ -177,6 +180,7 @@ class HomeActivity : Fragment() {
 
             override fun onQueryTextChange(text: String?): Boolean {
                 if (!text.isNullOrBlank()) {
+                    explainText.visibility = View.VISIBLE
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
@@ -189,6 +193,7 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.GONE
                     subHome.visibility = View.GONE
                     noPlaylist.visibility = View.GONE
+                    addButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
@@ -198,6 +203,7 @@ class HomeActivity : Fragment() {
                     if(playlistsData.isEmpty()){ //To change when will be playlist list
                         noPlaylist.visibility = View.VISIBLE
                     }
+                    explainText.visibility = View.GONE
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
@@ -207,6 +213,7 @@ class HomeActivity : Fragment() {
                     playlistsButton.visibility = View.VISIBLE
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
+                    addButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -217,7 +224,7 @@ class HomeActivity : Fragment() {
     }
 
     private fun showCustomDialog() {
-        val builder = AlertDialog.Builder(requireContext())
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
 
         val editTextName: EditText = dialogView.findViewById(R.id.editTextName)
@@ -259,7 +266,7 @@ class HomeActivity : Fragment() {
 
         // Show dialog every 10th launch
         if (launchCount % 10 == 0) {
-            AlertDialog.Builder(requireContext())
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
                 .setTitle("Thanks for using the app!")
                 .setMessage("Would you like a cast feature? Support me on Buy Me a Coffee ☕")
                 .setPositiveButton("Support Me") { _, _ ->
@@ -275,7 +282,7 @@ class HomeActivity : Fragment() {
 
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem) {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
@@ -292,7 +299,7 @@ class HomeActivity : Fragment() {
 
     private fun refreshAdapter() {
         val videos = MainActivity.database.videoDao().getAll()
-        val videoItems = videos?.map {
+        val videoItems = videos.map {
             val videoId = VideoId(it.id)
             val thumbnails = Thumbnails(
                 Thumbnail(it.thumbnailUrl),
@@ -304,7 +311,7 @@ class HomeActivity : Fragment() {
         } ?: emptyList()
         cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
-        },"home")
+        },"home", blackText = true)
 
         if(videos.isEmpty()){
             historyImg.visibility = View.VISIBLE
@@ -358,7 +365,7 @@ class HomeActivity : Fragment() {
     }
 
     private fun showConfirmationDialog() {
-        val alertDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(getString(R.string.confirm_delete_history))
         alertDialogBuilder.setMessage(getString(R.string.confirm_delete_history_message))
 
@@ -378,7 +385,7 @@ class HomeActivity : Fragment() {
     }
 
     private fun showDeleteConfirmationDialogPlaylist(playlistItem: Playlist) {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 

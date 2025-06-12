@@ -63,4 +63,5 @@
     <string name="buymeacoffee">Chciałbyś funkcję przesyłania? Wesprzyj mnie na Buy Me a Coffee ☕</string>
     <string name="supme">Wesprzyj mnie</string>
     <string name="later">Może później</string>
+    <string name="explain_search">Naciśnij Enter na klawiaturze, aby wyszukać</string>
 </resources>

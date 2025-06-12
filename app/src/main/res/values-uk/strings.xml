@@ -63,4 +63,5 @@
     <string name="buymeacoffee">Хочете функцію трансляції? Підтримайте мене на Buy Me a Coffee ☕</string>
     <string name="supme">Підтримати</string>
     <string name="later">Можливо пізніше</string>
+    <string name="explain_search">Натисніть Enter на клавіатурі, щоб здійснити пошук</string>
 </resources>

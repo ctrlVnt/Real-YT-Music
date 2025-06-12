@@ -24,9 +24,9 @@
 
             <ImageView
                 android:layout_marginTop="20dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/play"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/play2"
                 android:layout_gravity="center" />
 
             <View
@@ -42,9 +42,10 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:textColor="@color/text"
-                android:textSize="18sp"
+                android:textColor="@color/background"
+                android:textSize="16sp"
                 android:fontFamily="@font/notosansmedium"
+                android:textAlignment="center"
                 />
             <View
                 android:layout_width="match_parent"
