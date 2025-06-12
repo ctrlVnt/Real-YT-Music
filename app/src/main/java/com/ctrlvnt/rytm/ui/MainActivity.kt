@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {
         if (!sharedPrefs.getBoolean("terms_accepted", false)) {
             val dialogView = layoutInflater.inflate(R.layout.dialog_terms_and_privacy, null)
-            val alertDialogBuilder = AlertDialog.Builder(this)
+            val alertDialogBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedAlertDialog)
             alertDialogBuilder.setView(dialogView)
 
             val mTextView: TextView = dialogView.findViewById(R.id.terms_condition)

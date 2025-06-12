@@ -156,8 +156,24 @@
             app:layout_constraintEnd_toEndOf="@+id/search_titles"
             app:layout_constraintStart_toStartOf="@+id/search_titles"
             app:layout_constraintTop_toBottomOf="@+id/line">
-
         </TextView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_button_modern"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/bricolagegrotesquemedium"
+            android:text="search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            app:iconPadding="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/explain"
+            app:layout_constraintStart_toStartOf="@+id/explain"
+            app:layout_constraintTop_toBottomOf="@+id/explain"
+            android:layout_marginTop="10dp"/>
 
         <View
             android:id="@+id/line"
@@ -190,7 +206,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/explain"
+            app:layout_constraintTop_toBottomOf="@+id/search_button_modern"
             android:layout_marginTop="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView

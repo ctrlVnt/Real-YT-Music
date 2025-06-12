@@ -72,6 +72,7 @@ class HomeActivity : Fragment() {
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
         val addButton: Button = rootView.findViewById(R.id.add_playlist)
+        val searchButton: Button = rootView.findViewById(R.id.search_button_modern)
         val explainText: TextView = rootView.findViewById(R.id.explain)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
 
@@ -169,9 +170,20 @@ class HomeActivity : Fragment() {
             searchBar.isIconified = false
         }
 
+        searchButton.setOnClickListener {
+            val query = searchBar.query?.toString()
+            if (!query.isNullOrBlank()) {
+                explainText.visibility = View.GONE
+                searchButton.visibility = View.GONE
+                titleSearch(query, rootView)
+            }
+        }
+
+
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
                 explainText.visibility = View.GONE
+                searchButton.visibility = View.GONE
                 if (!text.isNullOrBlank()) {
                     titleSearch(text, rootView)
                 }
@@ -181,6 +193,7 @@ class HomeActivity : Fragment() {
             override fun onQueryTextChange(text: String?): Boolean {
                 if (!text.isNullOrBlank()) {
                     explainText.visibility = View.VISIBLE
+                    searchButton.visibility = View.VISIBLE
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
                     settingsButton.visibility = View.GONE
@@ -204,6 +217,7 @@ class HomeActivity : Fragment() {
                         noPlaylist.visibility = View.VISIBLE
                     }
                     explainText.visibility = View.GONE
+                    searchButton.visibility = View.GONE
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE
