@@ -120,6 +120,12 @@ class HomeActivity : Fragment() {
             historyText.visibility = View.GONE
         }
 
+        if(playlistsData.isEmpty()){
+            noPlaylist.visibility = View.VISIBLE
+        }else{
+            noPlaylist.visibility = View.GONE
+        }
+
         val videoAdapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
         }, "home", blackText = true)
