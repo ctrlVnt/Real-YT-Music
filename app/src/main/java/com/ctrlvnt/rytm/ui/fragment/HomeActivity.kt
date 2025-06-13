@@ -76,7 +76,7 @@ class HomeActivity : Fragment() {
         val explainText: TextView = rootView.findViewById(R.id.explain)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
         searchButton.visibility = View.GONE
-        searchButton.visibility = View.GONE
+        explainText.visibility = View.GONE
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
