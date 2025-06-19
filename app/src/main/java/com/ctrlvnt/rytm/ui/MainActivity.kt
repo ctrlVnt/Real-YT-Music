@@ -3,11 +3,14 @@ package com.ctrlvnt.rytm.ui
 import android.Manifest
 import android.app.PictureInPictureParams
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.util.Rational
 import android.view.WindowManager
 import android.widget.TextView
@@ -19,7 +22,9 @@ import androidx.core.app.ActivityCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
+import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.core.net.toUri
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,13 +45,48 @@ class MainActivity : AppCompatActivity() {
         conditionandprivacyaccept(sharedPrefs)
         request_notification_api13_permission()
 
-        if (savedInstanceState == null) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        database = LocalDataBase.getDatabase(this)
+
+        val uri = intent?.data
+        val videoId = uri?.getQueryParameter("v")
+
+
+        if (intent?.action == Intent.ACTION_SEND && intent.type == "text/plain") {
+            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+            if (!sharedText.isNullOrEmpty()) {
+                val videoId = sharedText.toUri().getQueryParameter("v")
+                if (videoId != null) {
+                    val fragment = YouTubePlayerSupport.newInstance(videoId, "home")
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, HomeActivity())
+                        .commitNow()
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                    return
+                }
+            }
+        }
+
+        if (videoId != null) {
+            val fragment = YouTubePlayerSupport.newInstance(videoId, "home")
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_activity, HomeActivity())
+                .commitNow()
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_activity, fragment)
+                .addToBackStack(null)
+                .commit()
+        } else if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main_activity, HomeActivity())
                 .commit()
         }
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        database = LocalDataBase.getDatabase(this)
+
     }
 
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {

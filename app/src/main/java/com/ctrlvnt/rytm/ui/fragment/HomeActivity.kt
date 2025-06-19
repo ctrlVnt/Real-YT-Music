@@ -365,7 +365,7 @@ class HomeActivity : Fragment() {
                     try {
                         val errorJson = JSONObject(errorBody)
                         val errorMessage = errorJson.getJSONObject("error").getString("message")
-                        Toast.makeText(requireContext(), "$errorMessage", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "All users have reached the daily limit. Requests will be recharged at 9:00 AM", Toast.LENGTH_LONG).show()
                     } catch (e: JSONException) {
                         Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
                         Toast.makeText(requireContext(), getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
