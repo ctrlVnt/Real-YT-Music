@@ -25,6 +25,8 @@ Get Real YT Music on [Google Play Store](https://play.google.com/store/apps/deta
 
 Real YT Music is your all-in-one solution for exploring, managing, and enjoying music content from YouTube, enhancing your music listening experience like never before.
 
+In case you have a proposal to improve the application or want to request more features, you can open an [issue](https://github.com/ctrlVnt/Real-YT-Music/issues) !
+
 Avaiable on [Google Play Store](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm)
 
 ## Full playback
