@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             if (!sharedText.isNullOrEmpty()) {
                 val videoId = sharedText.toUri().getQueryParameter("v")
                 if (videoId != null) {
-                    val fragment = YouTubePlayerSupport.newInstance(videoId, "home")
+                    val fragment = YouTubePlayerSupport.newInstance(videoId, "fromoutside")
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_activity, HomeActivity())
                         .commitNow()
@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 
         enterPictureInPictureMode(
             PictureInPictureParams.Builder()
-            .setAspectRatio(Rational(2, 3))
+            .setAspectRatio(Rational(16, 9))
             .build())
     }
 }
