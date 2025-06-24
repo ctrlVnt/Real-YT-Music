@@ -14,8 +14,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 34
-        versionCode = 19
-        versionName = "2.9"
+        versionCode = 21
+        versionName = "3.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,6 +39,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    //for F-Droid
+    /*
+    dependenciesInfo{
+        includeInApk = false
+        includeInBundle = false
+    }*/
 }
 
 dependencies {
@@ -63,7 +70,7 @@ dependencies {
     implementation("androidx.navigation:navigation-common-ktx:2.7.7")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
 
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2")
 
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
