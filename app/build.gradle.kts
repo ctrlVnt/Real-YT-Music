@@ -80,6 +80,6 @@ dependencies {
     implementation ("androidx.compose.material:material:1.7.5")
     implementation ("androidx.compose.ui:ui:1.7.5")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.7.5")
-    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.30")
+    //implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.30")
     implementation ("com.google.android.material:material:1.12.0")
 }
