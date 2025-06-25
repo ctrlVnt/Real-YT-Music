@@ -41,11 +41,10 @@ android {
     }
 
     //for F-Droid
-    /*
     dependenciesInfo{
         includeInApk = false
         includeInBundle = false
-    }*/
+    }
 }
 
 dependencies {
@@ -70,7 +69,9 @@ dependencies {
     implementation("androidx.navigation:navigation-common-ktx:2.7.7")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
 
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2") {
+        exclude(group = "com.pierfrancescosoffritti.androidyoutubeplayer", module = "chromecast-sender")
+    }
 
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
@@ -80,6 +81,5 @@ dependencies {
     implementation ("androidx.compose.material:material:1.7.5")
     implementation ("androidx.compose.ui:ui:1.7.5")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.7.5")
-    //implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.30")
     implementation ("com.google.android.material:material:1.12.0")
 }
