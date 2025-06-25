@@ -45,6 +45,9 @@ android {
         includeInApk = false
         includeInBundle = false
     }
+    configurations.all {
+        exclude(group = "com.pierfrancescosoffritti.androidyoutubeplayer", module = "chromecast-sender")
+    }
 }
 
 dependencies {
@@ -69,9 +72,7 @@ dependencies {
     implementation("androidx.navigation:navigation-common-ktx:2.7.7")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
 
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2") {
-        exclude(group = "com.pierfrancescosoffritti.androidyoutubeplayer", module = "chromecast-sender")
-    }
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.2")
 
     implementation ("com.github.bumptech.glide:glide:4.15.1")
 
