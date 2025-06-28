@@ -14,8 +14,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 34
-        versionCode = 22
-        versionName = "3.2"
+        versionCode = 24
+        versionName = "3.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
