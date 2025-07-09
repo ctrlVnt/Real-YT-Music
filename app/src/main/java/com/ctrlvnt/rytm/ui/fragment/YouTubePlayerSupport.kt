@@ -57,8 +57,6 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -71,11 +69,11 @@ import kotlin.random.Random
 class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     companion object {
-        fun newInstance(videoId: String, playlist_name: String): YouTubePlayerSupport {
+        fun newInstance(videoId: String, playlistName: String): YouTubePlayerSupport {
             val fragment = YouTubePlayerSupport()
             val args = Bundle()
             args.putString("video_id", videoId)
-            args.putString("playlist_name", playlist_name)
+            args.putString("playlist_name", playlistName)
             fragment.arguments = args
             return fragment
         }
@@ -252,6 +250,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         repeat.setOnClickListener {
             repeatOption = !repeatOption
+            if(shuffleOption){
+                shuffleOption = false
+            }
             if (repeatOption){
                 repeat.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
             }else{
@@ -260,8 +261,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         shuffle.setOnClickListener {
-            if(videos.size > 1){
+            if(videos.size > 2){
                 shuffleOption = !shuffleOption
+                if(repeatOption){
+                    repeatOption = false;
+                }
                 if (shuffleOption){
                     shuffle.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
                 }else{
@@ -356,51 +360,55 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
 
                     nextButton.setOnClickListener{
-                        if(shuffleOption){
-                            if(shuffleindex >= shuffleMode.size - 1){
-                                var randomIndex: Int
-                                do{
-                                    randomIndex = Random.nextInt(0, nextVideo.size)
-                                }while (randomIndex == indexVideo)
+                        if(!repeatOption){
+                            if(shuffleOption){
+                                if(shuffleindex >= shuffleMode.size - 1){
+                                    var randomIndex: Int
+                                    do{
+                                        randomIndex = Random.nextInt(0, nextVideo.size)
+                                    }while (randomIndex == indexVideo)
 
-                                videoAdapter.setBranoInRiproduzionePosition(randomIndex)
-                                youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
-                                createNotification(nextVideo[randomIndex])
-                                shuffleMode.add(randomIndex)
-                                shuffleindex++
-                            }else{
-                                shuffleindex++
-                                videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
-                                youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
-                                createNotification(nextVideo[shuffleMode[shuffleindex]])
+                                    videoAdapter.setBranoInRiproduzionePosition(randomIndex)
+                                    youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
+                                    createNotification(nextVideo[randomIndex])
+                                    shuffleMode.add(randomIndex)
+                                    shuffleindex++
+                                }else{
+                                    shuffleindex++
+                                    videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
+                                    youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
+                                    createNotification(nextVideo[shuffleMode[shuffleindex]])
+                                }
+                            }else {
+                                indexVideo++
+                                if (indexVideo >= nextVideo.size) {
+                                    indexVideo = 0
+                                }
+                                videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                                youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                                createNotification(nextVideo[indexVideo])
                             }
-                        }else {
-                            indexVideo++
-                            if (indexVideo >= nextVideo.size) {
-                                indexVideo = 0
-                            }
-                            videoAdapter.setBranoInRiproduzionePosition(indexVideo)
-                            youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                            createNotification(nextVideo[indexVideo])
                         }
                     }
                     prevButton.setOnClickListener{
-                        if(shuffleOption){
-                            if(shuffleindex <= 0){
-                                shuffleindex = shuffleMode.size
+                        if(!repeatOption){
+                            if(shuffleOption){
+                                if(shuffleindex <= 0){
+                                    shuffleindex = shuffleMode.size
+                                }
+                                shuffleindex--
+                                videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
+                                youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
+                                createNotification(nextVideo[shuffleindex])
+                            }else {
+                                indexVideo--
+                                if (indexVideo < 0) {
+                                    indexVideo = nextVideo.size - 1
+                                }
+                                videoAdapter.setBranoInRiproduzionePosition(indexVideo)
+                                youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                                createNotification(nextVideo[indexVideo])
                             }
-                            shuffleindex--
-                            videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
-                            youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
-                            createNotification(nextVideo[shuffleindex])
-                        }else {
-                            indexVideo--
-                            if (indexVideo < 0) {
-                                indexVideo = nextVideo.size - 1
-                            }
-                            videoAdapter.setBranoInRiproduzionePosition(indexVideo)
-                            youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                            createNotification(nextVideo[indexVideo])
                         }
                     }
                 }
