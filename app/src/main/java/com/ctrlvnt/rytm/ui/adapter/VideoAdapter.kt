@@ -18,9 +18,10 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import androidx.core.graphics.toColorInt
+import java.util.Collections
 
 class VideoAdapter(private val videoList: List<VideoItem>,
-                   private val onItemLongClick: ((VideoItem) -> Unit)? = null,
+                   private val onItemLongClick: ((VideoItem) -> Unit)? = null, //I hae this just for home
                    private val currentFragmentTag: String,
                    private val blackText: Boolean = false
 ) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
@@ -127,4 +128,20 @@ class VideoAdapter(private val videoList: List<VideoItem>,
 
     override fun getItemCount() = videoList.size
 
+    fun moveItem(from: Int, to: Int) {
+        if (from < to) {
+            for (i in from until to) {
+                Collections.swap(videoList, i, i + 1)
+            }
+        } else {
+            for (i in from downTo to + 1) {
+                Collections.swap(videoList, i, i - 1)
+            }
+        }
+        notifyItemMoved(from, to)
+    }
+
+    fun getItemAt(position: Int): VideoItem {
+        return videoList[position]
+    }
 }

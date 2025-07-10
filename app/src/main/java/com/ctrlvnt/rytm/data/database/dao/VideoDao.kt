@@ -8,7 +8,7 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 @Dao
 interface VideoDao {
     @Query("SELECT * FROM videos ORDER BY id DESC")
-    fun getAll(): List<Video>
+    fun getAll(): MutableList<Video>
 
     @Query("SELECT * FROM videos WHERE id = :videoId")
     fun getVideo(videoId: String): Video

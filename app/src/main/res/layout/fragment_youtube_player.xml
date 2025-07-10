@@ -5,7 +5,7 @@
     android:id="@+id/youtube_player"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="20dp"
+    android:paddingTop="0dp"
     tools:context=".ui.fragment.YouTubePlayerSupport">
 
 <androidx.constraintlayout.widget.ConstraintLayout

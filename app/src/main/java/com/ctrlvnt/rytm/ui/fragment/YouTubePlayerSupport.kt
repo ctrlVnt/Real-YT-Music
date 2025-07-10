@@ -33,6 +33,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -62,6 +63,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Collections
 import java.util.Locale
 import kotlin.random.Random
 
@@ -111,7 +113,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
                 }
                 "ACTION_NEXT" -> {
-                    val videos : List<Video>
+                    val videos : MutableList<Video>
                     val playlistName = arguments?.getString("playlist_name")
                     if(playlistName == null || playlistName == ""){
                         videos = MainActivity.database.videoDao().getAll()
@@ -132,7 +134,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
                 }
                 "ACTION_PREV" -> {
-                    val videos : List<Video>
+                    val videos : MutableList<Video>
                     val playlistName = arguments?.getString("playlist_name")
                     if(playlistName == null || playlistName == ""){
                         videos = MainActivity.database.videoDao().getAll()
@@ -195,7 +197,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         playlistAdd = rootView.findViewById(R.id.add_playlist)
         playlisName = rootView.findViewById(R.id.playlist_name)
         searchBar = rootView.findViewById(R.id.search_bar_player)
-        val videos: List<Video>
+        val videos: MutableList<Video>
 
         var lock = false
         var repeatOption = false
@@ -233,13 +235,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
             VideoItem(videoId, snippet)
-        } ?: emptyList()
+        } ?.toMutableList() ?: mutableListOf()
 
-        val videoAdapter = VideoAdapter(videoItems,{ videoItem ->
-            if (playlistTitle != null && playlistTitle != "") {
-                showDeleteConfirmationDialog(videoItem, playlistTitle)
-            }
-        }, "yt_player")
+        val videoAdapter = VideoAdapter(videoItems, null, "yt_player")
 
         videoAdapter.setOnPlaybackClickListener(object : VideoAdapter.OnPlaybackClickListener {
             override fun onPlaybackClick(videoItem: VideoItem) {
@@ -247,6 +245,43 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }
         })
         videoList.adapter = videoAdapter
+
+
+        val itemTouchHelper = ItemTouchHelper(object :
+            ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                source: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val sourcePosition = source.getBindingAdapterPosition()
+                val targetPosition = target.getBindingAdapterPosition()
+
+                videoAdapter.moveItem(sourcePosition, targetPosition)
+                Collections.swap(videos, sourcePosition, targetPosition)
+
+                val title: String = playlistTitle.toString() //vedere cosa stampa
+                videos.forEachIndexed { index, video ->
+                    MainActivity.database.playlisVideotDao().updateVideoPosition(title, video.id, index)
+                }
+                indexVideo = targetPosition
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.bindingAdapterPosition
+                val videoItem = videoAdapter.getItemAt(position) // Serve un metodo nel tuo adapter
+
+                if (playlistTitle != null && playlistTitle.isNotEmpty()) {
+                    showDeleteConfirmationDialog(videoItem, playlistTitle!!)
+                } else {
+                    // Se non hai una playlist, semplicemente resetti l'item per evitare che rimanga "swiped"
+                    videoAdapter.notifyItemChanged(position)
+                }
+            }
+
+        })
+        itemTouchHelper.attachToRecyclerView(videoList)
 
         repeat.setOnClickListener {
             repeatOption = !repeatOption
@@ -337,8 +372,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         var shuffleindex = 0
 
         /*FULL-PLAYBACK MODE*/
-        viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you want to use full playback mode
-        //youTubePlayerView.enableBackgroundPlayback(true) //uncomment and enjoy !
+        //viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you want to use full playback mode
+        youTubePlayerView.enableBackgroundPlayback(true) //uncomment and enjoy !
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
@@ -509,7 +544,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 val selectedPlaylist = playlists[which]
 
-                val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle, video.thumbnailUrl)
+                val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle, video.thumbnailUrl, playlists.size - 1)
 
                 if(!alreadyExist(selectedPlaylist.playlistName, videoId)){
                     MainActivity.database.playlisVideotDao().insertVideoToPlaylist(element)
@@ -556,11 +591,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             VideoItem(videoId, snippet)
         } ?: emptyList()
 
-        val videoAdapter = VideoAdapter(videoItems,{ videoItem ->
-            if (playlistName != null && playlistName != "") {
-                showDeleteConfirmationDialog(videoItem, playlistName)
-            }
-        }, "yt_player")
+        val videoAdapter = VideoAdapter(videoItems,null, "yt_player")
         videoAdapter.setOnPlaybackClickListener(object : VideoAdapter.OnPlaybackClickListener {
             override fun onPlaybackClick(videoItem: VideoItem) {
                 onItemClick(videoItem)

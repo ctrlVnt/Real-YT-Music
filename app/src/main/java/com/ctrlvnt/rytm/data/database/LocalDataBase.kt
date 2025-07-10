@@ -13,7 +13,7 @@ import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.Video
 
-@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class], version = 6)
+@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class], version = 7)
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun videoDao(): VideoDao
     abstract fun playlistDao(): PlaylistDao
@@ -121,6 +121,45 @@ abstract class LocalDataBase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // 1. Aggiungi la colonna "position"
+                database.execSQL("CREATE TABLE IF NOT EXISTS `playlistvideo_new` " +
+                        "(`playlistName` TEXT NOT NULL, " +
+                        "`videoId` TEXT NOT NULL, " +
+                        "`title` TEXT NOT NULL, " +
+                        "`channelTitle` TEXT NOT NULL, " +
+                        "`thumbnailUrl` TEXT NOT NULL, " +
+                        "`position` INTEGER NOT NULL DEFAULT 0," +
+                        "PRIMARY KEY(`playlistName`, `videoId`))")
+
+                database.execSQL("INSERT INTO `playlistvideo_new` " +
+                        "(`playlistName`, `videoId`, `title`, `channelTitle`, `thumbnailUrl`, `position`) " +
+                        "SELECT `playlistName`, `videoId`, `title`, `channelTitle`, `thumbnailUrl`, 0 FROM `playlistvideo`\n")
+
+                database.execSQL("DROP TABLE `playlistvideo`")
+                database.execSQL("ALTER TABLE `playlistvideo_new` RENAME TO `playlistvideo`")
+
+                // 2. Aggiorna i valori esistenti (es. ordina per id e assegna posizione crescente)
+                val cursor = database.query("""
+                    SELECT playlistName, videoId FROM playlistvideo ORDER BY playlistName, videoId
+                """.trimIndent())
+
+                var position = 0
+                while (cursor.moveToNext()) {
+                    val playlistName = cursor.getString(0)
+                    val videoId = cursor.getString(1)
+                    database.execSQL("""
+                UPDATE playlistvideo 
+                SET position = $position 
+                WHERE playlistName = ? AND videoId = ?
+            """, arrayOf(playlistName, videoId))
+                    position++
+                }
+                cursor.close()
+            }
+        }
+
         fun getDatabase(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -132,6 +171,7 @@ abstract class LocalDataBase : RoomDatabase() {
                     .addMigrations(MIGRATION_3_4)
                     .addMigrations(MIGRATION_4_5)
                     .addMigrations(MIGRATION_5_6)
+                    .addMigrations(MIGRATION_6_7)
                     .build()
                 INSTANCE = instance
                 instance

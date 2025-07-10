@@ -8,5 +8,6 @@ data class PlaylistVideo(
     var videoId: String,
     val title: String,
     val channelTitle: String,
-    val thumbnailUrl: String
+    val thumbnailUrl: String,
+    val position: Int
 )
