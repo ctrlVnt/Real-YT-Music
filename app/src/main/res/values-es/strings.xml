@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Bienvenido a RYTM</string>
     <string name="caches">Borrar historial</string>
     <string name="prev_search">Borrar historial</string>
-    <string name="settings">Información</string>
+    <string name="settings">Configuración</string>
     <string name="deleted_caches">Todos los elementos han sido eliminados</string>
 
     <string name="how_to_use"><b>INSTRUCCIONES</b>\n\n
@@ -25,7 +25,7 @@
     <string name="delete">Eliminar</string>
     <string name="restore">Cancelar</string>
 
-    <string name="add_playlist">Añadir lista de reproducción</string>
+    <string name="add_playlist">Añadir playlist</string>
     <string name="error_empty_name">El nombre de la lista de reproducción no puede estar vacío</string>
     <string name="error_already_exist">El nombre introducido ya existe</string>
 
@@ -64,4 +64,7 @@
     <string name="supme">Apóyame</string>
     <string name="later">Tal vez más tarde</string>
     <string name="explain_search">Pulsa enter en tu teclado para buscar</string>
+    <string name="lingua">Idioma</string>
+    <string name="visita_il_mio_sito_web">es\tVisita mi sitio web 🌎</string>
+    <string name="valuta_l_app">Califica la aplicación ⭐</string>
 </resources>

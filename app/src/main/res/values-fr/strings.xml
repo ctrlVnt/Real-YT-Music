@@ -4,7 +4,7 @@
     <string name="hello_blank_fragment">Bienvenue à RYTM</string>
     <string name="caches">Effacer l\'historique</string>
     <string name="prev_search">Recherche récente</string>
-    <string name="settings">Information</string>
+    <string name="settings">Paramètres</string>
     <string name="deleted_caches">Tous les éléments ont été supprimés</string>
     <string name="how_to_use"><b>QUELQUES INSTRUCTIONS</b>\n\n
           <i>VERROUILLAGE DE L\'ÉCRAN :</i> lors de la lecture d\'une vidéo, grâce au bouton central, il est possible de bloquer les contacts accidentels sur l\'écran en réduisant la luminosité au minimum pour augmenter la durée de vie de la batterie.\n\n
@@ -49,4 +49,7 @@
     <string name="supme">Soutenez-moi</string>
     <string name="later">Peut-être plus tard</string>
     <string name="explain_search">\tAppuyez sur Entrée sur votre clavier pour rechercher</string>
+    <string name="lingua">Langue</string>
+    <string name="visita_il_mio_sito_web">Visitez mon site web 🌎</string>
+    <string name="valuta_l_app">\tÉvaluez l\'application ⭐</string>
 </resources>

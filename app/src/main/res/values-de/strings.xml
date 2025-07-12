@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Willkommen bei RYTM</string>
     <string name="caches">Verlauf löschen</string>
     <string name="prev_search">Verlauf löschen</string>
-    <string name="settings">Informationen</string>
+    <string name="settings">Einstellungen</string>
     <string name="deleted_caches">Alle Elemente wurden gelöscht</string>
 
     <string name="how_to_use"><b>GEBRAUCHSANWEISUNGEN</b>\n\n
@@ -64,4 +64,7 @@
     <string name="supme">Unterstütze mich</string>
     <string name="later">Vielleicht später</string>
     <string name="explain_search">Drücke die Eingabetaste auf deiner Tastatur, um zu suchen</string>
+    <string name="lingua">Sprache</string>
+    <string name="visita_il_mio_sito_web">Besuche meine Website 🌎</string>
+    <string name="valuta_l_app">Bewerte die App ⭐</string>
 </resources>

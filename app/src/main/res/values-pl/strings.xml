@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Witamy w RYTM</string>
     <string name="caches">Usuń historię</string>
     <string name="prev_search">Usuń historię</string>
-    <string name="settings">Informacje</string>
+    <string name="settings">Ustawienia</string>
     <string name="deleted_caches">Wszystkie elementy zostały usunięte</string>
 
     <string name="how_to_use"><b>INSTRUKCJE</b>\n\n
@@ -64,4 +64,7 @@
     <string name="supme">Wesprzyj mnie</string>
     <string name="later">Może później</string>
     <string name="explain_search">Naciśnij Enter na klawiaturze, aby wyszukać</string>
+    <string name="lingua">Język</string>
+    <string name="visita_il_mio_sito_web">Odwiedź moją stronę internetową 🌎</string>
+    <string name="valuta_l_app">Oceń aplikację ⭐</string>
 </resources>

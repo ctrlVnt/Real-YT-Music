@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Benvenuti in RYTM</string>
     <string name="caches">Elimina cronologia</string>
     <string name="prev_search">Ricerche recenti</string>
-    <string name="settings">Informazioni</string>
+    <string name="settings">Impostazioni</string>
     <string name="deleted_caches">Tutti gli elementi sono stati eliminati</string>
     <string name="how_to_use"><b>ALCUNE ISTRUZIONI</b> \n\n         
         <i>BLOCCO SCHERMO:</i> durante la riproduzione di un video, grazie al bottone centrale, è possibile bloccare touch accidentali allo schermo riducendo la luminosità al minimo per aumentare la durata della batteria.\n\n         
@@ -50,4 +50,7 @@
     <string name="supme">Supportami</string>
     <string name="later">Forse più tardi</string>
     <string name="explain_search">Premi Enter sulla tua tastiera per cercare</string>
+    <string name="lingua">Lingua</string>
+    <string name="visita_il_mio_sito_web">Visita il mio sito web 🌎</string>
+    <string name="valuta_l_app">Valuta l\'app ⭐</string>
 </resources>

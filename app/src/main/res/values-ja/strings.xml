@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">RYTMへようこそ</string>
     <string name="caches">履歴を削除</string>
     <string name="prev_search">履歴を削除</string>
-    <string name="settings">情報</string>
+    <string name="settings">設定</string>
     <string name="deleted_caches">すべてのアイテムが削除されました</string>
 
     <string name="how_to_use"><b>ご使用の手引き</b>\n\n
@@ -64,4 +64,7 @@
     <string name="supme">サポートする</string>
     <string name="later">あとで考える</string>
     <string name="explain_search">検索するにはキーボードの Enter を押してください</string>
+    <string name="lingua">言語</string>
+    <string name="visita_il_mio_sito_web">私のウェブサイトを訪れてください 🌎</string>
+    <string name="valuta_l_app">アプリを評価する ⭐</string>
 </resources>

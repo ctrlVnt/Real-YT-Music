@@ -53,6 +53,7 @@ class HomeActivity : Fragment() {
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
     lateinit var historyImg: ImageView
+    lateinit var trashButton: ImageButton
     lateinit var noPlaylist: TextView
 
     @SuppressLint("ResourceType")
@@ -64,6 +65,7 @@ class HomeActivity : Fragment() {
         searchBar = rootView.findViewById(R.id.search_titles)
         historyText = rootView.findViewById(R.id.empty_history)
         historyImg = rootView.findViewById(R.id.empty_history_img)
+        trashButton = rootView.findViewById(R.id.delete_last_search)
         val appName: TextView = rootView.findViewById(R.id.welcome)
         val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
         val playlistsButton: TextView = rootView.findViewById(R.id.playlist_btn)
@@ -115,9 +117,11 @@ class HomeActivity : Fragment() {
         if(videos.isEmpty()){
             historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
+            trashButton.visibility = View.GONE
         }else{
             historyImg.visibility = View.GONE
             historyText.visibility = View.GONE
+            trashButton.visibility = View.VISIBLE
         }
 
         if(playlistsData.isEmpty()){
@@ -135,7 +139,7 @@ class HomeActivity : Fragment() {
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
         recyclerView.adapter = VideoAdapter(videoItems, null, "home")
 
-        settingsButton.setOnClickListener{
+        /*settingsButton.setOnClickListener{
 
             val popupMenu = android.widget.PopupMenu(this.context, settingsButton)
             popupMenu.menuInflater.inflate(R.menu.options_menu, popupMenu.menu)
@@ -160,6 +164,18 @@ class HomeActivity : Fragment() {
             }
 
             popupMenu.show()
+        }*/
+
+        trashButton.setOnClickListener{
+            showConfirmationDialog()
+        }
+
+        settingsButton.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
+                .replace(R.id.main_activity, Settings())
+                .addToBackStack(null)
+                .commit()
         }
 
         /*playlistsButton.setOnClickListener{
@@ -215,11 +231,13 @@ class HomeActivity : Fragment() {
                     subHome.visibility = View.GONE
                     noPlaylist.visibility = View.GONE
                     addButton.visibility = View.GONE
+                    trashButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
                         historyImg.visibility = View.VISIBLE
                         historyText.visibility = View.VISIBLE
+                        trashButton.visibility = View.GONE
                     }
                     if(playlistsData.isEmpty()){ //To change when will be playlist list
                         noPlaylist.visibility = View.VISIBLE
@@ -236,6 +254,7 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
                     addButton.visibility = View.VISIBLE
+                    trashButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -287,7 +306,7 @@ class HomeActivity : Fragment() {
         sharedPreferences.edit { putInt("launch_count", launchCount) }
 
         // Show dialog every 10th launch
-        if (launchCount % 10 == 0) {
+        if (launchCount % 7 == 0) {
             MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
                 .setTitle("Thanks for using the app!")
                 .setMessage("Would you like a cast feature? Support me on Buy Me a Coffee ☕")
@@ -338,6 +357,7 @@ class HomeActivity : Fragment() {
         if(videos.isEmpty()){
             historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
+            trashButton.visibility = View.GONE
         }
     }
 

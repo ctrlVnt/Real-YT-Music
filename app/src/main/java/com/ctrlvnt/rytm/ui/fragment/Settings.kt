@@ -2,18 +2,23 @@ package com.ctrlvnt.rytm.ui.fragment
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ctrlvnt.rytm.R
+import java.util.Locale
+import androidx.core.net.toUri
 
 
 class Settings : Fragment(){
@@ -25,13 +30,30 @@ class Settings : Fragment(){
         val backButton: ImageButton = rootView.findViewById(R.id.back_button)
         val buymeacoffeeButton : Button = rootView.findViewById(R.id.buymeacoffee)
         val sendmemailButton : Button = rootView.findViewById(R.id.sendmeamail)
+        val settingsButton : ImageButton = rootView.findViewById(R.id.language)
+        val flagEmojiTextView: TextView = rootView.findViewById(R.id.flag_emoji)
+        val visitmywebsiteButton : Button = rootView.findViewById(R.id.visitwebsite)
+        val rateAppButton : Button = rootView.findViewById(R.id.rate_app)
+
+        val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
+        flagEmojiTextView.text = flagEmoji
 
         backButton.setOnClickListener{
             requireActivity().supportFragmentManager.popBackStack()
         }
 
         buymeacoffeeButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://buymeacoffee.com/v3ntuz"))
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://buymeacoffee.com/v3ntuz".toUri())
+            startActivity(browserIntent)
+        }
+
+        visitmywebsiteButton.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://riccardoventurini.dev/".toUri())
+            startActivity(browserIntent)
+        }
+
+        rateAppButton.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm".toUri())
             startActivity(browserIntent)
         }
 
@@ -51,12 +73,73 @@ class Settings : Fragment(){
             }
         }
 
-        val mTextView: TextView = rootView.findViewById(R.id.my_info)
-        mTextView.movementMethod = LinkMovementMethod.getInstance()
+        settingsButton.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), settingsButton)
+            popupMenu.menuInflater.inflate(R.menu.language_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.lang_en -> setLocale("en")
+                    R.id.lang_ar -> setLocale("ar")
+                    R.id.lang_de -> setLocale("de")
+                    R.id.lang_es -> setLocale("es")
+                    R.id.lang_fr -> setLocale("fr")
+                    R.id.lang_hi -> setLocale("hi")
+                    R.id.lang_it -> setLocale("it")
+                    R.id.lang_ja -> setLocale("ja")
+                    R.id.lang_pl -> setLocale("pl")
+                    R.id.lang_pt -> setLocale("pt")
+                    R.id.lang_ru -> setLocale("ru")
+                    R.id.lang_uk -> setLocale("uk")
+                    else -> false
+                }
+                true
+            }
+
+            popupMenu.show()
+        }
 
         val mTextViewAbout: TextView = rootView.findViewById(R.id.about)
         mTextViewAbout.movementMethod = LinkMovementMethod.getInstance()
 
         return rootView
+    }
+
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val config = Configuration()
+        config.setLocale(locale)
+
+        requireActivity().baseContext.resources.updateConfiguration(
+            config,
+            requireActivity().baseContext.resources.displayMetrics
+        )
+
+        // Salva la lingua preferita (opzionale)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        prefs.edit().putString("app_lang", languageCode).apply()
+
+        // Riavvia l'attività per applicare il cambiamento
+        requireActivity().recreate()
+    }
+
+    fun getFlagEmojiForLanguage(languageCode: String): String {
+        return when (languageCode) {
+            "en" -> "🇺🇸"
+            "ar" -> "🇸🇦"
+            "de" -> "🇩🇪"
+            "es" -> "🇪🇸"
+            "fr" -> "🇫🇷"
+            "hi" -> "🇮🇳"
+            "it" -> "🇮🇹"
+            "ja" -> "🇯🇵"
+            "pl" -> "🇵🇱"
+            "pt" -> "🇵🇹"
+            "ru" -> "🇷🇺"
+            "uk" -> "🇺🇦"
+            else -> "🌐"
+        }
     }
 }

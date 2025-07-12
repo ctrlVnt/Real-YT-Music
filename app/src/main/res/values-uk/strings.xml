@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Ласкаво просимо до RYTM</string>
     <string name="caches">Видалити історію</string>
     <string name="prev_search">Видалити історію</string>
-    <string name="settings">Інформація</string>
+    <string name="settings">Налаштування</string>
     <string name="deleted_caches">Всі елементи були видалені</string>
 
     <string name="how_to_use"><b>ІНСТРУКЦІЇ</b>\n\n
@@ -64,4 +64,7 @@
     <string name="supme">Підтримати</string>
     <string name="later">Можливо пізніше</string>
     <string name="explain_search">Натисніть Enter на клавіатурі, щоб здійснити пошук</string>
+    <string name="lingua">Мова</string>
+    <string name="visita_il_mio_sito_web">Відвідайте мій вебсайт 🌎</string>
+    <string name="valuta_l_app">Оцініть застосунок ⭐</string>
 </resources>

@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">RYTM mein aapka swagat hai</string>
     <string name="caches">Itihaas mitayein</string>
     <string name="prev_search">Itihaas</string>
-    <string name="settings">Jaankari</string>
+    <string name="settings">सेटिंग्स</string>
     <string name="deleted_caches">Sabhi cheezein mita di gayi hain</string>
     <string name="how_to_use"><b>KUCH ANUDESH</b>\n\n
         <i>SCREEN LOCK:</i> video chalate samay, kendriya button ke zariye, screen par anavashyak sparshon ko rokna sambhav hai, battery jeevan ko badhane ke liye chamak ko kam se kam kar diya jata hai.\n\n
@@ -50,4 +50,7 @@
     <string name="supme">मुझे समर्थन दें</string>
     <string name="later">शायद बाद में</string>
     <string name="explain_search">खोजने के लिए अपने कीबोर्ड पर एंटर दबाएँ</string>
+    <string name="lingua">भाषा</string>
+    <string name="visita_il_mio_sito_web">मेरी वेबसाइट देखें 🌎</string>
+    <string name="valuta_l_app">ऐप को रेट करें ⭐</string>
 </resources>

@@ -23,15 +23,15 @@
 
             <ImageButton
                 android:id="@+id/settings"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="10dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/baseline_drag_indicator_24"
+                android:src="@drawable/settings"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/welcome"
-                app:tint="@color/text" />
+                app:layout_constraintTop_toTopOf="@+id/welcome"/>
 
             <TextView
                 android:id="@+id/welcome"
@@ -201,6 +201,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bottom" />
+
+        <ImageButton
+            android:id="@+id/delete_last_search"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/trash"
+            app:layout_constraintBottom_toBottomOf="@+id/last_search_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/last_search_text" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/songs_list"

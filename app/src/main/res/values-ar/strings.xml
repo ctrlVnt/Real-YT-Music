@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">" مرحبًا بك في RYTM"</string>
     <string name="caches">حذف التاريخ</string>
     <string name="prev_search">حذف التاريخ</string>
-    <string name="settings">معلومات</string>
+    <string name="settings">الإعدادات</string>
     <string name="deleted_caches">تم حذف جميع العناصر</string>
 
     <string name="how_to_use"><b>بعض التعليمات</b>\n\n
@@ -62,4 +62,7 @@
     <string name="supme">ادعمني</string>
     <string name="later">ربما لاحقًا</string>
     <string name="explain_search">اضغط على زر الإدخال في لوحة المفاتيح للبحث</string>
+    <string name="lingua">اللغة</string>
+    <string name="visita_il_mio_sito_web">\tقم بزيارة موقعي الإلكتروني 🌎</string>
+    <string name="valuta_l_app">قيّم التطبيق ⭐</string>
 </resources>

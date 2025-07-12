@@ -9,4 +9,9 @@
         android:fontWeight="400"
         android:font="@font/notosansitalic" />
 
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/bricolagegrotesquemedium" />
+
 </font-family>

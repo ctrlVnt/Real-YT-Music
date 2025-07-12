@@ -3,7 +3,7 @@
     <string name="hello_blank_fragment">Welcome to RYTM</string>
     <string name="caches">Delete history</string>
     <string name="prev_search">History</string>
-    <string name="settings">Informations</string>
+    <string name="settings">Settings</string>
     <string name="deleted_caches">All items have been deleted</string>
 
     <string name="how_to_use"><b>SOME INSTRUCTIONS</b>\n\n
@@ -66,4 +66,7 @@
     <string name="supme">Support Me</string>
     <string name="later">Maybe later</string>
     <string name="explain_search">Press enter on your keyboard to search</string>
+    <string name="lingua">Language</string>
+    <string name="visita_il_mio_sito_web">Visit my website 🌎</string>
+    <string name="valuta_l_app">Rate the app ⭐</string>
 </resources>

@@ -6,9 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.util.Rational
@@ -25,6 +27,7 @@ import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.core.net.toUri
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -135,5 +138,18 @@ class MainActivity : AppCompatActivity() {
             PictureInPictureParams.Builder()
             .setAspectRatio(Rational(16, 9))
             .build())
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(newBase)
+        val lang = prefs.getString("app_lang", "en") ?: "en"
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+
+        val config = Configuration()
+        config.setLocale(locale)
+
+        val context = newBase.createConfigurationContext(config)
+        super.attachBaseContext(context)
     }
 }
