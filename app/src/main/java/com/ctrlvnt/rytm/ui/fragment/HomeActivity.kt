@@ -2,6 +2,7 @@ package com.ctrlvnt.rytm.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -238,6 +239,10 @@ class HomeActivity : Fragment() {
                         historyImg.visibility = View.VISIBLE
                         historyText.visibility = View.VISIBLE
                         trashButton.visibility = View.GONE
+                    }else{
+                        historyImg.visibility = View.GONE
+                        historyText.visibility = View.GONE
+                        trashButton.visibility = View.VISIBLE
                     }
                     if(playlistsData.isEmpty()){ //To change when will be playlist list
                         noPlaylist.visibility = View.VISIBLE
@@ -254,7 +259,6 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
                     addButton.visibility = View.VISIBLE
-                    trashButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -368,7 +372,13 @@ class HomeActivity : Fragment() {
         val apiManager = YouTubeApiManager()
 
         val locale = Locale.getDefault()
-        val country = locale.country
+        var country = locale.country
+
+        if(locale.language == "en"){
+            country = "us"
+        }else if (locale.language == "hi"){
+            country = "in"
+        }
 
         apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {

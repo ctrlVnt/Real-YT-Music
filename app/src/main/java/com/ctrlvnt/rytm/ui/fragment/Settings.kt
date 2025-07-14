@@ -1,11 +1,12 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment
 import com.ctrlvnt.rytm.R
 import java.util.Locale
 import androidx.core.net.toUri
+import androidx.core.content.edit
 
 
 class Settings : Fragment(){
@@ -112,14 +114,11 @@ class Settings : Fragment(){
         val config = Configuration()
         config.setLocale(locale)
 
-        requireActivity().baseContext.resources.updateConfiguration(
-            config,
-            requireActivity().baseContext.resources.displayMetrics
-        )
+
 
         // Salva la lingua preferita (opzionale)
-        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        prefs.edit().putString("app_lang", languageCode).apply()
+        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        prefs.edit { putString("app_lang", languageCode) }
 
         // Riavvia l'attività per applicare il cambiamento
         requireActivity().recreate()

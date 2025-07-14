@@ -645,7 +645,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val apiManager = YouTubeApiManager()
 
         val locale = Locale.getDefault()
-        val country = locale.country
+        var country = locale.country
+
+        if(locale.language == "en"){
+            country = "us"
+        }else if (locale.language == "hi"){
+            country = "in"
+        }
 
         apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {

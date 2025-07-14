@@ -28,6 +28,7 @@ import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.core.net.toUri
 import java.util.Locale
+import androidx.core.content.edit
 
 
 class MainActivity : AppCompatActivity() {
@@ -103,9 +104,9 @@ class MainActivity : AppCompatActivity() {
 
             alertDialogBuilder.setTitle(getString(R.string.terms_title))
             alertDialogBuilder.setPositiveButton(getString(R.string.accept)) { dialog, _ ->
-                val editor = sharedPrefs.edit()
-                editor.putBoolean("terms_accepted", true)
-                editor.apply()
+                sharedPrefs.edit {
+                    putBoolean("terms_accepted", true)
+                }
                 dialog.dismiss()
             }
             alertDialogBuilder.setCancelable(false)
@@ -141,7 +142,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(newBase: Context) {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(newBase)
+        val prefs = newBase.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val lang = prefs.getString("app_lang", "en") ?: "en"
         val locale = Locale(lang)
         Locale.setDefault(locale)
