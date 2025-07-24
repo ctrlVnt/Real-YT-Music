@@ -38,7 +38,9 @@ You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Mu
 Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate on the project.
 
 ## Translations
-If you want to improve the translations or add a new language in [this folder](https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res) you fond some folders called value-*language code*
+If you'd like to help improve translations or add a new language, [click here](https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res) to access the translation files.
+- To edit an existing language: Modify the strings.xml file inside the corresponding values-* folder (e.g., values-hi for Hindi).
+- To add a new language: Create a new values-* folder (using the ISO 639-1 language code), then add a translated strings.xml file.
 
 ## Support me
 If you want to support me, thank you!
