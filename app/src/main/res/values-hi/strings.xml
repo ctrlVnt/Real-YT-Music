@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello_blank_fragment">RYTM mein aapka swagat hai</string>
-    <string name="caches">Itihaas mitayein</string>
-    <string name="prev_search">Itihaas</string>
+    <string name="hello_blank_fragment">RYTM में आपका स्वागत है</string>
+    <string name="caches">इतिहास मिटाएं</string>
+    <string name="prev_search">इतिहास</string>
     <string name="settings">सेटिंग्स</string>
-    <string name="deleted_caches">Sabhi cheezein mita di gayi hain</string>
-    <string name="how_to_use"><b>KUCH ANUDESH</b>\n\n
-        <i>SCREEN LOCK:</i> video chalate samay, kendriya button ke zariye, screen par anavashyak sparshon ko rokna sambhav hai, battery jeevan ko badhane ke liye chamak ko kam se kam kar diya jata hai.\n\n
-        <i>PLAYBACK:</i> yah function phone par home button dabane se uplabdh hai, bubble mein vartman mein chal rahi samagri dikhai deti hai. Sangeet niyantran application ko punah kholkar prapt kiya jata hai.\n\n
-        <i>DELETION:</i> playlist ya geeton ko mitana lambe click se kiya jata hai. Dhyan dein: itihaas video ke liye aapko ise mukhya screen par karna hoga na ki player screen par.\n\n
-        <i>PLAYLISTS:</i> geet jodna video player ke upar dayein kone mein sthit button ke zariye sambhav hai.\n\n
+    <string name="deleted_caches">सभी डेटा मिटा दिया गया है</string>
+    <string name="how_to_use"><b>उपयोग के निर्देश</b>\n\n
+        <i>स्क्रीन लॉक:</i> वीडियो चलाते समय, होम बटन दबाकर स्क्रीन को लॉक कर सकते हैं। बैटरी बचाने के लिए चमक (ब्राइटनेस) कम कर दी जाती है।\n\n
+        <i>प्लेबैक:</i> होम बटन दबाकर वीडियो को बैकग्राउंड में चला सकते हैं। बबल नोटिफिकेशन से वर्तमान वीडियो देख सकते हैं।\n\n
+        <i>डिलीशन:</i> प्लेलिस्ट या गाने को लंबे समय तक दबाकर हटा सकते हैं। नोट: वीडियो इतिहास को मुख्य स्क्रीन से हटाना होगा, प्लेयर स्क्रीन से नहीं।\n\n
+        <i>प्लेलिस्ट:</i> गाने जोड़ने के लिए वीडियो प्लेयर के ऊपर दाएं कोने में बटन का उपयोग करें।\n\n
     </string>
-    <string name="about"><b>DATA INFO</b>\n\n
-        <i>Kuch data API ke malik, yani ki Youtube dwara, <a href="https://www.youtube.com/t/terms?hl=it">Niyam aur Sharten</a> aur <a href="http://www.google.com/policies/privacy">Gopniyata Niti</a> mein diye gaye anusar, her-pher kiya ja sakta hai.</i>
+    <string name="about"><b>डेटा जानकारी</b>\n\n
+        <i>कुछ डेटा YouTube API के मालिकाना हक के अंतर्गत आता है, जिसे <a href="https://www.youtube.com/t/terms?hl=hi">नियम और शर्तें</a> और <a href="http://www.google.com/policies/privacy">गोपनीयता नीति</a> के अनुसार संशोधित किया जा सकता है।</i>
     </string>
-    <string name="my_info">Vikasak website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Shirshak darj karen…</string>
-    <string name="delete_confirmation_title">Kya aap ise mitana chahte hain?</string>
-    <string name="delete_confirmation">Kya aap sach mein ise mitana chahte hain?</string>
-    <string name="delete">Mitayein</string>
-    <string name="restore">Radd karen</string>
-    <string name="add_playlist">Playlist jodein</string>
-    <string name="error_empty_name">Playlist ka naam khali nahin ho sakta</string>
-    <string name="error_already_exist">Darj kiya gaya naam pahle se maujood hai</string>
-    <string name="select_playlist">Ek playlist chunein</string>
-    <string name="error_element_playlist_already_exist">Chuni hui playlist mein item pahle se maujood hai</string>
-    <string name="edit_playlist_name">Playlist ka naam badlein</string>
-    <string name="noty_title">RYTM chal raha hai</string>
-    <string name="noty_text">Ise mitane ke liye notification par click karen</string>
-    <string name="empty_playlists">Koi playlist maujood nahin hai</string>
-    <string name="empty_cronology">Khali itihaas</string>
-    <string name="generic_error">Anjaan truti</string>
-    <string name="terms_title">Niyam aur Sharten</string>
-    <string name="terms_text">Application YouTube API service ka upyog karta hai, aage badhne se pahle kripya <a href="https://www.youtube.com/t/terms?hl=it">Niyam aur Sharten</a> aur <a href="http://www.google.com/policies/privacy">Gopniyata Niti</a> dekhen aur sveekar karen</string>
-    <string name="accept">Sveekar karen</string>
-    <string name="confirm_delete_history">Itihaas mitane ki pushti karen</string>
-    <string name="confirm_delete_history_message">Kya aap sach mein sabhi itihaas ko mitana chahte hain?</string>
-    <string name="deleted_history">Itihaas mita diya gaya</string>
-    <string name="create_playlist_first">Kripya aage badhne se pahle kam se kam ek playlist banayein.</string>
-    <string name="playlists_button">Playlists</string>
-    <string name="empty_playlist_title">Khali playlist</string>
-    <string name="empty_playlist_text">Yah playlist khali hai. Play karne se pahle kuch geet playlist mein jodein.</string>
-    <string name="send_me_suggestions">Mujhe sujhav bhejein 📧</string>
-    <string name="support_me">Yadi aap meri madad karna chahte hain 👇</string>
-    <string name="info_text">App ❤️ ke sath banaya gaya hai taki aap anya apps ka upyog karte samay video dekh saken. Aapko vigyapan nahin dikhenge kyunki RYTM upyogkartaon ki pahchan nahin karta hai</string>
-    <string name="you_don_t_have_already_playlist_create_the_firstone">Aapke paas abhi tak koi playlist nahin hai. Apna pahla playlist abhi banayein!</string>
-    <string name="thx">ऐप का उपयोग करने के लिए धन्यवाद!</string>
+    <string name="my_info">डेवलपर वेबसाइट: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">खोज शब्द लिखें…</string>
+    <string name="delete_confirmation_title">क्या आप इसे हटाना चाहते हैं?</string>
+    <string name="delete_confirmation">क्या आप वाकई इसे हटाना चाहते हैं?</string>
+    <string name="delete">हटाएं</string>
+    <string name="restore">पुनर्स्थापित करें</string>
+    <string name="add_playlist">प्लेलिस्ट जोड़ें</string>
+    <string name="error_empty_name">प्लेलिस्ट का नाम खाली नहीं हो सकता</string>
+    <string name="error_already_exist">यह नाम पहले से मौजूद है</string>
+    <string name="select_playlist">एक प्लेलिस्ट चुनें</string>
+    <string name="error_element_playlist_already_exist">चुनी गई प्लेलिस्ट में यह आइटम पहले से मौजूद है</string>
+    <string name="edit_playlist_name">प्लेलिस्ट का नाम बदलें</string>
+    <string name="noty_title">RYTM चल रहा है</string>
+    <string name="noty_text">बंद करने के लिए नोटिफिकेशन पर क्लिक करें</string>
+    <string name="empty_playlists">कोई प्लेलिस्ट नहीं मिली</string>
+    <string name="empty_cronology">खाली इतिहास</string>
+    <string name="generic_error">अज्ञात त्रुटि</string>
+    <string name="terms_title">नियम और शर्तें</string>
+    <string name="terms_text">यह ऐप YouTube API का उपयोग करता है। आगे बढ़ने से पहले कृपया <a href="https://www.youtube.com/t/terms?hl=hi">नियम और शर्तें</a> और <a href="http://www.google.com/policies/privacy">गोपनीयता नीति</a> पढ़ें और स्वीकार करें</string>
+    <string name="accept">स्वीकार करें</string>
+    <string name="confirm_delete_history">इतिहास हटाने की पुष्टि करें</string>
+    <string name="confirm_delete_history_message">क्या आप वाकई पूरा इतिहास हटाना चाहते हैं?</string>
+    <string name="deleted_history">इतिहास हटा दिया गया</string>
+    <string name="create_playlist_first">कृपया पहले कम से कम एक प्लेलिस्ट बनाएं</string>
+    <string name="playlists_button">प्लेलिस्ट</string>
+    <string name="empty_playlist_title">खाली प्लेलिस्ट</string>
+    <string name="empty_playlist_text">यह प्लेलिस्ट खाली है। प्ले करने से पहले इसमें गाने जोड़ें</string>
+    <string name="send_me_suggestions">मुझे सुझाव भेजें 📧</string>
+    <string name="support_me">अगर आप मेरा समर्थन करना चाहते हैं 👇</string>
+    <string name="info_text">यह ऐप ❤️ से बनाया गया है ताकि आप अन्य ऐप्स का उपयोग करते समय वीडियो देख सकें। इसमें कोई विज्ञापन नहीं हैं क्योंकि RYTM उपयोगकर्ताओं को ट्रैक नहीं करता</string>
+    <string name="you_don_t_have_already_playlist_create_the_firstone">आपके पास अभी कोई प्लेलिस्ट नहीं है। अपनी पहली प्लेलिस्ट अभी बनाएं!</string>
+    <string name="thx">ऐप इस्तेमाल करने के लिए धन्यवाद!</string>
     <string name="buymeacoffee">क्या आप कास्ट फीचर चाहते हैं? Buy Me a Coffee पर मेरा समर्थन करें ☕</string>
-    <string name="supme">मुझे समर्थन दें</string>
+    <string name="supme">मेरा समर्थन करें</string>
     <string name="later">शायद बाद में</string>
-    <string name="explain_search">खोजने के लिए अपने कीबोर्ड पर एंटर दबाएँ</string>
+    <string name="explain_search">खोजने के लिए कीबोर्ड पर एंटर दबाएं</string>
     <string name="lingua">भाषा</string>
     <string name="visita_il_mio_sito_web">मेरी वेबसाइट देखें 🌎</string>
     <string name="valuta_l_app">ऐप को रेट करें ⭐</string>
