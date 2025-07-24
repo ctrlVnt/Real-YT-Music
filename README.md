@@ -37,6 +37,9 @@ You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Mu
 ## How to Contribute
 Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate on the project.
 
+## Translations
+If you want to improve the translations or add a new language in [this folder](https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res) you fond some folders called value-*language code*
+
 ## Support me
 If you want to support me, thank you!
 
