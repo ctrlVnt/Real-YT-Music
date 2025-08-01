@@ -23,14 +23,28 @@
         app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
         app:layout_constraintEnd_toStartOf="@+id/add_playlist"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
+
+    <ImageButton
+        android:id="@+id/add_playlist"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/add_playlist"
+        android:src="@drawable/baseline_playlist_add_circle_24"
+        app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        app:tint="@color/text" />
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtube_player_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="120dp"
         app:autoPlay="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,20 +84,6 @@
         app:layout_constraintBottom_toTopOf="@+id/playlist"
         app:layout_constraintStart_toEndOf="@+id/playlist_name"
         app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
-
-
-    <ImageButton
-        android:id="@+id/add_playlist"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/add_playlist"
-        android:src="@drawable/baseline_playlist_add_circle_24"
-        app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/text" />
 
     <Button
         android:id="@+id/mask_lock"
@@ -130,6 +130,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/next_video"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text"/>
+
+        <ImageButton
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/timer"
+            android:contentDescription="timer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shuffle"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/text"/>
 

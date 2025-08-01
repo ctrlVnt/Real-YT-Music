@@ -14,6 +14,7 @@ import android.graphics.Bitmap
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -88,6 +89,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var buttonPannel: ConstraintLayout
     private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
+    private lateinit var timer: ImageButton
+    private var timerOption: Boolean = false
+    private var exitTimer: CountDownTimer? = null
     lateinit var searchBar: SearchView
     private var originalMarginTop: Int = 0
     private var indexVideo = 0
@@ -190,6 +194,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
+        timer = rootView.findViewById(R.id.timer)
         prevButton = rootView.findViewById(R.id.prev_video)
         nextButton = rootView.findViewById(R.id.next_video)
         buttonPannel = rootView.findViewById(R.id.button_pannel)
@@ -289,7 +294,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 shuffleOption = false
             }
             if (repeatOption){
-                repeat.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
+                val color = ContextCompat.getColor(requireContext(), R.color.red)
+                repeat.setColorFilter(color)
             }else{
                 repeat.clearColorFilter()
             }
@@ -302,11 +308,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     repeatOption = false;
                 }
                 if (shuffleOption){
-                    shuffle.setColorFilter(resources.getColor(R.color.red), PorterDuff.Mode.SRC_IN)
+                    val color = ContextCompat.getColor(requireContext(), R.color.red)
+                    shuffle.setColorFilter(color)
                 }else{
                     shuffle.clearColorFilter()
                 }
             }
+        }
+
+        timer.setOnClickListener {
+            showExitTimerDialog()
         }
 
         buttonEditName.setOnClickListener {
@@ -326,6 +337,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 nextButton.visibility = View.GONE
                 shuffle.visibility = View.GONE
                 repeat.visibility = View.GONE
+                timer.visibility = View.GONE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -340,6 +352,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 nextButton.visibility = View.VISIBLE
                 shuffle.visibility = View.VISIBLE
                 repeat.visibility = View.VISIBLE
+                timer.visibility = View.VISIBLE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -571,6 +584,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             refreshAdapter(playlistName)
         }
         alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
+            refreshAdapter(playlistName)
             dialog.dismiss()
         }
         val alertDialog = alertDialogBuilder.create()
@@ -771,9 +785,74 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
     }
 
+
+    fun showExitTimerDialog() {
+        val editText = EditText(requireContext())
+        editText.hint = "Enter minutes"
+
+        if (!timerOption) {
+            val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+                .setTitle("Exit Timer")
+                .setMessage("Enter the number of minutes after which the app will close:")
+                .setView(editText)
+                .setPositiveButton("Start Timer") { _, _ ->
+                    val input = editText.text.toString()
+                    val minutes = input.toLongOrNull()
+                    if (minutes != null && minutes > 0) {
+                        timerOption = true
+                        val color = ContextCompat.getColor(requireContext(), R.color.red)
+                        timer.setColorFilter(color)
+                        startExitTimer(minutes)
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid input", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .setNegativeButton("Cancel", null)
+                .create()
+            dialog.show()
+        }else{
+            val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+                .setTitle("Exit Timer")
+                .setMessage("Timer is already running, do you want to stop it?")
+                .setPositiveButton("Yes"){ _, _ ->
+                    timerOption = false
+                    timer.clearColorFilter()
+                    cancelExitTimer()
+                }
+                .setNegativeButton("No", null)
+                .create()
+            dialog.show()
+        }
+
+    }
+
+    fun startExitTimer(minutes: Long) {
+        val millis = minutes * 60 * 1000
+
+        Toast.makeText(requireContext(), "App will close in $minutes minute(s)", Toast.LENGTH_SHORT).show()
+
+        exitTimer = object : CountDownTimer(millis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                // Optional: update UI every second
+            }
+
+            override fun onFinish() {
+                requireActivity().finish()
+            }
+        }.start()
+    }
+
+    fun cancelExitTimer() {
+        exitTimer?.cancel()
+        exitTimer = null
+        Toast.makeText(requireContext(), "Exit timer cancelled", Toast.LENGTH_SHORT).show()
+    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         val notificationManager = NotificationManagerCompat.from(requireContext())
         notificationManager.cancelAll()
+        cancelExitTimer()
     }
 }

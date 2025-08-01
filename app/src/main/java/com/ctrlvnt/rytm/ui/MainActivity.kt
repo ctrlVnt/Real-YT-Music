@@ -7,12 +7,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.util.Rational
 import android.view.WindowManager
 import android.widget.TextView
@@ -38,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             private set
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -90,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.main_activity, HomeActivity())
                 .commit()
         }
-
+        checkAndShowUpdatePopup(this)
     }
 
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {
@@ -152,5 +150,40 @@ class MainActivity : AppCompatActivity() {
 
         val context = newBase.createConfigurationContext(config)
         super.attachBaseContext(context)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun getAppVersionCode(context: Context): Long {
+        return context.packageManager
+            .getPackageInfo(context.packageName, 0).longVersionCode
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun checkAndShowUpdatePopup(context: Context) {
+        val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val savedVersion = prefs.getLong("last_seen_version", -1)
+        val currentVersion = getAppVersionCode(context)
+
+        if (currentVersion > savedVersion) {
+            showUpdateDialog(context) // Mostra popup
+            prefs.edit().putLong("last_seen_version", currentVersion).apply()
+        }
+    }
+
+    fun showUpdateDialog(context: Context) {
+        AlertDialog.Builder(context)
+            .setTitle("What's New in This Update")
+            .setMessage(
+                """
+            You’ve just installed a new version! Here’s what’s new:
+            
+            - You can now reorder playlist songs using drag and drop
+            - Sleep timer: set a time and the app will close automatically
+            - Share from YouTube > Open with RYTM
+            - Bug fixes and performance improvements
+            """.trimIndent()
+            )
+            .setPositiveButton("OK", null)
+            .show()
     }
 }

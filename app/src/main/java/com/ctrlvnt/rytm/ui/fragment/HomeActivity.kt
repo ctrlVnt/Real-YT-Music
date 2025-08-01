@@ -395,7 +395,8 @@ class HomeActivity : Fragment() {
                     try {
                         val errorJson = JSONObject(errorBody)
                         val errorMessage = errorJson.getJSONObject("error").getString("message")
-                        Toast.makeText(requireContext(), "All users have reached the daily limit. Requests will be recharged at 9:00 AM", Toast.LENGTH_LONG).show()
+                        showLimitReachedDialog()
+                        //Toast.makeText(requireContext(), "All users have reached the daily limit. Requests will be recharged at midnight Los Angeles time", Toast.LENGTH_LONG).show()
                     } catch (e: JSONException) {
                         Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
                         Toast.makeText(requireContext(), getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
@@ -462,5 +463,20 @@ class HomeActivity : Fragment() {
         }else{
             noPlaylist.visibility = View.GONE
         }
+    }
+
+    fun showLimitReachedDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Daily Limit Reached")
+            .setMessage(
+                """
+            All users have reached the daily request limit.
+            Requests will be available again at midnight Los Angeles time.
+            
+            In the meantime, you can go to YouTube, tap Share on a video, and choose "Others" > "RYTM" to keep listening.
+            """.trimIndent()
+            )
+            .setPositiveButton("OK", null)
+            .show()
     }
 }
