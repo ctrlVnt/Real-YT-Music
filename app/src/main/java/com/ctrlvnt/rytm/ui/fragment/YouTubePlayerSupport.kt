@@ -42,6 +42,7 @@ import com.bumptech.glide.request.target.Target
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
+import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
 import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
@@ -52,12 +53,14 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.APIKEY
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import org.json.JSONException
 import org.json.JSONObject
@@ -96,6 +99,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private var originalMarginTop: Int = 0
     private var indexVideo = 0
     private val googlePlayServicesAvailabilityRequestCode = 1
+
+    // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
+    private val tracker = YouTubePlayerTracker()
 
     private val playbackReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -194,6 +200,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
+        val saveMinutesButton: MaterialButton = rootView.findViewById(R.id.save_minutes)
         timer = rootView.findViewById(R.id.timer)
         prevButton = rootView.findViewById(R.id.prev_video)
         nextButton = rootView.findViewById(R.id.next_video)
@@ -204,6 +211,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         searchBar = rootView.findViewById(R.id.search_bar_player)
         val videos: MutableList<Video>
 
+        saveMinutesButton.visibility = View.GONE
+        val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
+
         var lock = false
         var repeatOption = false
         var shuffleOption = false
@@ -213,6 +223,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         videoList = rootView.findViewById(R.id.playlist)
         val layoutManager = LinearLayoutManager(context)
         videoList.layoutManager = layoutManager
+        
+        
 
         if(playlistTitle == null || playlistTitle == ""){
             playlisName.text = getString(R.string.prev_search)
@@ -390,11 +402,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
+
+                youTubePlayer.addListener(tracker)
+
                 videoId?.let {
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
-                    youTubePlayer.loadVideo(it, 0f)
+                    youTubePlayer.loadVideo(it, minutes)
+                    MainActivity.database.deleteMinutes(videoId.toString()) //to reset every time
 
                     //if i open video from link
                     val playlistName = arguments?.getString("playlist_name")
@@ -467,6 +483,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             ) {
                 super.onStateChange(youTubePlayer, state)
                 if (state == PlayerConstants.PlayerState.ENDED){
+                    MainActivity.database.deleteMinutes(videoId.toString())
                     if(repeatOption){
                         videoId?.let {
                             youTubePlayer.loadVideo(it, 0f)
@@ -504,6 +521,23 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                             showPlaylistDialog(nextVideo[indexVideo+1].id)
                         }
                     }
+                }
+                if (state == PlayerConstants.PlayerState.PAUSED) {
+                    // Save minutes when the video is paused
+                    saveMinutesButton.visibility = View.VISIBLE
+                    saveMinutesButton.setOnClickListener {
+                        MainActivity.database.saveMinutesVideo(
+                            SaveMinutes(
+                                videoId.toString(),
+                                tracker.currentSecond
+                            )
+                        )
+                        MainActivity.database.updateMinutes(videoId.toString(), tracker.currentSecond)
+                        Toast.makeText(requireContext(), "Video saved at ${tracker.currentSecond/60F}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                if (state == PlayerConstants.PlayerState.PLAYING) {
+                    saveMinutesButton.visibility = View.GONE
                 }
             }
         })
@@ -818,6 +852,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     timerOption = false
                     timer.clearColorFilter()
                     cancelExitTimer()
+                    Toast.makeText(requireContext(), "Exit timer cancelled", Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton("No", null)
                 .create()
@@ -845,7 +880,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     fun cancelExitTimer() {
         exitTimer?.cancel()
         exitTimer = null
-        Toast.makeText(requireContext(), "Exit timer cancelled", Toast.LENGTH_SHORT).show()
     }
 
 

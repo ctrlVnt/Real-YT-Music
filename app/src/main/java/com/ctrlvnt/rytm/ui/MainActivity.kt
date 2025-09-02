@@ -177,9 +177,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            - You can now reorder playlist songs using drag and drop
-            - Sleep timer: set a time and the app will close automatically
-            - Share from YouTube > Open with RYTM
+            - Research now returns up to 20 videos for faster discovery
+            - You can save specific minutes of a video – a button will appear when you pause playback
             - Bug fixes and performance improvements
             """.trimIndent()
             )

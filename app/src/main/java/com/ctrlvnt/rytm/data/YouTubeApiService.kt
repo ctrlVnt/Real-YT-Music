@@ -12,7 +12,7 @@ interface YouTubeApiService {
         @Query("q") query: String,
         @Query("regionCode") regionCode: String,
         @Query("part") part: String = "snippet",
-        @Query("maxResults") maxResults: Int = 5,
+        @Query("maxResults") maxResults: Int = 20,
         @Query("type") type: String = "video"
     ): Call<SearchResponse>
 }

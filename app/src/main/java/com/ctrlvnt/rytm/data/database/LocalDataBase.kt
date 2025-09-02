@@ -8,16 +8,19 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.ctrlvnt.rytm.data.database.dao.PlaylistDao
 import com.ctrlvnt.rytm.data.database.dao.PlaylistVideoDao
+import com.ctrlvnt.rytm.data.database.dao.SaveMinutesDao
 import com.ctrlvnt.rytm.data.database.dao.VideoDao
 import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
+import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
 import com.ctrlvnt.rytm.data.database.entities.Video
 
-@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class], version = 7)
+@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class, SaveMinutes::class], version = 8)
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun videoDao(): VideoDao
     abstract fun playlistDao(): PlaylistDao
     abstract fun playlisVideotDao(): PlaylistVideoDao
+    abstract fun saveMinutesDao(): SaveMinutesDao
 
     fun insertVideo(video: Video) {
         videoDao().insert(video)
@@ -39,6 +42,22 @@ abstract class LocalDataBase : RoomDatabase() {
     fun deletePlaylist(playlistItem: Playlist){
         playlistDao().deletePlaylist(playlistItem)
         playlisVideotDao().deletePlaylistVideos(playlistItem.playlistName)
+    }
+
+    fun getMinutesByVideoId(videoId: String): Float{
+        return saveMinutesDao().getMinutesByVideoId(videoId)
+    }
+
+    fun saveMinutesVideo(video: SaveMinutes){
+        saveMinutesDao().insert(video)
+    }
+
+    fun updateMinutes(id: String, value: Float){
+        saveMinutesDao().updateMinutes(id, value)
+    }
+
+    fun deleteMinutes(id: String){
+        saveMinutesDao().deleteByVideoId(id)
     }
 
     companion object {
@@ -123,7 +142,7 @@ abstract class LocalDataBase : RoomDatabase() {
 
         val MIGRATION_6_7 = object : Migration(6, 7) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // 1. Aggiungi la colonna "position"
+                // 1. Add column "position"
                 database.execSQL("CREATE TABLE IF NOT EXISTS `playlistvideo_new` " +
                         "(`playlistName` TEXT NOT NULL, " +
                         "`videoId` TEXT NOT NULL, " +
@@ -140,7 +159,7 @@ abstract class LocalDataBase : RoomDatabase() {
                 database.execSQL("DROP TABLE `playlistvideo`")
                 database.execSQL("ALTER TABLE `playlistvideo_new` RENAME TO `playlistvideo`")
 
-                // 2. Aggiorna i valori esistenti (es. ordina per id e assegna posizione crescente)
+                // 2. update values
                 val cursor = database.query("""
                     SELECT playlistName, videoId FROM playlistvideo ORDER BY playlistName, videoId
                 """.trimIndent())
@@ -160,6 +179,18 @@ abstract class LocalDataBase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // 1. Add table to save minutes
+                database.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `save_minutes` " +
+                            "(`videoId` TEXT NOT NULL, " +
+                            "`minutes` REAL NOT NULL DEFAULT 0," +
+                            "PRIMARY KEY(`videoId`))"
+                )
+            }
+        }
+
         fun getDatabase(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -172,6 +203,7 @@ abstract class LocalDataBase : RoomDatabase() {
                     .addMigrations(MIGRATION_4_5)
                     .addMigrations(MIGRATION_5_6)
                     .addMigrations(MIGRATION_6_7)
+                    .addMigrations(MIGRATION_7_8)
                     .build()
                 INSTANCE = instance
                 instance
