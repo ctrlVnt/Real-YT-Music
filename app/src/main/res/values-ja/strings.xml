@@ -68,4 +68,31 @@
     <string name="visita_il_mio_sito_web">私のウェブサイトを訪れてください 🌎</string>
     <string name="valuta_l_app">アプリを評価する ⭐</string>
     <string name="save_minute">分を保存</string>
+    <string name="limit_title">1日の上限に達しました</string>
+    <string name="limit_message">すべてのユーザーが1日のリクエスト上限に達しました。\n
+    リクエストはロサンゼルス時間の深夜0時に再び利用可能になります。\n\n
+
+    その間、YouTubeに行き、動画で共有をタップし、「その他」 &gt; 「RYTM」を選んで聴き続けることができます。</string>
+    <string name="support_title">アプリをご利用いただきありがとうございます！</string>
+    <string name="support_message">RYTMは気に入りましたか？ Buy Me a Coffee ☕ でサポートしてください</string>
+    <string name="support_positive">サポートする</string>
+    <string name="support_negative">後で</string>
+    <string name="intro_title_welcome">ようこそ…</string>
+    <string name="intro_desc_welcome">RYTMへようこそ。このアプリでは広告なしでYouTube動画を視聴でき、さらに多くの機能があります…</string>
+
+    <string name="intro_title_home">ホーム画面</string>
+    <string name="intro_desc_home">1. 検索バーで動画を検索\n\n2. 検索履歴を確認可能\n\n3. 動画を整理するためにプレイリストを作成できます</string>
+
+    <string name="intro_title_player">プレーヤー</string>
+    <string name="intro_desc_player">1. 動画をプレイリストに追加します。\n\n2. 動画を一時停止して進捗を保存し、後で視聴できます\n\n3. 長押しで整理し、スワイプで削除\n\n4. 誤操作を避けるため画面をロック\n\n5. 動画を見ながら眠りたい場合はタイマーを設定</string>
+
+    <string name="intro_title_pip">他のアプリを使いながら動画を視聴</string>
+    <string name="intro_desc_pip">アプリを最小化してみてください。他の操作をしながら動画を見続けられます</string>
+
+    <string name="intro_title_limit">1日の制限に達しましたか？</string>
+    <string name="intro_desc_limit">多くのユーザーがアプリを使用すると、リクエストが終了することがあります。この場合、公式アプリから直接動画を開けます！「共有 &gt; その他 &gt; RYTM」をタップすれば完了です</string>
+
+    <string name="intro_title_end">…さあ始めましょう！</string>
+    <string name="intro_desc_end">このアプリをダウンロードしていただきありがとうございます。必要に応じて設定でこのチュートリアルを見つけられます！</string>
+
 </resources>

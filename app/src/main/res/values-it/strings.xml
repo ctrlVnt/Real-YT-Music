@@ -54,4 +54,31 @@
     <string name="visita_il_mio_sito_web">Visita il mio sito web 🌎</string>
     <string name="valuta_l_app">Valuta l\'app ⭐</string>
     <string name="save_minute">Salva minuto</string>
+    <string name="limit_title">Limite giornaliero raggiunto</string>
+    <string name="limit_message">Tutti gli utenti hanno raggiunto il limite giornaliero di richieste.\n
+    Le richieste saranno di nuovo disponibili a mezzanotte, ora di Los Angeles.\n\n
+
+    Nel frattempo, puoi andare su YouTube, toccare Condividi su un video e scegliere "Altro" &gt; "RYTM" per continuare ad ascoltare.</string>
+    <string name="support_title">Grazie per aver usato l\'app!</string>
+    <string name="support_message">Ti piace RYTM? Supportami su Buy Me a Coffee ☕</string>
+    <string name="support_positive">Supportami</string>
+    <string name="support_negative">Magari dopo</string>
+    <string name="intro_title_welcome">Benvenuto…</string>
+    <string name="intro_desc_welcome">Benvenuto in RYTM, l\'app dove puoi guardare video di YouTube senza pubblicità e altro…</string>
+
+    <string name="intro_title_home">Schermata Home</string>
+    <string name="intro_desc_home">1. Cerca un video nella barra di ricerca\n\n2. Hai la cronologia delle tue ricerche\n\n3. Puoi creare playlist per organizzare i tuoi video</string>
+
+    <string name="intro_title_player">Player</string>
+    <string name="intro_desc_player">1. Aggiungi un video alla tua playlist.\n\n2. Ferma un video per salvare i tuoi progressi e guardarlo più tardi\n\n3. Tieni premuto per organizzare e scorri per eliminare\n\n4. Blocca lo schermo per evitare tocchi accidentali\n\n5. Imposta un timer se vuoi addormentarti con un video</string>
+
+    <string name="intro_title_pip">Guarda i tuoi video mentre usi altre app</string>
+    <string name="intro_desc_pip">Prova a minimizzare l\'app, puoi continuare a guardare il video mentre fai altre cose</string>
+
+    <string name="intro_title_limit">Hai raggiunto il limite giornaliero?</string>
+    <string name="intro_desc_limit">A volte, se molti utenti usano la mia app, le richieste possono esaurirsi. In questo caso puoi aprire i video direttamente dall\'app ufficiale! Devi cliccare su condividi &gt; altro &gt; RYTM e voilà</string>
+
+    <string name="intro_title_end">…Iniziamo!</string>
+    <string name="intro_desc_end">Grazie per aver scaricato questa app, puoi trovare questo tutorial nelle impostazioni se ti serve!</string>
+
 </resources>

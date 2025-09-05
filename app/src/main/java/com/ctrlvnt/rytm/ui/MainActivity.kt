@@ -93,6 +93,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {
         if (!sharedPrefs.getBoolean("terms_accepted", false)) {
+            
+            val intent = Intent(this, TutorialActivity::class.java)
+            startActivity(intent)
+
             val dialogView = layoutInflater.inflate(R.layout.dialog_terms_and_privacy, null)
             val alertDialogBuilder = MaterialAlertDialogBuilder(this, R.style.RoundedAlertDialog)
             alertDialogBuilder.setView(dialogView)
@@ -178,7 +182,8 @@ class MainActivity : AppCompatActivity() {
             You’ve just installed a new version! Here’s what’s new:
             
             - Research now returns up to 20 videos for faster discovery
-            - You can save specific minutes of a video – a button will appear when you pause playback
+            - You can save specific minutes of a video -> a button will appear when you pause playback
+            - Added tutorial in the settings
             - Bug fixes and performance improvements
             """.trimIndent()
             )

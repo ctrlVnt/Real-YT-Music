@@ -16,8 +16,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 35
-        versionCode = 32
-        versionName = "4.2"
+        versionCode = 33
+        versionName = "4.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -86,4 +86,5 @@ dependencies {
     implementation ("androidx.compose.ui:ui:1.8.3")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.8.3")
     implementation ("com.google.android.material:material:1.12.0")
+    implementation("com.github.AppIntro:AppIntro:6.3.1")
 }

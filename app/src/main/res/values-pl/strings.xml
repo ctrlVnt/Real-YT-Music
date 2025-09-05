@@ -68,4 +68,31 @@
     <string name="visita_il_mio_sito_web">Odwiedź moją stronę internetową 🌎</string>
     <string name="valuta_l_app">Oceń aplikację ⭐</string>
     <string name="save_minute">Zapisz minutę</string>
+    <string name="limit_title">Osiągnięto dzienny limit</string>
+    <string name="limit_message">Wszyscy użytkownicy osiągnęli dzienny limit żądań.\n
+    Żądania będą ponownie dostępne o północy czasu Los Angeles.\n\n
+
+    W międzyczasie możesz przejść do YouTube, stuknąć Udostępnij przy filmie i wybrać „Inne” &gt; „RYTM”, aby dalej słuchać.</string>
+    <string name="support_title">Dziękujemy za korzystanie z aplikacji!</string>
+    <string name="support_message">Podoba Ci się RYTM? Wesprzyj mnie na Buy Me a Coffee ☕</string>
+    <string name="support_positive">Wesprzyj mnie</string>
+    <string name="support_negative">Może później</string>
+    <string name="intro_title_welcome">Witamy...</string>
+    <string name="intro_desc_welcome">Witamy w RYTM, aplikacji, w której możesz oglądać filmy z YouTube bez reklam i nie tylko...</string>
+
+    <string name="intro_title_home">Ekran główny</string>
+    <string name="intro_desc_home">1. Wyszukaj film w pasku wyszukiwania\n\n2. Masz historię swoich wyszukiwań\n\n3. Możesz tworzyć playlisty, aby organizować swoje filmy</string>
+
+    <string name="intro_title_player">Odtwarzacz</string>
+    <string name="intro_desc_player">1. Dodaj film do swojej playlisty.\n\n2. Zatrzymaj film, aby zapisać postęp i obejrzeć go później\n\n3. Przytrzymaj, aby zorganizować i przesuń, aby usunąć\n\n4. Zablokuj ekran, aby uniknąć przypadkowych dotknięć\n\n5. Ustaw timer, jeśli chcesz zasnąć przy filmie</string>
+
+    <string name="intro_title_pip">Oglądaj filmy podczas korzystania z innych aplikacji</string>
+    <string name="intro_desc_pip">Spróbuj zminimalizować aplikację, możesz dalej oglądać film robiąc inne rzeczy</string>
+
+    <string name="intro_title_limit">Osiągnięto dzienny limit?</string>
+    <string name="intro_desc_limit">Czasami, gdy wielu użytkowników korzysta z mojej aplikacji, żądania mogą się skończyć. W takim przypadku możesz otworzyć filmy bezpośrednio z oficjalnej aplikacji! Musisz kliknąć udostępnij &gt; inne &gt; RYTM i gotowe</string>
+
+    <string name="intro_title_end">...Zaczynajmy!</string>
+    <string name="intro_desc_end">Dziękuję za pobranie tej aplikacji, możesz znaleźć ten samouczek w ustawieniach, jeśli będzie potrzebny!</string>
+
 </resources>

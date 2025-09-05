@@ -312,15 +312,15 @@ class HomeActivity : Fragment() {
         // Show dialog every 10th launch
         if (launchCount % 7 == 0) {
             MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
-                .setTitle("Thanks for using the app!")
-                .setMessage("Would you like a cast feature? Support me on Buy Me a Coffee ☕")
-                .setPositiveButton("Support Me") { _, _ ->
+                .setTitle(R.string.support_title)
+                .setMessage(R.string.support_message)
+                .setPositiveButton(R.string.support_positive) { _, _ ->
                     val url = "https://buymeacoffee.com/v3ntuz"
                     val intent = android.content.Intent(android.content.Intent.ACTION_VIEW)
                     intent.data = url.toUri()
                     startActivity(intent)
                 }
-                .setNegativeButton("Maybe later") { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton(R.string.support_negative) { dialog, _ -> dialog.dismiss() }
                 .show()
         }
     }
@@ -467,15 +467,8 @@ class HomeActivity : Fragment() {
 
     fun showLimitReachedDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Daily Limit Reached")
-            .setMessage(
-                """
-            All users have reached the daily request limit.
-            Requests will be available again at midnight Los Angeles time.
-            
-            In the meantime, you can go to YouTube, tap Share on a video, and choose "Others" > "RYTM" to keep listening.
-            """.trimIndent()
-            )
+            .setTitle(R.string.limit_title)
+            .setMessage(R.string.limit_message)
             .setPositiveButton("OK", null)
             .show()
     }

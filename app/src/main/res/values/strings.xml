@@ -70,4 +70,32 @@
     <string name="visita_il_mio_sito_web">Visit my website 🌎</string>
     <string name="valuta_l_app">Rate the app ⭐</string>
     <string name="save_minute">Save minute</string>
+    <string name="tutorial" translatable="false">Tutorial 👀</string>
+    <string name="limit_title">Daily Limit Reached</string>
+    <string name="limit_message">All users have reached the daily request limit.\n
+        Requests will be available again at midnight Los Angeles time.\n\n
+
+        In the meantime, you can go to YouTube, tap Share on a video, and choose "Others" &gt; "RYTM" to keep listening.</string>
+    <string name="support_title">Thanks for using the app!</string>
+    <string name="support_message">Do you like RYTM? Support me on Buy Me a Coffee ☕</string>
+    <string name="support_positive">Support Me</string>
+    <string name="support_negative">Maybe later</string>
+    <string name="intro_title_welcome">Welcome…</string>
+    <string name="intro_desc_welcome">Welcome in RYTM, the app where you can see a youtube videos without ads and more…</string>
+
+    <string name="intro_title_home">Home screen</string>
+    <string name="intro_desc_home">1. Search video in searchbar\n\n2. You have the history of your research\n\n3. You can create playlists to organise your videos</string>
+
+    <string name="intro_title_player">Player</string>
+    <string name="intro_desc_player">1. Add a video to your playlist.\n\n2. Stop a video to save your progress and watching it later\n\n3. Long-press to organize and swipe to delete\n\n4. Lock the screen to avoid accidental touches\n\n5. Set a timer if you want to fall asleep with a video</string>
+
+    <string name="intro_title_pip">Watch your videos while you use others apps</string>
+    <string name="intro_desc_pip">Try to minimize the app, you can continue to see the video while do other things</string>
+
+    <string name="intro_title_limit">Daily limit reached?</string>
+    <string name="intro_desc_limit">Sometimes, if a lot of users use my app, the requests can end up. In this case you can open videos directly from official app! You have to click share &gt; other &gt; RYTM and voilà</string>
+
+    <string name="intro_title_end">…Let\'s get started!</string>
+    <string name="intro_desc_end">Thank you to download this app, you can find this tutorial in setting if you need!</string>
+
 </resources>
