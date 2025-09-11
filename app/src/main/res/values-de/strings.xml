@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">Entwickler-Website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Titel eingeben…</string>
+    <string name="placeholder">Titel oder Link eingeben…</string>
 
     <string name="delete_confirmation_title">Dieses Element löschen?</string>
     <string name="delete_confirmation">Sind Sie sicher, dass Sie dieses Element löschen möchten?</string>
@@ -81,10 +81,10 @@
     <string name="intro_desc_welcome">Willkommen bei RYTM, der App, mit der du YouTube-Videos ohne Werbung und mehr ansehen kannst…</string>
 
     <string name="intro_title_home">Startbildschirm</string>
-    <string name="intro_desc_home">1. Suche Videos in der Suchleiste\n\n2. Du hast den Verlauf deiner Suchanfragen\n\n3. Du kannst Playlists erstellen, um deine Videos zu organisieren</string>
+    <string name="intro_desc_home">1. Suche Videos oder füge den Link in die Suchleiste ein\n\n2. Du kannst Playlists erstellen, um deine Videos zu organisieren\n\n3. Du hast den Verlauf deiner Suchen</string>
 
     <string name="intro_title_player">Player</string>
-    <string name="intro_desc_player">1. Füge ein Video zu deiner Playlist hinzu.\n\n2. Stoppe ein Video, um deinen Fortschritt zu speichern und es später weiterzusehen\n\n3. Lange drücken zum Organisieren und wischen zum Löschen\n\n4. Sperre den Bildschirm, um versehentliche Berührungen zu vermeiden\n\n5. Stelle einen Timer ein, wenn du mit einem Video einschlafen möchtest</string>
+    <string name="intro_desc_player">1. Füge ein Video zu deiner Playlist hinzu.\n\n3. Lange drücken zum Organisieren und wischen zum Löschen\n\n4. Sperre den Bildschirm, um versehentliche Berührungen zu vermeiden\n\n5. Stelle einen Timer ein, wenn du mit einem Video einschlafen möchtest</string>
 
     <string name="intro_title_pip">Sieh dir deine Videos an, während du andere Apps nutzt</string>
     <string name="intro_desc_pip">Versuche, die App zu minimieren, du kannst das Video weiterhin ansehen, während du andere Dinge machst</string>
@@ -94,5 +94,8 @@
 
     <string name="intro_title_end">…Lass uns anfangen!</string>
     <string name="intro_desc_end">Danke fürs Herunterladen dieser App, du findest dieses Tutorial in den Einstellungen, falls du es brauchst!</string>
+    <string name="save_video_progress">Video­fortschritt speichern</string>
+    <string name="intro_title_settings">KI-Dubbing oder Fortschritt speichern?</string>
+    <string name="intro_desc_settings">Wenn Sie die App auf die Originalsprache des Videos einstellen, verschwindet das KI-Dubbing. Sie können jetzt auch das automatische Speichern des Video-Fortschritts aktivieren!</string>
 
 </resources>

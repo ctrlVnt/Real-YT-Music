@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">Site do desenvolvedor: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Insira o título…</string>
+    <string name="placeholder">Digite o título ou o link…</string>
 
     <string name="delete_confirmation_title">Excluir este item?</string>
     <string name="delete_confirmation">Você tem certeza de que deseja excluir este item?</string>
@@ -81,10 +81,10 @@
     <string name="intro_desc_welcome">Bem-vindo ao RYTM, o app onde você pode assistir vídeos do YouTube sem anúncios e muito mais…</string>
 
     <string name="intro_title_home">Tela inicial</string>
-    <string name="intro_desc_home">1. Pesquise vídeos na barra de pesquisa\n\n2. Você tem o histórico das suas pesquisas\n\n3. Você pode criar playlists para organizar seus vídeos</string>
+    <string name="intro_desc_home">1. Pesquise vídeos ou cole o link na barra de pesquisa\n\n2. Você pode criar playlists para organizar seus vídeos\n\n3. Você tem o histórico de suas pesquisas</string>
 
     <string name="intro_title_player">Reprodutor</string>
-    <string name="intro_desc_player">1. Adicione um vídeo à sua playlist.\n\n2. Pause um vídeo para salvar seu progresso e assistir mais tarde\n\n3. Pressione e segure para organizar e deslize para excluir\n\n4. Bloqueie a tela para evitar toques acidentais\n\n5. Defina um temporizador se quiser dormir assistindo a um vídeo</string>
+    <string name="intro_desc_player">1. Adicione um vídeo à sua playlist.\n\n3. Pressione e segure para organizar e deslize para excluir\n\n4. Bloqueie a tela para evitar toques acidentais\n\n5. Defina um temporizador se quiser dormir assistindo a um vídeo</string>
 
     <string name="intro_title_pip">Assista seus vídeos enquanto usa outros apps</string>
     <string name="intro_desc_pip">Tente minimizar o app, você pode continuar assistindo ao vídeo enquanto faz outras coisas</string>
@@ -94,5 +94,8 @@
 
     <string name="intro_title_end">…Vamos começar!</string>
     <string name="intro_desc_end">Obrigado por baixar este app, você pode encontrar este tutorial nas configurações se precisar!</string>
+    <string name="save_video_progress">Salvar o progresso do vídeo</string>
+    <string name="intro_title_settings">Dubbing AI czy zapisywanie postępu?</string>
+    <string name="intro_desc_settings">Ustawiając aplikację na oryginalny język wideo, dubbing AI zniknie. Możesz teraz również włączyć automatyczne zapisywanie postępu wideo!</string>
 
 </resources>

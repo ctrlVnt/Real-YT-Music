@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">Веб-сайт разработчика: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Введите название…</string>
+    <string name="placeholder">Введите название или ссылку…</string>
 
     <string name="delete_confirmation_title">Удалить этот элемент?</string>
     <string name="delete_confirmation">Вы уверены, что хотите удалить этот элемент?</string>
@@ -81,10 +81,10 @@
     <string name="intro_desc_welcome">Добро пожаловать в RYTM — приложение, где вы можете смотреть видео на YouTube без рекламы и многое другое…</string>
 
     <string name="intro_title_home">Главный экран</string>
-    <string name="intro_desc_home">1. Ищите видео в строке поиска\n\n2. У вас есть история ваших поисков\n\n3. Вы можете создавать плейлисты, чтобы организовать свои видео</string>
+    <string name="intro_desc_home">1. Ищите видео или вставьте ссылку в строку поиска\n\n2. Вы можете создавать плейлисты для организации своих видео\n\n3. У вас есть история ваших поисков</string>
 
     <string name="intro_title_player">Плеер</string>
-    <string name="intro_desc_player">1. Добавьте видео в свой плейлист.\n\n2. Остановите видео, чтобы сохранить прогресс и продолжить просмотр позже\n\n3. Долгое нажатие для организации и свайп для удаления\n\n4. Заблокируйте экран, чтобы избежать случайных нажатий\n\n5. Установите таймер, если хотите уснуть под видео</string>
+    <string name="intro_desc_player">1. Добавьте видео в свой плейлист.\n\n3. Долгое нажатие для организации и свайп для удаления\n\n4. Заблокируйте экран, чтобы избежать случайных нажатий\n\n5. Установите таймер, если хотите уснуть под видео</string>
 
     <string name="intro_title_pip">Смотрите видео, используя другие приложения</string>
     <string name="intro_desc_pip">Попробуйте свернуть приложение, вы сможете продолжить просмотр видео, занимаясь другими делами</string>
@@ -94,5 +94,8 @@
 
     <string name="intro_title_end">…Начнем!</string>
     <string name="intro_desc_end">Спасибо за скачивание этого приложения, вы можете найти этот учебник в настройках, если он вам понадобится!</string>
+    <string name="save_video_progress">Сохранить прогресс видео</string>
+    <string name="intro_title_settings">AI-дублирование или сохранение прогресса?</string>
+    <string name="intro_desc_settings">Если установить приложение на оригинальный язык видео, AI-дублирование исчезнет. Теперь вы также можете включить автоматическое сохранение прогресса видео!</string>
 
 </resources>

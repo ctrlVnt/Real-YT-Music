@@ -198,20 +198,14 @@ class HomeActivity : Fragment() {
         searchButton.setOnClickListener {
             val query = searchBar.query?.toString()
             if (!query.isNullOrBlank()) {
-                explainText.visibility = View.GONE
-                searchButton.visibility = View.GONE
-                titleSearch(query, rootView)
+                launchSearch(query, rootView, searchButton, explainText)
             }
         }
 
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
-                explainText.visibility = View.GONE
-                searchButton.visibility = View.GONE
-                if (!text.isNullOrBlank()) {
-                    titleSearch(text, rootView)
-                }
+                launchSearch(text.toString(), rootView, searchButton, explainText)
                 return true
             }
 
@@ -301,6 +295,43 @@ class HomeActivity : Fragment() {
         val alertDialog = builder.create()
         alertDialog.show()
     }
+    
+    fun launchSearch(query: String, rootView: View, searchButton: Button, explainText: TextView){
+        if (query.startsWith("https://")) {
+            val videoId = extractYoutubeId(query)
+            if (videoId != null) {
+                val fragment = YouTubePlayerSupport().apply {
+                    arguments = Bundle().apply {
+                        putString("video_id", videoId)
+                        putString("playlist_name", "fromoutside")
+                    }
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_activity, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
+            } else {
+                Toast.makeText(requireContext(), "Link non valido", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            explainText.visibility = View.GONE
+            searchButton.visibility = View.GONE
+            titleSearch(query, rootView)
+        }
+    }
+
+    private fun extractYoutubeId(url: String): String? {
+        // Match per youtu.be/VIDEOID
+        val shortRegex = "(?<=youtu\\.be/)[^?&]*".toRegex()
+
+        // Match per youtube.com/watch?v=VIDEOID
+        val longRegex = "(?<=v=)[^#&?]*".toRegex()
+
+        return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
+    }
+
 
     private fun showDialogEveryTenOpens() {
         val sharedPreferences = requireContext().getSharedPreferences("app_prefs", android.content.Context.MODE_PRIVATE)

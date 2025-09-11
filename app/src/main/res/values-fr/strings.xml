@@ -13,7 +13,7 @@
           <i>PLAYLISTES :</i> l\'ajout de chansons est possible grâce au bouton en haut à droite du lecteur vidéo.\n\n
     </string>
     <string name="my_info">Site Web du développeur : <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Entrez le titre…</string>
+    <string name="placeholder">Entrez le titre ou le lien…</string>
     <string name="delete_confirmation_title">Supprimer cet élément ?</string>
     <string name="delete_confirmation">Êtes-vous sûr de bien vouloir supprimer cet élément?</string>
     <string name="delete">Supprimer</string>
@@ -66,10 +66,10 @@
     <string name="intro_desc_welcome">Bienvenue sur RYTM, l\’application où vous pouvez regarder des vidéos YouTube sans pubs et plus encore…</string>
 
     <string name="intro_title_home">Écran d\’accueil</string>
-    <string name="intro_desc_home">1. Recherchez une vidéo dans la barre de recherche\n\n2. Vous avez l\’historique de vos recherches\n\n3. Vous pouvez créer des playlists pour organiser vos vidéos</string>
+    <string name="intro_desc_home">1. Recherchez des vidéos ou collez le lien dans la barre de recherche\n\n2. Vous pouvez créer des playlists pour organiser vos vidéos\n\n3. Vous avez l\\\'historique de vos recherches</string>
 
     <string name="intro_title_player">Lecteur</string>
-    <string name="intro_desc_player">1. Ajoutez une vidéo à votre playlist.\n\n2. Arrêtez une vidéo pour enregistrer votre progression et la regarder plus tard\n\n3. Appui long pour organiser et glisser pour supprimer\n\n4. Verrouillez l\’écran pour éviter les touches accidentelles\n\n5. Définissez une minuterie si vous voulez vous endormir avec une vidéo</string>
+    <string name="intro_desc_player">1. Ajoutez une vidéo à votre playlist.\n\n3. Appui long pour organiser et glisser pour supprimer\n\n4. Verrouillez l\’écran pour éviter les touches accidentelles\n\n5. Définissez une minuterie si vous voulez vous endormir avec une vidéo</string>
 
     <string name="intro_title_pip">Regardez vos vidéos en utilisant d\’autres applis</string>
     <string name="intro_desc_pip">Essayez de minimiser l\’application, vous pouvez continuer à regarder la vidéo en faisant autre chose</string>
@@ -79,5 +79,8 @@
 
     <string name="intro_title_end">…C\’est parti !</string>
     <string name="intro_desc_end">Merci d\’avoir téléchargé cette application, vous pouvez retrouver ce tutoriel dans les paramètres si besoin !</string>
+    <string name="save_video_progress">Enregistrer la progression de la vidéo</string>
+    <string name="intro_title_settings">Dubbing IA ou sauvegarde du progrès ?</string>
+    <string name="intro_desc_settings">En définissant l\'application sur la langue originale de la vidéo, le doublage IA disparaîtra. Vous pouvez également maintenant activer la sauvegarde automatique de la progression des vidéos !</string>
 
 </resources>

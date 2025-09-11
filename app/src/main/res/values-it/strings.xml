@@ -15,7 +15,7 @@
         <i>Alcuni dati potrebbero essere manipolati dal proprietario delle API, ovvero Youtube, come indicato nei <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a>.</i>
     </string>
     <string name="my_info">Sito web sviluppatore: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Inserisci titolo…</string>
+    <string name="placeholder">Inserisci titolo o link…</string>
     <string name="delete_confirmation_title">Eliminare questo elemento?</string>
     <string name="delete_confirmation">Sei sicuro di voler eliminare questo elemento?</string>
     <string name="delete">Elimina</string>
@@ -67,10 +67,10 @@
     <string name="intro_desc_welcome">Benvenuto in RYTM, l\'app dove puoi guardare video di YouTube senza pubblicità e altro…</string>
 
     <string name="intro_title_home">Schermata Home</string>
-    <string name="intro_desc_home">1. Cerca un video nella barra di ricerca\n\n2. Hai la cronologia delle tue ricerche\n\n3. Puoi creare playlist per organizzare i tuoi video</string>
+    <string name="intro_desc_home">1. Cerca i video o incolla il link nella barra di ricerca\n\n2. Puoi creare playlist per organizzare i tuoi video\n\n3. Hai la cronologia delle tue ricerche</string>
 
     <string name="intro_title_player">Player</string>
-    <string name="intro_desc_player">1. Aggiungi un video alla tua playlist.\n\n2. Ferma un video per salvare i tuoi progressi e guardarlo più tardi\n\n3. Tieni premuto per organizzare e scorri per eliminare\n\n4. Blocca lo schermo per evitare tocchi accidentali\n\n5. Imposta un timer se vuoi addormentarti con un video</string>
+    <string name="intro_desc_player">1. Aggiungi un video alla tua playlist.\n\n3. Tieni premuto per organizzare e scorri per eliminare\n\n4. Blocca lo schermo per evitare tocchi accidentali\n\n5. Imposta un timer se vuoi addormentarti con un video</string>
 
     <string name="intro_title_pip">Guarda i tuoi video mentre usi altre app</string>
     <string name="intro_desc_pip">Prova a minimizzare l\'app, puoi continuare a guardare il video mentre fai altre cose</string>
@@ -80,5 +80,8 @@
 
     <string name="intro_title_end">…Iniziamo!</string>
     <string name="intro_desc_end">Grazie per aver scaricato questa app, puoi trovare questo tutorial nelle impostazioni se ti serve!</string>
+    <string name="save_video_progress">Salva i progressi dei video</string>
+    <string name="intro_title_settings">Doppiaggio AI o salvataggio dei progressi?</string>
+    <string name="intro_desc_settings">Impostando l\'app nella lingua originale del video, il doppiaggio AI scomparirà. Inoltre puoi ora attivare il salvataggio automatico dei progressi dei video!</string>
 
 </resources>

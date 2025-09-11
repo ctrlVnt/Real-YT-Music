@@ -38,6 +38,17 @@ class Settings : Fragment(){
         val visitmywebsiteButton : Button = rootView.findViewById(R.id.visitwebsite)
         val rateAppButton : Button = rootView.findViewById(R.id.rate_app)
         val tutorialButton : Button = rootView.findViewById(R.id.see_tutorial)
+        val saveMinutesToggle: com.google.android.material.switchmaterial.SwitchMaterial = rootView.findViewById(R.id.save_minutes_toggle)
+
+        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
+        saveMinutesToggle.isChecked = isSaveEnabled
+
+        saveMinutesToggle.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit {
+                putBoolean("save_minutes_enabled", isChecked)
+            }
+        }
 
         val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
         flagEmojiTextView.text = flagEmoji

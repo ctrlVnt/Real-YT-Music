@@ -181,10 +181,9 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            - Research now returns up to 20 videos for faster discovery
-            - You can save specific minutes of a video -> a button will appear when you pause playback
-            - Added tutorial in the settings
-            - Bug fixes and performance improvements
+            • Paste video links directly in the search bar
+            • Enable automatic saving of your video progress in the settings
+            • Bug fixing
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

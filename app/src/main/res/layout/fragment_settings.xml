@@ -45,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/lingua"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +76,19 @@
                     app:layout_constraintStart_toEndOf="@+id/currentLanguageText"
                     app:layout_constraintTop_toTopOf="@+id/currentLanguageText" />
 
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="350dp"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/save_minutes_toggle"
+                    style="?attr/switchStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toTopOf="@+id/textView3"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="20dp"
+                    android:checked="true"
+                    android:text="@string/save_video_progress"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/currentLanguageText" />
+
 
                 <TextView
                     android:id="@+id/textView3"

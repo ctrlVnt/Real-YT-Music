@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">開発者ウェブサイト：<a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">タイトルを入力…</string>
+    <string name="placeholder">タイトルまたはリンクを入力…</string>
 
     <string name="delete_confirmation_title">このアイテムを削除しますか？</string>
     <string name="delete_confirmation">このアイテムを削除してもよろしいですか？</string>
@@ -81,10 +81,10 @@
     <string name="intro_desc_welcome">RYTMへようこそ。このアプリでは広告なしでYouTube動画を視聴でき、さらに多くの機能があります…</string>
 
     <string name="intro_title_home">ホーム画面</string>
-    <string name="intro_desc_home">1. 検索バーで動画を検索\n\n2. 検索履歴を確認可能\n\n3. 動画を整理するためにプレイリストを作成できます</string>
+    <string name="intro_desc_home">1. 動画を検索するか、リンクを検索バーに貼り付けます\n\n2. 動画を整理するためにプレイリストを作成できます\n\n3. 検索履歴があります</string>
 
     <string name="intro_title_player">プレーヤー</string>
-    <string name="intro_desc_player">1. 動画をプレイリストに追加します。\n\n2. 動画を一時停止して進捗を保存し、後で視聴できます\n\n3. 長押しで整理し、スワイプで削除\n\n4. 誤操作を避けるため画面をロック\n\n5. 動画を見ながら眠りたい場合はタイマーを設定</string>
+    <string name="intro_desc_player">1. 動画をプレイリストに追加します。\n\n3. 長押しで整理し、スワイプで削除\n\n4. 誤操作を避けるため画面をロック\n\n5. 動画を見ながら眠りたい場合はタイマーを設定</string>
 
     <string name="intro_title_pip">他のアプリを使いながら動画を視聴</string>
     <string name="intro_desc_pip">アプリを最小化してみてください。他の操作をしながら動画を見続けられます</string>
@@ -94,5 +94,8 @@
 
     <string name="intro_title_end">…さあ始めましょう！</string>
     <string name="intro_desc_end">このアプリをダウンロードしていただきありがとうございます。必要に応じて設定でこのチュートリアルを見つけられます！</string>
+    <string name="save_video_progress">動画の進行状況を保存</string>
+    <string name="intro_title_settings">AIダビングまたは進行状況の保存？</string>
+    <string name="intro_desc_settings">アプリを動画の元の言語に設定すると、AIダビングは消えます。また、動画の進行状況を自動保存することもできます！</string>
 
 </resources>

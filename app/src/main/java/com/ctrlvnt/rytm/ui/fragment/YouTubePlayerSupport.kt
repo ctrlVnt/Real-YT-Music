@@ -15,6 +15,8 @@ import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -99,6 +101,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private var originalMarginTop: Int = 0
     private var indexVideo = 0
     private val googlePlayServicesAvailabilityRequestCode = 1
+    private var saveMinutesHandler: Handler? = null
+    private var saveMinutesRunnable: Runnable? = null
+
 
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
@@ -200,7 +205,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
-        val saveMinutesButton: MaterialButton = rootView.findViewById(R.id.save_minutes)
         timer = rootView.findViewById(R.id.timer)
         prevButton = rootView.findViewById(R.id.prev_video)
         nextButton = rootView.findViewById(R.id.next_video)
@@ -211,8 +215,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         searchBar = rootView.findViewById(R.id.search_bar_player)
         val videos: MutableList<Video>
 
-        saveMinutesButton.visibility = View.GONE
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
+
+        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
+
+        if (isSaveEnabled) {
+            startSaveMinutesTimer(videoId.toString())
+        }
 
         var lock = false
         var repeatOption = false
@@ -377,9 +387,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
-                if (!text.isNullOrBlank()) {
-                    titleSearch(text, rootView)
-                }
+                launchSearch(text.toString(), rootView)
                 return true
             }
 
@@ -505,10 +513,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         shuffleMode.add(randomIndex)
                     }else{
+                        //if there is one video
                         if(nextVideo.size == 1){
                             indexVideo = 0
+                        //if the video is the firstone, I'll return to lastone
                         }else if(indexVideo < 0){
                             indexVideo = nextVideo.size - 1
+                        //if if the last video to the list return to firstone
                         } else if (indexVideo >= nextVideo.size) {
                             indexVideo = 0
                         }else{
@@ -517,27 +528,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
                         createNotification(nextVideo[indexVideo])
-                        playlistAdd.setOnClickListener {
-                            showPlaylistDialog(nextVideo[indexVideo+1].id)
-                        }
                     }
-                }
-                if (state == PlayerConstants.PlayerState.PAUSED) {
-                    // Save minutes when the video is paused
-                    saveMinutesButton.visibility = View.VISIBLE
-                    saveMinutesButton.setOnClickListener {
-                        MainActivity.database.saveMinutesVideo(
-                            SaveMinutes(
-                                videoId.toString(),
-                                tracker.currentSecond
-                            )
-                        )
-                        MainActivity.database.updateMinutes(videoId.toString(), tracker.currentSecond)
-                        Toast.makeText(requireContext(), "Video saved at ${tracker.currentSecond/60F}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                if (state == PlayerConstants.PlayerState.PLAYING) {
-                    saveMinutesButton.visibility = View.GONE
                 }
             }
         })
@@ -545,6 +536,64 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         return rootView
     }
+
+
+
+    fun launchSearch(query: String, rootView: View){
+        if (query.startsWith("https://")) {
+            val videoId = extractYoutubeId(query)
+            if (videoId != null) {
+                val fragment = YouTubePlayerSupport().apply {
+                    arguments = Bundle().apply {
+                        putString("video_id", videoId)
+                        putString("playlist_name", "fromoutside")
+                    }
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main_activity, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
+            } else {
+                Toast.makeText(requireContext(), "Link non valido", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            titleSearch(query, rootView)
+        }
+    }
+
+    private fun extractYoutubeId(url: String): String? {
+        val shortRegex = "(?<=youtu\\.be/)[^?&]*".toRegex()
+
+        val longRegex = "(?<=v=)[^#&?]*".toRegex()
+
+        return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
+    }
+
+    private fun startSaveMinutesTimer(videoId: String) {
+        saveMinutesHandler = Handler(Looper.getMainLooper())
+        saveMinutesRunnable = object : Runnable {
+            override fun run() {
+                val currentSeconds = tracker.currentSecond
+                MainActivity.database.saveMinutesVideo(
+                    SaveMinutes(videoId, currentSeconds)
+                )
+                MainActivity.database.updateMinutes(videoId, currentSeconds)
+
+                /*debug print*/
+                /*Toast.makeText(
+                    requireContext(),
+                    "Video saved at ${currentSeconds / 60F}",
+                    Toast.LENGTH_SHORT
+                ).show()*/
+
+                saveMinutesHandler?.postDelayed(this, 10_000)
+            }
+        }
+        saveMinutesHandler?.post(saveMinutesRunnable!!)
+    }
+
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
@@ -880,7 +929,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     fun cancelExitTimer() {
         exitTimer?.cancel()
         exitTimer = null
+        stopSaveMinutesTimer()
     }
+
+    private fun stopSaveMinutesTimer() {
+        saveMinutesHandler?.removeCallbacks(saveMinutesRunnable!!)
+        saveMinutesHandler = null
+        saveMinutesRunnable = null
+    }
+
 
 
     override fun onDestroy() {

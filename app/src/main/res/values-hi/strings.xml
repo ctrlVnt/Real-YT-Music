@@ -15,7 +15,7 @@
         <i>कुछ डेटा YouTube API के मालिकाना हक के अंतर्गत आता है, जिसे <a href="https://www.youtube.com/t/terms?hl=hi">नियम और शर्तें</a> और <a href="http://www.google.com/policies/privacy">गोपनीयता नीति</a> के अनुसार संशोधित किया जा सकता है।</i>
     </string>
     <string name="my_info">डेवलपर वेबसाइट: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">खोज शब्द लिखें…</string>
+    <string name="placeholder">शीर्षक या लिंक दर्ज करें…</string>
     <string name="delete_confirmation_title">क्या आप इसे हटाना चाहते हैं?</string>
     <string name="delete_confirmation">क्या आप वाकई इसे हटाना चाहते हैं?</string>
     <string name="delete">हटाएं</string>
@@ -67,10 +67,10 @@
     <string name="intro_desc_welcome">RYTM में आपका स्वागत है, वह ऐप जहाँ आप YouTube वीडियो बिना विज्ञापन और अधिक सुविधाओं के देख सकते हैं...</string>
 
     <string name="intro_title_home">मुख्य स्क्रीन</string>
-    <string name="intro_desc_home">1. सर्च बार में वीडियो खोजें\n\n2. आपके पास अपनी खोज का इतिहास है\n\n3. आप अपने वीडियो को व्यवस्थित करने के लिए प्लेलिस्ट बना सकते हैं</string>
+    <string name="intro_desc_home">1. वीडियो खोजें या लिंक को सर्च बार में चिपकाएँ\n\n2. आप अपने वीडियो व्यवस्थित करने के लिए प्लेलिस्ट बना सकते हैं\n\n3. आपके पास अपनी खोज का इतिहास है</string>
 
     <string name="intro_title_player">प्लेयर</string>
-    <string name="intro_desc_player">1. अपनी प्लेलिस्ट में एक वीडियो जोड़ें।\n\n2. वीडियो रोकें ताकि प्रगति सहेजी जा सके और बाद में देख सकें\n\n3. व्यवस्थित करने के लिए लंबा दबाएं और हटाने के लिए स्वाइप करें\n\n4. आकस्मिक स्पर्श से बचने के लिए स्क्रीन लॉक करें\n\n5. यदि आप वीडियो देखते हुए सोना चाहते हैं तो टाइमर सेट करें</string>
+    <string name="intro_desc_player">1. अपनी प्लेलिस्ट में एक वीडियो जोड़ें।\n\n3. व्यवस्थित करने के लिए लंबा दबाएं और हटाने के लिए स्वाइप करें\n\n4. आकस्मिक स्पर्श से बचने के लिए स्क्रीन लॉक करें\n\n5. यदि आप वीडियो देखते हुए सोना चाहते हैं तो टाइमर सेट करें</string>
 
     <string name="intro_title_pip">अन्य ऐप्स का उपयोग करते समय अपने वीडियो देखें</string>
     <string name="intro_desc_pip">ऐप को न्यूनतम करने का प्रयास करें, आप अन्य काम करते समय वीडियो देखते रह सकते हैं</string>
@@ -80,5 +80,8 @@
 
     <string name="intro_title_end">...चलो शुरू करें!</string>
     <string name="intro_desc_end">इस ऐप को डाउनलोड करने के लिए धन्यवाद, यदि आपको ज़रूरत हो तो आप सेटिंग्स में यह ट्यूटोरियल पा सकते हैं!</string>
+    <string name="save_video_progress">वीडियो प्रगति सहेजें</string>
+    <string name="intro_title_settings">एआई डबिंग या प्रगति सहेजें?</string>
+    <string name="intro_desc_settings">एप्लिकेशन को वीडियो की मूल भाषा पर सेट करने से एआई डबिंग गायब हो जाएगी। अब आप वीडियो की प्रगति को स्वचालित रूप से सहेजना भी सक्षम कर सकते हैं!</string>
 
 </resources>

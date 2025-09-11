@@ -50,19 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/save_minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_minute"
-            android:fontFamily="@font/bricolagegrotesquemedium"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/red"
-            app:cornerRadius="16dp"
-            app:iconPadding="8dp"
-            android:layout_marginStart="10dp"/>
-
     </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
     <androidx.recyclerview.widget.RecyclerView

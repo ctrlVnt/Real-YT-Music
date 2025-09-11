@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">Developer website: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Enter title…</string>
+    <string name="placeholder">Enter title or link…</string>
 
     <string name="delete_confirmation_title">Delete this item?</string>
     <string name="delete_confirmation">Are you sure you want to delete this item?</string>
@@ -84,10 +84,10 @@
     <string name="intro_desc_welcome">Welcome in RYTM, the app where you can see a youtube videos without ads and more…</string>
 
     <string name="intro_title_home">Home screen</string>
-    <string name="intro_desc_home">1. Search video in searchbar\n\n2. You have the history of your research\n\n3. You can create playlists to organise your videos</string>
+    <string name="intro_desc_home">1. Search videos or paste the link in searchbar\n\n2. You can create playlists to organise your videos\n\n3. You have the history of your research</string>
 
     <string name="intro_title_player">Player</string>
-    <string name="intro_desc_player">1. Add a video to your playlist.\n\n2. Stop a video to save your progress and watching it later\n\n3. Long-press to organize and swipe to delete\n\n4. Lock the screen to avoid accidental touches\n\n5. Set a timer if you want to fall asleep with a video</string>
+    <string name="intro_desc_player">1. Add a video to your playlist.\n\n3. Long-press to organize and swipe to delete\n\n4. Lock the screen to avoid accidental touches\n\n5. Set a timer if you want to fall asleep with a video</string>
 
     <string name="intro_title_pip">Watch your videos while you use others apps</string>
     <string name="intro_desc_pip">Try to minimize the app, you can continue to see the video while do other things</string>
@@ -97,5 +97,8 @@
 
     <string name="intro_title_end">…Let\'s get started!</string>
     <string name="intro_desc_end">Thank you to download this app, you can find this tutorial in setting if you need!</string>
+    <string name="save_video_progress">Save video progress</string>
+    <string name="intro_title_settings">AI dubbing or saving progress?</string>
+    <string name="intro_desc_settings">By setting the app to the video\\\'s original language, AI dubbing will disappear. You can also now enable automatic saving of video progress!</string>
 
 </resources>

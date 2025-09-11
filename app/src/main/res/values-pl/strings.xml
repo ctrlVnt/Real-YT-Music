@@ -18,7 +18,7 @@
     </string>
 
     <string name="my_info">Strona internetowa dewelopera: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
-    <string name="placeholder">Wprowadź tytuł…</string>
+    <string name="placeholder">Wprowadź tytuł lub link…</string>
 
     <string name="delete_confirmation_title">Usunąć ten element?</string>
     <string name="delete_confirmation">Jesteś pewien, że chcesz usunąć ten element?</string>
@@ -81,10 +81,10 @@
     <string name="intro_desc_welcome">Witamy w RYTM, aplikacji, w której możesz oglądać filmy z YouTube bez reklam i nie tylko...</string>
 
     <string name="intro_title_home">Ekran główny</string>
-    <string name="intro_desc_home">1. Wyszukaj film w pasku wyszukiwania\n\n2. Masz historię swoich wyszukiwań\n\n3. Możesz tworzyć playlisty, aby organizować swoje filmy</string>
+    <string name="intro_desc_home">1. Wyszukaj filmy lub wklej link w pasku wyszukiwania\n\n2. Możesz tworzyć playlisty, aby uporządkować swoje filmy\n\n3. Masz historię swoich wyszukiwań</string>
 
     <string name="intro_title_player">Odtwarzacz</string>
-    <string name="intro_desc_player">1. Dodaj film do swojej playlisty.\n\n2. Zatrzymaj film, aby zapisać postęp i obejrzeć go później\n\n3. Przytrzymaj, aby zorganizować i przesuń, aby usunąć\n\n4. Zablokuj ekran, aby uniknąć przypadkowych dotknięć\n\n5. Ustaw timer, jeśli chcesz zasnąć przy filmie</string>
+    <string name="intro_desc_player">1. Dodaj film do swojej playlisty.\n\n3. Przytrzymaj, aby zorganizować i przesuń, aby usunąć\n\n4. Zablokuj ekran, aby uniknąć przypadkowych dotknięć\n\n5. Ustaw timer, jeśli chcesz zasnąć przy filmie</string>
 
     <string name="intro_title_pip">Oglądaj filmy podczas korzystania z innych aplikacji</string>
     <string name="intro_desc_pip">Spróbuj zminimalizować aplikację, możesz dalej oglądać film robiąc inne rzeczy</string>
@@ -94,5 +94,8 @@
 
     <string name="intro_title_end">...Zaczynajmy!</string>
     <string name="intro_desc_end">Dziękuję za pobranie tej aplikacji, możesz znaleźć ten samouczek w ustawieniach, jeśli będzie potrzebny!</string>
+    <string name="save_video_progress">Zapisz postęp wideo</string>
+    <string name="intro_title_settings">Dubbing AI czy zapisywanie postępu?</string>
+    <string name="intro_desc_settings">Ustawiając aplikację na oryginalny język wideo, dubbing AI zniknie. Możesz teraz również włączyć automatyczne zapisywanie postępu wideo!</string>
 
 </resources>
