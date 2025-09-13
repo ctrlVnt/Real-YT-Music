@@ -491,8 +491,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             ) {
                 super.onStateChange(youTubePlayer, state)
                 if (state == PlayerConstants.PlayerState.ENDED){
+                    val playlistName = arguments?.getString("playlist_name")
                     MainActivity.database.deleteMinutes(videoId.toString())
-                    if(repeatOption){
+                    if(repeatOption || playlistName == "fromoutside"){
                         videoId?.let {
                             youTubePlayer.loadVideo(it, 0f)
 
