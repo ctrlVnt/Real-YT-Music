@@ -22,6 +22,7 @@ import java.util.Locale
 import androidx.core.net.toUri
 import androidx.core.content.edit
 import com.ctrlvnt.rytm.ui.TutorialActivity
+import com.google.android.material.button.MaterialButton
 
 
 class Settings : Fragment(){
@@ -31,13 +32,13 @@ class Settings : Fragment(){
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
         val backButton: ImageButton = rootView.findViewById(R.id.back_button)
-        val buymeacoffeeButton : Button = rootView.findViewById(R.id.buymeacoffee)
-        val sendmemailButton : Button = rootView.findViewById(R.id.sendmeamail)
+        val buymeacoffeeButton : MaterialButton = rootView.findViewById(R.id.buymeacoffee)
+        val sendmemailButton : MaterialButton = rootView.findViewById(R.id.sendmeamail)
         val settingsButton : ImageButton = rootView.findViewById(R.id.language)
         val flagEmojiTextView: TextView = rootView.findViewById(R.id.flag_emoji)
-        val visitmywebsiteButton : Button = rootView.findViewById(R.id.visitwebsite)
-        val rateAppButton : Button = rootView.findViewById(R.id.rate_app)
-        val tutorialButton : Button = rootView.findViewById(R.id.see_tutorial)
+        val visitmywebsiteButton : MaterialButton = rootView.findViewById(R.id.visitwebsite)
+        val rateAppButton : MaterialButton = rootView.findViewById(R.id.rate_app)
+        val tutorialButton : MaterialButton = rootView.findViewById(R.id.see_tutorial)
         val saveMinutesToggle: com.google.android.material.switchmaterial.SwitchMaterial = rootView.findViewById(R.id.save_minutes_toggle)
 
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
