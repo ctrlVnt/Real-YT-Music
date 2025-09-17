@@ -521,7 +521,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }else if(indexVideo < 0){
                             indexVideo = nextVideo.size - 1
                         //if if the last video to the list return to firstone
-                        } else if (indexVideo >= nextVideo.size) {
+                        } else if (indexVideo >= nextVideo.size - 1) {
                             indexVideo = 0
                         }else{
                             indexVideo++
