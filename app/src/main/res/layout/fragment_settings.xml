@@ -147,7 +147,7 @@
                     android:id="@+id/visitwebsite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/material_dynamic_primary60"
+                    android:backgroundTint="@color/placeholder"
                     android:text="@string/visita_il_mio_sito_web"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
