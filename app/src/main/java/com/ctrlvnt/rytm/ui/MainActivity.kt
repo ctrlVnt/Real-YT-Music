@@ -181,8 +181,6 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Restored version to solve Android 10 & 11 player problems
-            • Fixed bug settings on Android 10 & 11 
             • Bug fixing
             """.trimIndent()
             )
