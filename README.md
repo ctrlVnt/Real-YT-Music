@@ -7,17 +7,10 @@ Real YT Music, or RYTM for short, is a versatile YouTube application that seamle
 
 ## Features
 
-1. **Music Discovery**: RYTM allows you to search and explore a vast library of music content available on YouTube. Discover new songs, artists, and genres with ease. **without ads** !
-
-2. **Playlist Management**: Create and manage playlists within RYTM that are not synchronized with your YouTube account. This means you can curate your music without cluttering your YouTube playlists.
-
-3. **Picture-in-Picture (PiP) Mode**: Experience uninterrupted music playback with the Picture-in-Picture (PiP) mode. You can continue watching your favorite music videos in a small, resizable window while browsing through other app functions or even your device's home screen.
-
-4. **Notification Music Commands**: RYTM also offers convenient music control through notifications. Change tracks, adjust volume, and manage playback without having to switch back to the app.
-
-Real YT Music is your all-in-one solution for exploring, managing, and enjoying music content from YouTube, enhancing your music listening experience like never before.
-
-In case you have a proposal to improve the application or want to request more features, you can open an [issue](https://github.com/ctrlVnt/Real-YT-Music/issues) !
+- **Background mode:** Background playback can't work on the lock screen due to YouTube's API policy, but you can just press the home button and keep scrolling with the video playing in the background
+- **Playlists:** You can save your favourite videos in local playlists
+- **Sleeping mode:** You can set a timer, fall asleep, and the app will automatically close when the timer ends
+- **Bookmark:** In the settings, you can enable bookmarks for long videos
 
 Avaiable on [Google Play Store](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm)
 
@@ -37,6 +30,7 @@ You can download full-playback mode [here](https://github.com/ctrlVnt/Real-YT-Mu
 
 ## How to Contribute
 Read the [contribution guidelines](CONTRIBUTING.md) to learn how to collaborate on the project.
+In case you have a proposal to improve the application or want to request more features, you can open an [issue](https://github.com/ctrlVnt/Real-YT-Music/issues) !
 
 ## Translations
 If you'd like to help improve translations or add a new language, [click here](https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res) to access the translation files.
