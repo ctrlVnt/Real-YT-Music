@@ -18,14 +18,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
+import androidx.core.net.toUri
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import androidx.core.net.toUri
 import java.util.Locale
-import androidx.core.content.edit
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +42,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        window.decorView.apply {
+            WindowCompat.setDecorFitsSystemWindows(getWindow(), false)
+            val insetsController =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
+            if (insetsController != null) {
+                insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE)
+                insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            }
+        }
 
         val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
 

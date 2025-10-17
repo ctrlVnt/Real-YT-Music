@@ -108,91 +108,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
 
-    private val playbackReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            when (intent?.action) {
-                "ACTION_PLAY" -> {
-                    val playerCallback = object : YouTubePlayerCallback {
-                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                            youTubePlayer.play()
-                        }
-                    }
-                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
-                }
-                "ACTION_PAUSE" -> {
-                    val playerCallback = object : YouTubePlayerCallback {
-                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                            youTubePlayer.pause()
-                        }
-                    }
-                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
-                }
-                "ACTION_NEXT" -> {
-                    val videos : MutableList<Video>
-                    val playlistName = arguments?.getString("playlist_name")
-                    if(playlistName == null || playlistName == ""){
-                        videos = MainActivity.database.videoDao().getAll()
-                    }else{
-                        videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
-                    }
-                    if(indexVideo < videos.size - 1){
-                        indexVideo++
-                    }else{
-                        indexVideo = 0
-                    }
-                    val playerCallback = object : YouTubePlayerCallback {
-                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                            youTubePlayer.loadVideo(videos[indexVideo].id, 0F)
-                            createNotification(videos[indexVideo])
-                        }
-                    }
-                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
-                }
-                "ACTION_PREV" -> {
-                    val videos : MutableList<Video>
-                    val playlistName = arguments?.getString("playlist_name")
-                    if(playlistName == null || playlistName == ""){
-                        videos = MainActivity.database.videoDao().getAll()
-                    }else{
-                        videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
-                    }
-                    if (indexVideo > 0){
-                        indexVideo--
-                    }else{
-                        indexVideo = videos.size - 1
-                    }
-                    val playerCallback = object : YouTubePlayerCallback {
-                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                            youTubePlayer.loadVideo(videos[indexVideo].id, 0F)
-                            createNotification(videos[indexVideo])
-                        }
-                    }
-                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
-                }
-            }
-        }
-    }
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onStart() {
-        super.onStart()
-        val intentFilter = IntentFilter().apply {
-            addAction("ACTION_PLAY")
-            addAction("ACTION_PAUSE")
-            addAction("ACTION_NEXT")
-            addAction("ACTION_PREV")
-        }
-        try {
-            requireContext().registerReceiver(playbackReceiver, intentFilter,
-                Context.RECEIVER_NOT_EXPORTED)
-        } catch (e: Exception) {
-            Log.e("BroadcastReceiver", "Errore durante la registrazione del BroadcastReceiver: ${e.message}")
-        }
-    }
-    override fun onStop() {
-        super.onStop()
-        requireContext().unregisterReceiver(playbackReceiver)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -420,13 +335,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     youTubePlayer.loadVideo(it, minutes)
                     MainActivity.database.deleteMinutes(videoId.toString()) //to reset every time
 
-                    //if i open video from link
-                    val playlistName = arguments?.getString("playlist_name")
-                    if(playlistName != "fromoutside"){
-                        createNotification(nextVideo[indexVideo])
-                    }
-
-
                     playlistAdd.setOnClickListener {
                         showPlaylistDialog(videoId)
                     }
@@ -442,14 +350,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                                     videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                                     youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
-                                    createNotification(nextVideo[randomIndex])
                                     shuffleMode.add(randomIndex)
                                     shuffleindex++
                                 }else{
                                     shuffleindex++
                                     videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
                                     youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
-                                    createNotification(nextVideo[shuffleMode[shuffleindex]])
                                 }
                             }else {
                                 indexVideo++
@@ -458,7 +364,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                                 }
                                 videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                                 youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                                createNotification(nextVideo[indexVideo])
                             }
                         }
                     }
@@ -471,7 +376,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                                 shuffleindex--
                                 videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
                                 youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
-                                createNotification(nextVideo[shuffleindex])
                             }else {
                                 indexVideo--
                                 if (indexVideo < 0) {
@@ -479,7 +383,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                                 }
                                 videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                                 youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                                createNotification(nextVideo[indexVideo])
                             }
                         }
                     }
@@ -508,7 +411,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }while (randomIndex == indexVideo)
                         videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                         youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
-                        createNotification(nextVideo[randomIndex])
                         playlistAdd.setOnClickListener {
                             showPlaylistDialog(nextVideo[randomIndex].id)
                         }
@@ -528,7 +430,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
-                        createNotification(nextVideo[indexVideo])
                     }
                 }
             }
@@ -581,13 +482,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     SaveMinutes(videoId, currentSeconds)
                 )
                 MainActivity.database.updateMinutes(videoId, currentSeconds)
-
-                /*debug print*/
-                /*Toast.makeText(
-                    requireContext(),
-                    "Video saved at ${currentSeconds / 60F}",
-                    Toast.LENGTH_SHORT
-                ).show()*/
 
                 saveMinutesHandler?.postDelayed(this, 10_000)
             }
@@ -781,70 +675,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         })
     }
 
-    @SuppressLint("MissingPermission")
-    private fun createNotification(video: Video) {
-        val notificationManager = NotificationManagerCompat.from(requireContext())
-        val bitmap = loadBitmapWithGlide(requireContext(), video.thumbnailUrl)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = "your_channel_id"
-            val channelName = "Your Channel Name"
-            val channelDescription = "Your Channel Description"
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_LOW)
-            channel.description = channelDescription
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val openAppIntent = Intent(requireContext(), YouTubePlayerSupport::class.java)
-        val openAppPendingIntent = PendingIntent.getActivity(requireContext(), 99, openAppIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        val playIntent = Intent("ACTION_PLAY")
-        val playPendingIntent = PendingIntent.getBroadcast(requireContext(), 0, playIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        val pauseIntent = Intent("ACTION_PAUSE")
-        val pausePendingIntent = PendingIntent.getBroadcast(requireContext(), 1, pauseIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        val nextIntent = Intent("ACTION_NEXT")
-        val nextPendingIntent = PendingIntent.getBroadcast(requireContext(), 2, nextIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        val prevIntent = Intent("ACTION_PREV")
-        val prevPendingIntent = PendingIntent.getBroadcast(requireContext(), 3, prevIntent, PendingIntent.FLAG_IMMUTABLE)
-
-        val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
-            .setShowActionsInCompactView(0, 1, 3)
-
-        val cleanTitle = Html.fromHtml(video.title, Html.FROM_HTML_MODE_LEGACY).toString()
-        val cleanChannel = Html.fromHtml(video.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString()
-
-        val notification = NotificationCompat.Builder(requireContext(), "your_channel_id")
-            .setSmallIcon(R.drawable.notify_logo)
-            .setContentTitle(cleanTitle)
-            .setContentText(cleanChannel)
-            .setColor(ContextCompat.getColor(requireContext(), R.color.red))
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setContentIntent(openAppPendingIntent)
-            .setStyle(mediaStyle)
-            .addAction(R.drawable.baseline_skip_previous, "Prev", prevPendingIntent)
-            .addAction(R.drawable.baseline_pause_24, "Pause", pausePendingIntent)
-            .addAction(R.drawable.baseline_play_arrow_24, "Play", playPendingIntent)
-            .addAction(R.drawable.baseline_skip_next, "Next", nextPendingIntent)
-            .setLargeIcon(bitmap)
-
-        notificationManager.notify(1, notification.build())
-    }
-
-    fun loadBitmapWithGlide(context: Context, url: String): Bitmap?{
-        return try {
-            Glide.with(context)
-                .asBitmap()
-                .load(url)
-                .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                .get()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
-        }
-    }
-
     override fun onItemClick(videoItem: VideoItem) {
         val videoId = videoItem.id
         val video = Video(
@@ -859,7 +689,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val playerCallback = object : YouTubePlayerCallback {
             override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
                 youTubePlayer.loadVideo(videoId.videoId, 0f)
-                createNotification(video)
             }
         }
 
