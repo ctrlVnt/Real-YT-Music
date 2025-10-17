@@ -194,7 +194,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Bug fixing
+            • Hidden botton bar
+            • Deleted broken notification
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
