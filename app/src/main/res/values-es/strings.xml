@@ -97,5 +97,6 @@
     <string name="save_video_progress">Guardar el progreso del video</string>
     <string name="intro_title_settings">Doblaje AI o guardar progreso?</string>
     <string name="intro_desc_settings">Al configurar la aplicación en el idioma original del video, el doblaje AI desaparecerá. ¡Ahora también puedes activar el guardado automático del progreso de los videos!</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>

@@ -97,5 +97,6 @@
     <string name="save_video_progress">Video­fortschritt speichern</string>
     <string name="intro_title_settings">KI-Dubbing oder Fortschritt speichern?</string>
     <string name="intro_desc_settings">Wenn Sie die App auf die Originalsprache des Videos einstellen, verschwindet das KI-Dubbing. Sie können jetzt auch das automatische Speichern des Video-Fortschritts aktivieren!</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>

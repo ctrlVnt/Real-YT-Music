@@ -39,6 +39,7 @@ class Settings : Fragment(){
         val visitmywebsiteButton : MaterialButton = rootView.findViewById(R.id.visitwebsite)
         val rateAppButton : MaterialButton = rootView.findViewById(R.id.rate_app)
         val tutorialButton : MaterialButton = rootView.findViewById(R.id.see_tutorial)
+        val githubButton : MaterialButton = rootView.findViewById(R.id.github)
         val saveMinutesToggle: com.google.android.material.switchmaterial.SwitchMaterial = rootView.findViewById(R.id.save_minutes_toggle)
 
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
@@ -70,6 +71,11 @@ class Settings : Fragment(){
 
         rateAppButton.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm".toUri())
+            startActivity(browserIntent)
+        }
+
+        githubButton.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://github.com/ctrlVnt/Real-YT-Music".toUri())
             startActivity(browserIntent)
         }
 
@@ -126,17 +132,19 @@ class Settings : Fragment(){
         return rootView
     }
 
-    private fun setLocale(languageCode: String) {
+    private fun setLocale(languageCode: String): Boolean {
         val locale = Locale(languageCode)
         Locale.setDefault(locale)
 
-        val config = Configuration()
+        val config = Configuration(requireContext().resources.configuration)
         config.setLocale(locale)
 
+        requireContext().createConfigurationContext(config)
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         prefs.edit { putString("app_lang", languageCode) }
 
         requireActivity().recreate()
+        return true
     }
 
     fun getFlagEmojiForLanguage(languageCode: String): String {

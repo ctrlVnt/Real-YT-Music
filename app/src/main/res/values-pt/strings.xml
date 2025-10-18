@@ -97,5 +97,6 @@
     <string name="save_video_progress">Salvar o progresso do vídeo</string>
     <string name="intro_title_settings">Dubbing AI czy zapisywanie postępu?</string>
     <string name="intro_desc_settings">Ustawiając aplikację na oryginalny język wideo, dubbing AI zniknie. Możesz teraz również włączyć automatyczne zapisywanie postępu wideo!</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>

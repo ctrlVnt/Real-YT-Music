@@ -196,6 +196,8 @@ class MainActivity : AppCompatActivity() {
             
             • Hidden botton bar
             • Deleted broken notification
+            • Added code source button
+            • Fixed language bug
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

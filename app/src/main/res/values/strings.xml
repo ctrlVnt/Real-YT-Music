@@ -100,5 +100,6 @@
     <string name="save_video_progress">Save video progress</string>
     <string name="intro_title_settings">AI dubbing or saving progress?</string>
     <string name="intro_desc_settings">By setting the app to the video\\\'s original language, AI dubbing will disappear. You can also now enable automatic saving of video progress!</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>

@@ -83,5 +83,6 @@
     <string name="save_video_progress">Salva i progressi dei video</string>
     <string name="intro_title_settings">Doppiaggio AI o salvataggio dei progressi?</string>
     <string name="intro_desc_settings">Impostando l\'app nella lingua originale del video, il doppiaggio AI scomparirà. Inoltre puoi ora attivare il salvataggio automatico dei progressi dei video!</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>

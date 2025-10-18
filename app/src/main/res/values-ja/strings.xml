@@ -97,5 +97,6 @@
     <string name="save_video_progress">動画の進行状況を保存</string>
     <string name="intro_title_settings">AIダビングまたは進行状況の保存？</string>
     <string name="intro_desc_settings">アプリを動画の元の言語に設定すると、AIダビングは消えます。また、動画の進行状況を自動保存することもできます！</string>
+    <string name="code_source">Code-Source 💻</string>
 
 </resources>
