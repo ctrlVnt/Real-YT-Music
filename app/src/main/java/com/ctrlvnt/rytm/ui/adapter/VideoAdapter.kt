@@ -1,14 +1,15 @@
 package com.ctrlvnt.rytm.ui.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.Typeface
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,6 +19,18 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import androidx.core.graphics.toColorInt
+import com.ctrlvnt.rytm.data.YouTubeApiManager
+import com.ctrlvnt.rytm.data.database.entities.Playlist
+import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
+import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
+import com.ctrlvnt.rytm.data.model.SearchResponse
+import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.google.android.material.button.MaterialButton
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.Collections
 
 class VideoAdapter(private val videoList: List<VideoItem>,
@@ -50,6 +63,8 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val videoTitle: TextView = itemView.findViewById(R.id.video_title)
         val channelTitle: TextView = itemView.findViewById(R.id.channel_title)
+        val isPlaylist: MaterialButton = itemView.findViewById(R.id.isPlaylist)
+
         val videoThumbnail: ImageView = itemView.findViewById(R.id.video_thumbnail)
 
         init {
@@ -70,8 +85,15 @@ class VideoAdapter(private val videoList: List<VideoItem>,
 
     override fun onBindViewHolder(holder: VideoViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val currentItem = videoList[position]
+
         holder.videoTitle.text = Html.fromHtml(currentItem.snippet.title, Html.FROM_HTML_MODE_LEGACY).toString()
         holder.channelTitle.text = Html.fromHtml(currentItem.snippet.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString()
+
+        if (currentItem.id.videoId == null) {
+            holder.isPlaylist.visibility = View.VISIBLE
+        } else {
+            holder.isPlaylist.visibility = View.GONE
+        }
 
         if (position == branoInRiproduzionePosition) {
             holder.videoTitle.setTypeface(null, Typeface.BOLD)
@@ -90,21 +112,26 @@ class VideoAdapter(private val videoList: List<VideoItem>,
 
         if (currentFragmentTag == "home") {
             holder.itemView.setOnClickListener {
-                val video = Video(
-                    videoList[position].id.videoId,
-                    videoList[position].snippet.title,
-                    videoList[position].snippet.channelTitle,
-                    videoList[position].snippet.thumbnails.medium.url
-                )
-                if (!exist(video)) {
-                    MainActivity.database.insertVideo(video)
+                if(currentItem.id.videoId == null){
+                    savePlaylistFromApi(holder, currentItem, currentItem.snippet.title)
                 }
-                val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId, "")
-                (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
-                    .replace(R.id.main_activity, fragment)
-                    .addToBackStack(null)
-                    .commit()
+                else{
+                    val video = Video(
+                        videoList[position].id.videoId.toString(),
+                        videoList[position].snippet.title,
+                        videoList[position].snippet.channelTitle,
+                        videoList[position].snippet.thumbnails.medium.url
+                    )
+                    if (!exist(video)) {
+                        MainActivity.database.insertVideo(video)
+                    }
+                    val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId.toString(), "")
+                    (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
+                        .replace(R.id.main_activity, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
             }
         } else {
             holder.itemView.setOnClickListener {
@@ -144,4 +171,57 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     fun getItemAt(position: Int): VideoItem {
         return videoList[position]
     }
+
+    fun savePlaylistFromApi(holder: VideoViewHolder, currentItem: VideoItem, playlistName: String) {
+        val playlistId = currentItem.id.playlistId ?: return
+
+        val newPlaylist = Playlist(playlistName = playlistName)
+
+        YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, object : Callback<PlaylistItemsResponse> {
+            override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
+                if (response.isSuccessful) {
+                    val videos = response.body()?.items ?: emptyList()
+
+                    // Convert to PlaylistVideo for Room
+                    val playlistVideos = videos.mapIndexed { index, item ->
+                        PlaylistVideo(
+                            playlistName = playlistName,
+                            videoId = item.snippet.resourceId.videoId,
+                            title = item.snippet.title,
+                            channelTitle = item.snippet.channelTitle,
+                            thumbnailUrl = item.snippet.thumbnails.high.url,
+                            position = index
+                        )
+                    }
+
+                    // Save videos if playlist doesn't exist already
+                    if(MainActivity.database.playlistDao().alreadyExist(playlistName) == 0){
+                        MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+                        MainActivity.database.playlisVideotDao().insertVideos(playlistVideos)
+                    }
+
+                    if (playlistVideos.isNotEmpty()) {
+                        val fragment = YouTubePlayerSupport.newInstance(
+                            playlistVideos[0].videoId,
+                            playlistName
+                        )
+                        (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
+                            .replace(R.id.main_activity, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    }
+
+                } else {
+                    Log.e("API Error", response.errorBody()?.string().orEmpty())
+                }
+            }
+
+            override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
+                Log.e("API ERROR", t.message.toString())
+            }
+        })
+    }
+
+
 }

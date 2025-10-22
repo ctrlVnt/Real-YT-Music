@@ -14,6 +14,8 @@ interface PlaylistVideoDao {
     fun getPlaylistVideos(playlistName: String): MutableList<Video>
 
     @Insert
+    fun insertVideos(videos: List<PlaylistVideo>)
+    @Insert
     fun insertVideoToPlaylist(playlistVideo: PlaylistVideo)
 
     @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName")

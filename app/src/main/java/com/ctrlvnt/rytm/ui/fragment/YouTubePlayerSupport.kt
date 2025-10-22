@@ -1,23 +1,12 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 
-import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.res.Configuration
-import android.graphics.Bitmap
-import android.graphics.PorterDuff
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,19 +17,15 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
@@ -54,8 +39,9 @@ import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.APIKEY
-import com.google.android.material.button.MaterialButton
+import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.ctrlvnt.rytm.utils.extractYoutubeId
+import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -176,7 +162,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 Thumbnail(it.thumbnailUrl)
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
-            VideoItem(videoId, snippet)
+            VideoItem("youtube#video", videoId, snippet)
         } ?.toMutableList() ?: mutableListOf()
 
         val videoAdapter = VideoAdapter(videoItems, null, "yt_player")
@@ -461,16 +447,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 Toast.makeText(requireContext(), "Link non valido", Toast.LENGTH_SHORT).show()
             }
         } else {
-            titleSearch(query, rootView)
+            performYouTubeSearch(
+                context = requireContext(),
+                rootView = rootView,
+                recyclerViewId = R.id.videos_list_player,
+                searchQuery = query
+            )
         }
-    }
-
-    private fun extractYoutubeId(url: String): String? {
-        val shortRegex = "(?<=youtu\\.be/)[^?&]*".toRegex()
-
-        val longRegex = "(?<=v=)[^#&?]*".toRegex()
-
-        return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
     }
 
     private fun startSaveMinutesTimer(videoId: String) {
@@ -558,7 +541,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
         alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
-            MainActivity.database.playlisVideotDao().deleteVideoFromPlaylist(playlistName, videoItem.id.videoId)
+            MainActivity.database.playlisVideotDao().deleteVideoFromPlaylist(playlistName, videoItem.id.videoId.toString())
             refreshAdapter(playlistName)
         }
         alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
@@ -580,7 +563,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 Thumbnail(it.thumbnailUrl)
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
-            VideoItem(videoId, snippet)
+            VideoItem("youtube#video", videoId, snippet)
         } ?: emptyList()
 
         val videoAdapter = VideoAdapter(videoItems,null, "yt_player")
@@ -630,51 +613,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         alertDialog.show()
     }
 
-    private fun titleSearch(searchQuery : String, rootView: View){
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.videos_list_player)
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = layoutManager
-        val apiManager = YouTubeApiManager()
-
-        val locale = Locale.getDefault()
-        var country = locale.country
-
-        if(locale.language == "en"){
-            country = "us"
-        }else if (locale.language == "hi"){
-            country = "in"
-        }
-
-        apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
-            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                if (response.isSuccessful) {
-                    val videos = response.body()?.items
-                    val videoItems = videos?.map {
-                        VideoItem(it.id, it.snippet)
-                    } ?: emptyList()
-
-                    recyclerView.adapter = VideoAdapter(videoItems, null,"home")
-                } else {
-                    val errorBody = response.errorBody()?.string()
-                    try {
-                        val errorJson = JSONObject(errorBody)
-                        val errorMessage = errorJson.getJSONObject("error").getString("message")
-                        Toast.makeText(requireContext(), "$errorMessage", Toast.LENGTH_LONG).show()
-                    } catch (e: JSONException) {
-                        Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
-                        Toast.makeText(requireContext(), "Errore sconosciuto", Toast.LENGTH_SHORT).show()
-                    }
-
-                    Log.e("API Error", response.toString())
-                }
-            }
-
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.e("ERROR", t.message.toString())
-            }
-        })
-    }
-
     override fun onItemClick(videoItem: VideoItem) {
         val videoId = videoItem.id
         val video = Video(
@@ -688,12 +626,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         val playerCallback = object : YouTubePlayerCallback {
             override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(videoId.videoId, 0f)
+                youTubePlayer.loadVideo(videoId.videoId.toString(), 0f)
             }
         }
 
         playlistAdd.setOnClickListener {
-            showPlaylistDialog(videoId.videoId)
+            showPlaylistDialog(videoId.videoId.toString())
         }
         youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
     }

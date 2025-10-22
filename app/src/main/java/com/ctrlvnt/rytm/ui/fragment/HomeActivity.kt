@@ -33,7 +33,6 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.PlaylistAdapter
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.APIKEY
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
@@ -45,6 +44,9 @@ import java.lang.invoke.ConstantCallSite
 import java.util.Locale
 import androidx.core.net.toUri
 import androidx.core.content.edit
+import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.ctrlvnt.rytm.utils.extractYoutubeId
+import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HomeActivity : Fragment() {
@@ -112,7 +114,7 @@ class HomeActivity : Fragment() {
                 Thumbnail(it.thumbnailUrl)
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
-            VideoItem(videoId, snippet)
+            VideoItem("youtube#video", videoId, snippet)
         } ?: emptyList()
 
         if(videos.isEmpty()){
@@ -318,18 +320,14 @@ class HomeActivity : Fragment() {
         } else {
             explainText.visibility = View.GONE
             searchButton.visibility = View.GONE
-            titleSearch(query, rootView)
+
+            performYouTubeSearch(
+                context = requireContext(),
+                rootView = rootView,
+                recyclerViewId = R.id.songs_list,
+                searchQuery = query
+            )
         }
-    }
-
-    private fun extractYoutubeId(url: String): String? {
-        // Match per youtu.be/VIDEOID
-        val shortRegex = "(?<=youtu\\.be/)[^?&]*".toRegex()
-
-        // Match per youtube.com/watch?v=VIDEOID
-        val longRegex = "(?<=v=)[^#&?]*".toRegex()
-
-        return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
     }
 
 
@@ -363,7 +361,7 @@ class HomeActivity : Fragment() {
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
         alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
-            MainActivity.database.videoDao().delete(videoItem.id.videoId)
+            MainActivity.database.videoDao().delete(videoItem.id.videoId.toString())
             refreshAdapter()
         }
         alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
@@ -383,7 +381,7 @@ class HomeActivity : Fragment() {
                 Thumbnail(it.thumbnailUrl)
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
-            VideoItem(videoId, snippet)
+            VideoItem("youtube#video", videoId, snippet)
         } ?: emptyList()
         cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
@@ -394,53 +392,6 @@ class HomeActivity : Fragment() {
             historyText.visibility = View.VISIBLE
             trashButton.visibility = View.GONE
         }
-    }
-
-    private fun titleSearch(searchQuery : String, rootView: View){
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = layoutManager
-        val apiManager = YouTubeApiManager()
-
-        val locale = Locale.getDefault()
-        var country = locale.country
-
-        if(locale.language == "en"){
-            country = "us"
-        }else if (locale.language == "hi"){
-            country = "in"
-        }
-
-        apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
-            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
-                if (response.isSuccessful) {
-                    val videos = response.body()?.items
-                    val videoItems = videos?.map {
-                        VideoItem(it.id, it.snippet)
-                    } ?: emptyList()
-
-                    //val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
-                    recyclerView.adapter = VideoAdapter(videoItems, null,"home")
-                } else {
-                    val errorBody = response.errorBody()?.string()
-                    try {
-                        val errorJson = JSONObject(errorBody)
-                        val errorMessage = errorJson.getJSONObject("error").getString("message")
-                        showLimitReachedDialog()
-                        //Toast.makeText(requireContext(), "All users have reached the daily limit. Requests will be recharged at midnight Los Angeles time", Toast.LENGTH_LONG).show()
-                    } catch (e: JSONException) {
-                        Log.e("API Error", "Errore nell'analisi del JSON dell'errore", e)
-                        Toast.makeText(requireContext(), getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
-                    }
-
-                    Log.e("API Error", response.toString())
-                }
-            }
-
-            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
-                Log.e("ERROR", t.message.toString())
-            }
-        })
     }
 
     private fun clearRecyclerView(rootView: View) {
@@ -494,13 +445,5 @@ class HomeActivity : Fragment() {
         }else{
             noPlaylist.visibility = View.GONE
         }
-    }
-
-    fun showLimitReachedDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.limit_title)
-            .setMessage(R.string.limit_message)
-            .setPositiveButton("OK", null)
-            .show()
     }
 }

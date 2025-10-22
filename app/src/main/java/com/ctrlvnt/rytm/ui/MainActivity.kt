@@ -194,10 +194,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Hidden botton bar
-            • Deleted broken notification
-            • Added code source button
-            • Fixed language bug
+            • Playlist search is now available, with automatic saving
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
