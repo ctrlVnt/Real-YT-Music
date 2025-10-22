@@ -19,8 +19,8 @@ Thank you for your interest in contributing to this project! Below is a guide on
 
 ## Development Environment
 - To run the project locally, follow these steps:
-  1. [Create your API key](https://developers.google.com/youtube/v3/getting-started) and insert it in this [file](https://github.com/ctrlVnt/Real-YT-Music/blob/master/app/src/main/java/com/ctrlvnt/rytm/utils.kt)
+  1. [Create your API key](https://developers.google.com/youtube/v3/getting-started) and insert it in this [file](https://github.com/ctrlVnt/Real-YT-Music/blob/master/app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt)
   2. Clone the repository with Android Studio and enjoy:  
      `git clone https://github.com/your-username/repo-name.git`
      
-NOTE: to exclude utils.kt you can do this command -> `git update-index --assume-unchanged ./app/src/main/java/com/ctrlvnt/rytm/utils.kt`
+NOTE: to exclude utils.kt you can do this command -> `git update-index --assume-unchanged ./app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt`
