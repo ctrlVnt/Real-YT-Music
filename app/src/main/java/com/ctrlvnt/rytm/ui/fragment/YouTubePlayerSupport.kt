@@ -319,10 +319,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, minutes)
-                    MainActivity.database.deleteMinutes(videoId.toString()) //to reset every time
+                    MainActivity.database.deleteMinutes(videoId) //to reset every time
 
                     playlistAdd.setOnClickListener {
-                        showPlaylistDialog(videoId)
+                        showPlaylistDialog(nextVideo[indexVideo])
                     }
 
                     nextButton.setOnClickListener{
@@ -387,7 +387,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                             youTubePlayer.loadVideo(it, 0f)
 
                             playlistAdd.setOnClickListener {
-                                showPlaylistDialog(videoId)
+                                showPlaylistDialog(nextVideo[indexVideo])
                             }
                         }
                     }else if(shuffleOption) {
@@ -398,7 +398,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                         youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                         playlistAdd.setOnClickListener {
-                            showPlaylistDialog(nextVideo[randomIndex].id)
+                            showPlaylistDialog(nextVideo[randomIndex])
                         }
                         shuffleMode.add(randomIndex)
                     }else{
@@ -502,8 +502,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
     }
 
-    private fun showPlaylistDialog(videoId: String) {
-        val video = MainActivity.database.videoDao().getVideo(videoId)
+    private fun showPlaylistDialog(video: Video) {
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
         val playlistNames = playlists.map { it.playlistName }.toTypedArray()
 
@@ -520,7 +519,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle, video.thumbnailUrl, playlists.size - 1)
 
-                if(!alreadyExist(selectedPlaylist.playlistName, videoId)){
+                if(!alreadyExist(selectedPlaylist.playlistName, video.id)){
                     MainActivity.database.playlisVideotDao().insertVideoToPlaylist(element)
                 }else{
                     Toast.makeText(requireContext(), R.string.error_element_playlist_already_exist, Toast.LENGTH_SHORT).show()
@@ -614,9 +613,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(videoItem: VideoItem) {
-        val videoId = videoItem.id
+        val videoId = videoItem.id.videoId.toString()
         val video = Video(
-            id = "",
+            id = videoId,
             title = videoItem.snippet.title,
             channelTitle = videoItem.snippet.channelTitle,
             thumbnailUrl = videoItem.snippet.thumbnails.default.url
@@ -626,12 +625,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         val playerCallback = object : YouTubePlayerCallback {
             override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                youTubePlayer.loadVideo(videoId.videoId.toString(), 0f)
+                youTubePlayer.loadVideo(videoId, 0f)
             }
         }
 
         playlistAdd.setOnClickListener {
-            showPlaylistDialog(videoId.videoId.toString())
+            showPlaylistDialog(video)
         }
         youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
     }
