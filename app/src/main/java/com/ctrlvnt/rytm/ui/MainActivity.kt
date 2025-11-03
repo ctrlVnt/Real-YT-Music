@@ -194,8 +194,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Playlist search is now available, with automatic saving
-            • Fixed crash when adding a song to playlist
+            • Bug fixing
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
