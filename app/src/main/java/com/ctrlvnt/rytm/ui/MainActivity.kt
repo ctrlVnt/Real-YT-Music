@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Bug fixing
+            • Downgrade to preview version
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

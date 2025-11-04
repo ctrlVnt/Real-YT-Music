@@ -317,26 +317,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 videoId?.let {
                     val position = nextVideo.indexOfFirst { video -> video.id == it }
 
-                    if (position == -1 || nextVideo.isEmpty()) {
-                        Toast.makeText(requireContext(), "No video found with this ID", Toast.LENGTH_SHORT).show()
-                        return@let
-                    }
-
                     indexVideo = position
                     videoAdapter.setBranoInRiproduzionePosition(position)
                     youTubePlayer.loadVideo(it, minutes)
                     MainActivity.database.deleteMinutes(videoId) //to reset every time
 
                     playlistAdd.setOnClickListener {
-                        if (indexVideo in nextVideo.indices) {
                             showPlaylistDialog(nextVideo[indexVideo])
-                        } else {
-                            Toast.makeText(requireContext(), "Something was wrong with this action, retry", Toast.LENGTH_SHORT).show()
-                        }
                     }
 
                     nextButton.setOnClickListener{
-                        if (nextVideo.isEmpty()) return@setOnClickListener
                         if(!repeatOption){
                             if(shuffleOption){
                                 if(shuffleindex >= shuffleMode.size - 1){
@@ -365,7 +355,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                     }
                     prevButton.setOnClickListener{
-                        if (nextVideo.isEmpty()) return@setOnClickListener
 
                         if(!repeatOption){
                             if(shuffleOption){
