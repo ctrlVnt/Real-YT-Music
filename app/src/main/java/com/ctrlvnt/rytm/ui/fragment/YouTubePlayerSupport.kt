@@ -2,6 +2,7 @@ package com.ctrlvnt.rytm.ui.fragment
 
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -14,6 +15,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -41,6 +43,7 @@ import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.ctrlvnt.rytm.utils.extractYoutubeId
+import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -48,8 +51,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstan
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
@@ -89,6 +94,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private val googlePlayServicesAvailabilityRequestCode = 1
     private var saveMinutesHandler: Handler? = null
     private var saveMinutesRunnable: Runnable? = null
+    private var isFullscreen = false
 
 
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
@@ -152,6 +158,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             playlistAdd.visibility = View.GONE
             playlisName.visibility = View.GONE
             buttonEditName.visibility = View.GONE
+
+            fetchYoutubeVideoAsync(videoId.toString()) { video ->
+                if (video != null) {
+                    // Save in history
+                    MainActivity.database.insertVideo(video)
+                } else {
+                    Toast.makeText(requireContext(), "Data of video can't be fetched now, but enjoy", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         val videoItems = videos?.map {
@@ -308,7 +323,44 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         /*FULL-PLAYBACK MODE*/
         viewLifecycleOwner.lifecycle.addObserver(youTubePlayerView) //comment if you want to use full playback mode
         //youTubePlayerView.enableBackgroundPlayback(true) //uncomment and enjoy !
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+
+        val iFramePlayerOptions = IFramePlayerOptions.Builder(requireContext())
+            .controls(1)
+            .fullscreen(1)
+            .build()
+
+        val youTubePlayerView = rootView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
+        val fullscreenViewContainer = rootView.findViewById<FrameLayout>(R.id.about)
+
+        youTubePlayerView.enableAutomaticInitialization = false
+
+        youTubePlayerView.addFullscreenListener(object : FullscreenListener {
+            override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: () -> Unit) {
+                isFullscreen = true
+
+                // the video will continue playing in fullscreenView
+                //youTubePlayerView.visibility = View.GONE
+                fullscreenViewContainer.visibility = View.VISIBLE
+                fullscreenViewContainer.addView(fullscreenView)
+
+
+                // optionally request landscape orientation
+                requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            }
+
+            override fun onExitFullscreen() {
+                isFullscreen = false
+
+                // the video will continue playing in the player
+                //youTubePlayerView.visibility = View.VISIBLE
+                fullscreenViewContainer.visibility = View.GONE
+                fullscreenViewContainer.removeAllViews()
+                requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+        })
+
+
+        youTubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
 
             override fun onReady(youTubePlayer: YouTubePlayer) {
 
@@ -421,7 +473,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
                 }
             }
-        })
+        }, iFramePlayerOptions)
         originalMarginTop = (youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams).topMargin
 
         return rootView
@@ -506,12 +558,13 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     private fun showPlaylistDialog(video: Video) {
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
-        val playlistNames = playlists.map { it.playlistName }.toTypedArray()
 
         if (playlists.isEmpty()) {
             Toast.makeText(requireContext(), R.string.create_playlist_first, Toast.LENGTH_LONG).show()
             return
         }
+
+        val playlistNames = playlists.map { it.playlistName }.toTypedArray()
 
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         builder.setTitle(R.string.select_playlist)

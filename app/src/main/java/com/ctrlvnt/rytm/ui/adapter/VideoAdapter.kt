@@ -123,6 +123,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
                         videoList[position].snippet.thumbnails.medium.url
                     )
                     if (!exist(video)) {
+                        //Add video to history
                         MainActivity.database.insertVideo(video)
                     }
                     val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId.toString(), "")

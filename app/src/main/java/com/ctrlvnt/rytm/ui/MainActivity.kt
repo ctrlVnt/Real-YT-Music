@@ -194,7 +194,10 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Downgrade to preview version
+            • Added full-screen button
+            • Added report issue on GitHub button
+            • Save in history video opened from outside (try !)
+            • Try to fix crash bug
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

@@ -23,6 +23,7 @@ import androidx.core.net.toUri
 import androidx.core.content.edit
 import com.ctrlvnt.rytm.ui.TutorialActivity
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class Settings : Fragment(){
@@ -41,6 +42,8 @@ class Settings : Fragment(){
         val tutorialButton : MaterialButton = rootView.findViewById(R.id.see_tutorial)
         val githubButton : MaterialButton = rootView.findViewById(R.id.github)
         val saveMinutesToggle: com.google.android.material.switchmaterial.SwitchMaterial = rootView.findViewById(R.id.save_minutes_toggle)
+        val reportBugButton: FloatingActionButton = rootView.findViewById(R.id.report_bug)
+
 
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
@@ -76,6 +79,11 @@ class Settings : Fragment(){
 
         githubButton.setOnClickListener {
             val browserIntent = Intent(Intent.ACTION_VIEW, "https://github.com/ctrlVnt/Real-YT-Music".toUri())
+            startActivity(browserIntent)
+        }
+
+        reportBugButton.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, "https://github.com/ctrlVnt/Real-YT-Music/issues".toUri())
             startActivity(browserIntent)
         }
 

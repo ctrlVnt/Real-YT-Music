@@ -142,33 +142,6 @@ class HomeActivity : Fragment() {
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
         recyclerView.adapter = VideoAdapter(videoItems, null, "home")
 
-        /*settingsButton.setOnClickListener{
-
-            val popupMenu = android.widget.PopupMenu(this.context, settingsButton)
-            popupMenu.menuInflater.inflate(R.menu.options_menu, popupMenu.menu)
-
-
-            popupMenu.setOnMenuItemClickListener { item: MenuItem ->
-                when (item.itemId) {
-                    R.id.option1 -> {
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
-                            .replace(R.id.main_activity, Settings())
-                            .addToBackStack(null)
-                            .commit()
-                        true
-                    }
-                    R.id.option2 -> {
-                        showConfirmationDialog()
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            popupMenu.show()
-        }*/
-
         trashButton.setOnClickListener{
             showConfirmationDialog()
         }
@@ -180,14 +153,6 @@ class HomeActivity : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
-        /*playlistsButton.setOnClickListener{
-            requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
-                .replace(R.id.main_activity, Playlist_fragment())
-                .addToBackStack(null)
-                .commit()
-        }*/
 
         addButton.setOnClickListener{
             showCustomDialog()
