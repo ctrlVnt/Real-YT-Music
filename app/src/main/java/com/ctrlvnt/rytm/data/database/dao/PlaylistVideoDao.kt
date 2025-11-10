@@ -2,6 +2,7 @@ package com.ctrlvnt.rytm.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
@@ -13,9 +14,9 @@ interface PlaylistVideoDao {
     @Query("SELECT videoId AS id, title, channelTitle, thumbnailUrl FROM playlistvideo WHERE playlistName = :playlistName ORDER BY position ASC")
     fun getPlaylistVideos(playlistName: String): MutableList<Video>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertVideos(videos: List<PlaylistVideo>)
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertVideoToPlaylist(playlistVideo: PlaylistVideo)
 
     @Query("DELETE FROM playlistvideo WHERE playlistName = :playlistName")

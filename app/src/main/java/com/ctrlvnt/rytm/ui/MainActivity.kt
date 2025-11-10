@@ -197,7 +197,7 @@ class MainActivity : AppCompatActivity() {
             • Added full-screen button
             • Added report issue on GitHub button
             • Save in history video opened from outside (try !)
-            • Try to fix crash bug
+            • Fixed crash video opened from outside
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
