@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.ctrlvnt.rytm.data.database.dao.CacheDao
 import com.ctrlvnt.rytm.data.database.dao.PlaylistDao
 import com.ctrlvnt.rytm.data.database.dao.PlaylistVideoDao
 import com.ctrlvnt.rytm.data.database.dao.SaveMinutesDao
@@ -13,14 +14,16 @@ import com.ctrlvnt.rytm.data.database.dao.VideoDao
 import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
+import com.ctrlvnt.rytm.data.database.entities.CacheEntity
 import com.ctrlvnt.rytm.data.database.entities.Video
 
-@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class, SaveMinutes::class], version = 8)
+@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class, SaveMinutes::class, CacheEntity::class], version = 9)
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun videoDao(): VideoDao
     abstract fun playlistDao(): PlaylistDao
     abstract fun playlisVideotDao(): PlaylistVideoDao
     abstract fun saveMinutesDao(): SaveMinutesDao
+    abstract fun cacheDao(): CacheDao
 
     fun insertVideo(video: Video) {
         videoDao().insert(video)
@@ -191,6 +194,23 @@ abstract class LocalDataBase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_8_9 = object : Migration(8, 9) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                        CREATE TABLE IF NOT EXISTS `cache` (
+                            `videoId` TEXT NOT NULL,
+                            `title` TEXT NOT NULL,
+                            `channelTitle` TEXT NOT NULL,
+                            `thumbnailUrl` TEXT NOT NULL,
+                            PRIMARY KEY(`videoId`)
+                        )
+                        """.trimIndent()
+                )
+            }
+        }
+
+
         fun getDatabase(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -204,6 +224,7 @@ abstract class LocalDataBase : RoomDatabase() {
                     .addMigrations(MIGRATION_5_6)
                     .addMigrations(MIGRATION_6_7)
                     .addMigrations(MIGRATION_7_8)
+                    .addMigrations(MIGRATION_8_9)
                     .build()
                 INSTANCE = instance
                 instance
