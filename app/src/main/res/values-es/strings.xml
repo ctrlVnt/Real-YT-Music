@@ -98,5 +98,7 @@
     <string name="intro_title_settings">Doblaje AI o guardar progreso?</string>
     <string name="intro_desc_settings">Al configurar la aplicación en el idioma original del video, el doblaje AI desaparecerá. ¡Ahora también puedes activar el guardado automático del progreso de los videos!</string>
     <string name="code_source">Code-Source 💻</string>
+    <string name="daily_end">Solicitudes globales agotadas. Estarán disponibles nuevamente en</string>
+    <string name="daily_end2">Para continuar, abre YouTube y usa: Compartir → Abrir con RYTM</string>
 
 </resources>

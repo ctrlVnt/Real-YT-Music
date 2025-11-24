@@ -79,6 +79,8 @@ class HomeActivity : Fragment() {
         val addButton: Button = rootView.findViewById(R.id.add_playlist)
         val searchButton: Button = rootView.findViewById(R.id.search_button_modern)
         val explainText: TextView = rootView.findViewById(R.id.explain)
+        val banner: TextView = rootView.findViewById(R.id.global_limit_banner)
+        val noResultsText = rootView.findViewById<TextView>(R.id.no_results_text)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
         searchButton.visibility = View.GONE
         explainText.visibility = View.GONE
@@ -210,6 +212,8 @@ class HomeActivity : Fragment() {
                     }
                     explainText.visibility = View.GONE
                     searchButton.visibility = View.GONE
+                    banner.visibility = View.GONE
+                    noResultsText.visibility = View.GONE
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
                     settingsButton.visibility = View.VISIBLE

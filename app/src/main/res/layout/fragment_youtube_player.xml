@@ -12,6 +12,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/search_bar_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        android:text="Timer"
+        android:visibility="gone">
+
+    </TextView>
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar_player"
         android:layout_width="0dp"

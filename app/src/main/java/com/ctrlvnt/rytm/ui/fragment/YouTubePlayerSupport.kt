@@ -95,7 +95,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private var saveMinutesHandler: Handler? = null
     private var saveMinutesRunnable: Runnable? = null
     private var isFullscreen = false
-
+    private lateinit var timer_text : TextView
 
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
@@ -120,6 +120,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         playlistAdd = rootView.findViewById(R.id.add_playlist)
         playlisName = rootView.findViewById(R.id.playlist_name)
         searchBar = rootView.findViewById(R.id.search_bar_player)
+        timer_text = rootView.findViewById(R.id.timer_text)
         val videos: MutableList<Video>
 
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
@@ -736,10 +737,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val millis = minutes * 60 * 1000
 
         Toast.makeText(requireContext(), "App will close in $minutes minute(s)", Toast.LENGTH_SHORT).show()
-
+        timer_text.visibility = View.VISIBLE
+        timer_text.text = "Timer: $minutes minutes"
         exitTimer = object : CountDownTimer(millis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                // Optional: update UI every second
+                val seconds = millisUntilFinished / 1000
+                val min = seconds / 60
+                val sec = seconds % 60
+
+                timer_text.text = String.format("Timer: %02d:%02d", min, sec)
             }
 
             override fun onFinish() {
@@ -751,6 +757,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     fun cancelExitTimer() {
         exitTimer?.cancel()
         exitTimer = null
+        timer_text.visibility = View.GONE
         stopSaveMinutesTimer()
     }
 

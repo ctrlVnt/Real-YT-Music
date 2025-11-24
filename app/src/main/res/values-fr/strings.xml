@@ -83,5 +83,7 @@
     <string name="intro_title_settings">Dubbing IA ou sauvegarde du progrès ?</string>
     <string name="intro_desc_settings">En définissant l\'application sur la langue originale de la vidéo, le doublage IA disparaîtra. Vous pouvez également maintenant activer la sauvegarde automatique de la progression des vidéos !</string>
     <string name="code_source">Code-Source 💻</string>
+    <string name="daily_end">Requêtes globales épuisées. Elles seront de nouveau disponibles dans</string>
+    <string name="daily_end2">Pour continuer, ouvrez YouTube et utilisez : Partager → Ouvrir avec RYTM</string>
 
 </resources>

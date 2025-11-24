@@ -1,9 +1,13 @@
 package com.ctrlvnt.rytm.utils
 
+import android.R.string
 import android.content.Context
+import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
@@ -57,6 +61,7 @@ fun performYouTubeSearch(
     else if (locale.language == "hi") country = "in"
 
     apiManager.searchVideos(searchQuery, APIKEY, country, object : Callback<SearchResponse> {
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
             if (response.isSuccessful) {
                 val videos = response.body()?.items ?: emptyList()
@@ -78,12 +83,12 @@ fun performYouTubeSearch(
                 }
 
             } else {
-                val errorBody = response.errorBody()?.string()
                 try {
-                    val errorJson = JSONObject(errorBody ?: "")
-                    val errorMessage = errorJson.getJSONObject("error").getString("message")
-                    showLimitReachedDialog(context)
-
+                    val banner = rootView.findViewById<TextView>(R.id.global_limit_banner)
+                    banner.text = getLAResetTimeMessage(context)
+                    banner.visibility = View.VISIBLE
+                    //showLimitReachedDialog(context)
+                    loadFromCache(context, recyclerView, searchQuery)
                 } catch (e: JSONException) {
                     Log.e("YouTubeSearch", "Errore parsing JSON", e)
                     Toast.makeText(context, context.getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
@@ -147,6 +152,7 @@ fun fetchYoutubeVideoAsync(videoId: String, onResult: (Video?) -> Unit) {
 
 // to load local cache
 private fun loadFromCache(context: Context, recyclerView: RecyclerView, query: String) {
+    val noResultsText = (recyclerView.parent as View).findViewById<TextView>(R.id.no_results_text)
     CoroutineScope(Dispatchers.IO).launch {
         val cacheDao = MainActivity.database.cacheDao()
         val cachedResults = cacheDao.searchByTitle(query)
@@ -170,8 +176,23 @@ private fun loadFromCache(context: Context, recyclerView: RecyclerView, query: S
                 recyclerView.adapter = VideoAdapter(videoItems, null, "home")
                 Toast.makeText(context, "Showing cached results", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(context, context.getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+                noResultsText.visibility = View.VISIBLE
             }
         }
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun getLAResetTimeMessage(context: Context): String {
+    val zoneLA = java.time.ZoneId.of("America/Los_Angeles")
+    val nowLA = java.time.ZonedDateTime.now(zoneLA)
+    val midnightLA = nowLA.toLocalDate().plusDays(1).atStartOfDay(zoneLA)
+
+    val diff = java.time.Duration.between(nowLA, midnightLA)
+
+    val hours = diff.toHours()
+    val minutes = diff.toMinutes() % 60
+
+    return "MODE OFFLINE: " + context.getString(R.string.daily_end) + " ${hours}h ${minutes}m. " +
+            context.getString(R.string.daily_end2)
 }

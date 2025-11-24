@@ -98,5 +98,7 @@
     <string name="intro_title_settings">Dubbing AI czy zapisywanie postępu?</string>
     <string name="intro_desc_settings">Ustawiając aplikację na oryginalny język wideo, dubbing AI zniknie. Możesz teraz również włączyć automatyczne zapisywanie postępu wideo!</string>
     <string name="code_source">Code-Source 💻</string>
+    <string name="daily_end">Globalne zapytania zostały wyczerpane. Będą ponownie dostępne za</string>
+    <string name="daily_end2">Aby kontynuować, otwórz YouTube i użyj: Udostępnij → Otwórz w RYTM</string>
 
 </resources>

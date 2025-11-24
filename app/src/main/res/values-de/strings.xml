@@ -98,5 +98,7 @@
     <string name="intro_title_settings">KI-Dubbing oder Fortschritt speichern?</string>
     <string name="intro_desc_settings">Wenn Sie die App auf die Originalsprache des Videos einstellen, verschwindet das KI-Dubbing. Sie können jetzt auch das automatische Speichern des Video-Fortschritts aktivieren!</string>
     <string name="code_source">Code-Source 💻</string>
+    <string name="daily_end">Globale Anfragen erschöpft. Sie sind wieder verfügbar in</string>
+    <string name="daily_end2">Um fortzufahren, öffne YouTube und nutze: Teilen → Mit RYTM öffnen</string>
 
 </resources>

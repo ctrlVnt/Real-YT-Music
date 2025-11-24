@@ -4,11 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="40dp"
     tools:context=".ui.fragment.HomeActivity">
+
+    <TextView
+        android:id="@+id/global_limit_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/bricolagegrotesquemedium"
+        android:text=""
+        android:visibility="gone"
+        android:background="#FFA500"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -258,6 +271,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/empty_history_img"
             android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/no_results_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No results found"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
