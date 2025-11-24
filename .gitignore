@@ -13,4 +13,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/app/src/main/java/com/ctrlvnt/rytm/utils.kt
+/app/src/main/java/com/ctrlvnt/rytm/apikey.kt
