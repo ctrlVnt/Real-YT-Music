@@ -194,7 +194,9 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • 
+            • Offline Search: Searched songs are now cached for offline access.
+            • Shutdown Timer: Added a timer feature.
+            • UI Improvements: Minor visual tweaks and fixes.
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
