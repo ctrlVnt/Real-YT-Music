@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     return
+                }else{
+
                 }
             }
         }
@@ -196,7 +198,7 @@ class MainActivity : AppCompatActivity() {
             
             • Offline Search: Searched songs are now cached for offline access.
             • Shutdown Timer: Added a timer feature.
-            • UI Improvements: Minor visual tweaks and fixes.
+            • ⭐Playlist link compatibility in search bar⭐
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

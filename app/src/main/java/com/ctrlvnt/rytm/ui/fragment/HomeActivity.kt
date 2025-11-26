@@ -3,6 +3,7 @@ package com.ctrlvnt.rytm.ui.fragment
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -45,8 +46,11 @@ import java.util.Locale
 import androidx.core.net.toUri
 import androidx.core.content.edit
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.ctrlvnt.rytm.utils.extractPlaylistId
 import com.ctrlvnt.rytm.utils.extractYoutubeId
+import com.ctrlvnt.rytm.utils.generateRandomName
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
+import com.ctrlvnt.rytm.utils.savePlaylistFromApi
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class HomeActivity : Fragment() {
@@ -284,7 +288,27 @@ class HomeActivity : Fragment() {
                     .commit()
 
             } else {
-                Toast.makeText(requireContext(), "Link non valido", Toast.LENGTH_SHORT).show()
+                val playlistId = extractPlaylistId(query)
+
+                if(playlistId != null){
+                    val fakeItem = VideoItem(
+                        kind = "youtube#playlist",
+                        id = VideoId(videoId = null, playlistId = playlistId),
+                        snippet = Snippet(
+                            title = "",
+                            channelTitle = "",
+                            thumbnails = Thumbnails(
+                                default = Thumbnail(""),
+                                medium = Thumbnail(""),
+                                high = Thumbnail("")
+                            )
+                        )
+                    )
+
+                    savePlaylistFromApi(requireContext(), fakeItem, generateRandomName()+" (to rename)")
+                }else{
+                    Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
             explainText.visibility = View.GONE
@@ -301,7 +325,7 @@ class HomeActivity : Fragment() {
 
 
     private fun showDialogEveryTenOpens() {
-        val sharedPreferences = requireContext().getSharedPreferences("app_prefs", android.content.Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val launchCount = sharedPreferences.getInt("launch_count", 0) + 1
 
         // Save updated launch count
@@ -314,7 +338,7 @@ class HomeActivity : Fragment() {
                 .setMessage(R.string.support_message)
                 .setPositiveButton(R.string.support_positive) { _, _ ->
                     val url = "https://buymeacoffee.com/v3ntuz"
-                    val intent = android.content.Intent(android.content.Intent.ACTION_VIEW)
+                    val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = url.toUri()
                     startActivity(intent)
                 }

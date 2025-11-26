@@ -25,6 +25,7 @@ import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.ctrlvnt.rytm.utils.savePlaylistFromApi
 import com.google.android.material.button.MaterialButton
 import org.json.JSONException
 import org.json.JSONObject
@@ -113,7 +114,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
         if (currentFragmentTag == "home") {
             holder.itemView.setOnClickListener {
                 if(currentItem.id.videoId == null){
-                    savePlaylistFromApi(holder, currentItem, currentItem.snippet.title)
+                    savePlaylistFromApi(holder.itemView.context, currentItem, currentItem.snippet.title)
                 }
                 else{
                     val video = Video(
@@ -172,57 +173,5 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     fun getItemAt(position: Int): VideoItem {
         return videoList[position]
     }
-
-    fun savePlaylistFromApi(holder: VideoViewHolder, currentItem: VideoItem, playlistName: String) {
-        val playlistId = currentItem.id.playlistId ?: return
-
-        val newPlaylist = Playlist(playlistName = playlistName)
-
-        YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, object : Callback<PlaylistItemsResponse> {
-            override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
-                if (response.isSuccessful) {
-                    val videos = response.body()?.items ?: emptyList()
-
-                    // Convert to PlaylistVideo for Room
-                    val playlistVideos = videos.mapIndexed { index, item ->
-                        PlaylistVideo(
-                            playlistName = playlistName,
-                            videoId = item.snippet.resourceId.videoId,
-                            title = item.snippet.title,
-                            channelTitle = item.snippet.channelTitle,
-                            thumbnailUrl = item.snippet.thumbnails.high.url,
-                            position = index
-                        )
-                    }
-
-                    // Save videos if playlist doesn't exist already
-                    if(MainActivity.database.playlistDao().alreadyExist(playlistName) == 0){
-                        MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
-                        MainActivity.database.playlisVideotDao().insertVideos(playlistVideos)
-                    }
-
-                    if (playlistVideos.isNotEmpty()) {
-                        val fragment = YouTubePlayerSupport.newInstance(
-                            playlistVideos[0].videoId,
-                            playlistName
-                        )
-                        (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                            .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
-                            .replace(R.id.main_activity, fragment)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-
-                } else {
-                    Log.e("API Error", response.errorBody()?.string().orEmpty())
-                }
-            }
-
-            override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
-                Log.e("API ERROR", t.message.toString())
-            }
-        })
-    }
-
 
 }

@@ -8,17 +8,23 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.CacheEntity
+import com.ctrlvnt.rytm.data.database.entities.Playlist
+import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.Video
+import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
+import com.ctrlvnt.rytm.ui.adapter.VideoAdapter.VideoViewHolder
+import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -119,6 +125,13 @@ fun extractYoutubeId(url: String): String? {
     return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
 }
 
+fun extractPlaylistId(url: String): String? {
+
+    val regex = "(?<=list=)[a-zA-Z0-9_-]+".toRegex()
+
+    return regex.find(url)?.value
+}
+
 fun fetchYoutubeVideoAsync(videoId: String, onResult: (Video?) -> Unit) {
     CoroutineScope(Dispatchers.IO).launch {
         val video = try {
@@ -195,4 +208,62 @@ fun getLAResetTimeMessage(context: Context): String {
 
     return "MODE OFFLINE: " + context.getString(R.string.daily_end) + " ${hours}h ${minutes}m. " +
             context.getString(R.string.daily_end2)
+}
+
+fun savePlaylistFromApi(context: Context, currentItem: VideoItem, playlistName: String) {
+    val playlistId = currentItem.id.playlistId ?: return
+
+    val newPlaylist = Playlist(playlistName = playlistName)
+
+    YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, object : Callback<PlaylistItemsResponse> {
+        override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
+            if (response.isSuccessful) {
+                val videos = response.body()?.items ?: emptyList()
+
+                // Convert to PlaylistVideo for Room
+                val playlistVideos = videos.mapIndexed { index, item ->
+                    PlaylistVideo(
+                        playlistName = playlistName,
+                        videoId = item.snippet.resourceId.videoId,
+                        title = item.snippet.title,
+                        channelTitle = item.snippet.channelTitle,
+                        thumbnailUrl = item.snippet.thumbnails.high.url,
+                        position = index
+                    )
+                }
+
+                // Save videos if playlist doesn't exist already
+                if(MainActivity.database.playlistDao().alreadyExist(playlistName) == 0){
+                    MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+                    MainActivity.database.playlisVideotDao().insertVideos(playlistVideos)
+                }
+
+                if (playlistVideos.isNotEmpty()) {
+                    val fragment = YouTubePlayerSupport.newInstance(
+                        playlistVideos[0].videoId,
+                        playlistName
+                    )
+                    (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
+                        .replace(R.id.main_activity, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                }
+
+            } else {
+                Log.e("API Error", response.errorBody()?.string().orEmpty())
+            }
+        }
+
+        override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
+            Log.e("API ERROR", t.message.toString())
+        }
+    })
+}
+
+fun generateRandomName(length: Int = 6): String {
+    val chars = ('a'..'z') + ('A'..'Z')
+    return (1..length)
+        .map { chars.random() }
+        .joinToString("")
 }
