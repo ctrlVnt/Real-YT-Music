@@ -2,13 +2,13 @@ package com.ctrlvnt.rytm.ui.fragment
 
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,39 +29,35 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
-import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
 import com.ctrlvnt.rytm.data.database.entities.Video
-import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
 import com.ctrlvnt.rytm.data.model.Thumbnail
 import com.ctrlvnt.rytm.data.model.Thumbnails
 import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
+import com.ctrlvnt.rytm.ui.SimpleChromecastConnectionListener
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
+import com.google.android.gms.cast.framework.CastButtonFactory
+import com.google.android.gms.cast.framework.CastContext
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.pierfrancescosoffritti.androidyoutubeplayer.chromecast.chromecastsender.ChromecastYouTubePlayerContext
+import com.pierfrancescosoffritti.androidyoutubeplayer.chromecast.chromecastsender.utils.PlayServicesUtils
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.Collections
-import java.util.Locale
 import kotlin.random.Random
 
 
@@ -121,6 +117,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         playlisName = rootView.findViewById(R.id.playlist_name)
         searchBar = rootView.findViewById(R.id.search_bar_player)
         timer_text = rootView.findViewById(R.id.timer_text)
+        val mediaRouteButton: androidx.mediarouter.app.MediaRouteButton = rootView.findViewById(R.id.media_route_button)
         val videos: MutableList<Video>
 
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
@@ -141,8 +138,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         videoList = rootView.findViewById(R.id.playlist)
         val layoutManager = LinearLayoutManager(context)
         videoList.layoutManager = layoutManager
-        
-        
+
+        CastButtonFactory.setUpMediaRouteButton(requireContext(), mediaRouteButton)
+        PlayServicesUtils.checkGooglePlayServicesAvailability(
+            MainActivity(),
+            googlePlayServicesAvailabilityRequestCode
+        ) { initChromecast() }
 
         if(playlistTitle == null || playlistTitle == ""){
             playlisName.text = getString(R.string.prev_search)
@@ -774,5 +775,25 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val notificationManager = NotificationManagerCompat.from(requireContext())
         notificationManager.cancelAll()
         cancelExitTimer()
+    }
+
+    //Chrome cast functions
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // can't use CastContext until I'm sure the user has GooglePlayServices
+        if (requestCode == googlePlayServicesAvailabilityRequestCode)
+            PlayServicesUtils.checkGooglePlayServicesAvailability(
+                MainActivity(),
+                googlePlayServicesAvailabilityRequestCode
+            ) { initChromecast() }
+    }
+
+    private fun initChromecast() {
+        ChromecastYouTubePlayerContext(
+            CastContext.getSharedInstance(requireContext()).sessionManager,
+            SimpleChromecastConnectionListener()
+        )
     }
 }
