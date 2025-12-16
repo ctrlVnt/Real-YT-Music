@@ -1,6 +1,7 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -141,7 +142,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         CastButtonFactory.setUpMediaRouteButton(requireContext(), mediaRouteButton)
         PlayServicesUtils.checkGooglePlayServicesAvailability(
-            MainActivity(),
+            requireContext() as Activity,
             googlePlayServicesAvailabilityRequestCode
         ) { initChromecast() }
 

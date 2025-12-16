@@ -1,30 +1,28 @@
 package com.ctrlvnt.rytm.ui
 
 import android.content.Context
+import com.ctrlvnt.rytm.utils.apikey.CASTKEY
 import com.google.android.gms.cast.framework.CastOptions
+import com.google.android.gms.cast.framework.OptionsProvider
 import com.google.android.gms.cast.framework.SessionProvider
 
+/**
+ * Class providing setup info to the Chromecast framework, declared in manifest file.
+ *
+ * [see doc here](https://developers.google.com/cast/docs/android_sender_integrate#initialize_the_cast_context)
+ */
+internal class CastOptionsProvider : OptionsProvider {
+    // This is the receiver id of the sample receiver.
+    // Remember to change it with the ID of your own receiver. See documentation for more info.
+    private val receiverId = CASTKEY
 
-class CastOptionsProvider : com.google.android.gms.cast.framework.OptionsProvider {
-    fun getCastOptions(appContext: Context?): CastOptions {
-        // Register you custom receiver on the Google Cast SDK Developer Console to get this ID.
-
-        val receiverId = ""
-
-        return Builder()
+    override fun getCastOptions(appContext: Context): CastOptions {
+        return CastOptions.Builder()
             .setReceiverApplicationId(receiverId)
             .build()
     }
 
-    fun getAdditionalSessionProviders(context: Context?): MutableList<SessionProvider?>? {
+    override fun getAdditionalSessionProviders(context: Context): List<SessionProvider>? {
         return null
-    }
-
-    override fun getCastOptions(p0: Context): CastOptions {
-        TODO("Not yet implemented")
-    }
-
-    override fun getAdditionalSessionProviders(p0: Context): List<SessionProvider?>? {
-        TODO("Not yet implemented")
     }
 }
