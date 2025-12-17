@@ -287,5 +287,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <WebView android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
