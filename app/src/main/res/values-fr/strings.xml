@@ -18,7 +18,6 @@
     <string name="delete_confirmation">Êtes-vous sûr de bien vouloir supprimer cet élément?</string>
     <string name="delete">Supprimer</string>
     <string name="restore">Annuler</string>
-    <string name="add_playlist">Ajouter une playlist</string>
     <string name="error_empty_name">Le nom de la playlist ne peut pas être vide</string>
     <string name="error_already_exist">Le nom saisi existe déjà</string>
     <string name="select_playlist">Sélectionnez une playlist</string>

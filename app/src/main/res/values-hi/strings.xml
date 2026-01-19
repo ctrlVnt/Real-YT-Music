@@ -20,7 +20,6 @@
     <string name="delete_confirmation">क्या आप वाकई इसे हटाना चाहते हैं?</string>
     <string name="delete">हटाएं</string>
     <string name="restore">पुनर्स्थापित करें</string>
-    <string name="add_playlist">प्लेलिस्ट जोड़ें</string>
     <string name="error_empty_name">प्लेलिस्ट का नाम खाली नहीं हो सकता</string>
     <string name="error_already_exist">यह नाम पहले से मौजूद है</string>
     <string name="select_playlist">एक प्लेलिस्ट चुनें</string>

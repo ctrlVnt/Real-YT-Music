@@ -25,7 +25,6 @@
     <string name="delete">Usuń</string>
     <string name="restore">Anuluj</string>
 
-    <string name="add_playlist">Dodaj playlistę</string>
     <string name="error_empty_name">Nazwa playlisty nie może być pusta</string>
     <string name="error_already_exist">Wprowadzona nazwa już istnieje</string>
 

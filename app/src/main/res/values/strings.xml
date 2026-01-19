@@ -25,7 +25,7 @@
     <string name="delete">Delete</string>
     <string name="restore">Cancel</string>
 
-    <string name="add_playlist">Add playlist</string>
+    <string name="add_playlist" translatable="false">create</string>
     <string name="error_empty_name">The playlist name cannot be empty</string>
     <string name="error_already_exist">The name entered already exists</string>
 
@@ -103,5 +103,11 @@
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">Global requests exhausted. They will be available again in</string>
     <string name="daily_end2">To continue, open YouTube and use: Share → Open with RYTM</string>
+    <string name="import_popup_title">Paste the link of playlist here</string>
+    <string name="timer_title">Set the Timer</string>
+    <string name="timer_text">Enter the number of minutes after which the app will close:</string>
+    <string name="timer_cell">Enter a number of minutes (ex: 5)</string>
+    <string name="timer_exit">Exit Timer</string>
+    <string name="timer_exit_text">Timer is already running, do you want to stop it?</string>
 
 </resources>

@@ -25,7 +25,6 @@
     <string name="delete">Löschen</string>
     <string name="restore">Abbrechen</string>
 
-    <string name="add_playlist">Playlist hinzufügen</string>
     <string name="error_empty_name">Der Name der Playlist darf nicht leer sein</string>
     <string name="error_already_exist">Der eingegebene Name existiert bereits</string>
 

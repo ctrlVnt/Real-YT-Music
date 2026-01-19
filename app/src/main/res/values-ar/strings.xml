@@ -23,7 +23,6 @@
     <string name="delete">حذف</string>
     <string name="restore">إلغاء</string>
 
-    <string name="add_playlist">إضافة قائمة تشغيل</string>
     <string name="error_empty_name">اسم قائمة التشغيل لا يمكن أن يكون فارغًا</string>
     <string name="error_already_exist">الاسم الذي تم إدخاله موجود بالفعل</string>
 

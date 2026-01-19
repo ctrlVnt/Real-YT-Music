@@ -20,7 +20,6 @@
     <string name="delete_confirmation">Sei sicuro di voler eliminare questo elemento?</string>
     <string name="delete">Elimina</string>
     <string name="restore">Annulla</string>
-    <string name="add_playlist">Aggiungi Playlist</string>
     <string name="error_empty_name">Il nome della playlist non può essere vuoto</string>
     <string name="error_already_exist">Il nome inserito è già esistente</string>
     <string name="select_playlist">Seleziona una playlist</string>

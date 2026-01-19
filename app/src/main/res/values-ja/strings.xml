@@ -25,7 +25,6 @@
     <string name="delete">削除</string>
     <string name="restore">キャンセル</string>
 
-    <string name="add_playlist">プレイリストを追加</string>
     <string name="error_empty_name">プレイリスト名は空白にできません</string>
     <string name="error_already_exist">入力された名前は既に存在します</string>
 

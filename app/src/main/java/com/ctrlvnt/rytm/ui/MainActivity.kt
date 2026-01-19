@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         window.decorView.setBackgroundColor(resources.getColor(R.color.background))
 
         conditionandprivacyaccept(sharedPrefs)
-        request_notification_api13_permission()
+        //request_notification_api13_permission()
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         database = LocalDataBase.getDatabase(this)
@@ -196,9 +196,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Offline Search: Searched songs are now cached for offline access.
-            • Shutdown Timer: Added a timer feature.
-            • ⭐Playlist link compatibility in search bar⭐
+            • Added playlist import
+            • Design improvement
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

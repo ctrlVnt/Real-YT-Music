@@ -55,6 +55,7 @@ import com.ctrlvnt.rytm.utils.savePlaylistFromApi
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.ui.graphics.findFirstRoot
 
 class HomeActivity : Fragment() {
 
@@ -84,6 +85,7 @@ class HomeActivity : Fragment() {
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
         val addButton: Button = rootView.findViewById(R.id.add_playlist)
+        val importButton: Button = rootView.findViewById(R.id.import_playlist)
         val searchButton: Button = rootView.findViewById(R.id.search_button_modern)
         val explainText: TextView = rootView.findViewById(R.id.explain)
         val banner: TextView = rootView.findViewById(R.id.global_limit_banner)
@@ -167,6 +169,10 @@ class HomeActivity : Fragment() {
             showCustomDialog()
         }
 
+        importButton.setOnClickListener {
+            showCustomDialogInsertLink()
+        }
+
         searchBar.setOnClickListener {
             searchBar.isIconified = false
         }
@@ -202,6 +208,7 @@ class HomeActivity : Fragment() {
                     subHome.visibility = View.GONE
                     noPlaylist.visibility = View.GONE
                     addButton.visibility = View.GONE
+                    importButton.visibility = View.GONE
                     trashButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
@@ -231,6 +238,7 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
                     addButton.visibility = View.VISIBLE
+                    importButton.visibility = View.VISIBLE
                 }
                 return true
             }
@@ -260,6 +268,56 @@ class HomeActivity : Fragment() {
                     noPlaylist.visibility = View.GONE
                 } else {
                     if(name.isBlank()){
+                        Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton(R.string.restore) { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
+    private fun showCustomDialogInsertLink() {
+        val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
+
+        val linkCell: EditText = dialogView.findViewById(R.id.editTextName)
+        linkCell.setHint("Link")
+
+        builder.setView(dialogView)
+            .setTitle(R.string.import_popup_title)
+            .setPositiveButton("import") { dialog, _ ->
+                val link =  linkCell.text.toString()
+
+                if (link.isNotBlank()) {
+                    val playlistId = extractPlaylistId(link)
+
+                    if(playlistId != null) {
+                        val fakeItem = VideoItem(
+                            kind = "youtube#playlist",
+                            id = VideoId(videoId = null, playlistId = playlistId),
+                            snippet = Snippet(
+                                title = "",
+                                channelTitle = "",
+                                thumbnails = Thumbnails(
+                                    default = Thumbnail(""),
+                                    medium = Thumbnail(""),
+                                    high = Thumbnail("")
+                                )
+                            )
+                        )
+                        savePlaylistFromApi(requireContext(), fakeItem, generateRandomName()+" (to rename)")
+                        Toast.makeText(requireContext(), "Playlist saved", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    if(link.isBlank()){
                         Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()

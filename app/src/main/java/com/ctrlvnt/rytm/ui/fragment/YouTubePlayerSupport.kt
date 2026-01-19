@@ -112,6 +112,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val repeat: ImageButton = rootView.findViewById(R.id.repeat)
         val shuffle: ImageButton = rootView.findViewById(R.id.shuffle)
         val buttonEditName: ImageButton = rootView.findViewById(R.id.edit_playlist_name)
+        val backButton: ImageButton = rootView.findViewById(R.id.back_button)
         timer = rootView.findViewById(R.id.timer)
         prevButton = rootView.findViewById(R.id.prev_video)
         nextButton = rootView.findViewById(R.id.next_video)
@@ -226,6 +227,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         })
         itemTouchHelper.attachToRecyclerView(videoList)
+
+        backButton.setOnClickListener{
+            requireActivity().supportFragmentManager.popBackStack()
+        }
 
         repeat.setOnClickListener {
             repeatOption = !repeatOption
@@ -693,16 +698,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
 
     fun showExitTimerDialog() {
-        val editText = EditText(requireContext())
-        editText.hint = "Enter minutes"
+        val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
+        val linkCell: EditText = dialogView.findViewById(R.id.editTextName)
+        linkCell.setHint(R.string.timer_cell)
 
         if (!timerOption) {
             val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
-                .setTitle("Exit Timer")
-                .setMessage("Enter the number of minutes after which the app will close:")
-                .setView(editText)
+                .setTitle(R.string.timer_title)
+                .setMessage(R.string.timer_text)
+                .setView(dialogView)
                 .setPositiveButton("Start Timer") { _, _ ->
-                    val input = editText.text.toString()
+                    val input = linkCell.text.toString()
                     val minutes = input.toLongOrNull()
                     if (minutes != null && minutes > 0) {
                         timerOption = true
@@ -718,8 +724,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             dialog.show()
         }else{
             val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
-                .setTitle("Exit Timer")
-                .setMessage("Timer is already running, do you want to stop it?")
+                .setTitle(R.string.timer_exit)
+                .setMessage(R.string.timer_exit_text)
                 .setPositiveButton("Yes"){ _, _ ->
                     timerOption = false
                     timer.clearColorFilter()

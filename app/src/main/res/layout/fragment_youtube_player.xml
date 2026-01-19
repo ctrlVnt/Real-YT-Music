@@ -19,16 +19,30 @@
         app:layout_constraintBottom_toTopOf="@+id/search_bar_player"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Timer"
         android:visibility="gone">
-
     </TextView>
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="back"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
+        app:layout_constraintEnd_toStartOf="@+id/search_bar_player"
+        app:layout_constraintTop_toTopOf="@id/search_bar_player"
+        app:tint="@color/text" />
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="60dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/notosansmedium"
         app:queryHint="@string/placeholder"
@@ -145,26 +159,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/baseline_shuffle"
             android:contentDescription="shuffle"
+            android:src="@drawable/baseline_shuffle"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/timer"
             app:layout_constraintStart_toEndOf="@+id/next_video"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text"/>
+            app:tint="@color/text" />
 
         <ImageButton
             android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/timer"
             android:contentDescription="timer"
+            android:src="@drawable/timer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/shuffle"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/text"/>
+            app:tint="@color/text" />
 
         <ImageButton
             android:id="@+id/repeat"

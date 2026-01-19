@@ -25,7 +25,6 @@
     <string name="delete">Удалить</string>
     <string name="restore">Отмена</string>
 
-    <string name="add_playlist">Добавить плейлист</string>
     <string name="error_empty_name">Название плейлиста не может быть пустым</string>
     <string name="error_already_exist">Введенное имя уже существует</string>
 

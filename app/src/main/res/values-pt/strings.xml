@@ -25,7 +25,6 @@
     <string name="delete">Excluir</string>
     <string name="restore">Cancelar</string>
 
-    <string name="add_playlist">Adicionar una playlist</string>
     <string name="error_empty_name">O nome da lista de reprodução não pode estar vazio</string>
     <string name="error_already_exist">O nome inserido já existe</string>
 
