@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -52,6 +53,8 @@ import com.ctrlvnt.rytm.utils.generateRandomName
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.ctrlvnt.rytm.utils.savePlaylistFromApi
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import android.webkit.WebView
+import android.webkit.WebViewClient
 
 class HomeActivity : Fragment() {
 
@@ -439,4 +442,40 @@ class HomeActivity : Fragment() {
             noPlaylist.visibility = View.GONE
         }
     }
+
+    private fun logIn(context: Context) {
+        val webView = view?.findViewById<WebView>(R.id.webView)
+        webView?.visibility= View.VISIBLE
+        webView?.settings.apply {
+            this?.javaScriptEnabled = true
+            this?.domStorageEnabled = true
+            this?.savePassword = true
+            this?.saveFormData = true
+        }
+
+        webView?.loadUrl(
+            "https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Dtr%26next%3Dhttps%253A%252F%252Fm.youtube.com%252F"
+        )
+
+        webView?.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView,
+                request: WebResourceRequest
+            ): Boolean {
+                val url = request.url.toString()
+
+                // se il WebView viene rediretto su youtube.com → login completato
+                if (
+                    url.startsWith("https://m.youtube.com") ||
+                    url.startsWith("https://www.youtube.com")
+                ) {
+                    Log.d("TAG", "Logged in")
+                    Toast.makeText(context, "Logged in", Toast.LENGTH_SHORT).show()
+                }
+
+                return false // lascia caricare la pagina
+            }
+        }
+    }
+
 }
