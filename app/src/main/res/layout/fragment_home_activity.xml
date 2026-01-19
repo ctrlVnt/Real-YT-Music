@@ -6,24 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeActivity">
 
-    <TextView
-        android:id="@+id/global_limit_banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_marginTop="25dp"
-        android:padding="5dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/bricolagegrotesquemedium"
-        android:text=""
-        android:visibility="gone"
-        android:background="#FFA500"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/global_limit_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFA500"
+            android:fontFamily="@font/bricolagegrotesquemedium"
+            android:padding="5dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/subhome"
@@ -32,7 +34,7 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/global_limit_banner">
 
             <ImageButton
                 android:id="@+id/settings"
