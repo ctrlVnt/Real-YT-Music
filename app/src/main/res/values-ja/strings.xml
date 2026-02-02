@@ -100,4 +100,11 @@
     <string name="daily_end">グローバルリクエストが上限に達しました。再び利用可能になるまで</string>
     <string name="daily_end2">続行するには、YouTube を開き、共有 → RYTM で開く を使用してください</string>
 
+    <string name="import_popup_title">プレイリストのリンクをここに貼り付けてください</string>
+    <string name="timer_title">タイマーを設定</string>
+    <string name="timer_text">アプリが閉じるまでの分数を入力してください：</string>
+    <string name="timer_cell">分数を入力してください（例：5）</string>
+    <string name="timer_exit">タイマーを終了</string>
+    <string name="timer_exit_text">タイマーは既に実行中です。停止しますか？</string>
+
 </resources>

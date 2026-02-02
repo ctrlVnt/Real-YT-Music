@@ -85,4 +85,11 @@
     <string name="daily_end">Requêtes globales épuisées. Elles seront de nouveau disponibles dans</string>
     <string name="daily_end2">Pour continuer, ouvrez YouTube et utilisez : Partager → Ouvrir avec RYTM</string>
 
+    <string name="import_popup_title">Collez ici le lien de la playlist</string>
+    <string name="timer_title">Définir la minuterie</string>
+    <string name="timer_text">Saisissez le nombre de minutes après lesquelles l\'application se fermera :</string>
+    <string name="timer_cell">Entrez un nombre de minutes (ex : 5)</string>
+    <string name="timer_exit">Arrêter la minuterie</string>
+    <string name="timer_exit_text">Une minuterie est déjà en cours, voulez‑vous l\'arrêter ?</string>
+
 </resources>

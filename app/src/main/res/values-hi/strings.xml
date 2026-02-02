@@ -86,4 +86,11 @@
     <string name="daily_end">वैश्विक अनुरोध समाप्त हो गए हैं। वे फिर से उपलब्ध होंगे</string>
     <string name="daily_end2">जारी रखने के लिए, YouTube खोलें और उपयोग करें: शेयर → RYTM के साथ खोलें</string>
 
+    <string name="import_popup_title">प्लेलिस्ट का लिंक यहाँ पेस्ट करें</string>
+    <string name="timer_title">टाइमर सेट करें</string>
+    <string name="timer_text">ऐप बंद होने तक की मिनटों की संख्या दर्ज करें:</string>
+    <string name="timer_cell">मिनटों की संख्या दर्ज करें (उदा.: 5)</string>
+    <string name="timer_exit">टाइमर बंद करें</string>
+    <string name="timer_exit_text">टाइमर पहले से चल रहा है, क्या आप इसे रोकना चाहते हैं?</string>
+
 </resources>

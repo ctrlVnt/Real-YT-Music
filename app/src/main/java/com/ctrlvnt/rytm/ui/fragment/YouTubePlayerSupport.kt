@@ -4,6 +4,8 @@ package com.ctrlvnt.rytm.ui.fragment
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.media.session.MediaSession
+import android.media.session.PlaybackState
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -504,7 +506,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     .commit()
 
             } else {
-                Toast.makeText(requireContext(), "Link non valido", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
             }
         } else {
             performYouTubeSearch(
@@ -780,5 +782,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val notificationManager = NotificationManagerCompat.from(requireContext())
         notificationManager.cancelAll()
         cancelExitTimer()
+    }
+
+    //called when PIP mode, don't stop video
+    override fun onPause() {
+        super.onPause()
+        youTubePlayerView.enableBackgroundPlayback(true)
+        return
+    }
+    override fun onResume() {
+        super.onResume()
+        youTubePlayerView.enableBackgroundPlayback(false)
+        return
     }
 }
