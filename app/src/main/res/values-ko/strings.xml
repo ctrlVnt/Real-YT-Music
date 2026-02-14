@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">RYTM</string>
+    <string name="hello_blank_fragment">RYTM에 오신 것을 환영합니다</string>
+    <string name="caches">기록 삭제</string>
+    <string name="prev_search">기록</string>
+    <string name="settings">설정</string>
+    <string name="deleted_caches">모든 항목이 삭제되었습니다</string>
+
+    <string name="how_to_use"><b>사용 방법</b>\n\n
+        <i>화면 잠금:</i> 비디오 재생 중 중앙 버튼으로 실수 터치를 방지하고 배터리 수명을 늘리기 위해 밝기를 최저로 낮출 수 있습니다.\n\n
+        <i>재생 제어:</i> 휴대전화의 홈 버튼을 눌러 현재 재생 중인 내용을 버블로 표시할 수 있습니다. 음악 제어는 앱을 다시 열어 수행합니다.\n\n
+        <i>삭제:</i> 재생목록이나 곡은 길게 눌러 삭제합니다. 참고: 기록(히스토리) 비디오는 플레이어 화면이 아닌 메인 화면에서 삭제해야 합니다.\n\n
+        <i>재생목록:</i> 동영상 플레이어 오른쪽 상단 버튼으로 곡을 추가할 수 있습니다.\n\n
+    </string>
+
+    <string name="about"><b>데이터 정보</b>\n\n
+        <i>일부 데이터는 API 소유자(예: YouTube)에 의해 처리될 수 있습니다. 자세한 내용은 <a href="https://www.youtube.com/t/terms?hl=it">이용약관</a>과 <a href="http://www.google.com/policies/privacy">개인정보처리방침</a>을 확인하세요.</i>
+    </string>
+
+    <string name="my_info">개발자 웹사이트: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">제목 또는 링크 입력…</string>
+
+    <string name="delete_confirmation_title">이 항목을 삭제하시겠습니까?</string>
+    <string name="delete_confirmation">정말로 이 항목을 삭제하시겠습니까?</string>
+    <string name="delete">삭제</string>
+    <string name="restore">취소</string>
+
+    <string name="add_playlist" translatable="false">create</string>
+    <string name="error_empty_name">재생목록 이름은 비워둘 수 없습니다</string>
+    <string name="error_already_exist">입력한 이름이 이미 존재합니다</string>
+
+    <string name="select_playlist">재생목록 선택</string>
+
+    <string name="error_element_playlist_already_exist">선택한 재생목록에 해당 항목이 이미 있습니다</string>
+
+    <string name="edit_playlist_name">재생목록 이름 편집</string>
+
+    <string name="noty_title">RYTM 실행 중</string>
+    <string name="noty_text">알림을 탭하여 삭제하세요</string>
+
+    <string name="empty_playlists">재생목록이 없습니다</string>
+    <string name="empty_cronology">기록이 없습니다</string>
+
+    <string name="generic_error">알 수 없는 오류</string>
+
+    <string name="terms_title">이용약관</string>
+    <string name="terms_text">이 애플리케이션은 YouTube API 서비스를 사용합니다. 계속하려면 <a href="https://www.youtube.com/t/terms?hl=it">이용약관</a>과 <a href="http://www.google.com/policies/privacy">개인정보처리방침</a>을 확인하고 동의해 주세요.</string>
+    <string name="accept">동의</string>
+
+    <string name="confirm_delete_history">기록 삭제 확인</string>
+    <string name="confirm_delete_history_message">모든 기록을 삭제하시겠습니까?</string>
+    <string name="deleted_history">기록이 삭제되었습니다</string>
+
+    <string name="create_playlist_first">계속하려면 먼저 하나 이상의 재생목록을 생성하세요.</string>
+    <string name="playlists_button">Playlists</string>
+    <string name="empty_playlist_title">재생목록이 비어있음</string>
+    <string name="empty_playlist_text">이 재생목록은 비어 있습니다. 재생하기 전에 곡을 추가하세요.</string>
+    <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
+    <string name="send_me_suggestions">제안 보내기 📧</string>
+    <string name="support_me">지원하고 싶으시면 👇</string>
+    <string name="info_text">다른 앱을 사용하면서도 동영상을 시청할 수 있도록 ❤️로 만든 앱입니다. RYTM는 사용자를 식별하지 않으므로 광고가 표시되지 않습니다</string>
+    <string name="you_don_t_have_already_playlist_create_the_firstone">아직 재생목록이 없습니다. 지금 첫 번째 재생목록을 만들어보세요!</string>
+    <string name="playlists" translatable="false">Playlists &gt;</string>
+    <string name="thx">앱을 사용해 주셔서 감사합니다!</string>
+    <string name="buymeacoffee">캐스트 기능이 필요하신가요? Buy Me a Coffee에서 후원해 주세요 ☕</string>
+    <string name="supme">후원하기</string>
+    <string name="later">나중에</string>
+    <string name="explain_search">검색하려면 키보드에서 Enter를 누르세요</string>
+    <string name="lingua">언어</string>
+    <string name="visita_il_mio_sito_web">웹사이트 방문 🌎</string>
+    <string name="valuta_l_app">앱 평가하기 ⭐</string>
+    <string name="save_minute">분 저장</string>
+    <string name="tutorial" translatable="false">Tutorial 👀</string>
+    <string name="limit_title">일일 제한 도달</string>
+    <string name="limit_message">모든 사용자가 일일 요청 한도에 도달했습니다.\n요청은 로스앤젤레스 시각 자정에 다시 이용 가능해집니다.\n\n\n    그동안에는 YouTube에서 동영상 공유 → 기타 → RYTM을 선택하면 계속 들을 수 있습니다.</string>
+    <string name="support_title">앱을 사용해 주셔서 감사합니다!</string>
+    <string name="support_message">RYTM이 마음에 드시나요? Buy Me a Coffee에서 후원해 주세요 ☕</string>
+    <string name="support_positive">후원하기</string>
+    <string name="support_negative">나중에</string>
+    <string name="intro_title_welcome">환영합니다…</string>
+    <string name="intro_desc_welcome">광고 없이 유튜브 영상을 볼 수 있는 앱 RYTM에 오신 것을 환영합니다…</string>
+
+    <string name="intro_title_home">홈 화면</string>
+    <string name="intro_desc_home">1. 검색창에 동영상을 검색하거나 링크를 붙여넣으세요\n\n2. 동영상을 정리하기 위해 재생목록을 만들 수 있습니다\n\n3. 검색 기록을 확인할 수 있습니다</string>
+
+    <string name="intro_title_player">플레이어</string>
+    <string name="intro_desc_player">1. 재생목록에 동영상을 추가하세요.\n\n3. 길게 눌러 정리하고 스와이프하여 삭제하세요\n\n4. 실수로 터치되는 것을 막으려면 화면을 잠그세요\n\n5. 영상을 보며 잠들고 싶다면 타이머를 설정하세요</string>
+
+    <string name="intro_title_pip">다른 앱을 사용하면서도 동영상을 시청하세요</string>
+    <string name="intro_desc_pip">앱을 최소화해도 다른 작업을 하면서 동영상을 계속 볼 수 있습니다</string>
+
+    <string name="intro_title_limit">일일 한도에 도달했나요?</string>
+    <string name="intro_desc_limit">사용자가 많을 경우 요청 한도가 소진될 수 있습니다. 이 경우 공식 앱에서 동영상을 직접 열 수 있습니다! 공유 &gt; 기타 &gt; RYTM을 클릭하세요</string>
+
+    <string name="intro_title_end">…시작해볼까요!</string>
+    <string name="intro_desc_end">앱을 다운로드해 주셔서 감사합니다. 설정에서 이 튜토리얼을 다시 볼 수 있습니다!</string>
+    <string name="save_video_progress">동영상 진행 상황 저장</string>
+    <string name="intro_title_settings">AI 더빙 또는 진행 저장?</string>
+    <string name="intro_desc_settings">앱의 언어를 동영상 원어로 설정하면 AI 더빙이 사라집니다. 또한 동영상 진행 자동 저장을 활성화할 수 있습니다!</string>
+    <string name="code_source">코드 소스 💻</string>
+    <string name="daily_end">전 세계 요청이 소진되었습니다. 다시 이용 가능해집니다</string>
+    <string name="daily_end2">계속하려면 YouTube를 열어 공유 → RYTM으로 열기를 사용하세요</string>
+    <string name="import_popup_title">여기에 재생목록 링크를 붙여넣으세요</string>
+    <string name="timer_title">타이머 설정</string>
+    <string name="timer_text">앱이 닫힐 분(예: 5)을 입력하세요:</string>
+    <string name="timer_cell">분 수를 입력하세요 (예: 5)</string>
+    <string name="timer_exit">타이머 종료</string>
+    <string name="timer_exit_text">타이머가 이미 실행 중입니다. 중지하시겠습니까?</string>
+
+</resources>
