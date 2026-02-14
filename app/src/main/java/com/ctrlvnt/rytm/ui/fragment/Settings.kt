@@ -121,6 +121,7 @@ class Settings : Fragment(){
                     R.id.lang_pt -> setLocale("pt")
                     R.id.lang_ru -> setLocale("ru")
                     R.id.lang_uk -> setLocale("uk")
+                    R.id.lang_ko -> setLocale("ko")
                     else -> false
                 }
                 true
@@ -157,18 +158,19 @@ class Settings : Fragment(){
 
     fun getFlagEmojiForLanguage(languageCode: String): String {
         return when (languageCode) {
-            "en" -> "🇺🇸"
-            "ar" -> "🇸🇦"
-            "de" -> "🇩🇪"
-            "es" -> "🇪🇸"
-            "fr" -> "🇫🇷"
-            "hi" -> "🇮🇳"
-            "it" -> "🇮🇹"
-            "ja" -> "🇯🇵"
-            "pl" -> "🇵🇱"
-            "pt" -> "🇵🇹"
-            "ru" -> "🇷🇺"
-            "uk" -> "🇺🇦"
+                "en" -> "🇺🇸"
+                "ar" -> "🇸🇦"
+                "de" -> "🇩🇪"
+                "es" -> "🇪🇸"
+                "fr" -> "🇫🇷"
+                "hi" -> "🇮🇳"
+                "it" -> "🇮🇹"
+                "ja" -> "🇯🇵"
+                "pl" -> "🇵🇱"
+                "pt" -> "🇵🇹"
+                "ru" -> "🇷🇺"
+                "uk" -> "🇺🇦"
+                "ko" -> "🇰🇷"
             else -> "🌐"
         }
     }

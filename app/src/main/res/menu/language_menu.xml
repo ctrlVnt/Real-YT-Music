@@ -13,5 +13,5 @@
     <item android:id="@+id/lang_pt" android:title="🇵🇹 Português" />
     <item android:id="@+id/lang_ru" android:title="🇷🇺 Русский" />
     <item android:id="@+id/lang_uk" android:title="🇺🇦 Українська" />
-
+    <item android:id="@+id/lang_ko" android:title="🇰🇷 한국어" />
 </menu>
