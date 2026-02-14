@@ -99,5 +99,10 @@
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">Globale Anfragen erschöpft. Sie sind wieder verfügbar in</string>
     <string name="daily_end2">Um fortzufahren, öffne YouTube und nutze: Teilen → Mit RYTM öffnen</string>
-
+    <string name="import_popup_title">Füge hier den Link zur Playlist ein</string>
+    <string name="timer_title">Timer einstellen</string>
+    <string name="timer_text">Geben Sie die Anzahl der Minuten ein, nach denen die App geschlossen werden soll:</string>
+    <string name="timer_cell">Geben Sie eine Anzahl von Minuten ein (z. B.: 5)</string>
+    <string name="timer_exit">Timer beenden</string>
+    <string name="timer_exit_text">Der Timer läuft bereits. Möchten Sie ihn stoppen?</string>
 </resources>

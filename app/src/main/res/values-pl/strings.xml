@@ -99,5 +99,10 @@
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">Globalne zapytania zostały wyczerpane. Będą ponownie dostępne za</string>
     <string name="daily_end2">Aby kontynuować, otwórz YouTube i użyj: Udostępnij → Otwórz w RYTM</string>
-
+    <string name="import_popup_title">Wklej tutaj link do playlisty</string>
+    <string name="timer_title">Ustaw timer</string>
+    <string name="timer_text">Wprowadź liczbę minut, po których aplikacja się zamknie:</string>
+    <string name="timer_cell">Wprowadź liczbę minut (np.: 5)</string>
+    <string name="timer_exit">Zatrzymaj timer</string>
+    <string name="timer_exit_text">Timer jest już uruchomiony, czy chcesz go zatrzymać?</string>
 </resources>

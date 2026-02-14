@@ -86,4 +86,11 @@
     <string name="daily_end">Richieste globali terminate. Tornano disponibili tra</string>
     <string name="daily_end2">Per continuare, apri YouTube e usa : Condividi → Apri con RYTM</string>
 
+    <string name="import_popup_title">Incolla qui il link della playlist</string>
+    <string name="timer_title">Imposta il timer</string>
+    <string name="timer_text">Inserisci il numero di minuti dopo i quali l\'app si chiuderà:</string>
+    <string name="timer_cell">Inserisci un numero di minuti (es.: 5)</string>
+    <string name="timer_exit">Interrompi timer</string>
+    <string name="timer_exit_text">Il timer è già in esecuzione, vuoi fermarlo?</string>
+
 </resources>

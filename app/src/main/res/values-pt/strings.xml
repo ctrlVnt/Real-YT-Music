@@ -100,4 +100,11 @@
     <string name="daily_end">Solicitações globais esgotadas. Ficarão disponíveis novamente em</string>
     <string name="daily_end2">Para continuar, abra o YouTube e use: Compartilhar → Abrir com RYTM</string>
 
+    <string name="import_popup_title">Cole o link da playlist aqui</string>
+    <string name="timer_title">Definir o temporizador</string>
+    <string name="timer_text">Insira o número de minutos após os quais o app será fechado:</string>
+    <string name="timer_cell">Insira um número de minutos (ex.: 5)</string>
+    <string name="timer_exit">Parar o temporizador</string>
+    <string name="timer_exit_text">O temporizador já está em execução, deseja pará-lo?</string>
+
 </resources>

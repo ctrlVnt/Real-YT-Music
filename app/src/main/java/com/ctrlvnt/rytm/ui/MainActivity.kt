@@ -196,8 +196,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added playlist import
-            • Design improvement
+            • Video doesn't stop when you go in PiP mode
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

@@ -5,22 +5,7 @@
 **Real YT Music (RYTM)** is a lightweight and versatile YouTube-based music app designed to enhance music discovery and playback.  
 It integrates seamlessly with YouTube APIs, allowing you to explore, organize, and enjoy your favorite music videos in a simple and intuitive way.
 
----
-
-## Some Features
-
-- **Background Playback**  
-  While background playback on the lock screen is restricted by YouTube API policies, you can press the Home button and continue listening while using other apps.
-
-- **Local Playlists**  
-  Create and manage local playlists with your favorite videos.
-
-- **Sleep Timer**  
-  Set a timer and fall asleep while listening. The app will automatically close when the timer ends.
-
-- **Bookmarks**  
-  Enable bookmarks from settings to quickly resume long videos.
-
+You can watch your videos without ADS, you can listen your video while scrolling, you can also set a timer if you want to sleep with a video in background, and a lot of other things. 
 
 ---
 

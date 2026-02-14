@@ -97,5 +97,10 @@
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">تم استنفاد الطلبات العالمية. ستكون متاحة مرة أخرى خلال</string>
     <string name="daily_end2">للمتابعة، افتح YouTube واستخدم: مشاركة ← فتح باستخدام RYTM</string>
-
+    <string name="import_popup_title">الصق رابط قائمة التشغيل هنا</string>
+    <string name="timer_title">تعيين المؤقت</string>
+    <string name="timer_text">أدخل عدد الدقائق التي سيغلق بعدها التطبيق:</string>
+    <string name="timer_cell">أدخل عدد الدقائق (مثال: 5)</string>
+    <string name="timer_exit">إيقاف المؤقت</string>
+    <string name="timer_exit_text">المؤقت يعمل بالفعل، هل تريد إيقافه؟</string>
 </resources>

@@ -99,5 +99,10 @@
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">Solicitudes globales agotadas. Estarán disponibles nuevamente en</string>
     <string name="daily_end2">Para continuar, abre YouTube y usa: Compartir → Abrir con RYTM</string>
-
+    <string name="import_popup_title">Pega aquí el enlace de la lista de reproducción</string>
+    <string name="timer_title">Configurar temporizador</string>
+    <string name="timer_text">Introduzca el número de minutos tras los cuales la app se cerrará:</string>
+    <string name="timer_cell">Introduzca un número de minutos (ej.: 5)</string>
+    <string name="timer_exit">Detener temporizador</string>
+    <string name="timer_exit_text">El temporizador ya está en funcionamiento, ¿desea detenerlo?</string>
 </resources>
