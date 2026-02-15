@@ -198,6 +198,7 @@ class MainActivity : AppCompatActivity() {
             
             • Added Korean language
             • Added media control notification for video playback
+            • bug fixing
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
