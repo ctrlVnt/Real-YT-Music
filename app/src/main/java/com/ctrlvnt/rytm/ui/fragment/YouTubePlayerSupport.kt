@@ -6,13 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
-import android.media.session.MediaSession
-import android.media.session.PlaybackState
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +23,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -34,11 +30,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
-import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
 import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
 import com.ctrlvnt.rytm.data.database.entities.Video
-import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
 import com.ctrlvnt.rytm.data.model.Thumbnail
 import com.ctrlvnt.rytm.data.model.Thumbnails
@@ -46,8 +40,7 @@ import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.ui.services.YouTubeService
-import com.ctrlvnt.rytm.utils.apikey.APIKEY
+import com.ctrlvnt.rytm.ui.services.YouTubeNotificationService
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
@@ -61,13 +54,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFram
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.Collections
-import java.util.Locale
 import kotlin.random.Random
 
 
@@ -110,9 +97,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         override fun onReceive(context: Context?, intent: Intent?) {
             val action = intent?.getStringExtra("ACTION_TYPE")
             when (action) {
-                YouTubeService.ACTION_NEXT -> nextButton.performClick()
-                YouTubeService.ACTION_PREV -> prevButton.performClick()
-                YouTubeService.ACTION_PAUSE -> {
+                YouTubeNotificationService.ACTION_NEXT -> nextButton.performClick()
+                YouTubeNotificationService.ACTION_PREV -> prevButton.performClick()
+                YouTubeNotificationService.ACTION_PAUSE -> {
                 val playerCallback = object : YouTubePlayerCallback {
                     override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
                         youTubePlayer.pause()
@@ -120,7 +107,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
                 youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
             }
-                YouTubeService.ACTION_PLAY-> {
+                YouTubeNotificationService.ACTION_PLAY-> {
                     val playerCallback = object : YouTubePlayerCallback {
                         override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
                             youTubePlayer.play()
@@ -516,7 +503,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(requireContext())
                             .registerReceiver(notificationReceiver, filter)
 
-                        val intent = Intent(requireContext(), YouTubeService::class.java)
+                        val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
                         intent.putExtra("TITLE", nextVideo[indexVideo].title)
                         intent.putExtra("AUTHOR", nextVideo[indexVideo].channelTitle)
                         intent.putExtra("THUMBNAIL_URL", nextVideo[indexVideo].thumbnailUrl)
@@ -825,7 +812,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
-        val intent = Intent(requireContext(), YouTubeService::class.java)
+        val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
         requireContext().stopService(intent)
         cancelExitTimer()
     }

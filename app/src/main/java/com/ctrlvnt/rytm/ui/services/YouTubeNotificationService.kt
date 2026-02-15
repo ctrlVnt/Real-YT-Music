@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.ctrlvnt.rytm.R
 import com.bumptech.glide.request.target.CustomTarget
 
-class YouTubeService : Service() {
+class YouTubeNotificationService : Service() {
 
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var notificationManager: NotificationManagerCompat
@@ -121,7 +121,7 @@ class YouTubeService : Service() {
 
 
     private fun getActionIntent(action: String): PendingIntent {
-        val intent = Intent(this, YouTubeService::class.java)
+        val intent = Intent(this, YouTubeNotificationService::class.java)
         intent.action = action
 
         return PendingIntent.getService(
