@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -734,6 +735,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
         val linkCell: EditText = dialogView.findViewById(R.id.editTextName)
         linkCell.setHint(R.string.timer_cell)
+        linkCell.inputType = InputType.TYPE_CLASS_NUMBER
 
         if (!timerOption) {
             val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
@@ -796,7 +798,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     fun cancelExitTimer() {
         exitTimer?.cancel()
         exitTimer = null
-        timer_text.visibility = View.GONE
+        if (::timer_text.isInitialized) {
+            timer_text.visibility = View.GONE
+        }
         stopSaveMinutesTimer()
     }
 
