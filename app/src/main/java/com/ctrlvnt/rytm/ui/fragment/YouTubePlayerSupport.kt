@@ -1,7 +1,9 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.media.session.MediaSession
@@ -27,6 +29,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +46,7 @@ import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
+import com.ctrlvnt.rytm.ui.services.YouTubeService
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
@@ -102,6 +106,32 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
 
+    private val notificationReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val action = intent?.getStringExtra("ACTION_TYPE")
+            when (action) {
+                YouTubeService.ACTION_NEXT -> nextButton.performClick()
+                YouTubeService.ACTION_PREV -> prevButton.performClick()
+                YouTubeService.ACTION_PAUSE -> {
+                val playerCallback = object : YouTubePlayerCallback {
+                    override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                        youTubePlayer.pause()
+                    }
+                }
+                youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+            }
+                YouTubeService.ACTION_PLAY-> {
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.play()
+                        }
+                    }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
+                }
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -144,8 +174,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         videoList = rootView.findViewById(R.id.playlist)
         val layoutManager = LinearLayoutManager(context)
         videoList.layoutManager = layoutManager
-        
-        
 
         if(playlistTitle == null || playlistTitle == ""){
             playlisName.text = getString(R.string.prev_search)
@@ -441,8 +469,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 state: PlayerConstants.PlayerState
             ) {
                 super.onStateChange(youTubePlayer, state)
+                val playlistName = arguments?.getString("playlist_name")
+
                 if (state == PlayerConstants.PlayerState.ENDED){
-                    val playlistName = arguments?.getString("playlist_name")
                     MainActivity.database.deleteMinutes(videoId.toString())
                     if(repeatOption || playlistName == "fromoutside"){
                         videoId?.let {
@@ -478,6 +507,22 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                    }
+                }
+
+                if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED) {
+                    if( playlistName != "fromoutside"){
+                        val filter = android.content.IntentFilter("PLAYER_ACTION")
+                        androidx.localbroadcastmanager.content.LocalBroadcastManager.getInstance(requireContext())
+                            .registerReceiver(notificationReceiver, filter)
+
+                        val intent = Intent(requireContext(), YouTubeService::class.java)
+                        intent.putExtra("TITLE", nextVideo[indexVideo].title)
+                        intent.putExtra("AUTHOR", nextVideo[indexVideo].channelTitle)
+                        intent.putExtra("THUMBNAIL_URL", nextVideo[indexVideo].thumbnailUrl)
+                        intent.putExtra("IS_PLAYING", state == PlayerConstants.PlayerState.PLAYING)
+
+                        requireContext().startService(intent)
                     }
                 }
             }
@@ -779,8 +824,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        val notificationManager = NotificationManagerCompat.from(requireContext())
-        notificationManager.cancelAll()
+        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
+        val intent = Intent(requireContext(), YouTubeService::class.java)
+        requireContext().stopService(intent)
         cancelExitTimer()
     }
 

@@ -16,8 +16,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 35
-        versionCode = 51
-        versionName = "6.1"
+        versionCode = 52
+        versionName = "6.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,6 +74,7 @@ dependencies {
     implementation("androidx.navigation:navigation-common:2.9.4")
     implementation("androidx.navigation:navigation-common-ktx:2.9.4")
     implementation("androidx.navigation:navigation-runtime-ktx:2.9.4")
+    implementation("androidx.media:media:1.7.1")
 
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 

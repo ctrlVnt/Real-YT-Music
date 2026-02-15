@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         window.decorView.setBackgroundColor(resources.getColor(R.color.background))
 
         conditionandprivacyaccept(sharedPrefs)
-        //request_notification_api13_permission()
+        request_notification_api13_permission()
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         database = LocalDataBase.getDatabase(this)
@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Video doesn't stop when you go in PiP mode
+            • Added Korean language
             """.trimIndent()
             )
             .setPositiveButton("OK", null)
