@@ -197,6 +197,7 @@ class MainActivity : AppCompatActivity() {
             You’ve just installed a new version! Here’s what’s new:
             
             • Added Korean language
+            • Added media control notification for video playback
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

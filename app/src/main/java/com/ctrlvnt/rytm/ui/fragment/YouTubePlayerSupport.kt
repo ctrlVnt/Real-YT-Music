@@ -222,7 +222,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 videoAdapter.moveItem(sourcePosition, targetPosition)
                 Collections.swap(videos, sourcePosition, targetPosition)
 
-                val title: String = playlistTitle.toString() //vedere cosa stampa
+                val title: String = playlistTitle.toString()
                 videos.forEachIndexed { index, video ->
                     MainActivity.database.playlisVideotDao().updateVideoPosition(title, video.id, index)
                 }
@@ -232,12 +232,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.bindingAdapterPosition
-                val videoItem = videoAdapter.getItemAt(position) // Serve un metodo nel tuo adapter
+                val videoItem = videoAdapter.getItemAt(position)
 
                 if (playlistTitle != null && playlistTitle.isNotEmpty()) {
                     showDeleteConfirmationDialog(videoItem, playlistTitle!!)
                 } else {
-                    // Se non hai una playlist, semplicemente resetti l'item per evitare che rimanga "swiped"
                     videoAdapter.notifyItemChanged(position)
                 }
             }
@@ -266,7 +265,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             if(videos.size > 2){
                 shuffleOption = !shuffleOption
                 if(repeatOption){
-                    repeatOption = false;
+                    repeatOption = false
                 }
                 if (shuffleOption){
                     val color = ContextCompat.getColor(requireContext(), R.color.red)
