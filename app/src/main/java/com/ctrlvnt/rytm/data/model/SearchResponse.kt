@@ -51,3 +51,15 @@ data class ResourceId(
     val kind: String,
     val videoId: String
 )
+
+data class PlaylistMetadataResponse(
+    val items: List<PlaylistMetadataItem>?
+)
+
+data class PlaylistMetadataItem(
+    val snippet: PlaylistMetadataSnippet
+)
+
+data class PlaylistMetadataSnippet(
+    val title: String
+)

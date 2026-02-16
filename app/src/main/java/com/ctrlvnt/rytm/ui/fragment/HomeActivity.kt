@@ -311,7 +311,7 @@ class HomeActivity : Fragment() {
                                 )
                             )
                         )
-                        savePlaylistFromApi(requireContext(), fakeItem, generateRandomName()+" (to rename)")
+                        savePlaylistFromApi(requireContext(), fakeItem)
                         Toast.makeText(requireContext(), "Playlist saved", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
@@ -366,7 +366,7 @@ class HomeActivity : Fragment() {
                         )
                     )
 
-                    savePlaylistFromApi(requireContext(), fakeItem, generateRandomName()+" (to rename)")
+                    savePlaylistFromApi(requireContext(), fakeItem)
                 }else{
                     Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
                 }

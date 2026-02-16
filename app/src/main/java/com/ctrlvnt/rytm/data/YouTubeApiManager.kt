@@ -1,6 +1,7 @@
 package com.ctrlvnt.rytm.data
 
 import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
+import com.ctrlvnt.rytm.data.model.PlaylistMetadataResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.VideoItem
 import retrofit2.Callback
@@ -23,6 +24,11 @@ class YouTubeApiManager {
 
     fun getPlaylistsVideos(apiKey: String, playlistId: String, callback: Callback<PlaylistItemsResponse>) {
         val call = apiService.getPlaylistItems(apiKey, playlistId)
+        call.enqueue(callback)
+    }
+
+    fun getPlaylistName(apiKey: String, playlistId: String, callback: Callback<PlaylistMetadataResponse>) {
+        val call = apiService.getPlaylistInfo(apiKey, playlistId)
         call.enqueue(callback)
     }
 }

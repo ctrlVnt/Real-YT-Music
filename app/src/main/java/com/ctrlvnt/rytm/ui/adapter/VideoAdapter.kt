@@ -114,7 +114,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
         if (currentFragmentTag == "home") {
             holder.itemView.setOnClickListener {
                 if(currentItem.id.videoId == null){
-                    savePlaylistFromApi(holder.itemView.context, currentItem, currentItem.snippet.title)
+                    savePlaylistFromApi(holder.itemView.context, currentItem)
                 }
                 else{
                     val video = Video(

@@ -1,6 +1,7 @@
 package com.ctrlvnt.rytm.data
 
 import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
+import com.ctrlvnt.rytm.data.model.PlaylistMetadataResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -25,4 +26,11 @@ interface YouTubeApiService {
         @Query("part") part: String = "snippet",
         @Query("maxResults") maxResults: Int = 50
     ): Call<PlaylistItemsResponse>
+
+    @GET("playlists")
+    fun getPlaylistInfo(
+        @Query("key") apiKey: String,
+        @Query("id") playlistId: String,
+        @Query("part") part: String = "snippet"
+    ): Call<PlaylistMetadataResponse>
 }
