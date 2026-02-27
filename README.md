@@ -23,7 +23,7 @@ You can watch your videos without ADS, you can listen your video while scrolling
 ## Full Playback Mode
 
 You can download the full-playback version directly from the releases page:
-👉 https://github.com/ctrlVnt/Real-YT-Music/releases
+🔉 https://github.com/ctrlVnt/Real-YT-Music/releases
 
 ---
 
@@ -36,7 +36,7 @@ Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.
 - Found a bug?
 
 Open an issue here:  
-👉 https://github.com/ctrlVnt/Real-YT-Music/issues
+🚩 https://github.com/ctrlVnt/Real-YT-Music/issues
 
 ---
 
@@ -45,7 +45,7 @@ Open an issue here:
 Help improve or add new translations!
 
 Translation files are located here:  
-👉 https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res
+📁 https://github.com/ctrlVnt/Real-YT-Music/tree/master/app/src/main/res
 
 - **Edit an existing language:**  
   Modify the `strings.xml` file inside the appropriate `values-*` folder (e.g. `values-hi` for Hindi).
