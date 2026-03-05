@@ -322,7 +322,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
         buttonEditName.setOnClickListener {
             if (playlistTitle != null) {
-                showCustomDialog(playlistTitle)
+                showCustomDialog(playlistTitle, videoId.toString())
             }
         }
 
@@ -708,7 +708,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         videoList.adapter = videoAdapter
     }
 
-    private fun showCustomDialog(currentName: String) {
+    private fun showCustomDialog(currentName: String, videoId: String) {
         val builder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         val dialogView = layoutInflater.inflate(R.layout.dialog_text_edit, null)
 
@@ -721,7 +721,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 val name =  editTextName.text.toString()
                 if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
                     MainActivity.database.editPlaylistName(currentName, name)
-                    playlisName.text = name
+                    val newFragment = YouTubePlayerSupport.newInstance(videoId, name)
+
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, newFragment)
+                        .commit()
+
                 }else {
                     if (name.isBlank()) {
                         Toast.makeText(
