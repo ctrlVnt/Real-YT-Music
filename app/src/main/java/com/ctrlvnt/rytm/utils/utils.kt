@@ -1,7 +1,7 @@
 package com.ctrlvnt.rytm.utils
 
-import android.R.string
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
@@ -20,11 +22,9 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
 import com.ctrlvnt.rytm.data.model.PlaylistMetadataResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
-import com.ctrlvnt.rytm.data.model.VideoId
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.ctrlvnt.rytm.ui.adapter.VideoAdapter.VideoViewHolder
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -285,4 +285,38 @@ fun generateRandomName(length: Int = 6): String {
     return (1..length)
         .map { chars.random() }
         .joinToString("")
+}
+
+fun getFlagEmojiForLanguage(languageCode: String): String {
+    return when (languageCode) {
+        "en" -> "🇺🇸"
+        "ar" -> "🇸🇦"
+        "de" -> "🇩🇪"
+        "es" -> "🇪🇸"
+        "fr" -> "🇫🇷"
+        "hi" -> "🇮🇳"
+        "it" -> "🇮🇹"
+        "ja" -> "🇯🇵"
+        "pl" -> "🇵🇱"
+        "pt" -> "🇵🇹"
+        "ru" -> "🇷🇺"
+        "uk" -> "🇺🇦"
+        "ko" -> "🇰🇷"
+        else -> "🌐"
+    }
+}
+
+fun setLocale(languageCode: String, context: Context, activity: FragmentActivity): Boolean {
+    val locale = Locale(languageCode)
+    Locale.setDefault(locale)
+
+    val config = Configuration(context.resources.configuration)
+    config.setLocale(locale)
+
+    context.createConfigurationContext(config)
+    val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    prefs.edit { putString("app_lang", languageCode) }
+
+    activity.recreate()
+    return true
 }

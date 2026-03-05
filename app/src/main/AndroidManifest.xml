@@ -49,37 +49,17 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data
                 android:scheme="https"
-                android:host="youtu.be"
-                android:pathPrefix="/watch" />
-        </intent-filter>
-        <intent-filter  android:autoVerify="true">
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+                android:host="youtu.be"/>
             <data
                 android:scheme="https"
-                android:host="m.youtube.com"
-                android:pathPrefix="/watch" />
-        </intent-filter>
-        <intent-filter  android:autoVerify="true">
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+                android:host="m.youtube.com"/>
             <data
                 android:scheme="https"
-                android:host="youtube.com"
-                android:pathPrefix="/watch" />
-        </intent-filter>
-        <intent-filter  android:autoVerify="true">
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
+                android:host="youtube.com"/>
             <data
                 android:scheme="https"
-                android:host="www.youtube.com"
-                android:pathPrefix="/watch" />
+                android:host="www.youtube.com"/>
         </intent-filter>
-
         <intent-filter>
             <action android:name="android.intent.action.SEND" />
             <category android:name="android.intent.category.DEFAULT" />

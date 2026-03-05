@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -82,10 +83,29 @@ class MainActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                     return
-                }else{
-
                 }
             }
+        }else if (intent?.action == Intent.ACTION_VIEW){
+            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+            if (sharedText != null) {
+                val urlRegex = "(https?://[\\s\\S]*)".toRegex()
+                val match = urlRegex.find(sharedText)
+                val cleanUri = match?.value?.trim()?.toUri()
+                val videoId = extractVideoIdFromUrl(cleanUri)
+                if (videoId != null) {
+                    val fragment = YouTubePlayerSupport.newInstance(videoId, "fromoutside")
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, HomeActivity())
+                        .commitNow()
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, fragment)
+                        .addToBackStack(null)
+                        .commit()
+                    return
+                }
+            }
+
         }
 
         if (videoId != null) {
@@ -189,6 +209,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun extractVideoIdFromUrl(uri: Uri?): String? {
+        if (uri == null) return null
+
+        return when (uri.host) {
+            "youtu.be" -> {
+                uri.pathSegments.firstOrNull()
+            }
+            "www.youtube.com", "m.youtube.com", "youtube.com" -> {
+                if (uri.pathSegments.contains("shorts")) {
+                    uri.pathSegments.getOrNull(1)
+                } else {
+                    uri.getQueryParameter("v")
+                }
+            }
+            else -> null
+        }
+    }
+
     fun showUpdateDialog(context: Context) {
         AlertDialog.Builder(context)
             .setTitle("What's New in This Update")
@@ -196,8 +234,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added Korean language
-            • Added media control notification for video playback
+            • Added button language in player
+            • TO TEST : open YT link directly with RYTM
             • bug fixing
             """.trimIndent()
             )

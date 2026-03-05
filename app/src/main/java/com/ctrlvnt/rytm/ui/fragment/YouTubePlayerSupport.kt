@@ -19,6 +19,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +45,9 @@ import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
 import com.ctrlvnt.rytm.ui.services.YouTubeNotificationService
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
+import com.ctrlvnt.rytm.utils.getFlagEmojiForLanguage
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
+import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -56,6 +59,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTube
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import java.util.Collections
+import java.util.Locale
 import kotlin.random.Random
 
 
@@ -142,12 +146,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         playlisName = rootView.findViewById(R.id.playlist_name)
         searchBar = rootView.findViewById(R.id.search_bar_player)
         timer_text = rootView.findViewById(R.id.timer_text)
+        val languageButton: TextView = rootView.findViewById(R.id.language)
         val videos: MutableList<Video>
 
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
 
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
+
+        val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
+        languageButton.text = flagEmoji
 
         if (isSaveEnabled) {
             startSaveMinutesTimer(videoId.toString())
@@ -174,7 +182,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         if(playlistTitle == "fromoutside"){
-            buttonPannel.visibility = View.GONE
+            nextButton.visibility = View.GONE
+            prevButton.visibility = View.GONE
+            shuffle.visibility = View.GONE
+            repeat.visibility = View.GONE
+            lockButton.visibility = View.GONE
             playlistAdd.visibility = View.GONE
             playlisName.visibility = View.GONE
             buttonEditName.visibility = View.GONE
@@ -260,6 +272,33 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }else{
                 repeat.clearColorFilter()
             }
+        }
+
+        languageButton.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), languageButton)
+            popupMenu.menuInflater.inflate(R.menu.language_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.lang_en -> setLocale("en", requireContext(), requireActivity())
+                    R.id.lang_ar -> setLocale("ar", requireContext(), requireActivity())
+                    R.id.lang_de -> setLocale("de", requireContext(), requireActivity())
+                    R.id.lang_es -> setLocale("es", requireContext(), requireActivity())
+                    R.id.lang_fr -> setLocale("fr", requireContext(), requireActivity())
+                    R.id.lang_hi -> setLocale("hi", requireContext(), requireActivity())
+                    R.id.lang_it -> setLocale("it", requireContext(), requireActivity())
+                    R.id.lang_ja -> setLocale("ja", requireContext(), requireActivity())
+                    R.id.lang_pl -> setLocale("pl", requireContext(), requireActivity())
+                    R.id.lang_pt -> setLocale("pt", requireContext(), requireActivity())
+                    R.id.lang_ru -> setLocale("ru", requireContext(), requireActivity())
+                    R.id.lang_uk -> setLocale("uk", requireContext(), requireActivity())
+                    R.id.lang_ko -> setLocale("ko", requireContext(), requireActivity())
+                    else -> false
+                }
+                true
+            }
+
+            popupMenu.show()
         }
 
         shuffle.setOnClickListener {

@@ -3,15 +3,11 @@ package com.ctrlvnt.rytm.ui.fragment
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -21,7 +17,10 @@ import com.ctrlvnt.rytm.R
 import java.util.Locale
 import androidx.core.net.toUri
 import androidx.core.content.edit
+import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.TutorialActivity
+import com.ctrlvnt.rytm.utils.getFlagEmojiForLanguage
+import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -109,19 +108,19 @@ class Settings : Fragment(){
 
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.lang_en -> setLocale("en")
-                    R.id.lang_ar -> setLocale("ar")
-                    R.id.lang_de -> setLocale("de")
-                    R.id.lang_es -> setLocale("es")
-                    R.id.lang_fr -> setLocale("fr")
-                    R.id.lang_hi -> setLocale("hi")
-                    R.id.lang_it -> setLocale("it")
-                    R.id.lang_ja -> setLocale("ja")
-                    R.id.lang_pl -> setLocale("pl")
-                    R.id.lang_pt -> setLocale("pt")
-                    R.id.lang_ru -> setLocale("ru")
-                    R.id.lang_uk -> setLocale("uk")
-                    R.id.lang_ko -> setLocale("ko")
+                    R.id.lang_en -> setLocale("en", requireContext(), requireActivity())
+                    R.id.lang_ar -> setLocale("ar", requireContext(), requireActivity())
+                    R.id.lang_de -> setLocale("de", requireContext(), requireActivity())
+                    R.id.lang_es -> setLocale("es", requireContext(), requireActivity())
+                    R.id.lang_fr -> setLocale("fr", requireContext(), requireActivity())
+                    R.id.lang_hi -> setLocale("hi", requireContext(), requireActivity())
+                    R.id.lang_it -> setLocale("it", requireContext(), requireActivity())
+                    R.id.lang_ja -> setLocale("ja", requireContext(), requireActivity())
+                    R.id.lang_pl -> setLocale("pl", requireContext(), requireActivity())
+                    R.id.lang_pt -> setLocale("pt", requireContext(), requireActivity())
+                    R.id.lang_ru -> setLocale("ru", requireContext(), requireActivity())
+                    R.id.lang_uk -> setLocale("uk", requireContext(), requireActivity())
+                    R.id.lang_ko -> setLocale("ko", requireContext(), requireActivity())
                     else -> false
                 }
                 true
@@ -139,39 +138,5 @@ class Settings : Fragment(){
         mTextViewAbout.movementMethod = LinkMovementMethod.getInstance()
 
         return rootView
-    }
-
-    private fun setLocale(languageCode: String): Boolean {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-
-        val config = Configuration(requireContext().resources.configuration)
-        config.setLocale(locale)
-
-        requireContext().createConfigurationContext(config)
-        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-        prefs.edit { putString("app_lang", languageCode) }
-
-        requireActivity().recreate()
-        return true
-    }
-
-    fun getFlagEmojiForLanguage(languageCode: String): String {
-        return when (languageCode) {
-                "en" -> "🇺🇸"
-                "ar" -> "🇸🇦"
-                "de" -> "🇩🇪"
-                "es" -> "🇪🇸"
-                "fr" -> "🇫🇷"
-                "hi" -> "🇮🇳"
-                "it" -> "🇮🇹"
-                "ja" -> "🇯🇵"
-                "pl" -> "🇵🇱"
-                "pt" -> "🇵🇹"
-                "ru" -> "🇷🇺"
-                "uk" -> "🇺🇦"
-                "ko" -> "🇰🇷"
-            else -> "🌐"
-        }
     }
 }
