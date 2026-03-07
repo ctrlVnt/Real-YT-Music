@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/option1"
-        android:title="info" />
+        android:title="create" />
     <item
         android:id="@+id/option2"
-        android:title="@string/caches" />
+        android:title="import from TY" />
 </menu>

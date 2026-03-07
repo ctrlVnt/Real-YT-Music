@@ -17,7 +17,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -55,7 +54,9 @@ import com.ctrlvnt.rytm.utils.savePlaylistFromApi
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.PopupMenu
 import androidx.compose.ui.graphics.findFirstRoot
+import com.ctrlvnt.rytm.utils.setLocale
 
 class HomeActivity : Fragment() {
 
@@ -84,8 +85,7 @@ class HomeActivity : Fragment() {
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
-        val addButton: Button = rootView.findViewById(R.id.add_playlist)
-        val importButton: Button = rootView.findViewById(R.id.import_playlist)
+        val addButton: FloatingActionButton = rootView.findViewById(R.id.add_playlist)
         val searchButton: Button = rootView.findViewById(R.id.search_button_modern)
         val explainText: TextView = rootView.findViewById(R.id.explain)
         val banner: TextView = rootView.findViewById(R.id.global_limit_banner)
@@ -157,20 +157,28 @@ class HomeActivity : Fragment() {
             showConfirmationDialog()
         }
 
+        addButton.setOnClickListener {
+            val popupMenu = PopupMenu(requireContext(), addButton)
+            popupMenu.menuInflater.inflate(R.menu.options_menu, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.option1 -> showCustomDialog()
+                    R.id.option2 -> showCustomDialogInsertLink()
+                    else -> false
+                }
+                true
+            }
+
+            popupMenu.show()
+        }
+
         settingsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
                 .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
                 .replace(R.id.main_activity, Settings())
                 .addToBackStack(null)
                 .commit()
-        }
-
-        addButton.setOnClickListener{
-            showCustomDialog()
-        }
-
-        importButton.setOnClickListener {
-            showCustomDialogInsertLink()
         }
 
         searchBar.setOnClickListener {
@@ -208,7 +216,6 @@ class HomeActivity : Fragment() {
                     subHome.visibility = View.GONE
                     noPlaylist.visibility = View.GONE
                     addButton.visibility = View.GONE
-                    importButton.visibility = View.GONE
                     trashButton.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
@@ -238,7 +245,6 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
                     addButton.visibility = View.VISIBLE
-                    importButton.visibility = View.VISIBLE
                 }
                 return true
             }
