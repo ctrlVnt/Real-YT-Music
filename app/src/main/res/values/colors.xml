@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="semiTransparentGrey">#E6000000</color>
+    <color name="transparent">#00000000</color>
 
     <color name="items">#C0C0C0</color>
     <color name="background">#282828</color>

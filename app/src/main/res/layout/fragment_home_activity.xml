@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxWidth="300dp"
-                android:text="RYTM"
+                android:text="@string/app_name"
                 android:textColor="@color/text"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -148,17 +148,20 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_titles"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/notosansmedium"
+            android:background="@drawable/bg_search"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subhome"
             android:layout_marginTop="20dp"
-            app:queryHint="@string/placeholder" />
+            app:queryHint="@string/placeholder"
+            app:queryBackground="@color/transparent"
+            android:elevation="4dp"/>
 
         <TextView
             android:id="@+id/explain"

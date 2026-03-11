@@ -92,7 +92,7 @@ fun performYouTubeSearch(
             } else {
                 try {
                     val banner = rootView.findViewById<TextView>(R.id.global_limit_banner)
-                    banner.text = getLAResetTimeMessage(context)
+                    banner?.text = getLAResetTimeMessage(context)
                     banner.visibility = View.VISIBLE
                     //showLimitReachedDialog(context)
                     loadFromCache(context, recyclerView, searchQuery)
@@ -207,8 +207,10 @@ fun getLAResetTimeMessage(context: Context): String {
     val hours = diff.toHours()
     val minutes = diff.toMinutes() % 60
 
-    return "MODE OFFLINE: " + context.getString(R.string.daily_end) + " ${hours}h ${minutes}m. " +
-            context.getString(R.string.daily_end2)
+    val part1 = context.getString(R.string.daily_end)
+    val part2 = context.getString(R.string.daily_end2)
+
+    return "MODE OFFLINE: $part1 ${hours}h ${minutes}m. $part2"
 }
 
 fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {

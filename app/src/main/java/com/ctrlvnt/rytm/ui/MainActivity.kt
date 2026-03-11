@@ -234,8 +234,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added button language in player
-            • TO TEST : open YT link directly with RYTM
+            • Design update
             • bug fixing
             """.trimIndent()
             )
