@@ -9,14 +9,10 @@ You can watch your videos without ADS, you can listen your video while scrolling
 
 ---
 
-## Screenshots
+## Screenshot
 
-<p>
-  <img src="https://play-lh.googleusercontent.com/Qmw7hhpAzZ_d-Ie86oN06ONt5Cw0Xx6esfCKlS9wRX4xWNt_5QOBPgyDtq_LTalcSSM=w2560-h1440" width="300" />
-  <img src="https://play-lh.googleusercontent.com/H3ee6804bsluuWRuNd8xFdhHqEPqTW_-NS5jQubO3Ic0v5EYUhJGUMiA_Hj5hea7mfI=w2560-h1440" width="300" />
-  <img src="https://play-lh.googleusercontent.com/BuJ2p-L7CtkF2FSyOmvAaxauDhOMVeMf2jEXGlVQZjrir4WGWC-w8r_sMmoVWS6hJTY=w2560-h1440" width="300" />
-  <img src="https://play-lh.googleusercontent.com/Ffam3JAudYr2ggfAKR6Spot4gQkdlV-VQdDJ8cztaIm265-14TkQj1l-b8-Rh72dcACm=w2560-h1440" width="300" />
-</p>
+<img width="700" alt="rytm PlayStore" src="https://github.com/user-attachments/assets/0636ab78-0daf-4500-a613-01c10fd12884" />
+
 
 ---
 
@@ -36,7 +32,7 @@ Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.
 - Found a bug?
 
 Open an issue here:  
-🚩 https://github.com/ctrlVnt/Real-YT-Music/issues
+🐞 https://github.com/ctrlVnt/Real-YT-Music/issues
 
 ---
 
@@ -59,7 +55,7 @@ Translation files are located here:
 
 Get **Real YT Music** on Google Play:
 
-[<img width="545" alt="bmc-button" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" />](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm)
+[<img width="500" alt="bmc-button" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" />](https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm)
 
 ---
 
@@ -67,6 +63,6 @@ Get **Real YT Music** on Google Play:
 
 If you enjoy the app and want to support its development, thank you!
 
-[<img width="545" alt="bmc-button" src="https://github.com/user-attachments/assets/002f8e0b-c0a7-45bf-b73d-92d36dff8090" />](https://www.buymeacoffee.com/v3ntuz)
+[<img width="500" alt="bmc-button" src="https://github.com/user-attachments/assets/002f8e0b-c0a7-45bf-b73d-92d36dff8090" />](https://www.buymeacoffee.com/v3ntuz)
 
 
