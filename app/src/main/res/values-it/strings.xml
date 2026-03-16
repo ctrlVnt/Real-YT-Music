@@ -28,7 +28,7 @@
     <string name="noty_title">RYTM è in esecuzione</string>
     <string name="noty_text">Cliccare sulla notifica per cancellarla</string>
     <string name="empty_playlists">Nessuna playlist presente</string>
-    <string name="empty_cronology">Cronologia vuota</string>
+    <string name="empty_cronology">per iniziare usa la barra di ricerca o vai su YouTube, clicca condividi e RYTM per avere video senza pubblicità</string>
     <string name="terms_title">Termini e condizioni d\'uso</string>
     <string name="terms_text">"L'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> "</string>
     <string name="accept">Accetta</string>

@@ -15,4 +15,9 @@
         android:fontWeight="400"
         android:font="@font/bricolagegrotesquemedium" />
 
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/paytoneoneregular" />
+
 </font-family>

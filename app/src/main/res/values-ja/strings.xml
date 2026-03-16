@@ -38,7 +38,7 @@
     <string name="noty_text">通知をクリックして削除します</string>
 
     <string name="empty_playlists">プレイリストが存在しません</string>
-    <string name="empty_cronology">履歴は空です</string>
+    <string name="empty_cronology">開始するには、検索バーを使用するか、YouTubeに移動し、共有をクリックしてRYTMで広告なしの動画を視聴してください</string>
 
     <string name="generic_error">未知のエラー</string>
 

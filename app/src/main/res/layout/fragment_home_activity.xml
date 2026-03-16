@@ -6,9 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeActivity">
 
+    <View
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/topbar"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/home"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,15 +43,17 @@
 
             <ImageButton
                 android:id="@+id/settings"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:fabCustomSize="32dp"
                 android:layout_marginEnd="10dp"
-                android:background="@android:color/transparent"
+                android:backgroundTint="@color/transparent"
                 android:src="@drawable/settings"
-                android:scaleType="fitCenter"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/welcome"/>
+                app:layout_constraintTop_toTopOf="@+id/welcome"
+                app:tint="@android:color/black" />
 
             <TextView
                 android:id="@+id/welcome"
@@ -54,19 +62,19 @@
                 android:gravity="center"
                 android:maxWidth="300dp"
                 android:text="@string/app_name"
-                android:textColor="@color/text"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/paytoneoneregular"
+                android:textColor="@color/black"
+                android:textSize="23sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/logo"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="2dp"/>
 
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="40dp"
                 android:layout_height="0dp"
-                android:src="@drawable/logo"
+                android:src="@drawable/logo_dark"
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/welcome"
@@ -85,10 +93,11 @@
                 android:id="@+id/playlist_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="35dp"
                 android:focusable="true"
                 android:text="@string/playlists"
-                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -151,17 +160,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="30dp"
             android:fontFamily="@font/notosansmedium"
             android:background="@drawable/bg_search"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subhome"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             app:queryHint="@string/placeholder"
             app:queryBackground="@color/transparent"
-            android:elevation="4dp"/>
+            android:elevation="10dp"/>
 
         <TextView
             android:id="@+id/explain"
@@ -204,26 +212,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="20dp"
+            android:padding="10dp"
             android:text="@string/prev_search"
             android:textColor="@color/background"
             android:textSize="18sp"
+            android:textStyle="bold"
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bottom" />
 
-        <ImageButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/delete_last_search"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            app:fabCustomSize="36dp"
             android:layout_marginEnd="20dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
+            android:backgroundTint="@color/red"
             android:src="@drawable/trash"
+            android:textAlignment="center"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/last_search_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/last_search_text" />
+            app:layout_constraintTop_toTopOf="@+id/last_search_text"
+            app:tint="@android:color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/songs_list"
@@ -248,8 +260,8 @@
             android:id="@+id/empty_history_img"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/diary"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/share"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/last_search_text" />
@@ -261,10 +273,9 @@
             android:gravity="center"
             android:text="@string/empty_cronology"
             android:textColor="@color/background"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textSize="14sp"
+            android:paddingHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/empty_history_img"
             android:layout_marginTop="20dp"/>

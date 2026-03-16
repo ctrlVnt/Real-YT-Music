@@ -40,7 +40,7 @@
     <string name="noty_text">알림을 탭하여 삭제하세요</string>
 
     <string name="empty_playlists">재생목록이 없습니다</string>
-    <string name="empty_cronology">기록이 없습니다</string>
+    <string name="empty_cronology">시작하려면 검색창을 사용하거나 YouTube로 이동하여 공유를 클릭하고 RYTM으로 광고 없는 비디오를 시청하세요</string>
 
     <string name="generic_error">알 수 없는 오류</string>
 

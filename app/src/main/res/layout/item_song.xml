@@ -9,9 +9,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="56dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="4dp">
+        app:cardElevation="0dp">
 
         <ImageView
             android:id="@+id/video_thumbnail"
@@ -33,24 +33,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Video Title"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/notosansmedium"/>
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/channel_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Channel Title"
-            android:textSize="14sp"
-            android:fontFamily="@font/notosansmedium"/>
+            android:textSize="14sp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/isPlaylist"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="Playlist"
-            android:fontFamily="@font/bricolagegrotesquemedium"
             android:textSize="13sp"
             android:textColor="@color/white"
             android:textAllCaps="false"

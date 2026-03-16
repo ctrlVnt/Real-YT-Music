@@ -21,11 +21,6 @@ class TutorialActivity : AppIntro() {
             imageDrawable = R.drawable.cover
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_home),
-            description = getString(R.string.intro_desc_home),
-            imageDrawable = R.drawable.slide1
-        ))
-        addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_title_player),
             description = getString(R.string.intro_desc_player),
             imageDrawable = R.drawable.slide2

@@ -16,8 +16,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 35
-        versionCode = 56
-        versionName = "6.6"
+        versionCode = 57
+        versionName = "6.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,24 +68,24 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.9.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.9.4")
-    implementation("androidx.navigation:navigation-common:2.9.4")
-    implementation("androidx.navigation:navigation-common-ktx:2.9.4")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.9.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-common:2.9.7")
+    implementation("androidx.navigation:navigation-common-ktx:2.9.7")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.9.7")
     implementation("androidx.media:media:1.7.1")
 
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 
-    implementation ("com.github.bumptech.glide:glide:5.0.4")
+    implementation ("com.github.bumptech.glide:glide:5.0.5")
 
-    implementation("androidx.room:room-runtime:2.8.0")
-    ksp("androidx.room:room-compiler:2.8.0")
+    implementation("androidx.room:room-runtime:2.8.4")
+    ksp("androidx.room:room-compiler:2.8.4")
 
-    implementation ("androidx.compose.material:material:1.9.1")
-    implementation ("androidx.compose.ui:ui:1.9.1")
-    implementation ("androidx.compose.ui:ui-tooling-preview:1.9.1")
+    implementation ("androidx.compose.material:material:1.10.5")
+    implementation ("androidx.compose.ui:ui:1.10.5")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.10.5")
     implementation ("com.google.android.material:material:1.13.0")
     implementation("com.github.AppIntro:AppIntro:6.3.1")
 }

@@ -28,7 +28,7 @@
     <string name="noty_title">RYTM चल रहा है</string>
     <string name="noty_text">बंद करने के लिए नोटिफिकेशन पर क्लिक करें</string>
     <string name="empty_playlists">कोई प्लेलिस्ट नहीं मिली</string>
-    <string name="empty_cronology">खाली इतिहास</string>
+    <string name="empty_cronology">शुरू करने के लिए, खोज बार का उपयोग करें या YouTube पर जाएं, शेयर पर क्लिक करें और RYTM बिना विज्ञापनों के वीडियो देखने के लिए</string>
     <string name="generic_error">अज्ञात त्रुटि</string>
     <string name="terms_title">नियम और शर्तें</string>
     <string name="terms_text">यह ऐप YouTube API का उपयोग करता है। आगे बढ़ने से पहले कृपया <a href="https://www.youtube.com/t/terms?hl=hi">नियम और शर्तें</a> और <a href="http://www.google.com/policies/privacy">गोपनीयता नीति</a> पढ़ें और स्वीकार करें</string>

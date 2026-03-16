@@ -79,7 +79,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private lateinit var videoList: RecyclerView
     private lateinit var youTubePlayerView: YouTubePlayerView
     private lateinit var playlisName: TextView
-    private lateinit var playlistAdd: ImageButton
+    private lateinit var playlistAdd: FloatingActionButton
     private lateinit var buttonPannel: ConstraintLayout
     private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
@@ -437,7 +437,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     MainActivity.database.deleteMinutes(videoId) //to reset every time
 
                     playlistAdd.setOnClickListener {
+                        if (indexVideo >= 0 && indexVideo < nextVideo.size) {
                             showPlaylistDialog(nextVideo[indexVideo])
+                        }
                     }
 
                     nextButton.setOnClickListener{
@@ -757,7 +759,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             id = videoId,
             title = videoItem.snippet.title,
             channelTitle = videoItem.snippet.channelTitle,
-            thumbnailUrl = videoItem.snippet.thumbnails.default.url
+            thumbnailUrl = videoItem.snippet.thumbnails.default?.url ?: ""
         )
 
 

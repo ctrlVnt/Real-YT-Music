@@ -108,7 +108,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
         }
 
         Glide.with(holder.videoThumbnail.context)
-            .load(currentItem.snippet.thumbnails.medium.url)
+            .load(currentItem.snippet.thumbnails.medium?.url)
             .into(holder.videoThumbnail)
 
         if (currentFragmentTag == "home") {
@@ -121,7 +121,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
                         videoList[position].id.videoId.toString(),
                         videoList[position].snippet.title,
                         videoList[position].snippet.channelTitle,
-                        videoList[position].snippet.thumbnails.medium.url
+                        videoList[position].snippet.thumbnails.medium?.url ?: ""
                     )
                     if (!exist(video)) {
                         //Add video to history
@@ -129,7 +129,7 @@ class VideoAdapter(private val videoList: List<VideoItem>,
                     }
                     val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId.toString(), "")
                     (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
+                        .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
                         .replace(R.id.main_activity, fragment)
                         .addToBackStack(null)
                         .commit()

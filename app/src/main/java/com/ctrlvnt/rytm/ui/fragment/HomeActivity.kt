@@ -65,7 +65,7 @@ class HomeActivity : Fragment() {
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
     lateinit var historyImg: ImageView
-    lateinit var trashButton: ImageButton
+    lateinit var trashButton: FloatingActionButton
     lateinit var noPlaylist: TextView
 
     @SuppressLint("ResourceType")
@@ -90,6 +90,7 @@ class HomeActivity : Fragment() {
         val explainText: TextView = rootView.findViewById(R.id.explain)
         val banner: TextView = rootView.findViewById(R.id.global_limit_banner)
         val noResultsText = rootView.findViewById<TextView>(R.id.no_results_text)
+        val topbar = rootView.findViewById<View>(R.id.topbar)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
         searchButton.visibility = View.GONE
         explainText.visibility = View.GONE
@@ -175,7 +176,7 @@ class HomeActivity : Fragment() {
 
         settingsButton.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fade, 0, R.anim.slow_fade, 0)
+                .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
                 .replace(R.id.main_activity, Settings())
                 .addToBackStack(null)
                 .commit()
@@ -217,6 +218,7 @@ class HomeActivity : Fragment() {
                     noPlaylist.visibility = View.GONE
                     addButton.visibility = View.GONE
                     trashButton.visibility = View.GONE
+                    topbar.visibility = View.GONE
                 }else{
                     clearRecyclerView(rootView)
                     if(videos.isEmpty()){
@@ -245,6 +247,7 @@ class HomeActivity : Fragment() {
                     bottomPart.visibility = View.VISIBLE
                     subHome.visibility = View.VISIBLE
                     addButton.visibility = View.VISIBLE
+                    topbar.visibility = View.VISIBLE
                 }
                 return true
             }

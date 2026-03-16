@@ -43,15 +43,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         window.decorView.apply {
-            WindowCompat.setDecorFitsSystemWindows(getWindow(), false)
+            WindowCompat.setDecorFitsSystemWindows(window, false)
             val insetsController =
-                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
-            if (insetsController != null) {
-                insetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE)
-                insetsController.hide(WindowInsetsCompat.Type.navigationBars())
-            }
+                WindowCompat.getInsetsController(window, window.decorView)
+            insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            insetsController.hide(WindowInsetsCompat.Type.navigationBars())
         }
 
         val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
@@ -204,8 +201,8 @@ class MainActivity : AppCompatActivity() {
         val currentVersion = getAppVersionCode(context)
 
         if (currentVersion > savedVersion) {
-            showUpdateDialog(context) // Mostra popup
-            prefs.edit().putLong("last_seen_version", currentVersion).apply()
+            showUpdateDialog(context)
+            prefs.edit { putLong("last_seen_version", currentVersion) }
         }
     }
 

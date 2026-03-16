@@ -11,7 +11,7 @@
     <color name="semiTransparentGrey">#E6000000</color>
     <color name="transparent">#00000000</color>
 
-    <color name="items">#C0C0C0</color>
+    <color name="items">#E2E2E2</color>
     <color name="background">#282828</color>
     <color name="text">#F2F2F2</color>
     <color name="text_dark">#080F26</color>

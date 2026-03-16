@@ -83,7 +83,7 @@ fun performYouTubeSearch(
                             videoId = video.id.videoId.toString(),
                             title = video.snippet.title,
                             channelTitle = video.snippet.channelTitle,
-                            thumbnailUrl = video.snippet.thumbnails.high.url
+                            thumbnailUrl = video.snippet.thumbnails.high?.url ?: ""
                         )
                         cacheDao.insert(entity)
                     }
@@ -93,7 +93,7 @@ fun performYouTubeSearch(
                 try {
                     val banner = rootView.findViewById<TextView>(R.id.global_limit_banner)
                     banner?.text = getLAResetTimeMessage(context)
-                    banner.visibility = View.VISIBLE
+                    banner?.visibility = View.VISIBLE
                     //showLimitReachedDialog(context)
                     loadFromCache(context, recyclerView, searchQuery)
                 } catch (e: JSONException) {
@@ -238,7 +238,7 @@ fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
                                 videoId = item.snippet.resourceId.videoId,
                                 title = item.snippet.title,
                                 channelTitle = item.snippet.channelTitle,
-                                thumbnailUrl = item.snippet.thumbnails.high.url,
+                                thumbnailUrl = item.snippet.thumbnails.high?.url ?: "",
                                 position = index
                             )
                         }
@@ -255,7 +255,7 @@ fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
                                 playlistName
                             )
                             (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                                .setCustomAnimations(R.anim.slow_fade, 0, R.anim.slow_fade, 0)
+                                .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
                                 .replace(R.id.main_activity, fragment)
                                 .addToBackStack(null)
                                 .commit()
