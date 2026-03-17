@@ -190,7 +190,7 @@ private fun loadFromCache(context: Context, recyclerView: RecyclerView, query: S
                 recyclerView.adapter = VideoAdapter(videoItems, null, "home")
                 Toast.makeText(context, "Showing cached results", Toast.LENGTH_SHORT).show()
             } else {
-                noResultsText.visibility = View.VISIBLE
+                noResultsText?.visibility = View.VISIBLE
             }
         }
     }
