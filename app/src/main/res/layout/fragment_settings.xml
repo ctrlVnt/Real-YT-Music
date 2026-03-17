@@ -13,7 +13,6 @@
         android:layout_marginTop="70dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/logo_dark"
-        app:layout_constraintBottom_toBottomOf="@+id/welcome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
