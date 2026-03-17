@@ -13,7 +13,7 @@
             android:background="@drawable/playlist_item">
 
             <ImageView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@drawable/play2"
@@ -25,7 +25,6 @@
                 android:layout_height="match_parent"
                 android:text="Playlist Title"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:textColor="@color/background"

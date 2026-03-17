@@ -54,8 +54,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">" Lista de reproducción vacía"</string>
     <string name="empty_playlist_text">Esta lista de reproducción está vacía. Agrega algunas canciones a la lista antes de reproducir.</string>
-    <string name="send_me_suggestions">Envíame tus sugerencias 📧</string>
-    <string name="support_me">Si te apetece apoyar mi trabajo👇</string>
+    <string name="send_me_suggestions">Contáctame</string>
+    <string name="support_me">Apóyame</string>
     <string name="info_text">Esta aplicación fue creada con ❤️ para ver videos mientras usas otras aplicaciones. No verás publicidad porque RYTM no identifica a los usuarios</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">Aún no tienes ninguna lista de reproducción. ¡Crea la primera ahora!</string>
     <string name="thx">¡Gracias por usar la aplicación!</string>
@@ -64,7 +64,7 @@
     <string name="later">Tal vez más tarde</string>
     <string name="explain_search">Pulsa enter en tu teclado para buscar</string>
     <string name="lingua">Idioma</string>
-    <string name="visita_il_mio_sito_web">es\tVisita mi sitio web 🌎</string>
+    <string name="visita_il_mio_sito_web">Visita mi sitio web 🌎</string>
     <string name="valuta_l_app">Califica la aplicación ⭐</string>
     <string name="save_minute">Guardar minuto</string>
     <string name="limit_title">Límite diario alcanzado</string>
@@ -105,4 +105,13 @@
     <string name="timer_cell">Introduzca un número de minutos (ej.: 5)</string>
     <string name="timer_exit">Detener temporizador</string>
     <string name="timer_exit_text">El temporizador ya está en funcionamiento, ¿desea detenerlo?</string>
+    <string name="something_wrong">Algo anda mal</string>
+    <string name="send_report_summary">Enviar un reporte</string>
+    <string name="support_work_summary">¡Apoya mi trabajo!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Deja una reseña en el Play Store</string>
+    <string name="resources">Recursos</string>
+    <string name="tutorial_summary">Ve cómo usar RYTM</string>
+    <string name="github_summary">Ver el código en GitHub</string>
+
 </resources>

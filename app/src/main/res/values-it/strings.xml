@@ -30,7 +30,7 @@
     <string name="empty_playlists">Nessuna playlist presente</string>
     <string name="empty_cronology">per iniziare usa la barra di ricerca o vai su YouTube, clicca condividi e RYTM per avere video senza pubblicità</string>
     <string name="terms_title">Termini e condizioni d\'uso</string>
-    <string name="terms_text">"L'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> "</string>
+    <string name="terms_text">"L\'applicazione utilizza il servizio API di YouTube, prima di proseguire si prega di visualizzare e accettare i <a href="https://www.youtube.com/t/terms?hl=it">Termini e Condizioni</a> e <a href="http://www.google.com/policies/privacy">Privacy Policy</a> "</string>
     <string name="accept">Accetta</string>
     <string name="confirm_delete_history">Conferma eliminazione cronologia</string>
     <string name="confirm_delete_history_message">Sei sicuro di voler eliminare tutta la cronologia?</string>
@@ -40,8 +40,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Playlist vuota</string>
     <string name="empty_playlist_text">Questa playlist è vuota. Aggiungi dei brani alla playlist prima di riprodurre.</string>
-    <string name="send_me_suggestions">Invia i tuoi suggerimenti 📧</string>
-    <string name="support_me">Se ti andasse di supportare il mio lavoro 👇</string>
+    <string name="send_me_suggestions">Contattami</string>
+    <string name="support_me">Supportami</string>
     <string name="info_text">App creata con ❤️ per vedere video mentre usi altre app. Non vedrai pubblicità perché RYTM non identifica gli utenti</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">Non hai ancora nessuna playlist. Crea la tua prima!</string>
     <string name="thx">Grazie per aver usato l\'app!</string>
@@ -92,5 +92,13 @@
     <string name="timer_cell">Inserisci un numero di minuti (es.: 5)</string>
     <string name="timer_exit">Interrompi timer</string>
     <string name="timer_exit_text">Il timer è già in esecuzione, vuoi fermarlo?</string>
+    <string name="something_wrong">Qualcosa non va</string>
+    <string name="send_report_summary">Invia una segnalazione</string>
+    <string name="support_work_summary">Supporta il mio lavoro!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Lascia una recensione sul Play Store</string>
+    <string name="resources">Risorse</string>
+    <string name="tutorial_summary">Guarda come usare RYTM</string>
+    <string name="github_summary">Vedi il codice su GitHub</string>
 
 </resources>

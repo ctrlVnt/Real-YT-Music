@@ -54,8 +54,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Pusta lista odtwarzania</string>
     <string name="empty_playlist_text">Ta lista odtwarzania jest pusta. Dodaj kilka utworów do listy przed odtwarzaniem.</string>
-    <string name="send_me_suggestions">Prześlij mi swoje sugestie 📧</string>
-    <string name="support_me">Jeśli chcesz wesprzeć moją pracę 👇</string>
+    <string name="send_me_suggestions">Skontaktuj się ze mną 📧</string>
+    <string name="support_me">Wesprzyj mnie</string>
     <string name="info_text">Ta aplikacja została stworzona z ❤️, aby oglądać filmy podczas korzystania z innych aplikacji. Nie zobaczysz reklam, ponieważ RYTM nie identyfikuje użytkowników</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">Nie masz jeszcze żadnych playlist. Utwórz swoją pierwszą już teraz!</string>
     <string name="thx">Dziękuję za korzystanie z aplikacji!</string>
@@ -105,4 +105,13 @@
     <string name="timer_cell">Wprowadź liczbę minut (np.: 5)</string>
     <string name="timer_exit">Zatrzymaj timer</string>
     <string name="timer_exit_text">Timer jest już uruchomiony, czy chcesz go zatrzymać?</string>
+    <string name="something_wrong">Coś jest nie tak</string>
+    <string name="send_report_summary">Wyślij raport</string>
+    <string name="support_work_summary">Wesprzyj moją pracę!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Zostaw recenzję w Play Store</string>
+    <string name="resources">Zasoby</string>
+    <string name="tutorial_summary">Zobacz, jak używać RYTM</string>
+    <string name="github_summary">Zobacz kod na GitHub</string>
+
 </resources>

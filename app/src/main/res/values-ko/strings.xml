@@ -57,8 +57,8 @@
     <string name="empty_playlist_title">재생목록이 비어있음</string>
     <string name="empty_playlist_text">이 재생목록은 비어 있습니다. 재생하기 전에 곡을 추가하세요.</string>
     <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
-    <string name="send_me_suggestions">제안 보내기 📧</string>
-    <string name="support_me">지원하고 싶으시면 👇</string>
+    <string name="send_me_suggestions">연락주세요 📧</string>
+    <string name="support_me">지원해 주세요</string>
     <string name="info_text">다른 앱을 사용하면서도 동영상을 시청할 수 있도록 ❤️로 만든 앱입니다. RYTM는 사용자를 식별하지 않으므로 광고가 표시되지 않습니다</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">아직 재생목록이 없습니다. 지금 첫 번째 재생목록을 만들어보세요!</string>
     <string name="playlists" translatable="false">Playlists &gt;</string>
@@ -107,5 +107,13 @@
     <string name="timer_cell">분 수를 입력하세요 (예: 5)</string>
     <string name="timer_exit">타이머 종료</string>
     <string name="timer_exit_text">타이머가 이미 실행 중입니다. 중지하시겠습니까?</string>
+    <string name="something_wrong">문제가 있습니다</string>
+    <string name="send_report_summary">보고서 보내기</string>
+    <string name="support_work_summary">내 작업을 지원하세요!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Play Store에 리뷰 남기기</string>
+    <string name="resources">리소스</string>
+    <string name="tutorial_summary">RYTM 사용 방법 보기</string>
+    <string name="github_summary">GitHub에서 코드 보기</string>
 
 </resources>

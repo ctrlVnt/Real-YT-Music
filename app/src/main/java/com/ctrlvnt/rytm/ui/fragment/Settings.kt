@@ -1,142 +1,87 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.PopupMenu
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import com.ctrlvnt.rytm.R
-import java.util.Locale
 import androidx.core.net.toUri
-import androidx.core.content.edit
-import com.ctrlvnt.rytm.ui.MainActivity
+import androidx.preference.ListPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.ui.TutorialActivity
-import com.ctrlvnt.rytm.utils.getFlagEmojiForLanguage
 import com.ctrlvnt.rytm.utils.setLocale
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.shakebugs.shake.Shake
+import com.shakebugs.shake.ShakeScreen
 
+class Settings : PreferenceFragmentCompat() {
 
-class Settings : Fragment(){
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
-        val backButton: ImageButton = rootView.findViewById(R.id.back_button)
-        val buymeacoffeeButton : MaterialButton = rootView.findViewById(R.id.buymeacoffee)
-        val sendmemailButton : MaterialButton = rootView.findViewById(R.id.sendmeamail)
-        val settingsButton : ImageButton = rootView.findViewById(R.id.language)
-        val flagEmojiTextView: TextView = rootView.findViewById(R.id.flag_emoji)
-        val visitmywebsiteButton : MaterialButton = rootView.findViewById(R.id.visitwebsite)
-        val rateAppButton : MaterialButton = rootView.findViewById(R.id.rate_app)
-        val tutorialButton : MaterialButton = rootView.findViewById(R.id.see_tutorial)
-        val githubButton : MaterialButton = rootView.findViewById(R.id.github)
-        val saveMinutesToggle: com.google.android.material.switchmaterial.SwitchMaterial = rootView.findViewById(R.id.save_minutes_toggle)
-        val reportBugButton: FloatingActionButton = rootView.findViewById(R.id.report_bug)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.preferences, rootKey)
 
-
-        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-        val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
-        saveMinutesToggle.isChecked = isSaveEnabled
-
-        saveMinutesToggle.setOnCheckedChangeListener { _, isChecked ->
-            prefs.edit {
-                putBoolean("save_minutes_enabled", isChecked)
-            }
-        }
-
-        val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
-        flagEmojiTextView.text = flagEmoji
-
-        backButton.setOnClickListener{
+        setupClickablePreference("back"){
             requireActivity().supportFragmentManager.popBackStack()
         }
 
-        buymeacoffeeButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, "https://buymeacoffee.com/v3ntuz".toUri())
-            startActivity(browserIntent)
+        val languagePref: ListPreference? = findPreference("app_language")
+        languagePref?.setOnPreferenceChangeListener { _, newValue ->
+            val langCode = newValue.toString()
+            setLocale(langCode, requireContext(), requireActivity())
+            true
         }
 
-        visitmywebsiteButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, "https://riccardoventurini.dev/".toUri())
-            startActivity(browserIntent)
+        setupClickablePreference("buy_me_a_coffee") {
+            openUrl("https://buymeacoffee.com/v3ntuz")
         }
 
-        rateAppButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm".toUri())
-            startActivity(browserIntent)
+        setupClickablePreference("report_bug") {
+            openUrl("https://github.com/ctrlVnt/Real-YT-Music/issues")
         }
 
-        githubButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, "https://github.com/ctrlVnt/Real-YT-Music".toUri())
-            startActivity(browserIntent)
+        setupClickablePreference("visit_website") {
+            openUrl("https://riccardoventurini.dev/")
         }
 
-        reportBugButton.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, "https://github.com/ctrlVnt/Real-YT-Music/issues".toUri())
-            startActivity(browserIntent)
+        setupClickablePreference("rate_app") {
+            openUrl("https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm")
         }
 
-        sendmemailButton.setOnClickListener {
-            val i = Intent(Intent.ACTION_SEND)
-            i.setType("message/rfc822")
-            i.putExtra(Intent.EXTRA_EMAIL, arrayOf("giordanobruno227@gmail.com"))
-            i.putExtra(Intent.EXTRA_SUBJECT, "I have a suggestion for RYTM!")
-            try {
-                startActivity(Intent.createChooser(i, "Send mail..."))
-            } catch (ex: ActivityNotFoundException) {
-                Toast.makeText(
-                    context,
-                    "There are no email clients installed.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        setupClickablePreference("github") {
+            openUrl("https://github.com/ctrlVnt/Real-YT-Music")
         }
 
-        settingsButton.setOnClickListener {
-            val popupMenu = PopupMenu(requireContext(), settingsButton)
-            popupMenu.menuInflater.inflate(R.menu.language_menu, popupMenu.menu)
-
-            popupMenu.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.lang_en -> setLocale("en", requireContext(), requireActivity())
-                    R.id.lang_ar -> setLocale("ar", requireContext(), requireActivity())
-                    R.id.lang_de -> setLocale("de", requireContext(), requireActivity())
-                    R.id.lang_es -> setLocale("es", requireContext(), requireActivity())
-                    R.id.lang_fr -> setLocale("fr", requireContext(), requireActivity())
-                    R.id.lang_hi -> setLocale("hi", requireContext(), requireActivity())
-                    R.id.lang_it -> setLocale("it", requireContext(), requireActivity())
-                    R.id.lang_ja -> setLocale("ja", requireContext(), requireActivity())
-                    R.id.lang_pl -> setLocale("pl", requireContext(), requireActivity())
-                    R.id.lang_pt -> setLocale("pt", requireContext(), requireActivity())
-                    R.id.lang_ru -> setLocale("ru", requireContext(), requireActivity())
-                    R.id.lang_uk -> setLocale("uk", requireContext(), requireActivity())
-                    R.id.lang_ko -> setLocale("ko", requireContext(), requireActivity())
-                    else -> false
-                }
-                true
-            }
-
-            popupMenu.show()
-        }
-
-        tutorialButton.setOnClickListener {
+        setupClickablePreference("tutorial") {
             val intent = Intent(requireContext(), TutorialActivity::class.java)
             startActivity(intent)
         }
 
-        val mTextViewAbout: TextView = rootView.findViewById(R.id.about)
-        mTextViewAbout.movementMethod = LinkMovementMethod.getInstance()
+        setupClickablePreference("send_email") {
+            val i = Intent(Intent.ACTION_SEND).apply {
+                type = "message/rfc822"
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("giordanobruno227@gmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "I have a suggestion for RYTM!")
+            }
+            try {
+                startActivity(Intent.createChooser(i, "Send mail..."))
+            } catch (ex: ActivityNotFoundException) {
+                Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        setupClickablePreference("report_bug"){
+            Shake.show(ShakeScreen.NEW)
+        }
+    }
 
-        return rootView
+    private fun setupClickablePreference(key: String, action: () -> Unit) {
+        findPreference<Preference>(key)?.setOnPreferenceClickListener {
+            action()
+            true
+        }
+    }
+
+    private fun openUrl(url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
+        startActivity(browserIntent)
     }
 }

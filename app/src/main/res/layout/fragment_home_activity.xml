@@ -117,18 +117,37 @@
                 app:layout_constraintTop_toTopOf="@+id/playlist_btn"
                 app:tint="@android:color/white" />
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/no_playlists"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:lineHeight="25sp"
-                android:text="@string/you_don_t_have_already_playlist_create_the_firstone"
-                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#FFFFFF"
+                app:strokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/playlist_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/playlist_btn">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/you_don_t_have_already_playlist_create_the_firstone"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:lineHeight="25sp"
+                        android:textColor="#FFFFFF" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/playlist_list"

@@ -28,8 +28,10 @@ import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
+import com.ctrlvnt.rytm.utils.apikey.SHAKEKEY
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
+import com.shakebugs.shake.Shake
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Shake.start(this, SHAKEKEY)
         setContentView(R.layout.activity_main)
         window.decorView.apply {
             WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -231,7 +234,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Design update
+            • Improved bug report
             • bug fixing
             """.trimIndent()
             )

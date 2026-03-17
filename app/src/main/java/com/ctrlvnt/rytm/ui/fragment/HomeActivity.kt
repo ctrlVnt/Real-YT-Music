@@ -57,6 +57,7 @@ import android.webkit.WebViewClient
 import android.widget.PopupMenu
 import androidx.compose.ui.graphics.findFirstRoot
 import com.ctrlvnt.rytm.utils.setLocale
+import com.google.android.material.card.MaterialCardView
 
 class HomeActivity : Fragment() {
 
@@ -66,7 +67,7 @@ class HomeActivity : Fragment() {
     lateinit var historyText: TextView
     lateinit var historyImg: ImageView
     lateinit var trashButton: FloatingActionButton
-    lateinit var noPlaylist: TextView
+    lateinit var noPlaylist: MaterialCardView
 
     @SuppressLint("ResourceType")
     override fun onCreateView(

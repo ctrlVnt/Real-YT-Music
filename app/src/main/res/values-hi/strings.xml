@@ -40,8 +40,8 @@
     <string name="playlists_button">प्लेलिस्ट</string>
     <string name="empty_playlist_title">खाली प्लेलिस्ट</string>
     <string name="empty_playlist_text">यह प्लेलिस्ट खाली है। प्ले करने से पहले इसमें गाने जोड़ें</string>
-    <string name="send_me_suggestions">मुझे सुझाव भेजें 📧</string>
-    <string name="support_me">अगर आप मेरा समर्थन करना चाहते हैं 👇</string>
+    <string name="send_me_suggestions">मुझसे संपर्क करें 📧</string>
+    <string name="support_me">मुझे सपोर्ट करें</string>
     <string name="info_text">यह ऐप ❤️ से बनाया गया है ताकि आप अन्य ऐप्स का उपयोग करते समय वीडियो देख सकें। इसमें कोई विज्ञापन नहीं हैं क्योंकि RYTM उपयोगकर्ताओं को ट्रैक नहीं करता</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">आपके पास अभी कोई प्लेलिस्ट नहीं है। अपनी पहली प्लेलिस्ट अभी बनाएं!</string>
     <string name="thx">ऐप इस्तेमाल करने के लिए धन्यवाद!</string>
@@ -92,5 +92,13 @@
     <string name="timer_cell">मिनटों की संख्या दर्ज करें (उदा.: 5)</string>
     <string name="timer_exit">टाइमर बंद करें</string>
     <string name="timer_exit_text">टाइमर पहले से चल रहा है, क्या आप इसे रोकना चाहते हैं?</string>
+    <string name="something_wrong">कुछ गलत है</string>
+    <string name="send_report_summary">रिपोर्ट भेजें</string>
+    <string name="support_work_summary">मेरे काम का समर्थन करें!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Play Store पर समीक्षा छोड़ें</string>
+    <string name="resources">संसाधन</string>
+    <string name="tutorial_summary">RYTM का उपयोग कैसे करें देखें</string>
+    <string name="github_summary">GitHub पर कोड देखें</string>
 
 </resources>

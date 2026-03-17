@@ -54,8 +54,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Пустой плейлист</string>
     <string name="empty_playlist_text">Этот плейлист пуст. Добавьте несколько песен в плейлист перед воспроизведением.</string>
-    <string name="send_me_suggestions">Присылайте мне свои предложения 📧</string>
-    <string name="support_me">Если вы хотите поддержать мою работу</string>
+    <string name="send_me_suggestions">Свяжитесь со мной 📧</string>
+    <string name="support_me">Поддержите меня</string>
     <string name="info_text">Это приложение создано с ❤️ для просмотра видео во время использования других приложений. Вы не увидите рекламы, потому что RYTM не идентифицирует пользователей</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">У вас еще нет плейлистов. Создайте свой первый прямо сейчас!</string>
     <string name="thx">Спасибо за использование приложения!</string>
@@ -105,4 +105,13 @@
     <string name="timer_cell">Введите количество минут (напр.: 5)</string>
     <string name="timer_exit">Остановить таймер</string>
     <string name="timer_exit_text">Таймер уже запущен, вы хотите его остановить?</string>
+    <string name="something_wrong">Что-то не так</string>
+    <string name="send_report_summary">Отправить отчет</string>
+    <string name="support_work_summary">Поддержите мою работу!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Оставить отзыв в Play Store</string>
+    <string name="resources">Ресурсы</string>
+    <string name="tutorial_summary">Посмотрите, как использовать RYTM</string>
+    <string name="github_summary">Посмотреть код на GitHub</string>
+
 </resources>

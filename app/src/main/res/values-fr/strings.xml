@@ -39,18 +39,18 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Playlist vide</string>
     <string name="empty_playlist_text">Cette playlist est vide. Ajoutez des chansons à la playlist avant de la lire.</string>
-    <string name="send_me_suggestions">Envoyez-moi vos suggestions 📧</string>
-    <string name="support_me">Si vous souhaitez soutenir mon travail 👇</string>
+    <string name="send_me_suggestions">Contactez-moi</string>
+    <string name="support_me">Soutenez-moi</string>
     <string name="info_text">Cette application a été créée avec ❤️ pour regarder des vidéos pendant que vous utilisez d\'autres applications. Vous ne verrez pas de publicité car RYTM n\'identifie pas les utilisateurs</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">Vous n\'avez pas encore de playlists. Créez votre première maintenant !</string>
     <string name="thx">Merci d\'utiliser l\'application !</string>
     <string name="buymeacoffee">Souhaitez-vous une fonction de diffusion ? Soutenez-moi sur Buy Me a Coffee ☕</string>
     <string name="supme">Soutenez-moi</string>
     <string name="later">Peut-être plus tard</string>
-    <string name="explain_search">\tAppuyez sur Entrée sur votre clavier pour rechercher</string>
+    <string name="explain_search">Appuyez sur Entrée sur votre clavier pour rechercher</string>
     <string name="lingua">Langue</string>
     <string name="visita_il_mio_sito_web">Visitez mon site web 🌎</string>
-    <string name="valuta_l_app">\tÉvaluez l\'application ⭐</string>
+    <string name="valuta_l_app">Évaluez l\'application ⭐</string>
     <string name="save_minute">Enregistrer la minute</string>
     <string name="limit_title">Limite quotidien atteint</string>
     <string name="limit_message">Tous les utilisateurs ont atteint la limite quotidienne de requêtes.\n
@@ -91,5 +91,13 @@
     <string name="timer_cell">Entrez un nombre de minutes (ex : 5)</string>
     <string name="timer_exit">Arrêter la minuterie</string>
     <string name="timer_exit_text">Une minuterie est déjà en cours, voulez‑vous l\'arrêter ?</string>
+    <string name="something_wrong">Quelque chose ne va pas</string>
+    <string name="send_report_summary">Envoyer un rapport</string>
+    <string name="support_work_summary">Soutenez mon travail !</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Laissez un avis sur le Play Store</string>
+    <string name="resources">Ressources</string>
+    <string name="tutorial_summary">Voir comment utiliser RYTM</string>
+    <string name="github_summary">Voir le code sur GitHub</string>
 
 </resources>

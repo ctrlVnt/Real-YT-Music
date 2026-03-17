@@ -52,8 +52,8 @@
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">قائمة تشغيل فارغة</string>
     <string name="empty_playlist_text">قائمة التشغيل هذه فارغة. أضف بعض الأغاني إلى القائمة قبل التشغيل</string>
-    <string name="send_me_suggestions">أرسل لي اقتراحاتك 📧</string>
-    <string name="support_me">إذا أردت دعم عملي</string>
+    <string name="send_me_suggestions">اتصل بي 📧</string>
+    <string name="support_me">ادعمني</string>
     <string name="info_text">تم إنشاء هذا التطبيق بـ ❤️ لمشاهدة مقاطع الفيديو أثناء استخدام تطبيقات أخرى. لن ترى إعلانات لأن RYTM لا يُعرّف المستخدمين</string>
     <string name="you_don_t_have_already_playlist_create_the_firstone">ليس لديك أي قوائم تشغيل حتى الآن. أنشئ أول قائمة تشغيل الآن!</string>
     <string name="thx">شكرًا لاستخدامك التطبيق!</string>
@@ -103,4 +103,13 @@
     <string name="timer_cell">أدخل عدد الدقائق (مثال: 5)</string>
     <string name="timer_exit">إيقاف المؤقت</string>
     <string name="timer_exit_text">المؤقت يعمل بالفعل، هل تريد إيقافه؟</string>
+    <string name="something_wrong">هناك خطأ ما</string>
+    <string name="send_report_summary">إرسال تقرير</string>
+    <string name="support_work_summary">ادعم عملي!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">اترك تقييمًا في متجر Play</string>
+    <string name="resources">الموارد</string>
+    <string name="tutorial_summary">شاهد كيفية استخدام RYTM</string>
+    <string name="github_summary">عرض الكود على GitHub</string>
+
 </resources>

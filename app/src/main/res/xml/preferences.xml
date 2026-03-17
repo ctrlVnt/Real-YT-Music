@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/settings"
+        app:layout="@layout/fragment_settings">
+
+        <Preference
+            app:key="back"
+            app:title="Back"
+            android:icon="@drawable/arrow_back"/>
+
+        <ListPreference
+            app:key="app_language"
+            app:title="@string/lingua"
+            app:useSimpleSummaryProvider="true"
+            app:entries="@array/language_names"
+            app:entryValues="@array/language_codes"
+            app:defaultValue="en" />
+
+        <SwitchPreferenceCompat
+            app:key="save_minutes_enabled"
+            app:title="@string/save_video_progress"
+            app:summary="Videos bookmark"
+            app:defaultValue="true" />
+
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/something_wrong">
+        <Preference
+            app:key="report_bug"
+            app:title="@string/shake_sdk_dialog_feedback_type_item_bug"
+            app:summary="@string/send_report_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/support_me">
+
+        <Preference
+            app:key="buy_me_a_coffee"
+            app:title="@string/buy_me_a_coffee"
+            app:summary="@string/support_work_summary"/>
+
+        <Preference
+            app:key="rate_app"
+            app:title="@string/valuta_l_app"
+            app:summary="@string/rate_app_summary"/>
+
+        <Preference
+            app:key="send_email"
+            app:title="@string/send_me_suggestions"
+            app:summary="By mail"/>
+
+        <Preference
+            app:key="visit_website"
+            app:title="@string/visita_il_mio_sito_web"
+            app:summary="riccardoventurini.dev"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/resources">
+
+        <Preference
+            app:key="tutorial"
+            app:title="@string/tutorial"
+            app:summary="@string/tutorial_summary"/>
+
+        <Preference
+            app:key="github"
+            app:title="@string/code_source"
+            app:summary="@string/github_summary"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
