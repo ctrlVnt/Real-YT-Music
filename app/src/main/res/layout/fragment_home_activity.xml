@@ -53,7 +53,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/welcome"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/welcome"
-                app:tint="@android:color/black" />
+                app:tint="@color/text" />
 
             <TextView
                 android:id="@+id/welcome"
@@ -63,7 +63,7 @@
                 android:maxWidth="300dp"
                 android:text="@string/app_name"
                 android:fontFamily="@font/paytoneoneregular"
-                android:textColor="@color/black"
+                android:textColor="@color/text"
                 android:textSize="23sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/logo"
@@ -122,10 +122,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:cardBackgroundColor="@android:color/transparent"
+                app:cardBackgroundColor="@color/dark_grey"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#FFFFFF"
+                app:strokeColor="@color/light_grey"
                 app:strokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +171,7 @@
             app:layout_constraintTop_toBottomOf="@id/constraintLayout2"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="10dp"
-            app:tint="@color/items"/>
+            app:tint="@color/background"/>
 
 
         <androidx.appcompat.widget.SearchView
@@ -233,7 +233,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/prev_search"
-            android:textColor="@color/background"
+            android:textColor="@color/text"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="15dp"
@@ -291,8 +291,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/empty_cronology"
-            android:textColor="@color/background"
-            android:textSize="14sp"
+            android:textColor="@color/text"
+            android:textSize="16sp"
             android:paddingHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

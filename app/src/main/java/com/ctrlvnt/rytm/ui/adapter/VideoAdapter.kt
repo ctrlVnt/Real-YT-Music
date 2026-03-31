@@ -102,10 +102,10 @@ class VideoAdapter(private val videoList: List<VideoItem>,
             holder.videoTitle.setTypeface(null, Typeface.NORMAL)
         }
 
-        if (blackText) {
+        /*if (blackText) {
             holder.videoTitle.setTextColor("#282828".toColorInt())
             holder.channelTitle.setTextColor("#282828".toColorInt())
-        }
+        }*/
 
         Glide.with(holder.videoThumbnail.context)
             .load(currentItem.snippet.thumbnails.medium?.url)

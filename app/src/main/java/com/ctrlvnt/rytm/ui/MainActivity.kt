@@ -234,8 +234,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Improved bug report
-            • bug fixing
+            • Share with friends button
+            • Design full dark mode
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

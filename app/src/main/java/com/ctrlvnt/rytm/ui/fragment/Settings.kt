@@ -56,18 +56,20 @@ class Settings : PreferenceFragmentCompat() {
             startActivity(intent)
         }
 
-        setupClickablePreference("send_email") {
-            val i = Intent(Intent.ACTION_SEND).apply {
-                type = "message/rfc822"
-                putExtra(Intent.EXTRA_EMAIL, arrayOf("giordanobruno227@gmail.com"))
-                putExtra(Intent.EXTRA_SUBJECT, "I have a suggestion for RYTM!")
+        setupClickablePreference("share_app") {
+            val playStoreLink = "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm"
+            val shareText = "Check out RYTM! Watch YouTube videos without asd !"
+
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_SUBJECT, "RYTM - Real YT Music")
+                putExtra(Intent.EXTRA_TEXT, shareText)
             }
-            try {
-                startActivity(Intent.createChooser(i, "Send mail..."))
-            } catch (ex: ActivityNotFoundException) {
-                Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show()
-            }
+
+            // createChooser apre il menu nativo di condivisione di Android
+            startActivity(Intent.createChooser(shareIntent, "Share RYTM via..."))
         }
+
         setupClickablePreference("report_bug"){
             Shake.show(ShakeScreen.NEW)
         }

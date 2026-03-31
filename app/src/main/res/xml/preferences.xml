@@ -47,9 +47,8 @@
             app:summary="@string/rate_app_summary"/>
 
         <Preference
-            app:key="send_email"
-            app:title="@string/send_me_suggestions"
-            app:summary="By mail"/>
+            app:key="share_app"
+            app:title="Share with friends"/>
 
         <Preference
             app:key="visit_website"
