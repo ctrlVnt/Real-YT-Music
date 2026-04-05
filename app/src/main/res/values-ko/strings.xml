@@ -55,7 +55,7 @@
     <string name="create_playlist_first">계속하려면 먼저 하나 이상의 재생목록을 생성하세요.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">재생목록이 비어있음</string>
-    <string name="empty_playlist_text">이 재생목록은 비어 있습니다. 재생하기 전에 곡을 추가하세요.</string>
+    <string name="empty_playlist_text">이 재생목록은 비어 있습니다. 시작하려면 비디오를 열고 재생목록에 추가하세요.</string>
     <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
     <string name="send_me_suggestions">연락주세요 📧</string>
     <string name="support_me">지원해 주세요</string>

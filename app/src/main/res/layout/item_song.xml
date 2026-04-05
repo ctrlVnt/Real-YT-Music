@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    android:orientation="horizontal">
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/pic"
         android:layout_width="100dp"
         android:layout_height="56dp"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="0dp">
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/video_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
 
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp">
+        app:layout_constraintStart_toEndOf="@+id/pic"
+        app:layout_constraintTop_toTopOf="@+id/pic"
+        app:layout_constraintBottom_toBottomOf="@+id/pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="12dp">
+
         <TextView
-            android:id="@+id/video_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Video Title"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+        android:id="@+id/video_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video Title"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
         <TextView
             android:id="@+id/channel_title"
@@ -47,15 +65,17 @@
             android:id="@+id/isPlaylist"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="Playlist"
-            android:textSize="13sp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
             android:backgroundTint="@color/red"
-            app:cornerRadius="10dp"
-            tools:ignore="SmallSp"
             android:clickable="false"
-            android:visibility="gone" />
+            android:text="Playlist"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:visibility="gone"
+            app:cornerRadius="10dp"
+            tools:ignore="SmallSp" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

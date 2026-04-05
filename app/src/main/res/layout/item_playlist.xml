@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
     android:layout_height="150dp"
-    android:padding="10dp">
+    android:padding="16dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/no_playlists"
@@ -12,9 +12,7 @@
         android:layout_height="match_parent"
         app:cardBackgroundColor="@color/dark_grey"
         app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        app:strokeColor="@color/light_grey"
-        app:strokeWidth="2dp">
+        app:cardElevation="20dp">
 
             <TextView
                 android:id="@+id/playlist_title_item"
@@ -29,4 +27,4 @@
                 />
 
     </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

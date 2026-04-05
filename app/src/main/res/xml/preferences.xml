@@ -2,23 +2,20 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <PreferenceCategory
         app:title="@string/settings"
         app:layout="@layout/fragment_settings">
+    </PreferenceCategory>
 
-        <Preference
-            app:key="back"
-            app:title="Back"
-            android:icon="@drawable/arrow_back"/>
+    <PreferenceCategory
+        app:title="general">
 
         <ListPreference
             app:key="app_language"
             app:title="@string/lingua"
             app:useSimpleSummaryProvider="true"
             app:entries="@array/language_names"
-            app:entryValues="@array/language_codes"
-            app:defaultValue="en" />
+            app:entryValues="@array/language_codes"/>
 
         <SwitchPreferenceCompat
             app:key="save_minutes_enabled"
@@ -68,6 +65,11 @@
             app:key="github"
             app:title="@string/code_source"
             app:summary="@string/github_summary"/>
+
+        <Preference
+            app:key="empty"
+            app:title="empty"
+            app:summary="empty"/>
 
     </PreferenceCategory>
 

@@ -20,4 +20,8 @@
         android:fontWeight="400"
         android:font="@font/paytoneoneregular" />
 
+    <font
+        android:fontStyle="normal"
+        android:font="@font/intermedium" />
+
 </font-family>

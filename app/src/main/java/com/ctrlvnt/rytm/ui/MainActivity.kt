@@ -27,8 +27,10 @@ import androidx.core.view.WindowInsetsControllerCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
+import com.ctrlvnt.rytm.ui.fragment.Settings
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.ctrlvnt.rytm.utils.apikey.SHAKEKEY
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
 import com.shakebugs.shake.Shake
@@ -41,11 +43,35 @@ class MainActivity : AppCompatActivity() {
             private set
     }
 
+    lateinit var bottomNav : BottomNavigationView
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Shake.start(this, SHAKEKEY)
         setContentView(R.layout.activity_main)
+
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)!!
+        bottomNav.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, HomeActivity())
+                        .commitNow()
+                    true
+                }
+                R.id.settings -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_activity, Settings())
+                        .commitNow()
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+
         window.decorView.apply {
             WindowCompat.setDecorFitsSystemWindows(window, false)
             val insetsController =
@@ -124,6 +150,14 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         checkAndShowUpdatePopup(this)
+    }
+
+    fun setBottomNavVisibility(isVisible: Boolean) {
+        if (isVisible) {
+            bottomNav.visibility = android.view.View.VISIBLE
+        } else {
+            bottomNav.visibility = android.view.View.GONE
+        }
     }
 
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {

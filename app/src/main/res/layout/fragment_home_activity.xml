@@ -41,20 +41,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/global_limit_banner">
 
-            <ImageButton
-                android:id="@+id/settings"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                app:fabCustomSize="32dp"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/transparent"
-                android:src="@drawable/settings"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="@+id/welcome"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/welcome"
-                app:tint="@color/text" />
-
             <TextView
                 android:id="@+id/welcome"
                 android:layout_width="wrap_content"
@@ -93,12 +79,13 @@
                 android:id="@+id/playlist_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="35dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
                 android:focusable="true"
+                android:textAllCaps="true"
                 android:text="@string/playlists"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,32 +107,60 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/no_playlists"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="140dp"
                 android:layout_marginTop="20dp"
                 app:cardBackgroundColor="@color/dark_grey"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
-                app:strokeColor="@color/light_grey"
-                app:strokeWidth="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/playlist_btn">
 
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="300dp"
+                    android:layout_height="match_parent"
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/you_don_t_have_already_playlist_create_the_firstone"
-                        android:textSize="16sp"
                         android:gravity="center"
                         android:lineHeight="25sp"
-                        android:textColor="#FFFFFF" />
+                        android:text="@string/you_don_t_have_already_playlist_create_the_firstone"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/create_pl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Create"
+                        app:cornerRadius="5dp"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <Button
+                        android:id="@+id/import_pl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/red"
+                        android:textColor="@color/white"
+                        android:text="Import"
+                        app:cornerRadius="5dp"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -153,7 +168,7 @@
                 android:id="@+id/playlist_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +185,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constraintLayout2"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="10dp"
             app:tint="@color/background"/>
 
 
@@ -185,7 +199,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subhome"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             app:queryHint="@string/placeholder"
             app:queryBackground="@color/transparent"
             android:elevation="10dp"/>
@@ -234,10 +248,11 @@
             android:padding="10dp"
             android:text="@string/prev_search"
             android:textColor="@color/text"
+            android:textAllCaps="true"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bottom" />
 
@@ -272,6 +287,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="80dp"
             app:layout_constraintTop_toBottomOf="@+id/last_search_text" />
 
 

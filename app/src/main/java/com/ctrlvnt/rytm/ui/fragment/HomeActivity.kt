@@ -56,6 +56,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.PopupMenu
 import androidx.compose.ui.graphics.findFirstRoot
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.card.MaterialCardView
 
@@ -68,6 +69,7 @@ class HomeActivity : Fragment() {
     lateinit var historyImg: ImageView
     lateinit var trashButton: FloatingActionButton
     lateinit var noPlaylist: MaterialCardView
+    lateinit var addButton: FloatingActionButton
 
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -80,18 +82,19 @@ class HomeActivity : Fragment() {
         historyImg = rootView.findViewById(R.id.empty_history_img)
         trashButton = rootView.findViewById(R.id.delete_last_search)
         val appName: TextView = rootView.findViewById(R.id.welcome)
-        val settingsButton: ImageButton =  rootView.findViewById(R.id.settings)
         val playlistsButton: TextView = rootView.findViewById(R.id.playlist_btn)
         val cronologiaText: TextView = rootView.findViewById(R.id.last_search_text)
         val bottomPart: ImageView = rootView.findViewById(R.id.bottom)
         val logo: ImageView = rootView.findViewById(R.id.logo)
         val subHome: ConstraintLayout = rootView.findViewById(R.id.subhome)
-        val addButton: FloatingActionButton = rootView.findViewById(R.id.add_playlist)
         val searchButton: Button = rootView.findViewById(R.id.search_button_modern)
         val explainText: TextView = rootView.findViewById(R.id.explain)
         val banner: TextView = rootView.findViewById(R.id.global_limit_banner)
         val noResultsText = rootView.findViewById<TextView>(R.id.no_results_text)
         val topbar = rootView.findViewById<View>(R.id.topbar)
+        val importButton = rootView.findViewById<Button>(R.id.import_pl)
+        val createButton = rootView.findViewById<Button>(R.id.create_pl)
+        addButton = rootView.findViewById(R.id.add_playlist)
         noPlaylist = rootView.findViewById(R.id.no_playlists)
         searchButton.visibility = View.GONE
         explainText.visibility = View.GONE
@@ -105,6 +108,8 @@ class HomeActivity : Fragment() {
         playlists = rootView.findViewById(R.id.playlist_list)
         val layoutManagerPlaylists = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
         playlists.layoutManager = layoutManagerPlaylists
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(playlists)
 
         val playlistsData = MainActivity.database.playlistDao().getAllPlaylists()
         val playlistAdapter = PlaylistAdapter(playlistsData) { playlistItem ->
@@ -113,8 +118,10 @@ class HomeActivity : Fragment() {
         playlists.adapter = playlistAdapter
 
         if(playlistsData.isEmpty()){
+            addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
         }else{
+            addButton.visibility = View.GONE
             noPlaylist.visibility = View.GONE
         }
 
@@ -141,8 +148,10 @@ class HomeActivity : Fragment() {
         }
 
         if(playlistsData.isEmpty()){
+            addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
         }else{
+            addButton.visibility = View.VISIBLE
             noPlaylist.visibility = View.GONE
         }
 
@@ -157,6 +166,14 @@ class HomeActivity : Fragment() {
 
         trashButton.setOnClickListener{
             showConfirmationDialog()
+        }
+
+        createButton.setOnClickListener {
+            showCustomDialog()
+        }
+
+        importButton.setOnClickListener {
+            showCustomDialogInsertLink()
         }
 
         addButton.setOnClickListener {
@@ -175,14 +192,6 @@ class HomeActivity : Fragment() {
             popupMenu.show()
         }
 
-        settingsButton.setOnClickListener{
-            requireActivity().supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
-                .replace(R.id.main_activity, Settings())
-                .addToBackStack(null)
-                .commit()
-        }
-
         searchBar.setOnClickListener {
             searchBar.isIconified = false
         }
@@ -193,7 +202,6 @@ class HomeActivity : Fragment() {
                 launchSearch(query, rootView, searchButton, explainText)
             }
         }
-
 
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
@@ -207,7 +215,6 @@ class HomeActivity : Fragment() {
                     searchButton.visibility = View.VISIBLE
                     logo.visibility = View.GONE
                     appName.visibility = View.GONE
-                    settingsButton.visibility = View.GONE
                     historyImg.visibility = View.GONE
                     historyText.visibility = View.GONE
                     cronologia.visibility = View.GONE
@@ -232,6 +239,7 @@ class HomeActivity : Fragment() {
                         trashButton.visibility = View.VISIBLE
                     }
                     if(playlistsData.isEmpty()){ //To change when will be playlist list
+                        addButton.visibility = View.GONE
                         noPlaylist.visibility = View.VISIBLE
                     }
                     explainText.visibility = View.GONE
@@ -240,7 +248,6 @@ class HomeActivity : Fragment() {
                     noResultsText.visibility = View.GONE
                     logo.visibility = View.VISIBLE
                     appName.visibility = View.VISIBLE
-                    settingsButton.visibility = View.VISIBLE
                     cronologia.visibility = View.VISIBLE
                     playlists.visibility = View.VISIBLE
                     cronologiaText.visibility = View.VISIBLE
@@ -275,6 +282,7 @@ class HomeActivity : Fragment() {
 
                     val updatedPlaylists = MainActivity.database.playlistDao().getAllPlaylists()
                     (playlists.adapter as PlaylistAdapter).updatePlaylistList(updatedPlaylists)
+                    addButton.visibility = View.VISIBLE
                     noPlaylist.visibility = View.GONE
                 } else {
                     if(name.isBlank()){
@@ -505,8 +513,10 @@ class HomeActivity : Fragment() {
             showDeleteConfirmationDialogPlaylist(playlistItem)
         }
         if(playlistsList.isEmpty()){
+            addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
         }else{
+            addButton.visibility = View.VISIBLE
             noPlaylist.visibility = View.GONE
         }
     }

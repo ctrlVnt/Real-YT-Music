@@ -38,7 +38,7 @@
     <string name="create_playlist_first">Veuillez créer au moins une playlist avant de continuer.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Playlist vide</string>
-    <string name="empty_playlist_text">Cette playlist est vide. Ajoutez des chansons à la playlist avant de la lire.</string>
+    <string name="empty_playlist_text">Cette playlist est vide. Pour la remplir, ouvrez une vidéo et ajoutez-la à la playlist.</string>
     <string name="send_me_suggestions">Contactez-moi</string>
     <string name="support_me">Soutenez-moi</string>
     <string name="info_text">Cette application a été créée avec ❤️ pour regarder des vidéos pendant que vous utilisez d\'autres applications. Vous ne verrez pas de publicité car RYTM n\'identifie pas les utilisateurs</string>

@@ -12,7 +12,7 @@
     <color name="transparent">#00000000</color>
 
     <color name="items">#E2E2E2</color>
-    <color name="background">#282828</color>
+    <color name="background">#121212</color>
     <color name="text">#F2F2F2</color>
     <color name="text_dark">#080F26</color>
     <color name="placeholder">#21326B</color>
@@ -20,7 +20,7 @@
     <color name="grey">#595959</color>
     <color name="red">#BF0404</color>
     <color name="red_dark">#8C0303</color>
-    <color name="dark_grey">#2E3131</color>
+    <color name="dark_grey">#2f2f2f</color>
     <color name="light_grey">#9D9D9D</color>
 
 </resources>

@@ -53,7 +53,7 @@
     <string name="create_playlist_first">続行する前に、少なくとも1つのプレイリストを作成してください。</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">空のプレイリスト</string>
-    <string name="empty_playlist_text">このプレイリストは空です。再生する前に曲をプレイリストに追加してください。</string>
+    <string name="empty_playlist_text">このプレイリストは空です。開始するには、ビデオを開いてプレイリストに追加してください。</string>
     <string name="send_me_suggestions">お問い合わせください 📧</string>
     <string name="support_me">サポートしてください</string>
     <string name="info_text">このアプリは、他のアプリを使用しながらビデオを見るために❤️で作られました。RYTMはユーザーを識別しないため、広告は表示されません</string>

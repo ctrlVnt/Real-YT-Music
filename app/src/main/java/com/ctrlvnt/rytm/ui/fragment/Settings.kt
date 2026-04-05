@@ -20,10 +20,6 @@ class Settings : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        setupClickablePreference("back"){
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-
         val languagePref: ListPreference? = findPreference("app_language")
         languagePref?.setOnPreferenceChangeListener { _, newValue ->
             val langCode = newValue.toString()
@@ -58,7 +54,7 @@ class Settings : PreferenceFragmentCompat() {
 
         setupClickablePreference("share_app") {
             val playStoreLink = "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm"
-            val shareText = "Check out RYTM! Watch YouTube videos without asd !"
+            val shareText = "Check out RYTM! Watch YouTube videos without asd ! Download from PlayStore now : $playStoreLink"
 
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
@@ -66,7 +62,6 @@ class Settings : PreferenceFragmentCompat() {
                 putExtra(Intent.EXTRA_TEXT, shareText)
             }
 
-            // createChooser apre il menu nativo di condivisione di Android
             startActivity(Intent.createChooser(shareIntent, "Share RYTM via..."))
         }
 

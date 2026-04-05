@@ -51,7 +51,7 @@
     <string name="create_playlist_first">الرجاء إنشاء على الأقل قائمة تشغيل واحدة قبل المتابعة.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">قائمة تشغيل فارغة</string>
-    <string name="empty_playlist_text">قائمة التشغيل هذه فارغة. أضف بعض الأغاني إلى القائمة قبل التشغيل</string>
+    <string name="empty_playlist_text">قائمة التشغيل هذه فارغة. لملئها، افتح مقطع فيديو وأضفه إلى قائمة التشغيل.</string>
     <string name="send_me_suggestions">اتصل بي 📧</string>
     <string name="support_me">ادعمني</string>
     <string name="info_text">تم إنشاء هذا التطبيق بـ ❤️ لمشاهدة مقاطع الفيديو أثناء استخدام تطبيقات أخرى. لن ترى إعلانات لأن RYTM لا يُعرّف المستخدمين</string>
@@ -60,7 +60,7 @@
     <string name="buymeacoffee">هل ترغب في ميزة الإرسال؟ ادعمني على Buy Me a Coffee ☕</string>
     <string name="supme">ادعمني</string>
     <string name="later">ربما لاحقًا</string>
-    <string name="explain_search">اضغط على زر الإدخال في لوحة المفاتيح للبحث</string>
+    <string name="explain_search">اضغط على زر الإدخال في لوحة المفيتيح للبحث</string>
     <string name="lingua">اللغة</string>
     <string name="visita_il_mio_sito_web">\tقم بزيارة موقعي الإلكتروني 🌎</string>
     <string name="valuta_l_app">قيّم التطبيق ⭐</string>

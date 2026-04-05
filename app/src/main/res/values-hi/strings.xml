@@ -39,7 +39,7 @@
     <string name="create_playlist_first">कृपया पहले कम से कम एक प्लेलिस्ट बनाएं</string>
     <string name="playlists_button">प्लेलिस्ट</string>
     <string name="empty_playlist_title">खाली प्लेलिस्ट</string>
-    <string name="empty_playlist_text">यह प्लेलिस्ट खाली है। प्ले करने से पहले इसमें गाने जोड़ें</string>
+    <string name="empty_playlist_text">यह प्लेलिस्ट खाली है। इसे भरने के लिए, एक वीडियो खोलें और उसे प्लेलिस्ट में जोड़ें।</string>
     <string name="send_me_suggestions">मुझसे संपर्क करें 📧</string>
     <string name="support_me">मुझे सपोर्ट करें</string>
     <string name="info_text">यह ऐप ❤️ से बनाया गया है ताकि आप अन्य ऐप्स का उपयोग करते समय वीडियो देख सकें। इसमें कोई विज्ञापन नहीं हैं क्योंकि RYTM उपयोगकर्ताओं को ट्रैक नहीं करता</string>

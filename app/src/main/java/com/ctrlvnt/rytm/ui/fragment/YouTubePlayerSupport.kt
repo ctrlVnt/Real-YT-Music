@@ -148,7 +148,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         timer_text = rootView.findViewById(R.id.timer_text)
         val languageButton: TextView = rootView.findViewById(R.id.language)
         val videos: MutableList<Video>
-
+        (activity as? MainActivity)?.setBottomNavVisibility(false)
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
 
         val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
@@ -860,6 +860,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        (activity as? MainActivity)?.setBottomNavVisibility(true)
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
         val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
         requireContext().stopService(intent)

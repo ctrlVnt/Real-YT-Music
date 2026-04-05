@@ -53,7 +53,7 @@
     <string name="create_playlist_first">Por favor, crie pelo menos uma lista de reprodução antes de continuar.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Playlist vazia</string>
-    <string name="empty_playlist_text">Esta playlist está vazia. Adicione algumas músicas à playlist antes de reproduzir.</string>
+    <string name="empty_playlist_text">Esta playlist está vazia. Para preenchê-la, abra um vídeo e adicione-o à playlist.</string>
     <string name="send_me_suggestions">Entre em contato comigo 📧</string>
     <string name="support_me">Apoie-me</string>
     <string name="info_text">Este aplicativo foi criado com ❤️ para assistir a vídeos enquanto você usa outros aplicativos. Você não verá anúncios porque o RYTM não identifica os usuários</string>
@@ -94,8 +94,8 @@
     <string name="intro_title_end">…Vamos começar!</string>
     <string name="intro_desc_end">Obrigado por baixar este app, você pode encontrar este tutorial nas configurações se precisar!</string>
     <string name="save_video_progress">Salvar o progresso do vídeo</string>
-    <string name="intro_title_settings">Dubbing AI czy zapisywanie postępu?</string>
-    <string name="intro_desc_settings">Ustawiając aplikację na oryginalny język wideo, dubbing AI zniknie. Możesz teraz również włączyć automatyczne zapisywanie postępu wideo!</string>
+    <string name="intro_title_settings">Dublagem AI ou salvar progresso?</string>
+    <string name="intro_desc_settings">Ao configurar o aplicativo para o idioma original do vídeo, a dublagem AI desaparecerá. Você também pode habilitar agora o salvamento automático do progresso do vídeo!</string>
     <string name="code_source">Code-Source 💻</string>
     <string name="daily_end">Solicitações globais esgotadas. Ficarão disponíveis novamente em</string>
     <string name="daily_end2">Para continuar, abra o YouTube e use: Compartilhar → Abrir com RYTM</string>

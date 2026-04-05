@@ -36,10 +36,9 @@
     <string name="confirm_delete_history_message">Sei sicuro di voler eliminare tutta la cronologia?</string>
     <string name="deleted_history">Cronologia eliminata</string>
     <string name="create_playlist_first">Si prega di creare almeno una playlist prima di procedere.</string>
-    <string name="generic_error">Errore sconosciuto</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Playlist vuota</string>
-    <string name="empty_playlist_text">Questa playlist è vuota. Aggiungi dei brani alla playlist prima di riprodurre.</string>
+    <string name="empty_playlist_text">Questa playlist è vuota. Per riempirla, apri un video e aggiungilo alla playlist.</string>
     <string name="send_me_suggestions">Contattami</string>
     <string name="support_me">Supportami</string>
     <string name="info_text">App creata con ❤️ per vedere video mentre usi altre app. Non vedrai pubblicità perché RYTM non identifica gli utenti</string>
@@ -78,7 +77,7 @@
     <string name="intro_desc_limit">A volte, se molti utenti usano la mia app, le richieste possono esaurirsi. In questo caso puoi aprire i video direttamente dall\'app ufficiale! Devi cliccare su condividi &gt; altro &gt; RYTM e voilà</string>
 
     <string name="intro_title_end">…Iniziamo!</string>
-    <string name="intro_desc_end">Grazie per aver scaricato questa app, puoi trovare questo tutorial nelle impostazioni se ti serve!</string>
+    <string name="intro_desc_end">Grazie per scaricato questa app, puoi trovare questo tutorial nelle impostazioni se ti serve!</string>
     <string name="save_video_progress">Salva i progressi dei video</string>
     <string name="intro_title_settings">Doppiaggio AI o salvataggio dei progressi?</string>
     <string name="intro_desc_settings">Impostando l\'app nella lingua originale del video, il doppiaggio AI scomparirà. Inoltre puoi ora attivare il salvataggio automatico dei progressi dei video!</string>

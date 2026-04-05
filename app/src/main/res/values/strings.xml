@@ -54,7 +54,7 @@
     <string name="create_playlist_first">Please create at least one playlist before proceeding.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Empty playlist</string>
-    <string name="empty_playlist_text">This playlist is empty. Add some songs to the playlist before playing.</string>
+    <string name="empty_playlist_text">This playlist is empty. To fill it, open a video and add it to the playlist.</string>
     <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
     <string name="send_me_suggestions">Contact me</string>
     <string name="support_me">Support me</string>
@@ -118,7 +118,7 @@
     <string name="tutorial_summary">See how to use RYTM</string>
     <string name="github_summary">View the code on GitHub</string>
 
-    <string-array name="language_names">
+    <string-array name="language_names"  translatable="false">
         <item>English 🇺🇸</item>
         <item>العربية 🇸🇦</item>
         <item>Deutsch 🇩🇪</item>
@@ -134,7 +134,7 @@
         <item>한국어 🇰🇷</item>
     </string-array>
 
-    <string-array name="language_codes">
+    <string-array name="language_codes" translatable="false">
         <item>en</item>
         <item>ar</item>
         <item>de</item>

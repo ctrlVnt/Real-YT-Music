@@ -2,11 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.RYTM" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/red</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
@@ -16,6 +16,7 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textColorPrimary">@color/text</item>
 
+        <item name="android:fontFamily">@font/intermedium</item>
     </style>
 
     <style name="RoundedAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">

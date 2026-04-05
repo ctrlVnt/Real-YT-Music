@@ -28,30 +28,29 @@
         android:id="@+id/back_button"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="back"
         android:src="@drawable/arrow_back"
         app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
-        app:layout_constraintEnd_toStartOf="@+id/search_bar_player"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/search_bar_player"
         app:tint="@color/text" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_bar_player"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:maxWidth="250dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_search"
         android:fontFamily="@font/notosansmedium"
-        app:queryHint="@string/placeholder"
-        app:iconifiedByDefault="false"
         app:layout_constraintBottom_toTopOf="@+id/youtube_player_view"
         app:layout_constraintEnd_toStartOf="@+id/add_playlist"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:queryBackground="@color/transparent"
+        app:queryHint="@string/placeholder" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_playlist"
@@ -138,7 +137,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="@color/dark_grey">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/lock_screen"
@@ -156,7 +157,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
             android:id="@+id/shuffle"

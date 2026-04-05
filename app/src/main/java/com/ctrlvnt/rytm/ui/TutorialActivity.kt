@@ -21,16 +21,6 @@ class TutorialActivity : AppIntro() {
             imageDrawable = R.drawable.cover
         ))
         addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_player),
-            description = getString(R.string.intro_desc_player),
-            imageDrawable = R.drawable.slide2
-        ))
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_settings),
-            description = getString(R.string.intro_desc_settings),
-            imageDrawable = R.drawable.slide5
-        ))
-        addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_title_pip),
             description = getString(R.string.intro_desc_pip),
             imageDrawable = R.drawable.slide4
@@ -43,7 +33,7 @@ class TutorialActivity : AppIntro() {
         addSlide(AppIntroFragment.createInstance(
             title = getString(R.string.intro_title_end),
             description = getString(R.string.intro_desc_end),
-            imageDrawable = R.drawable.settings
+            imageDrawable = R.drawable.share
         ))
     }
 

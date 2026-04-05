@@ -35,7 +35,7 @@
     <string name="edit_playlist_name">Editar nombre de la lista de reproducción</string>
 
     <string name="noty_title">RYTM está en funcionamiento</string>
-    <string name="noty_text">Haz clic en la notificación para eliminarla</string>
+    <string name="noty_text">Haz clic en la notification para eliminarla</string>
 
     <string name="empty_playlists">No hay listas de reproducción presentes</string>
     <string name="empty_cronology">Para empezar, usa la barra de búsqueda o ve a YouTube, haz clic en compartir y RYTM para ver videos sin anuncios</string>
@@ -53,7 +53,7 @@
     <string name="create_playlist_first">Por favor, crea al menos una lista de reproducción antes de continuar.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">" Lista de reproducción vacía"</string>
-    <string name="empty_playlist_text">Esta lista de reproducción está vacía. Agrega algunas canciones a la lista antes de reproducir.</string>
+    <string name="empty_playlist_text">Esta lista de reproducción está vacía. Para llenarla, abre un video y añádelo a la lista.</string>
     <string name="send_me_suggestions">Contáctame</string>
     <string name="support_me">Apóyame</string>
     <string name="info_text">Esta aplicación fue creada con ❤️ para ver videos mientras usas otras aplicaciones. No verás publicidad porque RYTM no identifica a los usuarios</string>
@@ -89,7 +89,7 @@
     <string name="intro_desc_pip">Intenta minimizar la aplicación, puedes seguir viendo el video mientras haces otras cosas</string>
 
     <string name="intro_title_limit">¿Límite diario alcanzado?</string>
-    <string name="intro_desc_limit">A veces, si muchos usuarios usan mi aplicación, las solicitudes pueden agotarse. En este caso puedes abrir videos directamente desde la aplicación oficial! Debes hacer clic en compartir &gt; otros &gt; RYTM y voilà</string>
+    <string name="intro_desc_limit">A veces, if muchos usuarios usan mi aplicación, las solicitudes pueden agotarse. En este caso puedes abrir videos directamente desde la aplicación oficial! Debes hacer clic en compartir &gt; otros &gt; RYTM y voilà</string>
 
     <string name="intro_title_end">…¡Empecemos!</string>
     <string name="intro_desc_end">Gracias por descargar esta aplicación, puedes encontrar este tutorial en la configuración si lo necesitas!</string>

@@ -53,7 +53,7 @@
     <string name="create_playlist_first">Proszę utworzyć co najmniej jedną playlistę, zanim będziesz kontynuować.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Pusta lista odtwarzania</string>
-    <string name="empty_playlist_text">Ta lista odtwarzania jest pusta. Dodaj kilka utworów do listy przed odtwarzaniem.</string>
+    <string name="empty_playlist_text">Ta lista odtwarzania jest pusta. Aby ją wypełnić, otwórz wideo i dodaj je do listy.</string>
     <string name="send_me_suggestions">Skontaktuj się ze mną 📧</string>
     <string name="support_me">Wesprzyj mnie</string>
     <string name="info_text">Ta aplikacja została stworzona z ❤️, aby oglądać filmy podczas korzystania z innych aplikacji. Nie zobaczysz reklam, ponieważ RYTM nie identyfikuje użytkowników</string>
@@ -110,7 +110,7 @@
     <string name="support_work_summary">Wesprzyj moją pracę!</string>
     <string name="email_address">giordanobruno227@gmail.com</string>
     <string name="rate_app_summary">Zostaw recenzję w Play Store</string>
-    <string name="resources">Zasoby</string>
+    <string name="resources">Risources</string>
     <string name="tutorial_summary">Zobacz, jak używać RYTM</string>
     <string name="github_summary">Zobacz kod na GitHub</string>
 

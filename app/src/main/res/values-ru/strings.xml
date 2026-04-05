@@ -43,7 +43,7 @@
     <string name="generic_error">Неизвестная ошибка</string>
 
     <string name="terms_title">Условия использования</string>
-    <string name="terms_text">Приложение использует сервис API YouTube. Прежде чем продолжить, пожалуйста, просмотрите и примите <a href="https://www.youtube.com/t/terms?hl=it">Условия использования</a> и <a href="http://www.google.com/policies/privacy">Политику конфиденциальности</a>.</string>
+    <string name="terms_text">Приложение использует сервис API YouTube. Прежде чем продолжить, пожалуйста, просмотрите и примите <a href="https://www.youtube.com/t/terms?hl=it">Условия использования</a> и <a href="http://www.google.com/policies/privacy">Политике конфиденциальности</a>.</string>
     <string name="accept">Принять</string>
 
     <string name="confirm_delete_history">Подтвердите удаление истории</string>
@@ -53,7 +53,7 @@
     <string name="create_playlist_first">Пожалуйста, создайте хотя бы один плейлист перед продолжением.</string>
     <string name="playlists_button">Playlists</string>
     <string name="empty_playlist_title">Пустой плейлист</string>
-    <string name="empty_playlist_text">Этот плейлист пуст. Добавьте несколько песен в плейлист перед воспроизведением.</string>
+    <string name="empty_playlist_text">Этот плейлист пуст. Чтобы заполнить его, откройте видео и добавьте его в плейлист.</string>
     <string name="send_me_suggestions">Свяжитесь со мной 📧</string>
     <string name="support_me">Поддержите меня</string>
     <string name="info_text">Это приложение создано с ❤️ для просмотра видео во время использования других приложений. Вы не увидите рекламы, потому что RYTM не идентифицирует пользователей</string>
@@ -110,7 +110,7 @@
     <string name="support_work_summary">Поддержите мою работу!</string>
     <string name="email_address">giordanobruno227@gmail.com</string>
     <string name="rate_app_summary">Оставить отзыв в Play Store</string>
-    <string name="resources">Ресурсы</string>
+    <string name="resources">Risources</string>
     <string name="tutorial_summary">Посмотрите, как использовать RYTM</string>
     <string name="github_summary">Посмотреть код на GitHub</string>
 
