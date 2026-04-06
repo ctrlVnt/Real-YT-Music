@@ -268,8 +268,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Share with friends button
-            • Design full dark mode
+            • Bug Fixing screen dimension after portrait mode
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

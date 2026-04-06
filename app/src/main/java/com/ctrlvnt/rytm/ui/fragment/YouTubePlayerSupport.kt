@@ -94,6 +94,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private var saveMinutesRunnable: Runnable? = null
     private var isFullscreen = false
     private lateinit var timer_text : TextView
+    private var fromoutside : Boolean = false
+    private var originalHeight : Int = 0
 
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
@@ -165,6 +167,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         var repeatOption = false
         var shuffleOption = false
 
+        val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
+        originalHeight = params.height
+
         overlay.visibility = View.GONE
 
         videoList = rootView.findViewById(R.id.playlist)
@@ -190,6 +195,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             playlistAdd.visibility = View.GONE
             playlisName.visibility = View.GONE
             buttonEditName.visibility = View.GONE
+            fromoutside = true
 
             fetchYoutubeVideoAsync(videoId.toString()) { video ->
                 if (video != null) {
@@ -627,13 +633,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         } else {
             val params = youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams
             params.topMargin = originalMarginTop
+            params.height = originalHeight
             youTubePlayerView.layoutParams = params
 
             activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
             activity?.actionBar?.show()
 
             buttonPannel.visibility = View.VISIBLE
-            playlistAdd.visibility = View.VISIBLE
+            if(!fromoutside){
+                playlistAdd.visibility = View.VISIBLE
+            }
         }
     }
 
