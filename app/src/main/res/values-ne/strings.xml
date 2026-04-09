@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">RYTM</string>
+    <string name="hello_blank_fragment">RYTM मा स्वागत छ</string>
+    <string name="caches">इतिहास मेटाउनुहोस्</string>
+    <string name="prev_search">इतिहास</string>
+    <string name="settings">सेटिङ्स</string>
+    <string name="deleted_caches">सबै आइटम मेटाइयो</string>
+
+    <string name="how_to_use"><b>केहि निर्देशनहरू</b>\n\n
+        <i>स्क्रीन लक:</i> भिडियो प्ले गर्दा, केन्द्रीय बटनको मद्दतले आकस्मिक टच रोक्न सकिन्छ। ब्याट्री बचत गर्न ब्राइटनेस न्यूनतम गर्नुहोस्।\n\n
+        <i>प्लेब्याक:</i> होम बटन थिचेर चलिरहेको भिडियो बबलमा देखाउनुहोस्। एप पुन: खोल्दा म्यूजिक नियन्त्रण गर्न सकिन्छ।\n\n
+        <i>मेटाउने:</i> प्लेलिस्ट वा गीत मेटाउन लामो क्लिक गर्नुहोस्। नोट: इतिहासका भिडियोहरू मुख्य स्क्रिनमा मात्र मेटाउन सकिन्छ।\n\n
+        <i>प्लेलिस्टहरू:</i> भिडियो प्लेयरको माथि दायाँ बटन थिचेर गीत थप्न सकिन्छ।\n\n
+    </string>
+
+    <string name="about"><b>डाटा जानकारी</b>\n\n
+        <i>केहि डाटा API मालिक (जस्तै YouTube) द्वारा परिवर्तन हुन सक्छ, <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> र <a href="http://www.google.com/policies/privacy">Privacy Policy</a> अनुसार।</i>
+    </string>
+
+    <string name="my_info">डेभलपर वेबसाइट: <a href="http://riccardoventurini.dev">riccardoventurini.dev</a></string>
+    <string name="placeholder">शीर्षक वा लिंक प्रविष्ट गर्नुहोस्…</string>
+
+    <string name="delete_confirmation_title">के यो आइटम मेटाउने?</string>
+    <string name="delete_confirmation">के तपाईं निश्चित हुनुहुन्छ कि यो आइटम मेटाउन चाहनुहुन्छ?</string>
+    <string name="delete">मेटाउनुहोस्</string>
+    <string name="restore">रद्द गर्नुहोस्</string>
+
+    <string name="add_playlist" translatable="false">create</string>
+    <string name="error_empty_name">प्लेलिस्टको नाम खाली हुन सक्दैन</string>
+    <string name="error_already_exist">छानिएको नाम पहिले नै अवस्थित छ</string>
+    <string name="select_playlist">प्लेलिस्ट चयन गर्नुहोस्</string>
+    <string name="error_element_playlist_already_exist">छानिएको प्लेलिस्टमा आइटम पहिले नै छ</string>
+    <string name="edit_playlist_name">प्लेलिस्टको नाम सम्पादन गर्नुहोस्</string>
+
+    <string name="noty_title">RYTM चलिरहेको छ</string>
+    <string name="noty_text">नोटिफिकेशनमा क्लिक गर्नुहोस् मेटाउन</string>
+
+    <string name="empty_playlists">प्लेलिस्ट उपलब्ध छैन</string>
+    <string name="empty_cronology">शुरू गर्न, खोजी बार प्रयोग गर्नुहोस् वा YouTube खोल्नुहोस्, Share थिचेर RYTM मा हेर्नुहोस्</string>
+
+    <string name="generic_error">अज्ञात त्रुटि</string>
+    <string name="terms_title">Terms and Conditions</string>
+    <string name="terms_text">एपले YouTube API सेवा प्रयोग गर्दछ। कृपया जारी राख्नु अघि <a href="https://www.youtube.com/t/terms?hl=it">Terms and Conditions</a> र <a href="http://www.google.com/policies/privacy">Privacy Policy</a> हेर्नुहोस् र स्वीकार गर्नुहोस्</string>
+    <string name="accept">स्वीकार गर्नुहोस्</string>
+
+    <string name="confirm_delete_history">इतिहास मेटाउने पुष्टि गर्नुहोस्</string>
+    <string name="confirm_delete_history_message">के तपाईं निश्चित हुनुहुन्छ कि सबै इतिहास मेटाउन चाहनुहुन्छ?</string>
+    <string name="deleted_history">इतिहास मेटाइयो</string>
+
+    <string name="create_playlist_first">जारी राख्नु अघि कम्तिमा एक प्लेलिस्ट बनाउनुहोस्।</string>
+    <string name="playlists_button">प्लेलिस्टहरू</string>
+    <string name="empty_playlist_title">प्लेलिस्ट खाली छ</string>
+    <string name="empty_playlist_text">यो प्लेलिस्ट खाली छ। भर्नको लागि भिडियो खोल्नुहोस् र थप्नुहोस्।</string>
+
+    <string name="buy_me_a_coffee" translatable="false">Buy me a coffee ☕</string>
+    <string name="send_me_suggestions">संपर्क गर्नुहोस्</string>
+    <string name="support_me">मेरो समर्थन गर्नुहोस्</string>
+    <string name="info_text">एप ❤️ सँग बनाइएको, अन्य एप चलाउँदा भिडियो हेर्न। RYTM प्रयोगकर्तालाई चिन्दैन, त्यसैले विज्ञापन छैन।</string>
+
+    <string name="you_don_t_have_already_playlist_create_the_firstone">तपाईंको कुनै प्लेलिस्ट छैन। पहिलो प्लेलिस्ट बनाउनुहोस्!</string>
+    <string name="playlists" translatable="false">Playlists</string>
+    <string name="thx">एप प्रयोग गर्नुभएकोमा धन्यवाद!</string>
+    <string name="buymeacoffee">Cast सुविधा चाहनुहुन्छ? Buy Me a Coffee मार्फत समर्थन गर्नुहोस् ☕</string>
+    <string name="supme">मेरो समर्थन गर्नुहोस्</string>
+    <string name="later">सायद पछि</string>
+
+    <string name="explain_search">खोजी गर्न Enter थिच्नुहोस्</string>
+    <string name="lingua">भाषा</string>
+    <string name="visita_il_mio_sito_web">मेरो वेबसाइट भ्रमण गर्नुहोस् 🌎</string>
+    <string name="valuta_l_app">एप रेट गर्नुहोस् ⭐</string>
+    <string name="save_minute">मिनेट बचत गर्नुहोस्</string>
+    <string name="tutorial" translatable="false">Tutorial 👀</string>
+
+    <string name="limit_title">दैनिक सीमा पुगेको छ</string>
+    <string name="limit_message">सबै प्रयोगकर्ताले दैनिक अनुरोध सीमा पुगिसके।\n
+        अनुरोधहरू मध्यरातमा फेरि उपलब्ध हुनेछन्।\n\n
+        यसबिच, YouTube खोल्नुहोस्, Share थिच्नुहोस् र "Others" → "RYTM" चयन गर्नुहोस्।</string>
+
+    <string name="support_title">एप प्रयोग गर्नुभएकोमा धन्यवाद!</string>
+    <string name="support_message">RYTM मन पर्छ? Buy Me a Coffee मार्फत समर्थन गर्नुहोस् ☕</string>
+    <string name="support_positive">मेरो समर्थन गर्नुहोस्</string>
+    <string name="support_negative">सायद पछि</string>
+
+    <string name="intro_title_welcome">स्वागत छ…</string>
+    <string name="intro_desc_welcome">RYTM मा स्वागत छ, जहाँ तपाईं YouTube भिडियो विज्ञापन बिना हेर्न सक्नुहुन्छ र अरू सुविधाहरू पाउनुहुन्छ।</string>
+
+    <string name="intro_title_home">मुख्य स्क्रिन</string>
+    <string name="intro_desc_home">1. भिडियो खोज्नुहोस् वा लिंक राख्नुहोस्\n\n2. प्लेलिस्ट बनाउनुहोस्\n\n3. तपाईंको खोजी इतिहास हेर्नुहोस्</string>
+
+    <string name="intro_title_player">प्लेयर</string>
+    <string name="intro_desc_player">1. भिडियो प्लेलिस्टमा थप्नुहोस्।\n\n3. लामो प्रेस गरेर व्यवस्थापन र स्वाइप गरेर मेटाउनुहोस्\n\n4. स्क्रिन लक गर्नुहोस्\n\n5. टाइमर सेट गर्नुहोस्</string>
+
+    <string name="intro_title_pip">अन्य एप चलाउँदा भिडियो हेर्नुहोस्</string>
+    <string name="intro_desc_pip">एप सानो गर्नुहोस्, भिडियो हेर्न जारी राख्नुहोस्</string>
+
+    <string name="intro_title_limit">दैनिक सीमा पुगेको छ?</string>
+    <string name="intro_desc_limit">यदि धेरै प्रयोगकर्ताले एप प्रयोग गर्दा अनुरोध सीमा पुग्छ। यस अवस्थामा भिडियोहरू प्रत्यक्ष खोल्नुहोस्: Share → Others → RYTM</string>
+
+    <string name="intro_title_end">…सुरु गरौं!</string>
+    <string name="intro_desc_end">एप डाउनलोड गर्नुभएकोमा धन्यवाद। सेटिङ्समा ट्युटोरियल पाउन सक्नुहुन्छ।</string>
+
+    <string name="save_video_progress">भिडियो प्रगति बचत गर्नुहोस्</string>
+    <string name="intro_title_settings">AI डबिंग वा प्रगति बचत?</string>
+    <string name="intro_desc_settings">एपको भाषा मूल भिडियो भाषा सेट गर्दा AI डबिंग हट्छ। स्वतः भिडियो प्रगति बचत सक्षम गर्नुहोस्!</string>
+
+    <string name="code_source">कोड-स्रोत 💻</string>
+    <string name="daily_end">वैश्विक अनुरोध समाप्त। फेरि उपलब्ध हुनेछन्</string>
+    <string name="daily_end2">जारी राख्न, YouTube खोल्नुहोस्: Share → Open with RYTM</string>
+    <string name="import_popup_title">प्लेलिस्ट लिंक यहाँ राख्नुहोस्</string>
+    <string name="timer_title">टाइमर सेट गर्नुहोस्</string>
+    <string name="timer_text">एप बन्द हुन कति मिनेट पछि?</string>
+    <string name="timer_cell">मिनेट प्रविष्ट गर्नुहोस् (उदाहरण: 5)</string>
+    <string name="timer_exit">टाइमर बन्द गर्नुहोस्</string>
+    <string name="timer_exit_text">टाइमर चलिरहेको छ, बन्द गर्न चाहनुहुन्छ?</string>
+    <string name="something_wrong">केहि गलत भयो</string>
+    <string name="send_report_summary">रिपोर्ट पठाउनुहोस्</string>
+    <string name="support_work_summary">मेरो काम समर्थन गर्नुहोस्!</string>
+    <string name="email_address">giordanobruno227@gmail.com</string>
+    <string name="rate_app_summary">Play Store मा समीक्षा दिनुहोस्</string>
+    <string name="resources">स्रोतहरू</string>
+    <string name="tutorial_summary">RYTM कसरी प्रयोग गर्ने हेर्नुहोस्</string>
+    <string name="github_summary">GitHub मा कोड हेर्नुहोस्</string>
+
+</resources>
