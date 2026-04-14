@@ -18,8 +18,7 @@ You can watch your videos without ADS, you can listen your video while scrolling
 
 ## Full Playback Mode
 
-You can download the full-playback version directly from the releases page:
-🔉 https://github.com/ctrlVnt/Real-YT-Music/releases
+You can download the full-playback version directly from the [releases page](https://github.com/ctrlVnt/Real-YT-Music/releases)
 
 ---
 
@@ -31,8 +30,9 @@ Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file to get started.
 - Have an idea or feature request?  
 - Found a bug?
 
-Open an issue here:  
-🐞 https://github.com/ctrlVnt/Real-YT-Music/issues
+🐞 [Open an issue](https://github.com/ctrlVnt/Real-YT-Music/issues)
+
+**Do you want to propose a new design?** Go on the Figma project ----> [Figma project](https://www.figma.com/design/7P3f19STVtBud9F1Gl7I9T/RYTM?node-id=18-2&t=27jwT8gLUKIGCd15-1)
 
 ---
 
