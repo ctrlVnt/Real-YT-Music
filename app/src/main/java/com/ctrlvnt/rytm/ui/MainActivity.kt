@@ -268,7 +268,10 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Bug Fixing screen dimension after portrait mode
+            • Added Nepali language (banidprajapati)
+            • Fixed language setting
+            
+            Thank to new contributor : banidprajapati
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

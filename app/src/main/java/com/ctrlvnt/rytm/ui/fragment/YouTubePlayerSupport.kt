@@ -299,6 +299,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     R.id.lang_ru -> setLocale("ru", requireContext(), requireActivity())
                     R.id.lang_uk -> setLocale("uk", requireContext(), requireActivity())
                     R.id.lang_ko -> setLocale("ko", requireContext(), requireActivity())
+                    R.id.lang_ne -> setLocale("ne", requireContext(), requireActivity())
                     else -> false
                 }
                 true

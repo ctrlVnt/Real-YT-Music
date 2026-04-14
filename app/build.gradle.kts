@@ -16,8 +16,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 35
-        versionCode = 62
-        versionName = "7.2"
+        versionCode = 63
+        versionName = "7.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,6 +51,13 @@ android {
     }
     configurations.all {
         exclude(group = "com.pierfrancescosoffritti.androidyoutubeplayer", module = "chromecast-sender")
+    }
+
+    //Language split bug
+    bundle {
+        language {
+            enableSplit = false
+        }
     }
 }
 
