@@ -21,7 +21,7 @@
             app:key="save_minutes_enabled"
             app:title="@string/save_video_progress"
             app:summary="Videos bookmark"
-            app:defaultValue="true" />
+            app:defaultValue="false" />
 
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/something_wrong">
@@ -65,6 +65,11 @@
             app:key="github"
             app:title="@string/code_source"
             app:summary="@string/github_summary"/>
+
+        <Preference
+            app:key="version"
+            app:title="About"
+            app:summary="version ..."/>
 
         <Preference
             app:key="empty"

@@ -269,7 +269,8 @@ class MainActivity : AppCompatActivity() {
             You’ve just installed a new version! Here’s what’s new:
             
             • Added Nepali language (banidprajapati)
-            • Fixed language setting
+            • Fixed language settings
+            • Added app version in settings
             
             Thank to new contributor : banidprajapati
             """.trimIndent()

@@ -27,12 +27,13 @@ class Settings : PreferenceFragmentCompat() {
             true
         }
 
+        val versionPref: Preference? = findPreference("version")
+
+        val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+        versionPref?.summary = "version " + packageInfo.versionName
+
         setupClickablePreference("buy_me_a_coffee") {
             openUrl("https://buymeacoffee.com/v3ntuz")
-        }
-
-        setupClickablePreference("report_bug") {
-            openUrl("https://github.com/ctrlVnt/Real-YT-Music/issues")
         }
 
         setupClickablePreference("visit_website") {
