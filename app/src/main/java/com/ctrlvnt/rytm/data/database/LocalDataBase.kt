@@ -17,7 +17,7 @@ import com.ctrlvnt.rytm.data.database.entities.SaveMinutes
 import com.ctrlvnt.rytm.data.database.entities.CacheEntity
 import com.ctrlvnt.rytm.data.database.entities.Video
 
-@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class, SaveMinutes::class, CacheEntity::class], version = 9)
+@Database(entities = [Video::class, Playlist::class, PlaylistVideo::class, SaveMinutes::class, CacheEntity::class], version = 10)
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun videoDao(): VideoDao
     abstract fun playlistDao(): PlaylistDao
@@ -210,6 +210,12 @@ abstract class LocalDataBase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_9_10 = object : Migration(9, 10) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE `videos` ADD COLUMN `timestamp` INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
 
         fun getDatabase(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
@@ -225,6 +231,7 @@ abstract class LocalDataBase : RoomDatabase() {
                     .addMigrations(MIGRATION_6_7)
                     .addMigrations(MIGRATION_7_8)
                     .addMigrations(MIGRATION_8_9)
+                    .addMigrations(MIGRATION_9_10)
                     .build()
                 INSTANCE = instance
                 instance

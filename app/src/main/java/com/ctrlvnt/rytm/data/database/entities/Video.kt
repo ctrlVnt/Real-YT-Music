@@ -9,4 +9,6 @@ data class Video(
     val title: String,
     val channelTitle: String,
     val thumbnailUrl: String,
+
+    var timestamp: Long = System.currentTimeMillis()
 )

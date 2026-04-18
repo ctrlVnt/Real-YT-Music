@@ -30,6 +30,7 @@ import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.Settings
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 import com.ctrlvnt.rytm.utils.apikey.SHAKEKEY
+import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
@@ -90,50 +91,32 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         database = LocalDataBase.getDatabase(this)
 
-        val uri = intent?.data
-        val videoId = uri?.getQueryParameter("v")
-
-
         if (intent?.action == Intent.ACTION_SEND && intent.type == "text/plain") {
             val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
             if (!sharedText.isNullOrEmpty()) {
-                val videoId = sharedText.toUri().getQueryParameter("v")
+                val videoId = extractYoutubeId(sharedText)
                 if (videoId != null) {
-                    val fragment = YouTubePlayerSupport.newInstance(videoId, "fromoutside")
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_activity, HomeActivity())
-                        .commitNow()
-
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_activity, fragment)
-                        .addToBackStack(null)
-                        .commit()
+                    openVideoFragment(videoId)
                     return
                 }
             }
-        }else if (intent?.action == Intent.ACTION_VIEW){
-            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+        }else if (intent?.action == Intent.ACTION_VIEW){ // here if app opened when you click directly the link
+            val sharedText = intent.dataString
             if (sharedText != null) {
                 val urlRegex = "(https?://[\\s\\S]*)".toRegex()
                 val match = urlRegex.find(sharedText)
                 val cleanUri = match?.value?.trim()?.toUri()
                 val videoId = extractVideoIdFromUrl(cleanUri)
                 if (videoId != null) {
-                    val fragment = YouTubePlayerSupport.newInstance(videoId, "fromoutside")
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_activity, HomeActivity())
-                        .commitNow()
-
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_activity, fragment)
-                        .addToBackStack(null)
-                        .commit()
+                    openVideoFragment(videoId)
                     return
                 }
             }
 
         }
 
+        val uri = intent?.data
+        val videoId = uri?.getQueryParameter("v")
         if (videoId != null) {
             val fragment = YouTubePlayerSupport.newInstance(videoId, "home")
             supportFragmentManager.beginTransaction()
@@ -150,6 +133,19 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
         checkAndShowUpdatePopup(this)
+    }
+
+    private fun openVideoFragment(videoId: String) {
+        val fragment = YouTubePlayerSupport.newInstance(videoId, "fromoutside")
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_activity, HomeActivity())
+            .commitNow()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_activity, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     fun setBottomNavVisibility(isVisible: Boolean) {
@@ -268,11 +264,10 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added Nepali language (banidprajapati)
-            • Fixed language settings
-            • Added app version in settings
-            
-            Thank to new contributor : banidprajapati
+            • Added live stream support (in live and after live)
+            • Fixed saved position of videos bug
+            • History ordered by date
+           
             """.trimIndent()
             )
             .setPositiveButton("OK", null)

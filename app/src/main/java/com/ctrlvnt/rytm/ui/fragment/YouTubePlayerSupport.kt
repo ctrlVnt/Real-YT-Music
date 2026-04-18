@@ -28,6 +28,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +49,7 @@ import com.ctrlvnt.rytm.utils.fetchYoutubeVideoAsync
 import com.ctrlvnt.rytm.utils.getFlagEmojiForLanguage
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.ctrlvnt.rytm.utils.setLocale
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
@@ -153,13 +155,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         (activity as? MainActivity)?.setBottomNavVisibility(false)
         val minutes: Float = MainActivity.database.getMinutesByVideoId(videoId.toString())
 
-        val prefs = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
 
         val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
         languageButton.text = flagEmoji
 
         if (isSaveEnabled) {
+            rootView.findViewById<MaterialButton>(R.id.isBookmarkEnabled).visibility = View.VISIBLE
             startSaveMinutesTimer(videoId.toString())
         }
 

@@ -11,7 +11,7 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 @Dao
 interface PlaylistVideoDao {
 
-    @Query("SELECT videoId AS id, title, channelTitle, thumbnailUrl FROM playlistvideo WHERE playlistName = :playlistName ORDER BY position ASC")
+    @Query("SELECT videoId AS id, title, channelTitle, thumbnailUrl, 0 AS timestamp FROM playlistvideo WHERE playlistName = :playlistName ORDER BY position ASC")
     fun getPlaylistVideos(playlistName: String): MutableList<Video>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -119,11 +119,13 @@ fun showLimitReachedDialog(context: Context) {
 }
 
 fun extractYoutubeId(url: String): String? {
-    val shortRegex = "(?<=youtu\\.be/)[^?&]*".toRegex()
-
+    val shortRegex = "(?<=youtu\\.be/)[^?&#]*".toRegex()
     val longRegex = "(?<=v=)[^#&?]*".toRegex()
+    val liveRegex = "(?<=live/)[^#&?]*".toRegex()
 
-    return shortRegex.find(url)?.value ?: longRegex.find(url)?.value
+    return shortRegex.find(url)?.value
+        ?: longRegex.find(url)?.value
+        ?: liveRegex.find(url)?.value
 }
 
 fun extractPlaylistId(url: String): String? {
