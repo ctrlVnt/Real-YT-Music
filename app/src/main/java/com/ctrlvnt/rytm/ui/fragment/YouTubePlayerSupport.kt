@@ -194,7 +194,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             prevButton.visibility = View.GONE
             shuffle.visibility = View.GONE
             repeat.visibility = View.GONE
-            lockButton.visibility = View.GONE
             playlistAdd.visibility = View.GONE
             playlisName.visibility = View.GONE
             buttonEditName.visibility = View.GONE
@@ -348,6 +347,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 shuffle.visibility = View.GONE
                 repeat.visibility = View.GONE
                 timer.visibility = View.GONE
+                languageButton.visibility = View.GONE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -355,14 +355,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     it.window.attributes = layoutParams
                 }
             }else{
+                if(playlistTitle != "fromoutside"){
+                    playlistAdd.visibility = View.VISIBLE
+                    prevButton.visibility = View.VISIBLE
+                    nextButton.visibility = View.VISIBLE
+                    shuffle.visibility = View.VISIBLE
+                    repeat.visibility = View.VISIBLE
+                }
                 lockButton.setImageResource(R.drawable.baseline_lock_open_24)
                 overlay.visibility = View.GONE
-                playlistAdd.visibility = View.VISIBLE
-                prevButton.visibility = View.VISIBLE
-                nextButton.visibility = View.VISIBLE
-                shuffle.visibility = View.VISIBLE
-                repeat.visibility = View.VISIBLE
                 timer.visibility = View.VISIBLE
+                languageButton.visibility = View.VISIBLE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes

@@ -264,9 +264,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added live stream support (in live and after live)
-            • Fixed saved position of videos bug
-            • History ordered by date
+            • Added possible Sign-In YT thing solution
+            • Lock screen button for videos from out of RYTM
            
             """.trimIndent()
             )

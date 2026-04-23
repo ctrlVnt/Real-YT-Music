@@ -12,6 +12,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.ui.TutorialActivity
 import com.ctrlvnt.rytm.utils.setLocale
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shakebugs.shake.Shake
 import com.shakebugs.shake.ShakeScreen
 
@@ -68,6 +69,30 @@ class Settings : PreferenceFragmentCompat() {
 
         setupClickablePreference("report_bug"){
             Shake.show(ShakeScreen.NEW)
+        }
+
+        setupClickablePreference("faq") {
+            val faqMessage = """
+        Sometimes, YouTube may ask you to sign in to confirm you are not a bot. 
+        
+        This is a server-side check enforced directly by YouTube, not a bug in RYTM. Google occasionally flags anonymous traffic to prevent spam and restrict ad-blockers. (RYTM is not an ad-blocker)
+        
+        Here is what you can do to fix it:
+        
+        • Clear Cache: Go to your phone's Settings > Apps > RYTM > Storage and clear the cache. This can sometimes reset your anonymous session.
+        
+        • Switch Network: Changing from Wi-Fi to mobile data, or temporarily using a VPN, can bypass temporary IP blocks.
+        
+        You can retry later, sometimes the situation resolves itself. 
+    """.trimIndent()
+
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+                .setTitle("FAQ: YouTube Sign-in Requests")
+                .setMessage(faqMessage)
+                .setPositiveButton("Got it") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 

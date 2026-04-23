@@ -29,6 +29,10 @@
             app:key="report_bug"
             app:title="@string/shake_sdk_dialog_feedback_type_item_bug"
             app:summary="@string/send_report_summary"/>
+        <Preference
+            app:key="faq"
+            app:title="Sign-in required?"
+            app:summary="Here some suggestions"/>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/support_me">
