@@ -52,5 +52,5 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_AUTH_JSON }}
           packageName: com.ctrlvnt.rytm
           releaseFiles: ${{steps.sign_app.outputs.signedReleaseFile}}
-          track: production
+          tracks: production
           status: completed
