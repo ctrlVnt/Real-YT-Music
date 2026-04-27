@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" translatable="false">RYTM</string>
     <string name="hello_blank_fragment">RYTM मा स्वागत छ</string>
     <string name="caches">इतिहास मेटाउनुहोस्</string>
     <string name="prev_search">इतिहास</string>
@@ -71,7 +70,6 @@
     <string name="visita_il_mio_sito_web">मेरो वेबसाइट भ्रमण गर्नुहोस् 🌎</string>
     <string name="valuta_l_app">एप रेट गर्नुहोस् ⭐</string>
     <string name="save_minute">मिनेट बचत गर्नुहोस्</string>
-    <string name="tutorial" translatable="false">Tutorial 👀</string>
 
     <string name="limit_title">दैनिक सीमा पुगेको छ</string>
     <string name="limit_message">सबै प्रयोगकर्ताले दैनिक अनुरोध सीमा पुगिसके।\n

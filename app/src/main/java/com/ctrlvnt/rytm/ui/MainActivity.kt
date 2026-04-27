@@ -24,6 +24,7 @@ import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.preference.PreferenceManager
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
@@ -196,16 +197,19 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onUserLeaveHint() {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val pipMode = prefs.getBoolean("activate_pip_mode", true)
+        if(pipMode){
+            val layoutParams = window.attributes
+            layoutParams.screenBrightness =
+                WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+            window.attributes = layoutParams
 
-        val layoutParams = window.attributes
-        layoutParams.screenBrightness =
-            WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
-        window.attributes = layoutParams
-
-        enterPictureInPictureMode(
-            PictureInPictureParams.Builder()
-            .setAspectRatio(Rational(16, 9))
-            .build())
+            enterPictureInPictureMode(
+                PictureInPictureParams.Builder()
+                    .setAspectRatio(Rational(16, 9))
+                    .build())
+        }
     }
 
     override fun attachBaseContext(newBase: Context) {
@@ -264,8 +268,9 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Added possible Sign-In YT thing solution
-            • Lock screen button for videos from out of RYTM
+            • Ability to disable PiP mode in settings
+            
+            • Music control with headphones
            
             """.trimIndent()
             )

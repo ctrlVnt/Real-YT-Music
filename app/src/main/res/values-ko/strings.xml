@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">RYTM</string>
     <string name="hello_blank_fragment">RYTM에 오신 것을 환영합니다</string>
     <string name="caches">기록 삭제</string>
     <string name="prev_search">기록</string>
@@ -71,7 +70,6 @@
     <string name="visita_il_mio_sito_web">웹사이트 방문 🌎</string>
     <string name="valuta_l_app">앱 평가하기 ⭐</string>
     <string name="save_minute">분 저장</string>
-    <string name="tutorial" translatable="false">Tutorial 👀</string>
     <string name="limit_title">일일 제한 도달</string>
     <string name="limit_message">모든 사용자가 일일 요청 한도에 도달했습니다.\n요청은 로스앤젤레스 시각 자정에 다시 이용 가능해집니다.\n\n\n    그동안에는 YouTube에서 동영상 공유 → 기타 → RYTM을 선택하면 계속 들을 수 있습니다.</string>
     <string name="support_title">앱을 사용해 주셔서 감사합니다!</string>

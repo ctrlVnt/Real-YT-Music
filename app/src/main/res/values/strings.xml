@@ -149,4 +149,5 @@
         <item>uk</item>
         <item>ko</item>
     </string-array>
+    <string name="pip_mode">Pip mode</string>
 </resources>

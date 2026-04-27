@@ -23,6 +23,11 @@
             app:summary="Videos bookmark"
             app:defaultValue="false" />
 
+        <SwitchPreferenceCompat
+            app:key="activate_pip_mode"
+            app:title="@string/pip_mode"
+            app:summary="Picture in Picture mode"
+            app:defaultValue="true" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/something_wrong">
         <Preference

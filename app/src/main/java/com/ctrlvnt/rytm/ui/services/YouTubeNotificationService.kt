@@ -16,6 +16,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.bumptech.glide.Glide
 import com.ctrlvnt.rytm.R
 import com.bumptech.glide.request.target.CustomTarget
+import android.support.v4.media.session.PlaybackStateCompat
 
 class YouTubeNotificationService : Service() {
 
@@ -80,11 +81,10 @@ class YouTubeNotificationService : Service() {
                          }
 
                          override fun onLoadCleared(placeholder: Drawable?) {
-                             // Non serve fare nulla qui
+
                          }
                      })
              } else {
-                 // Se non c'è URL, mostra notifica senza large icon (o con placeholder)
                  showNotification(title, author, isPlaying, null)
              }
         }
@@ -93,9 +93,11 @@ class YouTubeNotificationService : Service() {
     }
 
     private fun showNotification(title: String, author: String, isPlaying: Boolean, bitmap: Bitmap?) {
+
+        updatePlaybackState(isPlaying)
+
         val playPauseIcon = if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_arrow_24
 
-        // Nota: qui passiamo le stringhe ACTION_*, non i KeyEvent
         val playPauseAction = if (isPlaying) ACTION_PAUSE else ACTION_PLAY
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -104,11 +106,9 @@ class YouTubeNotificationService : Service() {
             .setSmallIcon(R.drawable.notify_logo)
             .setLargeIcon(bitmap)
 
-            // --- MODIFICA QUI ---
             .addAction(R.drawable.baseline_skip_previous, "Previous", getActionIntent(ACTION_PREV))
             .addAction(playPauseIcon, "Play/Pause", getActionIntent(playPauseAction))
             .addAction(R.drawable.baseline_skip_next, "Next", getActionIntent(ACTION_NEXT))
-            // --------------------
 
             .setStyle(androidx.media.app.NotificationCompat.MediaStyle()
                 .setMediaSession(mediaSession.sessionToken)
@@ -155,5 +155,24 @@ class YouTubeNotificationService : Service() {
     override fun onDestroy() {
         mediaSession.release()
         super.onDestroy()
+    }
+
+    private fun updatePlaybackState(isPlaying: Boolean) {
+        val state = if (isPlaying) PlaybackStateCompat.STATE_PLAYING else PlaybackStateCompat.STATE_PAUSED
+
+        val playbackSpeed = if (isPlaying) 1.0f else 0f
+
+        val actions = PlaybackStateCompat.ACTION_PLAY or
+                PlaybackStateCompat.ACTION_PAUSE or
+                PlaybackStateCompat.ACTION_PLAY_PAUSE or
+                PlaybackStateCompat.ACTION_SKIP_TO_NEXT or
+                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
+
+        mediaSession.setPlaybackState(
+            PlaybackStateCompat.Builder()
+                .setActions(actions)
+                .setState(state, PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN, playbackSpeed)
+                .build()
+        )
     }
 }
