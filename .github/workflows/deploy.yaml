@@ -23,6 +23,11 @@ jobs:
       - name: gradlew permissions
         run: chmod +x gradlew
 
+      - name: Inject API Keys into local.properties
+        run: |
+          echo "SHAKEKEY=\"${{ secrets.SHAKE_API_KEY }}\"" > local.properties
+          echo "APIKEY=\"${{ secrets.YOUTUBE_API_KEY }}\"" >> local.properties
+
       - name: Build app bundle (.aab)
         run: ./gradlew bundleRelease
 
@@ -44,13 +49,3 @@ jobs:
           releaseFiles: ${{steps.sign_app.outputs.signedReleaseFile}}
           track: production
           status: completed
-
-      - name: GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ steps.sign_apk.outputs.signedReleaseFile }}
-          draft: true
-          name: Release ${{ github.ref_name }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
