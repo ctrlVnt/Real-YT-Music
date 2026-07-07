@@ -268,9 +268,22 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • Ability to disable PiP mode in settings
+            • fix bug: screen return in portrait mode after full-size videos
             
-            • Music control with headphones
+            Thank you for your support guys:
+            - LP (supporter number 1 ❤️)
+            - Tay
+            - Mike
+            - Urchin
+            - Political SMS Campaigns
+            - Claudia
+            - joy
+            - @SchlurponiusRex on YouTube
+            - Jinxie_bird
+            - King T
+            - Mee Lee
+            - Ceryus
+            - all others "Someone" accounts!
            
             """.trimIndent()
             )

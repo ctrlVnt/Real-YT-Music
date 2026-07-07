@@ -430,7 +430,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 //youTubePlayerView.visibility = View.VISIBLE
                 fullscreenViewContainer.visibility = View.GONE
                 fullscreenViewContainer.removeAllViews()
-                requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
             }
         })
 
@@ -876,6 +876,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         (activity as? MainActivity)?.setBottomNavVisibility(true)
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
         val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
