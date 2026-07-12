@@ -149,5 +149,18 @@
         <item>uk</item>
         <item>ko</item>
     </string-array>
-    <string name="pip_mode">Pip mode</string>
+    <string name="pip_mode" translatable="false">Pip mode</string>
+    <string name="general">General</string>
+    <string name="videos_bookmark">Videos bookmark</string>
+    <string name="pip_mode_summary">Picture in Picture mode</string>
+    <string name="video_captions">Video captions</string>
+    <string name="video_captions_summary">You can automatically enable or disable subtitles when the player starts</string>
+    <string name="faq_title">Sign-in required?</string>
+    <string name="faq_summary">Here some suggestions</string>
+    <string name="share_app_title">Share with friends</string>
+    <string name="about_title">About</string>
+    <string name="version_summary">version …</string>
+    <string name="pref_empty">empty</string>
+    <string name="pref_empty_summary">empty</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Report a bug</string>
 </resources>

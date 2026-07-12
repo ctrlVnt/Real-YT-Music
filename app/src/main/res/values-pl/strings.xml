@@ -114,4 +114,17 @@
     <string name="tutorial_summary">Zobacz, jak używać RYTM</string>
     <string name="github_summary">Zobacz kod na GitHub</string>
 
+    <string name="general">Ogólne</string>
+    <string name="videos_bookmark">Zakładki wideo</string>
+    <string name="pip_mode_summary">Tryb Picture in Picture</string>
+    <string name="video_captions">Napisy wideo</string>
+    <string name="video_captions_summary">Możesz automatycznie włączać lub wyłączać napisy po uruchomieniu odtwarzacza</string>
+    <string name="faq_title">Wymagane logowanie?</string>
+    <string name="faq_summary">Oto kilka sugestii</string>
+    <string name="share_app_title">Udostępnij znajomym</string>
+    <string name="about_title">O aplikacji</string>
+    <string name="version_summary">wersja …</string>
+    <string name="pref_empty">puste</string>
+    <string name="pref_empty_summary">puste</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Zgłoś błąd</string>
 </resources>

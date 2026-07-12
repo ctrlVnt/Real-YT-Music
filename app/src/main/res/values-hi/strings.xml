@@ -101,4 +101,17 @@
     <string name="tutorial_summary">RYTM का उपयोग कैसे करें देखें</string>
     <string name="github_summary">GitHub पर कोड देखें</string>
 
+    <string name="general">सामान्य</string>
+    <string name="videos_bookmark">वीडियो बुकमार्क</string>
+    <string name="pip_mode_summary">पिक्चर इन पिक्चर मोड</string>
+    <string name="video_captions">वीडियो कैप्शन</string>
+    <string name="video_captions_summary">जब प्लेयर शुरू होता है तो आप स्वचालित रूप से उपशीर्षक सक्षम या अक्षम कर सकते हैं</string>
+    <string name="faq_title">साइन-इन आवश्यक है?</string>
+    <string name="faq_summary">यहाँ कुछ सुझाव हैं</string>
+    <string name="share_app_title">दोस्तों के साथ साझा करें</string>
+    <string name="about_title">परिचय</string>
+    <string name="version_summary">संस्करण …</string>
+    <string name="pref_empty">खाली</string>
+    <string name="pref_empty_summary">खाली</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">एक बग की रिपोर्ट करें</string>
 </resources>

@@ -268,22 +268,11 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • fix bug: screen return in portrait mode after full-size videos
+            • feature: setting for default captions
             
-            Thank you for your support guys:
-            - LP (supporter number 1 ❤️)
-            - Tay
-            - Mike
-            - Urchin
-            - Political SMS Campaigns
-            - Claudia
-            - joy
-            - @SchlurponiusRex on YouTube
-            - Jinxie_bird
-            - King T
-            - Mee Lee
-            - Ceryus
-            - all others "Someone" accounts!
+            Thank you for your donations❤️
+            - Ceryus (again🙏)
+            - Someone
            
             """.trimIndent()
             )

@@ -115,4 +115,17 @@
     <string name="tutorial_summary">RYTMの使い方を見る</string>
     <string name="github_summary">GitHubでコードを見る</string>
 
+    <string name="general">全般</string>
+    <string name="videos_bookmark">動画ブックマーク</string>
+    <string name="pip_mode_summary">ピクチャーインピクチャーモード</string>
+    <string name="video_captions">動画キャプション</string>
+    <string name="video_captions_summary">プレーヤーの開始時に字幕を自動的に有効または無効にできます</string>
+    <string name="faq_title">サインインが必要ですか？</string>
+    <string name="faq_summary">ここにいくつかの提案があります</string>
+    <string name="share_app_title">友達と共有</string>
+    <string name="about_title">概要</string>
+    <string name="version_summary">バージョン …</string>
+    <string name="pref_empty">空</string>
+    <string name="pref_empty_summary">空</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">バグを報告</string>
 </resources>

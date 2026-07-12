@@ -100,4 +100,17 @@
     <string name="tutorial_summary">Voir comment utiliser RYTM</string>
     <string name="github_summary">Voir le code sur GitHub</string>
 
+    <string name="general">Général</string>
+    <string name="videos_bookmark">Signets vidéo</string>
+    <string name="pip_mode_summary">Mode Image dans l\'image</string>
+    <string name="video_captions">Sous-titres vidéo</string>
+    <string name="video_captions_summary">Vous pouvez activer ou désactiver automatiquement les sous-titres au démarrage du lecteur</string>
+    <string name="faq_title">Connexion requise ?</string>
+    <string name="faq_summary">Voici quelques suggestions</string>
+    <string name="share_app_title">Partager avec des amis</string>
+    <string name="about_title">À propos</string>
+    <string name="version_summary">version …</string>
+    <string name="pref_empty">vide</string>
+    <string name="pref_empty_summary">vide</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Signaler un bug</string>
 </resources>

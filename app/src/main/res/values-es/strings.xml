@@ -114,4 +114,17 @@
     <string name="tutorial_summary">Ve cómo usar RYTM</string>
     <string name="github_summary">Ver el código en GitHub</string>
 
+    <string name="general">General</string>
+    <string name="videos_bookmark">Marcadores de video</string>
+    <string name="pip_mode_summary">Modo Picture in Picture</string>
+    <string name="video_captions">Subtítulos de video</string>
+    <string name="video_captions_summary">Puedes activar o desactivar automáticamente los subtítulos cuando se inicie el reproductor</string>
+    <string name="faq_title">¿Se requiere iniciar sesión?</string>
+    <string name="faq_summary">Aquí algunas sugerencias</string>
+    <string name="share_app_title">Compartir con amigos</string>
+    <string name="about_title">Acerca de</string>
+    <string name="version_summary">versión …</string>
+    <string name="pref_empty">vacío</string>
+    <string name="pref_empty_summary">vacío</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Reportar un error</string>
 </resources>

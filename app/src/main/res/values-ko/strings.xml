@@ -114,4 +114,17 @@
     <string name="tutorial_summary">RYTM 사용 방법 보기</string>
     <string name="github_summary">GitHub에서 코드 보기</string>
 
+    <string name="general">일반</string>
+    <string name="videos_bookmark">동영상 북마크</string>
+    <string name="pip_mode_summary">PIP(Picture in Picture) 모드</string>
+    <string name="video_captions">동영상 캡션</string>
+    <string name="video_captions_summary">플레이어 시작 시 자막을 자동으로 활성화하거나 비활성화할 수 있습니다</string>
+    <string name="faq_title">로그인이 필요합니까?</string>
+    <string name="faq_summary">몇 가지 제안 사항이 있습니다</string>
+    <string name="share_app_title">친구와 공유</string>
+    <string name="about_title">정보</string>
+    <string name="version_summary">버전 …</string>
+    <string name="pref_empty">비어 있음</string>
+    <string name="pref_empty_summary">비어 있음</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">버그 제보</string>
 </resources>
