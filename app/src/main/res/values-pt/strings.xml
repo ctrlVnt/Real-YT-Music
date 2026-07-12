@@ -115,4 +115,17 @@
     <string name="tutorial_summary">Veja como usar o RYTM</string>
     <string name="github_summary">Ver o código no GitHub</string>
 
+    <string name="general">Geral</string>
+    <string name="videos_bookmark">Favoritos de vídeo</string>
+    <string name="pip_mode_summary">Modo Picture-in-Picture</string>
+    <string name="video_captions">Legendas de vídeo</string>
+    <string name="video_captions_summary">Você pode ativar ou desativar automaticamente as legendas quando o player inicia</string>
+    <string name="faq_title">Login necessário?</string>
+    <string name="faq_summary">Aqui algumas sugestões</string>
+    <string name="share_app_title">Compartilhar com amigos</string>
+    <string name="about_title">Sobre</string>
+    <string name="version_summary">versão …</string>
+    <string name="pref_empty">vazio</string>
+    <string name="pref_empty_summary">vazio</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Reportar um erro</string>
 </resources>

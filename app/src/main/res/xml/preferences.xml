@@ -8,7 +8,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="general">
+        app:title="@string/general">
 
         <ListPreference
             app:key="app_language"
@@ -20,14 +20,20 @@
         <SwitchPreferenceCompat
             app:key="save_minutes_enabled"
             app:title="@string/save_video_progress"
-            app:summary="Videos bookmark"
+            app:summary="@string/videos_bookmark"
             app:defaultValue="false" />
 
         <SwitchPreferenceCompat
             app:key="activate_pip_mode"
             app:title="@string/pip_mode"
-            app:summary="Picture in Picture mode"
+            app:summary="@string/pip_mode_summary"
             app:defaultValue="true" />
+
+        <SwitchPreferenceCompat
+            app:key="captions_option"
+            app:title="@string/video_captions"
+            app:summary="@string/video_captions_summary"
+            app:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/something_wrong">
         <Preference
@@ -36,8 +42,8 @@
             app:summary="@string/send_report_summary"/>
         <Preference
             app:key="faq"
-            app:title="Sign-in required?"
-            app:summary="Here some suggestions"/>
+            app:title="@string/faq_title"
+            app:summary="@string/faq_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/support_me">
@@ -54,7 +60,7 @@
 
         <Preference
             app:key="share_app"
-            app:title="Share with friends"/>
+            app:title="@string/share_app_title"/>
 
         <Preference
             app:key="visit_website"
@@ -77,13 +83,13 @@
 
         <Preference
             app:key="version"
-            app:title="About"
-            app:summary="version ..."/>
+            app:title="@string/about_title"
+            app:summary="@string/version_summary"/>
 
         <Preference
             app:key="empty"
-            app:title="empty"
-            app:summary="empty"/>
+            app:title="@string/pref_empty"
+            app:summary="@string/pref_empty_summary"/>
 
     </PreferenceCategory>
 

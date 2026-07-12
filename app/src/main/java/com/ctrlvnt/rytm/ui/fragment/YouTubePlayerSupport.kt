@@ -158,6 +158,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
 
+        val videoCaptions = if(prefs.getBoolean("captions_option", false)){
+            1
+        }else{
+            0
+        }
+
         val flagEmoji = getFlagEmojiForLanguage(Locale.getDefault().language)
         languageButton.text = flagEmoji
 
@@ -402,6 +408,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val iFramePlayerOptions = IFramePlayerOptions.Builder(requireContext())
             .controls(1)
             .fullscreen(1)
+            .ccLoadPolicy(videoCaptions)
             .build()
 
         val youTubePlayerView = rootView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)

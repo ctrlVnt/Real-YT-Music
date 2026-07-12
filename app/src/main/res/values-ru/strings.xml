@@ -114,4 +114,17 @@
     <string name="tutorial_summary">Посмотрите, как использовать RYTM</string>
     <string name="github_summary">Посмотреть код на GitHub</string>
 
+    <string name="general">Общие</string>
+    <string name="videos_bookmark">Закладки видео</string>
+    <string name="pip_mode_summary">Режим «Картинка в картинке»</string>
+    <string name="video_captions">Субтитры видео</string>
+    <string name="video_captions_summary">Вы можете автоматически включать или отключать субтитры при запуске плеера</string>
+    <string name="faq_title">Требуется вход?</string>
+    <string name="faq_summary">Вот несколько советов</string>
+    <string name="share_app_title">Поделиться с друзьями</string>
+    <string name="about_title">О приложении</string>
+    <string name="version_summary">версия …</string>
+    <string name="pref_empty">пусто</string>
+    <string name="pref_empty_summary">пусто</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">Сообщить об ошибке</string>
 </resources>

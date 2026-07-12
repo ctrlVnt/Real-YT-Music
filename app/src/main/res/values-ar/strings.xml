@@ -112,4 +112,17 @@
     <string name="tutorial_summary">شاهد كيفية استخدام RYTM</string>
     <string name="github_summary">عرض الكود على GitHub</string>
 
+    <string name="general">عام</string>
+    <string name="videos_bookmark">إشارات الفيديو المرجعية</string>
+    <string name="pip_mode_summary">وضع صورة داخل صورة</string>
+    <string name="video_captions">تسميات الفيديو التوضيحية</string>
+    <string name="video_captions_summary">يمكنك تمكين أو تعطيل الترجمة تلقائيًا عند بدء المشغل</string>
+    <string name="faq_title">هل تسجيل الدخول مطلوب؟</string>
+    <string name="faq_summary">هنا بعض الاقتراحات</string>
+    <string name="share_app_title">مشاركة مع الأصدقاء</string>
+    <string name="about_title">حول</string>
+    <string name="version_summary">الإصدار …</string>
+    <string name="pref_empty">فارغ</string>
+    <string name="pref_empty_summary">فارغ</string>
+    <string name="shake_sdk_dialog_feedback_type_item_bug">الإبلاغ عن خلل</string>
 </resources>
