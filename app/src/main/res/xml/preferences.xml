@@ -34,6 +34,11 @@
             app:title="@string/video_captions"
             app:summary="@string/video_captions_summary"
             app:defaultValue="false" />
+        <SwitchPreferenceCompat
+            app:key="show_system_nav_bar"
+            app:title="@string/system_nav_bar_title"
+            app:summary="@string/system_nav_bar_summary"
+            app:defaultValue="false" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/something_wrong">
         <Preference

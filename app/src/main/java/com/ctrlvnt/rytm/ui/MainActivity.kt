@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.edit
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -54,6 +55,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)!!
+
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNav) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
+
+            val density = view.resources.displayMetrics.density
+            val baseHeightPx = (80 * density).toInt()
+
+            val layoutParams = view.layoutParams
+            layoutParams.height = baseHeightPx + insets.bottom
+            view.layoutParams = layoutParams
+
+            view.setPadding(0, 0, 0, insets.bottom)
+
+            windowInsets
+        }
+
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
@@ -74,12 +91,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val showNavBar = prefs.getBoolean("show_system_nav_bar", false)
+
         window.decorView.apply {
             WindowCompat.setDecorFitsSystemWindows(window, false)
-            val insetsController =
-                WindowCompat.getInsetsController(window, window.decorView)
-            insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+
+            if (showNavBar) {
+                insetsController.show(WindowInsetsCompat.Type.navigationBars())
+            } else {
+                insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            }
         }
 
         val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)

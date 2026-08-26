@@ -128,4 +128,6 @@
     <string name="pref_empty">порожньо</string>
     <string name="pref_empty_summary">порожньо</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Повідомити про помилку</string>
+    <string name="system_nav_bar_title">Постійні системні команди</string>
+    <string name="system_nav_bar_summary">Показувати команди системної навігації внизу (Головна, Назад)</string>
 </resources>

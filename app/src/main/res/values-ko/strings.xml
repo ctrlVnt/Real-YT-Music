@@ -127,4 +127,6 @@
     <string name="pref_empty">비어 있음</string>
     <string name="pref_empty_summary">비어 있음</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">버그 제보</string>
+    <string name="system_nav_bar_title">영구 시스템 명령</string>
+    <string name="system_nav_bar_summary">하단에 시스템 탐색 명령 표시(홈, 뒤로)</string>
 </resources>

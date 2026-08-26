@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.ui.TutorialActivity
 import com.ctrlvnt.rytm.utils.setLocale
@@ -25,6 +28,13 @@ class Settings : PreferenceFragmentCompat() {
         languagePref?.setOnPreferenceChangeListener { _, newValue ->
             val langCode = newValue.toString()
             setLocale(langCode, requireContext(), requireActivity())
+            true
+        }
+
+        val systemNavBarPref: SwitchPreferenceCompat? = findPreference("show_system_nav_bar")
+        systemNavBarPref?.setOnPreferenceChangeListener { _, newValue ->
+            val show = newValue as Boolean
+            applySystemNavBarVisibility(show)
             true
         }
 
@@ -106,5 +116,17 @@ class Settings : PreferenceFragmentCompat() {
     private fun openUrl(url: String) {
         val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
         startActivity(browserIntent)
+    }
+
+    private fun applySystemNavBarVisibility(show: Boolean) {
+        val window = requireActivity().window
+        val insetsController = WindowInsetsControllerCompat(window, window.decorView)
+
+        if (show) {
+            insetsController.show(WindowInsetsCompat.Type.navigationBars())
+        } else {
+            insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
     }
 }

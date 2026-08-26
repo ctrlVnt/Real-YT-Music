@@ -125,4 +125,6 @@
     <string name="pref_empty">فارغ</string>
     <string name="pref_empty_summary">فارغ</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">الإبلاغ عن خلل</string>
+    <string name="system_nav_bar_title">أوامر النظام الدائمة</string>
+    <string name="system_nav_bar_summary">إظهار أوامر التنقل في النظام في الأسفل (الرئيسية، رجوع)</string>
 </resources>

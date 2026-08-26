@@ -127,4 +127,6 @@
     <string name="pref_empty">пусто</string>
     <string name="pref_empty_summary">пусто</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Сообщить об ошибке</string>
+    <string name="system_nav_bar_title">Постоянные системные команды</string>
+    <string name="system_nav_bar_summary">Показывать команды системной навигации внизу (Главная, Назад)</string>
 </resources>

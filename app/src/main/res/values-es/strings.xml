@@ -127,4 +127,6 @@
     <string name="pref_empty">vacío</string>
     <string name="pref_empty_summary">vacío</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Reportar un error</string>
+    <string name="system_nav_bar_title">Comandos del sistema permanentes</string>
+    <string name="system_nav_bar_summary">Mostrar los comandos de navegación del sistema en la parte inferior (Inicio, Atrás)</string>
 </resources>

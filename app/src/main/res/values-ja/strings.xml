@@ -128,4 +128,6 @@
     <string name="pref_empty">空</string>
     <string name="pref_empty_summary">空</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">バグを報告</string>
+    <string name="system_nav_bar_title">常設システムコマンド</string>
+    <string name="system_nav_bar_summary">下部にシステムナビゲーションコマンドを表示 (ホーム、戻る)</string>
 </resources>
