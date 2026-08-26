@@ -3,7 +3,6 @@ package com.ctrlvnt.rytm.data
 import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
 import com.ctrlvnt.rytm.data.model.PlaylistMetadataResponse
 import com.ctrlvnt.rytm.data.model.SearchResponse
-import com.ctrlvnt.rytm.data.model.VideoItem
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,8 +21,8 @@ class YouTubeApiManager {
         call.enqueue(callback)
     }
 
-    fun getPlaylistsVideos(apiKey: String, playlistId: String, callback: Callback<PlaylistItemsResponse>) {
-        val call = apiService.getPlaylistItems(apiKey, playlistId)
+    fun getPlaylistsVideos(apiKey: String, playlistId: String, pageToken: String?, callback: Callback<PlaylistItemsResponse>) {
+        val call = apiService.getPlaylistItems(apiKey, playlistId, pageToken = pageToken)
         call.enqueue(callback)
     }
 
