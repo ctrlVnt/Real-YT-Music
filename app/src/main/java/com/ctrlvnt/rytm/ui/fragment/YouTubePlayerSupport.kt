@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.webkit.WebView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -558,6 +559,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
                 }
 
+                if (state == PlayerConstants.PlayerState.PLAYING) {
+                    if (videoCaptions == 0) {
+                        forceDisableCaptions()
+                    }
+                }
+
                 if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED) {
                     if( playlistName != "fromoutside"){
                         val filter = android.content.IntentFilter("PLAYER_ACTION")
@@ -580,7 +587,25 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         return rootView
     }
 
+    private fun findWebView(view: View): WebView? {
+        if (view is WebView) return view
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val child = findWebView(view.getChildAt(i))
+                if (child != null) return child
+            }
+        }
+        return null
+    }
 
+    private fun forceDisableCaptions() {
+        try {
+            val webView = findWebView(youTubePlayerView)
+            webView?.evaluateJavascript("javascript:if(typeof player !== 'undefined') { player.unloadModule('captions'); }", null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     fun launchSearch(query: String, rootView: View){
         if (query.startsWith("https://")) {
