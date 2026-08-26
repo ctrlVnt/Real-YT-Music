@@ -228,57 +228,71 @@ fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
                 ?: (generateRandomName() + " (to renameeee)")
 
             val newPlaylist = Playlist(playlistName = playlistName)
-            YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, object : Callback<PlaylistItemsResponse> {
-                override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
-                    if (response.isSuccessful) {
-                        val videos = response.body()?.items ?: emptyList()
 
-                        // Convert to PlaylistVideo for Room
-                        val playlistVideos = videos.mapIndexed { index, item ->
-                            PlaylistVideo(
-                                playlistName = playlistName,
-                                videoId = item.snippet.resourceId.videoId,
-                                title = item.snippet.title,
-                                channelTitle = item.snippet.channelTitle,
-                                thumbnailUrl = item.snippet.thumbnails.high?.url ?: "",
-                                position = index
-                            )
+            val allPlaylistVideos = mutableListOf<PlaylistVideo>()
+
+            fun fetchPage(pageToken: String?) {
+                YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, pageToken, object : Callback<PlaylistItemsResponse> {
+
+                    override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
+                        if (response.isSuccessful) {
+                            val body = response.body()
+                            val videos = body?.items ?: emptyList()
+
+                            val mappedVideos = videos.mapIndexed { index, item ->
+                                PlaylistVideo(
+                                    playlistName = playlistName,
+                                    videoId = item.snippet.resourceId.videoId,
+                                    title = item.snippet.title,
+                                    channelTitle = item.snippet.channelTitle,
+                                    thumbnailUrl = item.snippet.thumbnails.high?.url ?: "",
+                                    position = allPlaylistVideos.size + index
+                                )
+                            }
+
+                            allPlaylistVideos.addAll(mappedVideos)
+
+                            if (body?.nextPageToken != null) {
+                                fetchPage(body.nextPageToken)
+                            } else {
+                                if(MainActivity.database.playlistDao().alreadyExist(playlistName) == 0){
+                                    MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+                                    MainActivity.database.playlisVideotDao().insertVideos(allPlaylistVideos)
+                                }
+
+                                if (allPlaylistVideos.isNotEmpty()) {
+                                    val fragment = YouTubePlayerSupport.newInstance(
+                                        allPlaylistVideos[0].videoId,
+                                        playlistName
+                                    )
+                                    (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                                        .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
+                                        .replace(R.id.main_activity, fragment)
+                                        .addToBackStack(null)
+                                        .commit()
+                                }
+                            }
+
+                        } else {
+                            Log.e("API Error", response.errorBody()?.string().orEmpty())
+                            Toast.makeText(context, "Error loading playlistt", Toast.LENGTH_SHORT).show()
                         }
-
-                        // Save videos if playlist doesn't exist already
-                        if(MainActivity.database.playlistDao().alreadyExist(playlistName) == 0){
-                            MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
-                            MainActivity.database.playlisVideotDao().insertVideos(playlistVideos)
-                        }
-
-                        if (playlistVideos.isNotEmpty()) {
-                            val fragment = YouTubePlayerSupport.newInstance(
-                                playlistVideos[0].videoId,
-                                playlistName
-                            )
-                            (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                                .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
-                                .replace(R.id.main_activity, fragment)
-                                .addToBackStack(null)
-                                .commit()
-                        }
-
-                    } else {
-                        Log.e("API Error", response.errorBody()?.string().orEmpty())
                     }
-                }
 
-                override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
-                    Log.e("API ERROR", t.message.toString())
-                }
-            })
+                    override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
+                        Log.e("API ERROR", t.message.toString())
+                        Toast.makeText(context, "Network issue", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+            fetchPage(null)
         }
 
         override fun onFailure(
             call: Call<PlaylistMetadataResponse?>,
             t: Throwable
         ) {
-            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Errore API metadati", Toast.LENGTH_SHORT).show()
             Log.e("API ERROR", t.message.toString())
         }
     })

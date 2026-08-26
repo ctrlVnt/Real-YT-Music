@@ -32,6 +32,7 @@ data class Thumbnail(
 )
 
 data class PlaylistItemsResponse(
+    val nextPageToken: String? = null,
     val items: List<PlaylistItem>
 )
 

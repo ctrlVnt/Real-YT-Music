@@ -268,11 +268,11 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • feature: setting for default captions
+            • fix: now you can import playlists with more than 50 videos
             
             Thank you for your donations❤️
-            - Ceryus (again🙏)
-            - Someone
+            - vbmn
+            - Vy Ly
            
             """.trimIndent()
             )
