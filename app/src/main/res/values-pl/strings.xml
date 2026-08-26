@@ -127,4 +127,6 @@
     <string name="pref_empty">puste</string>
     <string name="pref_empty_summary">puste</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Zgłoś błąd</string>
+    <string name="system_nav_bar_title">Stałe polecenia systemowe</string>
+    <string name="system_nav_bar_summary">Pokaż polecenia nawigacji systemowej na dole (Ekran główny, Wstecz)</string>
 </resources>

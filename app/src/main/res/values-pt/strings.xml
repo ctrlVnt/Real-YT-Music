@@ -128,4 +128,6 @@
     <string name="pref_empty">vazio</string>
     <string name="pref_empty_summary">vazio</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Reportar um erro</string>
+    <string name="system_nav_bar_title">Comandos de sistema permanentes</string>
+    <string name="system_nav_bar_summary">Mostrar comandos de navegação do sistema na parte inferior (Início, Voltar)</string>
 </resources>

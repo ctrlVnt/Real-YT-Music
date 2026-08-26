@@ -134,4 +134,6 @@
     <string name="pref_empty">खाली</string>
     <string name="pref_empty_summary">खाली</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">बग रिपोर्ट गर्नुहोस्</string>
+    <string name="system_nav_bar_title">स्थायी प्रणाली आदेशहरू</string>
+    <string name="system_nav_bar_summary">तल प्रणाली नेभिगेसन आदेशहरू देखाउनुहोस् (होम, ब्याक)</string>
 </resources>

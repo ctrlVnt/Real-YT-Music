@@ -74,12 +74,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val showNavBar = prefs.getBoolean("show_system_nav_bar", false)
+
         window.decorView.apply {
             WindowCompat.setDecorFitsSystemWindows(window, false)
-            val insetsController =
-                WindowCompat.getInsetsController(window, window.decorView)
-            insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+
+            if (showNavBar) {
+                insetsController.show(WindowInsetsCompat.Type.navigationBars())
+            } else {
+                insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                insetsController.hide(WindowInsetsCompat.Type.navigationBars())
+            }
         }
 
         val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)

@@ -163,4 +163,6 @@
     <string name="pref_empty">empty</string>
     <string name="pref_empty_summary">empty</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">Report a bug</string>
+    <string name="system_nav_bar_title">Permanent system commands</string>
+    <string name="system_nav_bar_summary">Show system navigation commands at the bottom (Home, Back)</string>
 </resources>

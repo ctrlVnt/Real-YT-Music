@@ -114,4 +114,6 @@
     <string name="pref_empty">खाली</string>
     <string name="pref_empty_summary">खाली</string>
     <string name="shake_sdk_dialog_feedback_type_item_bug">एक बग की रिपोर्ट करें</string>
+    <string name="system_nav_bar_title">स्थायी सिस्टम कमांड</string>
+    <string name="system_nav_bar_summary">नीचे सिस्टम नेविगेशन कमांड दिखाएं (होम, बैक)</string>
 </resources>
