@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/lang_en" android:title="🇺🇸 English" />
-    <item android:id="@+id/lang_ar" android:title="🇸🇦 العربية" />
-    <item android:id="@+id/lang_de" android:title="🇩🇪 Deutsch" />
-    <item android:id="@+id/lang_es" android:title="🇪🇸 Español" />
-    <item android:id="@+id/lang_fr" android:title="🇫🇷 Français" />
-    <item android:id="@+id/lang_hi" android:title="🇮🇳 हिंदी" />
-    <item android:id="@+id/lang_it" android:title="🇮🇹 Italiano" />
-    <item android:id="@+id/lang_ja" android:title="🇯🇵 日本語" />
-    <item android:id="@+id/lang_pl" android:title="🇵🇱 Polski" />
-    <item android:id="@+id/lang_pt" android:title="🇵🇹 Português" />
-    <item android:id="@+id/lang_ru" android:title="🇷🇺 Русский" />
-    <item android:id="@+id/lang_uk" android:title="🇺🇦 Українська" />
-    <item android:id="@+id/lang_ko" android:title="🇰🇷 한국어" />
-    <item android:id="@+id/lang_ne" android:title="🇳🇵 नेपाली" />
+    <item android:id="@+id/lang_en" android:title="English" />
+    <item android:id="@+id/lang_ar" android:title="العربية" />
+    <item android:id="@+id/lang_de" android:title="Deutsch" />
+    <item android:id="@+id/lang_es" android:title="Español" />
+    <item android:id="@+id/lang_fr" android:title="Français" />
+    <item android:id="@+id/lang_hi" android:title="हिंदी" />
+    <item android:id="@+id/lang_it" android:title="Italiano" />
+    <item android:id="@+id/lang_ja" android:title="日本語" />
+    <item android:id="@+id/lang_pl" android:title="Polski" />
+    <item android:id="@+id/lang_pt" android:title="Português" />
+    <item android:id="@+id/lang_ru" android:title="Русский" />
+    <item android:id="@+id/lang_uk" android:title="Українська" />
+    <item android:id="@+id/lang_ko" android:title="한국어" />
+    <item android:id="@+id/lang_ne" android:title="नेपाली" />
 </menu>

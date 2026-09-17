@@ -15,7 +15,8 @@
             app:title="@string/lingua"
             app:useSimpleSummaryProvider="true"
             app:entries="@array/language_names"
-            app:entryValues="@array/language_codes"/>
+            app:entryValues="@array/language_codes"
+            app:defaultValue="en"/>
 
         <SwitchPreferenceCompat
             app:key="save_minutes_enabled"
