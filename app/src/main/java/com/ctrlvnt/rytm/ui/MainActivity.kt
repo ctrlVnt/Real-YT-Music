@@ -292,13 +292,10 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • fix: now you can import playlists with more than 50 videos
-            • fix: you can set the system bottom bar always visible
-            • fix: captions option now respect the settings
+            • library update
             
             Thank you for your donations❤️
-            - vbmn
-            - Vy Ly
+            - LP🫶
            
             """.trimIndent()
             )

@@ -119,19 +119,19 @@
     <string name="github_summary">View the code on GitHub</string>
 
     <string-array name="language_names"  translatable="false">
-        <item>English 🇺🇸</item>
-        <item>العربية 🇸🇦</item>
-        <item>Deutsch 🇩🇪</item>
-        <item>Español 🇪🇸</item>
-        <item>Français 🇫🇷</item>
-        <item>हिंदी 🇮🇳</item>
-        <item>Italiano 🇮🇹</item>
-        <item>日本語 🇯🇵</item>
-        <item>Polski 🇵🇱</item>
-        <item>Português 🇵🇹</item>
-        <item>Русский 🇷🇺</item>
-        <item>Українська 🇺🇦</item>
-        <item>한국어 🇰🇷</item>
+        <item>English</item>
+        <item>العربية </item>
+        <item>Deutsch</item>
+        <item>Español</item>
+        <item>Français</item>
+        <item>हिंदी</item>
+        <item>Italiano</item>
+        <item>日本語</item>
+        <item>Polski</item>
+        <item>Português</item>
+        <item>Русский</item>
+        <item>Українська</item>
+        <item>한국어</item>
     </string-array>
 
     <string-array name="language_codes" translatable="false">

@@ -10,14 +10,14 @@ plugins {
 
 android {
     namespace = "com.ctrlvnt.rytm"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 69
-        versionName = "7.9"
+        targetSdk = 36
+        versionCode = 70
+        versionName = "8.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
