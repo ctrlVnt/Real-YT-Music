@@ -307,19 +307,19 @@ fun generateRandomName(length: Int = 6): String {
 
 fun getFlagEmojiForLanguage(languageCode: String): String {
     return when (languageCode) {
-        "en" -> "🇺🇸"
-        "ar" -> "🇸🇦"
-        "de" -> "🇩🇪"
-        "es" -> "🇪🇸"
-        "fr" -> "🇫🇷"
-        "hi" -> "🇮🇳"
-        "it" -> "🇮🇹"
-        "ja" -> "🇯🇵"
-        "pl" -> "🇵🇱"
-        "pt" -> "🇵🇹"
-        "ru" -> "🇷🇺"
-        "uk" -> "🇺🇦"
-        "ko" -> "🇰🇷"
+        "en" -> "en"
+        "ar" -> "ar"
+        "de" -> "de"
+        "es" -> "es"
+        "fr" -> "fr"
+        "hi" -> "hi"
+        "it" -> "it"
+        "ja" -> "ja"
+        "pl" -> "pl"
+        "pt" -> "pt"
+        "ru" -> "ru"
+        "uk" -> "uk"
+        "ko" -> "ko"
         else -> "🌐"
     }
 }
