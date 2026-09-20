@@ -30,7 +30,7 @@ jobs:
           echo "" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
           echo "object apikey {" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
           echo "    var APIKEY = \"${{ secrets.YOUTUBE_API_KEY }}\"" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
-          echo "    var SHAKEKEY = \"${{ secrets.SHAKE_API_KEY }}\"" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
+          echo "    var GITHUBKEY = \"${{ secrets.GITHUBKEY }}\"" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
           echo "}" >> app/src/main/java/com/ctrlvnt/rytm/utils/apikey.kt
 
       - name: Build app bundle (.aab)
