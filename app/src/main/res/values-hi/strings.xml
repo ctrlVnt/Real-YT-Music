@@ -116,4 +116,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">एक बग की रिपोर्ट करें</string>
     <string name="system_nav_bar_title">स्थायी सिस्टम कमांड</string>
     <string name="system_nav_bar_summary">नीचे सिस्टम नेविगेशन कमांड दिखाएं (होम, बैक)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">शीर्षक खाली नहीं हो सकता</string>
+    <string name="github_issue_title_prefix">[उपयोगकर्ता रिपोर्ट] %1$s</string>
+    <string name="github_issue_user_description">**उपयोगकर्ता विवरण:**</string>
+    <string name="github_issue_no_description">_कोई विवरण नहीं दिया गया।_</string>
+    <string name="github_issue_device_info">**डिवाइस जानकारी (स्वचालित):**</string>
+    <string name="github_issue_app_version">- ऐप संस्करण: %1$s</string>
+    <string name="github_issue_android_version">- एंड्रॉइड संस्करण: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- डिवाइस: %1$s %2$s</string>
+
+    <string name="settings_version">संस्करण %1$s</string>
+    <string name="share_app_text">RYTM देखें! बिना विज्ञापनों के YouTube वीडियो देखें! अभी PlayStore से डाउनलोड करें: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">इसके द्वारा RYTM साझा करें…</string>
+
+    <string name="faq_dialog_title">FAQ: YouTube साइन-इन अनुरोध</string>
+    <string name="faq_dialog_message">कभी-कभी, यह पुष्टि करने के लिए कि आप बॉट नहीं हैं, YouTube आपसे साइन इन करने के लिए कह सकता है।\n\nयह सीधे YouTube द्वारा लागू की गई एक सर्वर-साइड जांच है, RYTM में कोई बग नहीं है। Google स्पैम को रोकने और एड-ब्लॉकर्स को प्रतिबंधित करने के लिए कभी-कभी अज्ञात ट्रैफ़िक को फ़्लैग करता है। (RYTM एक एड-ब्लॉकर नहीं है)\n\nइसे ठीक करने के लिए आप यह कर सकते हैं:\n\n• कैश साफ़ करें: अपने फ़ोन की सेटिंग्स &gt; ऐप्स &gt; RYTM &gt; स्टोरेज पर जाएँ और कैश साफ़ करें। इससे कभी-कभी आपका सत्र रीसेट हो सकता है।\n\n• नेटवर्क बदलें: वाई-फ़ाई से मोबाइल डेटा पर स्विच करने या अस्थायी रूप से VPN का उपयोग करने से अस्थायी आईपी ब्लॉक बायपास हो सकते हैं।\n\nआप बाद में पुनः प्रयास कर सकते हैं, कभी-कभी स्थिति अपने आप ठीक हो जाती है।</string>
+    <string name="got_it">समझ गया</string>
+
+    <string name="bug_report_title_hint">शीर्षक (आवश्यक)</string>
+    <string name="bug_report_description_hint">विवरण (वैकल्पिक)</string>
+    <string name="bug_report_dialog_title">समस्या की रिपोर्ट करें</string>
+    <string name="bug_report_send">भेजें</string>
+    <string name="bug_report_title_required">शीर्षक आवश्यक है</string>
+    <string name="bug_report_sending">भेजा जा रहा है…</string>
+    <string name="bug_report_failed">रिपोर्ट भेजने में विफल, कृपया पुनः प्रयास करें</string>
+    <string name="bug_report_success_title">सफलता</string>
+    <string name="bug_report_success_message">समस्या सफलतापूर्वक बनाई गई!\n\n%1$s</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="ok">ठीक है</string>
 </resources>

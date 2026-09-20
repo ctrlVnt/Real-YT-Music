@@ -31,12 +31,10 @@ import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.Settings
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
-import com.ctrlvnt.rytm.utils.apikey.SHAKEKEY
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
-import com.shakebugs.shake.Shake
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Shake.start(this, SHAKEKEY)
         setContentView(R.layout.activity_main)
 
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)!!

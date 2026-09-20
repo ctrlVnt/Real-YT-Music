@@ -129,4 +129,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Einen Fehler melden</string>
     <string name="system_nav_bar_title">Permanente Systembefehle</string>
     <string name="system_nav_bar_summary">System-Navigationsbefehle unten anzeigen (Home, Zurück)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">Titel darf nicht leer sein</string>
+    <string name="github_issue_title_prefix">[Meldung] %1$s</string>
+    <string name="github_issue_user_description">**Benutzerbeschreibung:**</string>
+    <string name="github_issue_no_description">_Keine Beschreibung angegeben._</string>
+    <string name="github_issue_device_info">**Geräteinformationen (automatisch):**</string>
+    <string name="github_issue_app_version">- App-Version: %1$s</string>
+    <string name="github_issue_android_version">- Android-Version: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Gerät: %1$s %2$s</string>
+
+    <string name="settings_version">Version %1$s</string>
+    <string name="share_app_text">Sieh dir RYTM an! Schau YouTube-Videos ohne Werbung! Jetzt im PlayStore herunterladen: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">RYTM teilen über…</string>
+
+    <string name="faq_dialog_title">FAQ: YouTube-Anmeldeanforderungen</string>
+    <string name="faq_dialog_message">Manchmal fordert YouTube Sie auf, sich anzumelden, um zu bestätigen, dass Sie kein Bot sind.\n\nDies ist eine serverseitige Überprüfung direkt von YouTube und kein Fehler in RYTM. Google markiert gelegentlich anonymen Datenverkehr, um Spam zu verhindern und Werbeblocker einzuschränken. (RYTM ist kein Werbeblocker)\n\nDas können Sie tun, um das Problem zu beheben:\n\n• Cache leeren: Gehen Sie zu den Einstellungen Ihres Telefons &gt; Apps &gt; RYTM &gt; Speicher und leeren Sie den Cache. Dies kann Ihre anonyme Sitzung zurücksetzen.\n\n• Netzwerk wechseln: Das Wechseln von WLAN zu mobilen Daten oder die vorübergehende Nutzung eines VPN kann vorübergehende IP-Sperren umgehen.\n\nSie können es später erneut versuchen, manchmal löst sich die Situation von selbst.</string>
+    <string name="got_it">Verstanden</string>
+
+    <string name="bug_report_title_hint">Titel (erforderlich)</string>
+    <string name="bug_report_description_hint">Beschreibung (optional)</string>
+    <string name="bug_report_dialog_title">Problem melden</string>
+    <string name="bug_report_send">Senden</string>
+    <string name="bug_report_title_required">Titel ist erforderlich</string>
+    <string name="bug_report_sending">Wird gesendet…</string>
+    <string name="bug_report_failed">Fehler beim Senden des Berichts, bitte versuchen Sie es erneut</string>
+    <string name="bug_report_success_title">Erfolg</string>
+    <string name="bug_report_success_message">Problem erfolgreich erstellt!\n\n%1$s</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="ok">OK</string>
 </resources>
