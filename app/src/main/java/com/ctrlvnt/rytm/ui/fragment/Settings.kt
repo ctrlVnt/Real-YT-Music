@@ -1,9 +1,11 @@
 package com.ctrlvnt.rytm.ui.fragment
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.core.view.WindowInsetsCompat
@@ -16,8 +18,7 @@ import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.ui.TutorialActivity
 import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.shakebugs.shake.Shake
-import com.shakebugs.shake.ShakeScreen
+import com.ctrlvnt.rytm.ui.services.GithubIssueReporter
 
 class Settings : PreferenceFragmentCompat() {
 
@@ -41,7 +42,7 @@ class Settings : PreferenceFragmentCompat() {
         val versionPref: Preference? = findPreference("version")
 
         val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
-        versionPref?.summary = "version " + packageInfo.versionName
+        versionPref?.summary = getString(R.string.settings_version, packageInfo.versionName)
 
         setupClickablePreference("buy_me_a_coffee") {
             openUrl("https://buymeacoffee.com/v3ntuz")
@@ -66,40 +67,26 @@ class Settings : PreferenceFragmentCompat() {
 
         setupClickablePreference("share_app") {
             val playStoreLink = "https://play.google.com/store/apps/details?id=com.ctrlvnt.rytm"
-            val shareText = "Check out RYTM! Watch YouTube videos without asd ! Download from PlayStore now : $playStoreLink"
+            val shareText = getString(R.string.share_app_text, playStoreLink)
 
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_SUBJECT, "RYTM - Real YT Music")
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_app_subject))
                 putExtra(Intent.EXTRA_TEXT, shareText)
             }
 
-            startActivity(Intent.createChooser(shareIntent, "Share RYTM via..."))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_app_chooser_title)))
         }
 
         setupClickablePreference("report_bug"){
-            Shake.show(ShakeScreen.NEW)
+            showBugReportDialog()
         }
 
         setupClickablePreference("faq") {
-            val faqMessage = """
-        Sometimes, YouTube may ask you to sign in to confirm you are not a bot. 
-        
-        This is a server-side check enforced directly by YouTube, not a bug in RYTM. Google occasionally flags anonymous traffic to prevent spam and restrict ad-blockers. (RYTM is not an ad-blocker)
-        
-        Here is what you can do to fix it:
-        
-        • Clear Cache: Go to your phone's Settings > Apps > RYTM > Storage and clear the cache. This can sometimes reset your anonymous session.
-        
-        • Switch Network: Changing from Wi-Fi to mobile data, or temporarily using a VPN, can bypass temporary IP blocks.
-        
-        You can retry later, sometimes the situation resolves itself. 
-    """.trimIndent()
-
             MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
-                .setTitle("FAQ: YouTube Sign-in Requests")
-                .setMessage(faqMessage)
-                .setPositiveButton("Got it") { dialog, _ ->
+                .setTitle(getString(R.string.faq_dialog_title))
+                .setMessage(getString(R.string.faq_dialog_message))
+                .setPositiveButton(getString(R.string.got_it)) { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()
@@ -128,5 +115,75 @@ class Settings : PreferenceFragmentCompat() {
             insetsController.hide(WindowInsetsCompat.Type.navigationBars())
             insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
+    }
+
+    private fun showBugReportDialog() {
+        val context = requireContext()
+
+        val titleInput = android.widget.EditText(context).apply {
+            hint = getString(R.string.bug_report_title_hint)
+        }
+        val descriptionInput = EditText(context).apply {
+            hint = getString(R.string.bug_report_description_hint)
+            minLines = 3
+        }
+
+        val layout = android.widget.LinearLayout(context).apply {
+            orientation = android.widget.LinearLayout.VERTICAL
+            setPadding(48, 32, 48, 0)
+            addView(titleInput)
+            addView(descriptionInput)
+        }
+
+        MaterialAlertDialogBuilder(context, R.style.RoundedAlertDialog)
+            .setTitle(getString(R.string.bug_report_dialog_title))
+            .setView(layout)
+            .setPositiveButton(getString(R.string.bug_report_send)) { dialog, _ ->
+                val title = titleInput.text.toString().trim()
+                val description = descriptionInput.text.toString().trim()
+
+                if (title.isEmpty()) {
+                    Toast.makeText(context, getString(R.string.bug_report_title_required), Toast.LENGTH_SHORT).show()
+                    return@setPositiveButton
+                }
+
+                Toast.makeText(context, getString(R.string.bug_report_sending), Toast.LENGTH_SHORT).show()
+
+                GithubIssueReporter.reportBug(
+                    context = context,
+                    title = title,
+                    description = description.ifEmpty { null },
+                    onSuccess = { issueUrl ->
+                        requireActivity().runOnUiThread {
+                            showSuccessDialog(issueUrl)
+                        }
+                    },
+                    onError = {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(context, getString(R.string.bug_report_failed), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                )
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    private fun showSuccessDialog(issueUrl: String) {
+        val context = requireContext()
+
+        val messageView = TextView(context).apply {
+            text = getString(R.string.bug_report_success_message, issueUrl)
+            autoLinkMask = Linkify.WEB_URLS
+            movementMethod = LinkMovementMethod.getInstance()
+            setPadding(48, 32, 48, 32)
+        }
+
+        MaterialAlertDialogBuilder(context, R.style.RoundedAlertDialog)
+            .setTitle(getString(R.string.bug_report_success_title))
+            .setView(messageView)
+            .setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 }

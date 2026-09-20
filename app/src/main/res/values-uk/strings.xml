@@ -130,4 +130,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Повідомити про помилку</string>
     <string name="system_nav_bar_title">Постійні системні команди</string>
     <string name="system_nav_bar_summary">Показувати команди системної навігації внизу (Головна, Назад)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">Заголовок не може бути порожнім</string>
+    <string name="github_issue_title_prefix">[Звіт користувача] %1$s</string>
+    <string name="github_issue_user_description">**Опис користувача:**</string>
+    <string name="github_issue_no_description">_Опис не надано._</string>
+    <string name="github_issue_device_info">**Інформація про пристрій (автоматично):**</string>
+    <string name="github_issue_app_version">- Версія додатка: %1$s</string>
+    <string name="github_issue_android_version">- Версія Android: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Пристрій: %1$s %2$s</string>
+
+    <string name="settings_version">версія %1$s</string>
+    <string name="share_app_text">Спробуйте RYTM! Дивіться відео YouTube без реклами! Завантажте з PlayStore зараз: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">Поділитися RYTM через…</string>
+
+    <string name="faq_dialog_title">FAQ: Запит на вхід у YouTube</string>
+    <string name="faq_dialog_message">Іноді YouTube може попросити вас увійти в акаунт, щоб підтвердити, що ви не бот.\n\nЦе перевірка на боці сервера, яку вимагає безпосередньо YouTube, а не помилка в RYTM. Google іноді обмежує анонімний трафік. (RYTM не є блокувальником реклами)\n\nОсь що можна зробити:\n\n• Очистити кеш: Перейдіть у Налаштування &gt; Додатки &gt; RYTM &gt; Пам\'ять та очистіть кеш.\n\n• Змінити мережу: Переключення з Wi-Fi на мобільні дані або використання VPN допоможе обійти тимчасові IP-блокування.\n\nСпробуйте пізніше, іноді ситуація вирішується сама.</string>
+    <string name="got_it">Зрозуміло</string>
+
+    <string name="bug_report_title_hint">Заголовок (обов\'язково)</string>
+    <string name="bug_report_description_hint">Опис (необов\'язково)</string>
+    <string name="bug_report_dialog_title">Повідомити про проблему</string>
+    <string name="bug_report_send">Надіслати</string>
+    <string name="bug_report_title_required">Заголовок є обов\'язковим</string>
+    <string name="bug_report_sending">Надсилання…</string>
+    <string name="bug_report_failed">Не вдалося надіслати звіт, спробуйте ще раз</string>
+    <string name="bug_report_success_title">Успіх</string>
+    <string name="bug_report_success_message">Звіт успішно створено!\n\n%1$s</string>
+    <string name="cancel">Скасувати</string>
+    <string name="ok">OK</string>
 </resources>

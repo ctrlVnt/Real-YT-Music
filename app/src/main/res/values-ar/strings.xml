@@ -127,4 +127,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">الإبلاغ عن خلل</string>
     <string name="system_nav_bar_title">أوامر النظام الدائمة</string>
     <string name="system_nav_bar_summary">إظهار أوامر التنقل في النظام في الأسفل (الرئيسية، رجوع)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">العنوان لا يمكن أن يكون فارغًا</string>
+    <string name="github_issue_title_prefix">[تقرير المستخدم] %1$s</string>
+    <string name="github_issue_user_description">**وصف المستخدم:**</string>
+    <string name="github_issue_no_description">_لم يتم تقديم أي وصف._</string>
+    <string name="github_issue_device_info">**معلومات الجهاز (تلقائي):**</string>
+    <string name="github_issue_app_version">- إصدار التطبيق: %1$s</string>
+    <string name="github_issue_android_version">- إصدار أندرويد: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- الجهاز: %1$s %2$s</string>
+
+    <string name="settings_version">الإصدار %1$s</string>
+    <string name="share_app_text">جرب RYTM! شاهد فيديوهات يوتيوب بدون إعلانات! حمله من متجر Play الآن: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">مشاركة RYTM عبر…</string>
+
+    <string name="faq_dialog_title">الأسئلة الشائعة: طلبات تسجيل الدخول في يوتيوب</string>
+    <string name="faq_dialog_message">قد يطلب منك يوتيوب أحيانًا تسجيل الدخول للتأكد من أنك لست برنامج روبوت.\n\nهذا فحص من جانب الخادم يتم فرضه مباشرة من يوتيوب وليس خطأً في RYTM. يضع غوغل أحيانًا علامة على حركة المرور المجهولة لمنع البريد العشوائي وتقييد أدوات حظر الإعلانات. (RYTM ليس أداة لحظر الإعلانات)\n\nإليك ما يمكنك فعله لإصلاح ذلك:\n\n• مسح ذاكرة التخزين المؤقت: انتقل إلى إعدادات هاتفك &gt; التطبيقات &gt; RYTM &gt; التخزين وامسح ذاكرة التخزين المؤقت. قد يؤدي هذا أحيانًا إلى إعادة تعيين الجلسة المجهولة.\n\n• تبديل الشبكة: يمكن أن يتجاوز التغيير من Wi-Fi إلى بيانات الجوال أو استخدام VPN مؤقتًا حظر IP المؤقت.\n\nيمكنك المحاولة مرة أخرى لاحقًا، أحيانًا يتم حل الموقف تلقائيًا.</string>
+    <string name="got_it">حسناً</string>
+
+    <string name="bug_report_title_hint">العنوان (مطلوب)</string>
+    <string name="bug_report_description_hint">الوصف (اختياري)</string>
+    <string name="bug_report_dialog_title">الإبلاغ عن مشكلة</string>
+    <string name="bug_report_send">إرسال</string>
+    <string name="bug_report_title_required">العنوان مطلوب</string>
+    <string name="bug_report_sending">جاري الإرسال…</string>
+    <string name="bug_report_failed">فشل إرسال التقرير، يرجى المحاولة مرة أخرى</string>
+    <string name="bug_report_success_title">نجاح</string>
+    <string name="bug_report_success_message">تم إنشاء المشكلة بنجاح!\n\n%1$s</string>
+    <string name="cancel">إلغاء</string>
+    <string name="ok">موافق</string>
 </resources>

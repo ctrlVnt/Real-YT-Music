@@ -115,4 +115,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Signaler un bug</string>
     <string name="system_nav_bar_title">Commandes système permanentes</string>
     <string name="system_nav_bar_summary">Afficher les commandes de navigation système en bas (Accueil, Retour)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">Le titre ne peut pas être vide</string>
+    <string name="github_issue_title_prefix">[Rapport utilisateur] %1$s</string>
+    <string name="github_issue_user_description">**Description de l\'utilisateur :**</string>
+    <string name="github_issue_no_description">_Aucune description fournie._</string>
+    <string name="github_issue_device_info">**Informations sur l\'appareil (automatique) :**</string>
+    <string name="github_issue_app_version">- Version de l\'application : %1$s</string>
+    <string name="github_issue_android_version">- Version d\'Android : %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Appareil : %1$s %2$s</string>
+
+    <string name="settings_version">version %1$s</string>
+    <string name="share_app_text">Découvrez RYTM ! Regardez des vidéos YouTube sans publicités ! Téléchargez sur le PlayStore dès maintenant : %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">Partager RYTM via…</string>
+
+    <string name="faq_dialog_title">FAQ : Demandes de connexion YouTube</string>
+    <string name="faq_dialog_message">Parfois, YouTube peut vous demander de vous connecter pour confirmer que vous n\'êtes pas un robot.\n\nIl s\'agit d\'une vérification côté serveur imposée directement par YouTube, et non d\'un bug dans RYTM. Google signale parfois le trafic anonyme pour éviter le spam et restreindre les bloqueurs de pub. (RYTM n\'est pas un bloqueur de pub)\n\nVoici ce que vous pouvez faire pour corriger cela :\n\n• Effacer le cache : Allez dans Paramètres de votre téléphone &gt; Applications &gt; RYTM &gt; Stockage et effacez le cache. Cela peut parfois réinitialiser votre session anonyme.\n\n• Changer de réseau : Passer du Wi-Fi aux données mobiles, ou utiliser temporairement un VPN, peut contourner les blocages d\'IP temporaires.\n\nVous pourrez réessayer plus tard, parfois la situation se résout d\'elle-même.</string>
+    <string name="got_it">J\'ai compris</string>
+
+    <string name="bug_report_title_hint">Titre (requis)</string>
+    <string name="bug_report_description_hint">Description (facultatif)</string>
+    <string name="bug_report_dialog_title">Signaler un problème</string>
+    <string name="bug_report_send">Envoyer</string>
+    <string name="bug_report_title_required">Le titre est requis</string>
+    <string name="bug_report_sending">Envoi en cours…</string>
+    <string name="bug_report_failed">Échec de l\'envoi du rapport, veuillez réessayer</string>
+    <string name="bug_report_success_title">Succès</string>
+    <string name="bug_report_success_message">Ticket créé avec succès !\n\n%1$s</string>
+    <string name="cancel">Annuler</string>
+    <string name="ok">OK</string>
 </resources>

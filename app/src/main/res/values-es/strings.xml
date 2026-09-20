@@ -129,4 +129,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Reportar un error</string>
     <string name="system_nav_bar_title">Comandos del sistema permanentes</string>
     <string name="system_nav_bar_summary">Mostrar los comandos de navegación del sistema en la parte inferior (Inicio, Atrás)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">El título no puede estar vacío</string>
+    <string name="github_issue_title_prefix">[Reporte de usuario] %1$s</string>
+    <string name="github_issue_user_description">**Descripción del usuario:**</string>
+    <string name="github_issue_no_description">_Sin descripción proporcionada._</string>
+    <string name="github_issue_device_info">**Información del dispositivo (automática):**</string>
+    <string name="github_issue_app_version">- Versión de la app: %1$s</string>
+    <string name="github_issue_android_version">- Versión de Android: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Dispositivo: %1$s %2$s</string>
+
+    <string name="settings_version">versión %1$s</string>
+    <string name="share_app_text">¡Echa un vistazo a RYTM! ¡Mira videos de YouTube sin anuncios! Descárgalo en PlayStore ahora: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">Compartir RYTM mediante…</string>
+
+    <string name="faq_dialog_title">Preguntas frecuentes: Solicitud de inicio de sesión en YouTube</string>
+    <string name="faq_dialog_message">A veces, YouTube puede pedirte que inicies sesión para confirmar que no eres un bot.\n\nEsta es una comprobación del lado del servidor impuesta directamente por YouTube, no un error en RYTM. Google ocasionalmente marca el tráfico anónimo para prevenir el spam y restringir los bloqueadores de anuncios. (RYTM no es un bloqueador de anuncios)\n\nEsto es lo que puedes hacer para solucionarlo:\n\n• Borrar caché: Ve a la Configuración de tu teléfono &gt; Aplicaciones &gt; RYTM &gt; Almacenamiento y borra la caché. Esto a veces puede reiniciar tu sesión anónima.\n\n• Cambiar de red: Cambiar de Wi-Fi a datos móviles o usar temporalmente una VPN puede eludir los bloqueos temporales de IP.\n\nPuedes volver a intentarlo más tarde, a veces la situación se resuelve por sí sola.</string>
+    <string name="got_it">Entendido</string>
+
+    <string name="bug_report_title_hint">Título (obligatorio)</string>
+    <string name="bug_report_description_hint">Descripción (opcional)</string>
+    <string name="bug_report_dialog_title">Reportar un problema</string>
+    <string name="bug_report_send">Enviar</string>
+    <string name="bug_report_title_required">El título es obligatorio</string>
+    <string name="bug_report_sending">Enviando…</string>
+    <string name="bug_report_failed">Error al enviar el reporte, por favor intente de nuevo</string>
+    <string name="bug_report_success_title">Éxito</string>
+    <string name="bug_report_success_message">¡Problema creado con éxito!\n\n%1$s</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Aceptar</string>
 </resources>

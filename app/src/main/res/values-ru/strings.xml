@@ -129,4 +129,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Сообщить об ошибке</string>
     <string name="system_nav_bar_title">Постоянные системные команды</string>
     <string name="system_nav_bar_summary">Показывать команды системной навигации внизу (Главная, Назад)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">Заголовок не может быть пустым</string>
+    <string name="github_issue_title_prefix">[Отчет пользователя] %1$s</string>
+    <string name="github_issue_user_description">**Описание пользователя:**</string>
+    <string name="github_issue_no_description">_Описание не предоставлено._</string>
+    <string name="github_issue_device_info">**Информация об устройстве (автоматически):**</string>
+    <string name="github_issue_app_version">- Версия приложения: %1$s</string>
+    <string name="github_issue_android_version">- Версия Android: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Устройство: %1$s %2$s</string>
+
+    <string name="settings_version">версия %1$s</string>
+    <string name="share_app_text">Попробуйте RYTM! Смотрите видео на YouTube без рекламы! Скачайте в PlayStore прямо сейчас: %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">Поделиться RYTM через…</string>
+
+    <string name="faq_dialog_title">FAQ: Требование входа в YouTube</string>
+    <string name="faq_dialog_message">Иногда YouTube может попросить вас войти в аккаунт, чтобы подтвердить, что вы не бот.\n\nЭто проверка на стороне сервера, запрашиваемая напрямую YouTube, а не ошибка в RYTM. Google иногда блокирует анонимный трафик для предотвращения спама. (RYTM не является блокировщиком рекламы)\n\nВот что можно сделать:\n\n• Очистить кэш: Перейдите в Настройки &gt; Приложения &gt; RYTM &gt; Память и очистите кэш.\n\n• Сменить сеть: Переключение с Wi-Fi на мобильные данные или использование VPN может помочь обойти временную блокировку IP.\n\nПопробуйте позже, иногда проблема исчезает сама.</string>
+    <string name="got_it">Понятно</string>
+
+    <string name="bug_report_title_hint">Заголовок (обязательно)</string>
+    <string name="bug_report_description_hint">Описание (необязательно)</string>
+    <string name="bug_report_dialog_title">Сообщить о проблеме</string>
+    <string name="bug_report_send">Отправить</string>
+    <string name="bug_report_title_required">Заголовок обязателен</string>
+    <string name="bug_report_sending">Отправка…</string>
+    <string name="bug_report_failed">Не удалось отправить отчет, попробуйте еще раз</string>
+    <string name="bug_report_success_title">Успех</string>
+    <string name="bug_report_success_message">Отчет успешно создан!\n\n%1$s</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">OK</string>
 </resources>

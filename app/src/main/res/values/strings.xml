@@ -165,4 +165,35 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Report a bug</string>
     <string name="system_nav_bar_title">Permanent system commands</string>
     <string name="system_nav_bar_summary">Show system navigation commands at the bottom (Home, Back)</string>
+
+    <!-- GithubIssueReporter & Settings additions -->
+    <string name="github_issue_error_title_empty">Title cannot be empty</string>
+    <string name="github_issue_title_prefix">[User Report] %1$s</string>
+    <string name="github_issue_user_description">**User description:**</string>
+    <string name="github_issue_no_description">_No description provided._</string>
+    <string name="github_issue_device_info">**Device info (automatic):**</string>
+    <string name="github_issue_app_version">- App version: %1$s</string>
+    <string name="github_issue_android_version">- Android version: %1$s (SDK %2$d)</string>
+    <string name="github_issue_device">- Device: %1$s %2$s</string>
+
+    <string name="settings_version">version %1$s</string>
+    <string name="share_app_text">Check out RYTM! Watch YouTube videos without ads ! Download from PlayStore now : %1$s</string>
+    <string name="share_app_subject">RYTM - Real YT Music</string>
+    <string name="share_app_chooser_title">Share RYTM via…</string>
+
+    <string name="faq_dialog_title">FAQ: YouTube Sign-in Requests</string>
+    <string name="faq_dialog_message">Sometimes, YouTube may ask you to sign in to confirm you are not a bot.\n\nThis is a server-side check enforced directly by YouTube, not a bug in RYTM. Google occasionally flags anonymous traffic to prevent spam and restrict ad-blockers. (RYTM is not an ad-blocker)\n\nHere is what you can do to fix it:\n\n• Clear Cache: Go to your phone\'s Settings &gt; Apps &gt; RYTM &gt; Storage and clear the cache. This can sometimes reset your anonymous session.\n\n• Switch Network: Changing from Wi-Fi to mobile data, or temporarily using a VPN, can bypass temporary IP blocks.\n\nYou can retry later, sometimes the situation resolves itself.</string>
+    <string name="got_it">Got it</string>
+
+    <string name="bug_report_title_hint">Title (required)</string>
+    <string name="bug_report_description_hint">Description (optional)</string>
+    <string name="bug_report_dialog_title">Report an issue</string>
+    <string name="bug_report_send">Send</string>
+    <string name="bug_report_title_required">Title is required</string>
+    <string name="bug_report_sending">Sending…</string>
+    <string name="bug_report_failed">Failed to send report, please try again</string>
+    <string name="bug_report_success_title">Success</string>
+    <string name="bug_report_success_message">Issue created successfully!\n\n%1$s</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
 </resources>
