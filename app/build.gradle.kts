@@ -96,6 +96,5 @@ dependencies {
     implementation ("androidx.compose.ui:ui-tooling-preview:1.10.5")
     implementation ("com.google.android.material:material:1.13.0")
     implementation("com.github.AppIntro:AppIntro:6.3.1")
-    implementation("com.shakebugs:shake:17.2.0")
     implementation ("androidx.preference:preference:1.2.1")
 }
