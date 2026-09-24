@@ -566,7 +566,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
 
                 if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED) {
-                    if( playlistName != "fromoutside"){
+                    if( playlistName != "fromoutside" && indexVideo in nextVideo.indices){
                         val filter = android.content.IntentFilter("PLAYER_ACTION")
                         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
                         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(notificationReceiver, filter)

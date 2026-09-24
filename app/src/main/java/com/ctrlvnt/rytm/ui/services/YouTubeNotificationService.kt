@@ -52,6 +52,8 @@ class YouTubeNotificationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
+        ensureForegroundStarted()
+
         val action = intent?.action
         if (action != null) {
             when (action) {
@@ -90,6 +92,17 @@ class YouTubeNotificationService : Service() {
         }
 
         return START_NOT_STICKY
+    }
+
+    private fun ensureForegroundStarted() {
+        val placeholderNotification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setContentTitle("Loading")
+            .setContentText("...")
+            .setSmallIcon(R.drawable.notify_logo)
+            .setOnlyAlertOnce(true)
+            .build()
+
+        startForeground(NOTIFICATION_ID, placeholderNotification)
     }
 
     private fun showNotification(title: String, author: String, isPlaying: Boolean, bitmap: Bitmap?) {
