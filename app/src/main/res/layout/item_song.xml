@@ -12,70 +12,85 @@
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/pic"
-        android:layout_width="100dp"
-        android:layout_height="56dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/video_thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
-    </androidx.cardview.widget.CardView>
-
-
-
-    <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@+id/pic"
-        app:layout_constraintTop_toTopOf="@+id/pic"
-        app:layout_constraintBottom_toBottomOf="@+id/pic"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="12dp">
+        android:padding="16dp">
 
-        <TextView
-        android:id="@+id/video_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Video Title"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/channel_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Channel Title"
-            android:textSize="14sp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/isPlaylist"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pic"
             android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/red"
-            android:clickable="false"
-            android:text="Playlist"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            android:visibility="gone"
-            app:cornerRadius="10dp"
-            tools:ignore="SmallSp" />
-    </LinearLayout>
+            android:layout_height="56dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/video_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Modificato il constraintEnd per fermarsi prima del pulsante -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/pic"
+            app:layout_constraintTop_toTopOf="@+id/pic"
+            app:layout_constraintBottom_toBottomOf="@+id/pic"
+            app:layout_constraintEnd_toStartOf="@+id/btn_add_to_queue"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Video Title"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <TextView
+                android:id="@+id/channel_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Channel Title"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/isPlaylist"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/red"
+                android:clickable="false"
+                android:text="Playlist"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:cornerRadius="10dp"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_add_to_queue"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/baseline_add_24"
+            app:tint="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

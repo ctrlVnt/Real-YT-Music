@@ -3,13 +3,12 @@ package com.ctrlvnt.rytm.ui.adapter
 import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -18,29 +17,20 @@ import com.ctrlvnt.rytm.data.database.entities.Video
 import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
-import androidx.core.graphics.toColorInt
-import com.ctrlvnt.rytm.data.YouTubeApiManager
-import com.ctrlvnt.rytm.data.database.entities.Playlist
-import com.ctrlvnt.rytm.data.database.entities.PlaylistVideo
-import com.ctrlvnt.rytm.data.model.PlaylistItemsResponse
-import com.ctrlvnt.rytm.data.model.SearchResponse
-import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.ctrlvnt.rytm.utils.savePlaylistFromApi
-import com.google.android.material.button.MaterialButton
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.Collections
 
-class VideoAdapter(private val videoList: List<VideoItem>,
-                   private val onItemLongClick: ((VideoItem) -> Unit)? = null, //I hae this just for home
-                   private val currentFragmentTag: String,
-                   private val blackText: Boolean = false
+class VideoAdapter(
+    private val videoList: List<VideoItem>,
+    private val onItemLongClick: ((VideoItem) -> Unit)? = null,
+    private val currentFragmentTag: String,
+    private val blackText: Boolean = false
 ) : RecyclerView.Adapter<VideoAdapter.VideoViewHolder>() {
 
     private var branoInRiproduzionePosition: Int? = null
+
+    // --- NUOVO: Listener per il pulsante "Aggiungi alla Coda" ---
+    var onAddToQueueClickListener: ((VideoItem) -> Unit)? = null
 
     fun setBranoInRiproduzionePosition(position: Int?) {
         branoInRiproduzionePosition = position
@@ -64,9 +54,10 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val videoTitle: TextView = itemView.findViewById(R.id.video_title)
         val channelTitle: TextView = itemView.findViewById(R.id.channel_title)
-        val isPlaylist: MaterialButton = itemView.findViewById(R.id.isPlaylist)
-
+        val isPlaylist: com.google.android.material.button.MaterialButton = itemView.findViewById(R.id.isPlaylist)
         val videoThumbnail: ImageView = itemView.findViewById(R.id.video_thumbnail)
+
+        val btnAddToQueue: ImageButton = itemView.findViewById(R.id.btn_add_to_queue)
 
         init {
             itemView.setOnClickListener {
@@ -102,14 +93,18 @@ class VideoAdapter(private val videoList: List<VideoItem>,
             holder.videoTitle.setTypeface(null, Typeface.NORMAL)
         }
 
-        /*if (blackText) {
-            holder.videoTitle.setTextColor("#282828".toColorInt())
-            holder.channelTitle.setTextColor("#282828".toColorInt())
-        }*/
-
         Glide.with(holder.videoThumbnail.context)
             .load(currentItem.snippet.thumbnails.medium?.url)
             .into(holder.videoThumbnail)
+
+        if (currentFragmentTag == "home" && currentItem.id.videoId != null) {
+            holder.btnAddToQueue.visibility = View.VISIBLE
+            holder.btnAddToQueue.setOnClickListener {
+                onAddToQueueClickListener?.invoke(currentItem)
+            }
+        } else {
+            holder.btnAddToQueue.visibility = View.GONE
+        }
 
         if (currentFragmentTag == "home") {
             holder.itemView.setOnClickListener {
@@ -149,7 +144,6 @@ class VideoAdapter(private val videoList: List<VideoItem>,
         }
     }
 
-
     private fun exist(video: Video): Boolean {
         val count = MainActivity.database.alreadyExist(video)
         return count > 0
@@ -173,5 +167,4 @@ class VideoAdapter(private val videoList: List<VideoItem>,
     fun getItemAt(position: Int): VideoItem {
         return videoList[position]
     }
-
 }

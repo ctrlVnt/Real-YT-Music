@@ -74,7 +74,29 @@ fun performYouTubeSearch(
                 val videos = response.body()?.items ?: emptyList()
                 val videoItems = videos.map { VideoItem(it.kind, it.id, it.snippet) }
 
-                recyclerView.adapter = VideoAdapter(videoItems, null, "home")
+                val adapter = VideoAdapter(videoItems, null, "home")
+
+                adapter.onAddToQueueClickListener = { videoItem ->
+                    // 1. Creiamo l'entità Video per il Database
+                    val videoIdStr = videoItem.id.videoId.toString()
+                    val videoToQueue = com.ctrlvnt.rytm.data.database.entities.Video(
+                        id = videoIdStr,
+                        title = videoItem.snippet.title,
+                        channelTitle = videoItem.snippet.channelTitle,
+                        thumbnailUrl = videoItem.snippet.thumbnails.high?.url
+                            ?: videoItem.snippet.thumbnails.default?.url ?: ""
+                    )
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        MainActivity.database.videoDao().insert(videoToQueue)
+
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "Added to the queue!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                recyclerView.adapter = adapter
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val cacheDao = MainActivity.database.cacheDao()
