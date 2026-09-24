@@ -44,9 +44,19 @@ class ReportedIssuesAdapter(
         holder.titleText.text = issue.title
         holder.urlText.text = issue.url
 
-        holder.itemView.setOnClickListener { onIssueClicked(issue) }
+        holder.itemView.setOnClickListener {
+            val currentPosition = holder.bindingAdapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                onIssueClicked(issues[currentPosition])
+            }
+        }
 
-        holder.deleteBtn.setOnClickListener { onDeleteClicked(issue, position) }
+        holder.deleteBtn.setOnClickListener {
+            val currentPosition = holder.bindingAdapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                onDeleteClicked(issues[currentPosition], currentPosition)
+            }
+        }
     }
 
     override fun getItemCount(): Int = issues.size
