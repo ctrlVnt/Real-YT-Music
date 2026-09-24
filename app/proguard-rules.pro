@@ -19,3 +19,17 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# -- Retrofit e Gson --
+-keep class com.google.gson.** { *; }
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+-keepattributes *Annotation*
+
+-keep class com.ctrlvnt.rytm.data.model.** { *; }
+-keep class com.ctrlvnt.rytm.data.database.entities.** { *; }
+
+# -- Android YouTube Player --
+-keep class com.pierfrancescosoffritti.androidyoutubeplayer.** { *; }
+-keep interface com.pierfrancescosoffritti.androidyoutubeplayer.** { *; }
