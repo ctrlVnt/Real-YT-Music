@@ -2,11 +2,6 @@ package com.ctrlvnt.rytm.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
-import android.text.util.Linkify
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -18,7 +13,6 @@ import com.ctrlvnt.rytm.R
 import com.ctrlvnt.rytm.ui.TutorialActivity
 import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.ctrlvnt.rytm.ui.services.GithubIssueReporter
 
 class Settings : PreferenceFragmentCompat() {
 
@@ -79,7 +73,10 @@ class Settings : PreferenceFragmentCompat() {
         }
 
         setupClickablePreference("report_bug"){
-            showBugReportDialog()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_activity, BugReportFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
         setupClickablePreference("faq") {
@@ -115,75 +112,5 @@ class Settings : PreferenceFragmentCompat() {
             insetsController.hide(WindowInsetsCompat.Type.navigationBars())
             insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
-    }
-
-    private fun showBugReportDialog() {
-        val context = requireContext()
-
-        val titleInput = android.widget.EditText(context).apply {
-            hint = getString(R.string.bug_report_title_hint)
-        }
-        val descriptionInput = EditText(context).apply {
-            hint = getString(R.string.bug_report_description_hint)
-            minLines = 3
-        }
-
-        val layout = android.widget.LinearLayout(context).apply {
-            orientation = android.widget.LinearLayout.VERTICAL
-            setPadding(48, 32, 48, 0)
-            addView(titleInput)
-            addView(descriptionInput)
-        }
-
-        MaterialAlertDialogBuilder(context, R.style.RoundedAlertDialog)
-            .setTitle(getString(R.string.bug_report_dialog_title))
-            .setView(layout)
-            .setPositiveButton(getString(R.string.bug_report_send)) { dialog, _ ->
-                val title = titleInput.text.toString().trim()
-                val description = descriptionInput.text.toString().trim()
-
-                if (title.isEmpty()) {
-                    Toast.makeText(context, getString(R.string.bug_report_title_required), Toast.LENGTH_SHORT).show()
-                    return@setPositiveButton
-                }
-
-                Toast.makeText(context, getString(R.string.bug_report_sending), Toast.LENGTH_SHORT).show()
-
-                GithubIssueReporter.reportBug(
-                    context = context,
-                    title = title,
-                    description = description.ifEmpty { null },
-                    onSuccess = { issueUrl ->
-                        requireActivity().runOnUiThread {
-                            showSuccessDialog(issueUrl)
-                        }
-                    },
-                    onError = {
-                        requireActivity().runOnUiThread {
-                            Toast.makeText(context, getString(R.string.bug_report_failed), Toast.LENGTH_LONG).show()
-                        }
-                    }
-                )
-                dialog.dismiss()
-            }
-            .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
-            .show()
-    }
-
-    private fun showSuccessDialog(issueUrl: String) {
-        val context = requireContext()
-
-        val messageView = TextView(context).apply {
-            text = getString(R.string.bug_report_success_message, issueUrl)
-            autoLinkMask = Linkify.WEB_URLS
-            movementMethod = LinkMovementMethod.getInstance()
-            setPadding(48, 32, 48, 32)
-        }
-
-        MaterialAlertDialogBuilder(context, R.style.RoundedAlertDialog)
-            .setTitle(getString(R.string.bug_report_success_title))
-            .setView(messageView)
-            .setPositiveButton(getString(R.string.ok)) { dialog, _ -> dialog.dismiss() }
-            .show()
     }
 }
