@@ -289,12 +289,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • library update
-            • New issue management for bug reports
-            
-            Thank you for your donations❤️
-            - LP🫶
-            - Ceryus🫶
+            • bug fixing
            
             """.trimIndent()
             )
