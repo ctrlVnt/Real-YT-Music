@@ -289,8 +289,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • bug fixing
-            • implement issue tracker screen
+            • screen doesn't lock when playing video
            
             """.trimIndent()
             )

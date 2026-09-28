@@ -912,6 +912,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         (activity as? MainActivity)?.setBottomNavVisibility(true)
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
         val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         requireContext().stopService(intent)
         cancelExitTimer()
     }
@@ -925,6 +926,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     override fun onResume() {
         super.onResume()
         youTubePlayerView.enableBackgroundPlayback(false)
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         return
     }
 }
