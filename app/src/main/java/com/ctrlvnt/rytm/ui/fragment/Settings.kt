@@ -38,9 +38,9 @@ class Settings : PreferenceFragmentCompat() {
         val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
         versionPref?.summary = getString(R.string.settings_version, packageInfo.versionName)
 
-        setupClickablePreference("buy_me_a_coffee") {
+        /*setupClickablePreference("buy_me_a_coffee") {
             openUrl("https://buymeacoffee.com/v3ntuz")
-        }
+        }*/
 
         setupClickablePreference("visit_website") {
             openUrl("https://riccardoventurini.dev/")

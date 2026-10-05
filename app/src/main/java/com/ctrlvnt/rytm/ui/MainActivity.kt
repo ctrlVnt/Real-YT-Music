@@ -289,7 +289,9 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • screen doesn't lock when playing video
+            • GooglePlay ask me to delete donations link :(
+            • Bug Fixing
+            • add queue function
            
             """.trimIndent()
             )
