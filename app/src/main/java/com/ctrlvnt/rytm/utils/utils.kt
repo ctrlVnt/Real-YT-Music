@@ -297,7 +297,7 @@ fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
 
                         } else {
                             Log.e("API Error", response.errorBody()?.string().orEmpty())
-                            Toast.makeText(context, "Error loading playlistt", Toast.LENGTH_SHORT).show()
+                            showLimitReachedDialog(context)
                         }
                     }
 

@@ -261,7 +261,7 @@ class HomeActivity : Fragment() {
             }
         })
 
-        showDialogEveryTenOpens()
+        //showDialogEveryTenOpens()
         return rootView
     }
 
@@ -403,7 +403,7 @@ class HomeActivity : Fragment() {
     }
 
 
-    private fun showDialogEveryTenOpens() {
+    /*private fun showDialogEveryTenOpens() {
         val sharedPreferences = requireContext().getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val launchCount = sharedPreferences.getInt("launch_count", 0) + 1
 
@@ -424,7 +424,7 @@ class HomeActivity : Fragment() {
                 .setNegativeButton(R.string.support_negative) { dialog, _ -> dialog.dismiss() }
                 .show()
         }
-    }
+    }*/
 
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem) {
