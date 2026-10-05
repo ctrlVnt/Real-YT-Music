@@ -29,7 +29,6 @@ class VideoAdapter(
 
     private var branoInRiproduzionePosition: Int? = null
 
-    // --- NUOVO: Listener per il pulsante "Aggiungi alla Coda" ---
     var onAddToQueueClickListener: ((VideoItem) -> Unit)? = null
 
     fun setBranoInRiproduzionePosition(position: Int?) {
@@ -97,7 +96,7 @@ class VideoAdapter(
             .load(currentItem.snippet.thumbnails.medium?.url)
             .into(holder.videoThumbnail)
 
-        if (currentFragmentTag == "home" && currentItem.id.videoId != null) {
+        if (currentFragmentTag == "search" && currentItem.id.videoId != null) {
             holder.btnAddToQueue.visibility = View.VISIBLE
             holder.btnAddToQueue.setOnClickListener {
                 onAddToQueueClickListener?.invoke(currentItem)
@@ -106,12 +105,11 @@ class VideoAdapter(
             holder.btnAddToQueue.visibility = View.GONE
         }
 
-        if (currentFragmentTag == "home") {
+        if (currentFragmentTag == "home" || currentFragmentTag == "search") {
             holder.itemView.setOnClickListener {
                 if(currentItem.id.videoId == null){
                     savePlaylistFromApi(holder.itemView.context, currentItem)
-                }
-                else{
+                }else{
                     val video = Video(
                         videoList[position].id.videoId.toString(),
                         videoList[position].snippet.title,

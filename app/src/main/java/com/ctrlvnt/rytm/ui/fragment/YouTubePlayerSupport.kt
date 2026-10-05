@@ -103,6 +103,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
 
+    private var nextVideo : MutableList<Video> = mutableListOf()
+
     private val notificationReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val action = intent?.getStringExtra("ACTION_TYPE")
@@ -208,7 +210,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
             fetchYoutubeVideoAsync(videoId.toString()) { video ->
                 if (video != null) {
-                    // Save in history
                     MainActivity.database.insertVideo(video)
                 } else {
                     Toast.makeText(requireContext(), "Data of video can't be fetched now, but enjoy", Toast.LENGTH_SHORT).show()
@@ -398,8 +399,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }
         })
 
-        val nextVideo = videos
-        var shuffleMode = mutableListOf<Int>()
+        nextVideo = videos
+        val shuffleMode = mutableListOf<Int>()
         var shuffleindex = 0
 
         /*FULL-PLAYBACK MODE*/
