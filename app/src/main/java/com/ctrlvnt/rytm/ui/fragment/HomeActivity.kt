@@ -330,7 +330,6 @@ class HomeActivity : Fragment() {
                             )
                         )
                         savePlaylistFromApi(requireContext(), fakeItem)
-                        Toast.makeText(requireContext(), "Playlist saved", Toast.LENGTH_SHORT).show()
                     }else{
                         Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
                     }
