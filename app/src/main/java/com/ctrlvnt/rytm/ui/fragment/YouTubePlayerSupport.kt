@@ -811,7 +811,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             thumbnailUrl = videoItem.snippet.thumbnails.default?.url ?: ""
         )
 
-
+        val clickedPosition = nextVideo.indexOfFirst { it.id == videoId }
+        if (clickedPosition >= 0) {
+            indexVideo = clickedPosition
+        }
 
         val playerCallback = object : YouTubePlayerCallback {
             override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
