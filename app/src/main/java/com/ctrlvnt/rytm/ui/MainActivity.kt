@@ -289,9 +289,7 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • GooglePlay ask me to delete donations link :(
-            • Bug Fixing
-            • add queue function
+            • bug wrong playlist position
            
             """.trimIndent()
             )
