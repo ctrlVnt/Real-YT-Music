@@ -13,7 +13,10 @@ import com.ctrlvnt.rytm.data.database.entities.Playlist
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
 
-class PlaylistAdapter(private var playlistList: List<Playlist>, private val onItemLongClick: ((Playlist) -> Unit)? = null) :
+class PlaylistAdapter(
+    private var playlistList: List<Playlist>,
+    private val onItemLongClick: ((Playlist) -> Unit)? = null
+) :
     RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
 
     fun updatePlaylistList(newPlaylists: List<Playlist>) {
@@ -47,7 +50,7 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
                 true
             }
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onItemClickListener?.onItemClick(playlistList[position])
@@ -68,12 +71,16 @@ class PlaylistAdapter(private var playlistList: List<Playlist>, private val onIt
 
         holder.itemView.setOnClickListener {
 
-            var videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistList[position].playlistName)
+            var videos = MainActivity.database.playlisVideotDao()
+                .getPlaylistVideos(playlistList[position].playlistName)
 
-            if (videos.isEmpty()){
+            if (videos.isEmpty()) {
                 infoDialog(holder.itemView.context)
-            }else{
-                val fragment = YouTubePlayerSupport.newInstance(videos[0].id, playlistList[position].playlistName)
+            } else {
+                val fragment = YouTubePlayerSupport.newInstance(
+                    videos[0].id,
+                    playlistList[position].playlistName
+                )
                 val transaction = (holder.itemView.context as AppCompatActivity)
                     .supportFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)

@@ -16,17 +16,31 @@ class YouTubeApiManager {
 
     private val apiService = retrofit.create(YouTubeApiService::class.java)
 
-    fun searchVideos(query: String, apiKey: String, geoCode: String, callback: Callback<SearchResponse>) {
+    fun searchVideos(
+        query: String,
+        apiKey: String,
+        geoCode: String,
+        callback: Callback<SearchResponse>
+    ) {
         val call = apiService.searchVideos(apiKey, query, geoCode)
         call.enqueue(callback)
     }
 
-    fun getPlaylistsVideos(apiKey: String, playlistId: String, pageToken: String?, callback: Callback<PlaylistItemsResponse>) {
+    fun getPlaylistsVideos(
+        apiKey: String,
+        playlistId: String,
+        pageToken: String?,
+        callback: Callback<PlaylistItemsResponse>
+    ) {
         val call = apiService.getPlaylistItems(apiKey, playlistId, pageToken = pageToken)
         call.enqueue(callback)
     }
 
-    fun getPlaylistName(apiKey: String, playlistId: String, callback: Callback<PlaylistMetadataResponse>) {
+    fun getPlaylistName(
+        apiKey: String,
+        playlistId: String,
+        callback: Callback<PlaylistMetadataResponse>
+    ) {
         val call = apiService.getPlaylistInfo(apiKey, playlistId)
         call.enqueue(callback)
     }

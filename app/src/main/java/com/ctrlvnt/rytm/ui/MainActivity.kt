@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             private set
     }
 
-    lateinit var bottomNav : BottomNavigationView
+    lateinit var bottomNav: BottomNavigationView
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,12 +76,14 @@ class MainActivity : AppCompatActivity() {
                         .commitNow()
                     true
                 }
+
                 R.id.settings -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_activity, Settings())
                         .commitNow()
                     true
                 }
+
                 else -> {
                     false
                 }
@@ -98,7 +100,8 @@ class MainActivity : AppCompatActivity() {
             if (showNavBar) {
                 insetsController.show(WindowInsetsCompat.Type.navigationBars())
             } else {
-                insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                insetsController.systemBarsBehavior =
+                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
                 insetsController.hide(WindowInsetsCompat.Type.navigationBars())
             }
         }
@@ -122,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                     return
                 }
             }
-        }else if (intent?.action == Intent.ACTION_VIEW){ // here if app opened when you click directly the link
+        } else if (intent?.action == Intent.ACTION_VIEW) { // here if app opened when you click directly the link
             val sharedText = intent.dataString
             if (sharedText != null) {
                 val urlRegex = "(https?://[\\s\\S]*)".toRegex()
@@ -180,7 +183,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun conditionandprivacyaccept(sharedPrefs: SharedPreferences) {
         if (!sharedPrefs.getBoolean("terms_accepted", false)) {
-            
+
             val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
 
@@ -220,7 +223,7 @@ class MainActivity : AppCompatActivity() {
     override fun onUserLeaveHint() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val pipMode = prefs.getBoolean("activate_pip_mode", true)
-        if(pipMode){
+        if (pipMode) {
             val layoutParams = window.attributes
             layoutParams.screenBrightness =
                 WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
@@ -229,7 +232,8 @@ class MainActivity : AppCompatActivity() {
             enterPictureInPictureMode(
                 PictureInPictureParams.Builder()
                     .setAspectRatio(Rational(16, 9))
-                    .build())
+                    .build()
+            )
         }
     }
 
@@ -271,6 +275,7 @@ class MainActivity : AppCompatActivity() {
             "youtu.be" -> {
                 uri.pathSegments.firstOrNull()
             }
+
             "www.youtube.com", "m.youtube.com", "youtube.com" -> {
                 if (uri.pathSegments.contains("shorts")) {
                     uri.pathSegments.getOrNull(1)
@@ -278,6 +283,7 @@ class MainActivity : AppCompatActivity() {
                     uri.getQueryParameter("v")
                 }
             }
+
             else -> null
         }
     }

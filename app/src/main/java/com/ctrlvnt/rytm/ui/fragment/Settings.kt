@@ -35,7 +35,8 @@ class Settings : PreferenceFragmentCompat() {
 
         val versionPref: Preference? = findPreference("version")
 
-        val packageInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+        val packageInfo =
+            requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
         versionPref?.summary = getString(R.string.settings_version, packageInfo.versionName)
 
         /*setupClickablePreference("buy_me_a_coffee") {
@@ -69,10 +70,15 @@ class Settings : PreferenceFragmentCompat() {
                 putExtra(Intent.EXTRA_TEXT, shareText)
             }
 
-            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_app_chooser_title)))
+            startActivity(
+                Intent.createChooser(
+                    shareIntent,
+                    getString(R.string.share_app_chooser_title)
+                )
+            )
         }
 
-        setupClickablePreference("report_bug"){
+        setupClickablePreference("report_bug") {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main_activity, BugReportFragment())
                 .addToBackStack(null)
@@ -110,7 +116,8 @@ class Settings : PreferenceFragmentCompat() {
             insetsController.show(WindowInsetsCompat.Type.navigationBars())
         } else {
             insetsController.hide(WindowInsetsCompat.Type.navigationBars())
-            insetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            insetsController.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 }

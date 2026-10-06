@@ -1,31 +1,24 @@
 package com.ctrlvnt.rytm.ui.fragment
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.ctrlvnt.rytm.R
-import com.ctrlvnt.rytm.data.YouTubeApiManager
 import com.ctrlvnt.rytm.data.database.entities.Playlist
-import com.ctrlvnt.rytm.data.model.SearchResponse
 import com.ctrlvnt.rytm.data.model.Snippet
 import com.ctrlvnt.rytm.data.model.Thumbnail
 import com.ctrlvnt.rytm.data.model.Thumbnails
@@ -34,35 +27,17 @@ import com.ctrlvnt.rytm.data.model.VideoItem
 import com.ctrlvnt.rytm.ui.MainActivity
 import com.ctrlvnt.rytm.ui.adapter.PlaylistAdapter
 import com.ctrlvnt.rytm.ui.adapter.VideoAdapter
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.json.JSONException
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.invoke.ConstantCallSite
-import java.util.Locale
-import androidx.core.net.toUri
-import androidx.core.content.edit
-import com.ctrlvnt.rytm.utils.apikey.APIKEY
 import com.ctrlvnt.rytm.utils.extractPlaylistId
 import com.ctrlvnt.rytm.utils.extractYoutubeId
-import com.ctrlvnt.rytm.utils.generateRandomName
 import com.ctrlvnt.rytm.utils.performYouTubeSearch
 import com.ctrlvnt.rytm.utils.savePlaylistFromApi
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.PopupMenu
-import androidx.compose.ui.graphics.findFirstRoot
-import androidx.recyclerview.widget.LinearSnapHelper
-import com.ctrlvnt.rytm.utils.setLocale
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class HomeActivity : Fragment() {
 
-    lateinit var cronologia:RecyclerView
+    lateinit var cronologia: RecyclerView
     lateinit var playlists: RecyclerView
     lateinit var searchBar: SearchView
     lateinit var historyText: TextView
@@ -101,12 +76,13 @@ class HomeActivity : Fragment() {
 
         activity?.window?.decorView?.setBackgroundColor(resources.getColor(R.color.background))
 
-       cronologia = rootView.findViewById(R.id.last_search)
+        cronologia = rootView.findViewById(R.id.last_search)
         val layoutManager = LinearLayoutManager(context)
         cronologia.layoutManager = layoutManager
 
         playlists = rootView.findViewById(R.id.playlist_list)
-        val layoutManagerPlaylists = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        val layoutManagerPlaylists =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         playlists.layoutManager = layoutManagerPlaylists
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(playlists)
@@ -117,10 +93,10 @@ class HomeActivity : Fragment() {
         }
         playlists.adapter = playlistAdapter
 
-        if(playlistsData.isEmpty()){
+        if (playlistsData.isEmpty()) {
             addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
-        }else{
+        } else {
             addButton.visibility = View.GONE
             noPlaylist.visibility = View.GONE
         }
@@ -137,20 +113,20 @@ class HomeActivity : Fragment() {
             VideoItem("youtube#video", videoId, snippet)
         } ?: emptyList()
 
-        if(videos.isEmpty()){
+        if (videos.isEmpty()) {
             historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
             trashButton.visibility = View.GONE
-        }else{
+        } else {
             historyImg.visibility = View.GONE
             historyText.visibility = View.GONE
             trashButton.visibility = View.VISIBLE
         }
 
-        if(playlistsData.isEmpty()){
+        if (playlistsData.isEmpty()) {
             addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
-        }else{
+        } else {
             addButton.visibility = View.VISIBLE
             noPlaylist.visibility = View.GONE
         }
@@ -164,7 +140,7 @@ class HomeActivity : Fragment() {
         val recyclerView = rootView.findViewById<RecyclerView>(R.id.songs_list)
         recyclerView.adapter = VideoAdapter(videoItems, null, "home")
 
-        trashButton.setOnClickListener{
+        trashButton.setOnClickListener {
             showConfirmationDialog()
         }
 
@@ -227,18 +203,18 @@ class HomeActivity : Fragment() {
                     addButton.visibility = View.GONE
                     trashButton.visibility = View.GONE
                     topbar.visibility = View.GONE
-                }else{
+                } else {
                     clearRecyclerView(rootView)
-                    if(videos.isEmpty()){
+                    if (videos.isEmpty()) {
                         historyImg.visibility = View.VISIBLE
                         historyText.visibility = View.VISIBLE
                         trashButton.visibility = View.GONE
-                    }else{
+                    } else {
                         historyImg.visibility = View.GONE
                         historyText.visibility = View.GONE
                         trashButton.visibility = View.VISIBLE
                     }
-                    if(playlistsData.isEmpty()){ //To change when will be playlist list
+                    if (playlistsData.isEmpty()) { //To change when will be playlist list
                         addButton.visibility = View.GONE
                         noPlaylist.visibility = View.VISIBLE
                     }
@@ -274,9 +250,11 @@ class HomeActivity : Fragment() {
         builder.setView(dialogView)
             .setTitle(R.string.add_playlist)
             .setPositiveButton("OK") { dialog, _ ->
-                val name =  editTextName.text.toString()
+                val name = editTextName.text.toString()
 
-                if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
+                if (name.isNotBlank() && MainActivity.database.playlistDao()
+                        .alreadyExist(name) == 0
+                ) {
                     val newPlaylist = Playlist(playlistName = name)
                     MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
 
@@ -285,10 +263,18 @@ class HomeActivity : Fragment() {
                     addButton.visibility = View.VISIBLE
                     noPlaylist.visibility = View.GONE
                 } else {
-                    if(name.isBlank()){
-                        Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()
+                    if (name.isBlank()) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.error_empty_name,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.error_already_exist,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
@@ -310,12 +296,12 @@ class HomeActivity : Fragment() {
         builder.setView(dialogView)
             .setTitle(R.string.import_popup_title)
             .setPositiveButton("import") { dialog, _ ->
-                val link =  linkCell.text.toString()
+                val link = linkCell.text.toString()
 
                 if (link.isNotBlank()) {
                     val playlistId = extractPlaylistId(link)
 
-                    if(playlistId != null) {
+                    if (playlistId != null) {
                         val fakeItem = VideoItem(
                             kind = "youtube#playlist",
                             id = VideoId(videoId = null, playlistId = playlistId),
@@ -330,14 +316,23 @@ class HomeActivity : Fragment() {
                             )
                         )
                         savePlaylistFromApi(requireContext(), fakeItem)
-                    }else{
-                        Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 } else {
-                    if(link.isBlank()){
-                        Toast.makeText(requireContext(), R.string.error_empty_name, Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(), R.string.error_already_exist, Toast.LENGTH_SHORT).show()
+                    if (link.isBlank()) {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.error_empty_name,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.error_already_exist,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
@@ -348,8 +343,8 @@ class HomeActivity : Fragment() {
         val alertDialog = builder.create()
         alertDialog.show()
     }
-    
-    fun launchSearch(query: String, rootView: View, searchButton: Button, explainText: TextView){
+
+    fun launchSearch(query: String, rootView: View, searchButton: Button, explainText: TextView) {
         if (query.startsWith("https://")) {
             val videoId = extractYoutubeId(query)
             if (videoId != null) {
@@ -368,7 +363,7 @@ class HomeActivity : Fragment() {
             } else {
                 val playlistId = extractPlaylistId(query)
 
-                if(playlistId != null){
+                if (playlistId != null) {
                     val fakeItem = VideoItem(
                         kind = "youtube#playlist",
                         id = VideoId(videoId = null, playlistId = playlistId),
@@ -384,7 +379,7 @@ class HomeActivity : Fragment() {
                     )
 
                     savePlaylistFromApi(requireContext(), fakeItem)
-                }else{
+                } else {
                     Toast.makeText(requireContext(), "Not valid link", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -427,7 +422,8 @@ class HomeActivity : Fragment() {
 
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem) {
-        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+        val alertDialogBuilder =
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
@@ -456,9 +452,9 @@ class HomeActivity : Fragment() {
         } ?: emptyList()
         cronologia.adapter = VideoAdapter(videoItems, { videoItem ->
             showDeleteConfirmationDialog(videoItem)
-        },"home", blackText = true)
+        }, "home", blackText = true)
 
-        if(videos.isEmpty()){
+        if (videos.isEmpty()) {
             historyImg.visibility = View.VISIBLE
             historyText.visibility = View.VISIBLE
             trashButton.visibility = View.GONE
@@ -471,14 +467,19 @@ class HomeActivity : Fragment() {
     }
 
     private fun showConfirmationDialog() {
-        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+        val alertDialogBuilder =
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(getString(R.string.confirm_delete_history))
         alertDialogBuilder.setMessage(getString(R.string.confirm_delete_history_message))
 
         alertDialogBuilder.setPositiveButton(getString(R.string.accept)) { dialog, _ ->
             MainActivity.database.deleteAllVideos()
             refreshAdapter()
-            Toast.makeText(requireContext(), getString(R.string.deleted_history), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.deleted_history),
+                Toast.LENGTH_SHORT
+            ).show()
             dialog.dismiss()
         }
 
@@ -491,7 +492,8 @@ class HomeActivity : Fragment() {
     }
 
     private fun showDeleteConfirmationDialogPlaylist(playlistItem: Playlist) {
-        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+        val alertDialogBuilder =
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
@@ -511,16 +513,16 @@ class HomeActivity : Fragment() {
         playlists.adapter = PlaylistAdapter(playlistsList) { playlistItem ->
             showDeleteConfirmationDialogPlaylist(playlistItem)
         }
-        if(playlistsList.isEmpty()){
+        if (playlistsList.isEmpty()) {
             addButton.visibility = View.GONE
             noPlaylist.visibility = View.VISIBLE
-        }else{
+        } else {
             addButton.visibility = View.VISIBLE
             noPlaylist.visibility = View.GONE
         }
     }
 
-    private fun logIn(context: Context) {
+    /*private fun logIn(context: Context) {
         val webView = view?.findViewById<WebView>(R.id.webView)
         webView?.visibility= View.VISIBLE
         webView?.settings.apply {
@@ -553,6 +555,6 @@ class HomeActivity : Fragment() {
                 return false // lascia caricare la pagina
             }
         }
-    }
+    }*/
 
 }

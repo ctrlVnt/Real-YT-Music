@@ -1,12 +1,10 @@
 package com.ctrlvnt.rytm.ui
 
-import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.ctrlvnt.rytm.R
-import com.github.appintro.AppIntro;
-import com.github.appintro.AppIntroFragment;
-import com.github.appintro.AppIntroPageTransformerType;
+import com.github.appintro.AppIntro
+import com.github.appintro.AppIntroFragment
 
 class TutorialActivity : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,26 +13,34 @@ class TutorialActivity : AppIntro() {
 
         // Call addSlide passing your Fragments.
         // You can use AppIntroFragment to use a pre-built fragment
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_welcome),
-            description = getString(R.string.intro_desc_welcome),
-            imageDrawable = R.drawable.cover
-        ))
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_pip),
-            description = getString(R.string.intro_desc_pip),
-            imageDrawable = R.drawable.slide4
-        ))
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_limit),
-            description = getString(R.string.intro_desc_limit),
-            imageDrawable = R.drawable.slide3
-        ))
-        addSlide(AppIntroFragment.createInstance(
-            title = getString(R.string.intro_title_end),
-            description = getString(R.string.intro_desc_end),
-            imageDrawable = R.drawable.share
-        ))
+        addSlide(
+            AppIntroFragment.createInstance(
+                title = getString(R.string.intro_title_welcome),
+                description = getString(R.string.intro_desc_welcome),
+                imageDrawable = R.drawable.cover
+            )
+        )
+        addSlide(
+            AppIntroFragment.createInstance(
+                title = getString(R.string.intro_title_pip),
+                description = getString(R.string.intro_desc_pip),
+                imageDrawable = R.drawable.slide4
+            )
+        )
+        addSlide(
+            AppIntroFragment.createInstance(
+                title = getString(R.string.intro_title_limit),
+                description = getString(R.string.intro_desc_limit),
+                imageDrawable = R.drawable.slide3
+            )
+        )
+        addSlide(
+            AppIntroFragment.createInstance(
+                title = getString(R.string.intro_title_end),
+                description = getString(R.string.intro_desc_end),
+                imageDrawable = R.drawable.share
+            )
+        )
     }
 
     override fun onSkipPressed(currentFragment: Fragment?) {

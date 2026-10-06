@@ -10,13 +10,13 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.IBinder
 import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.bumptech.glide.Glide
-import com.ctrlvnt.rytm.R
 import com.bumptech.glide.request.target.CustomTarget
-import android.support.v4.media.session.PlaybackStateCompat
+import com.ctrlvnt.rytm.R
 
 class YouTubeNotificationService : Service() {
 
@@ -41,10 +41,21 @@ class YouTubeNotificationService : Service() {
 
         mediaSession = MediaSessionCompat(this, "YouTubeService")
         mediaSession.setCallback(object : MediaSessionCompat.Callback() {
-            override fun onPlay() { sendBroadcastToFragment(ACTION_PLAY) }
-            override fun onPause() { sendBroadcastToFragment(ACTION_PAUSE) }
-            override fun onSkipToNext() { sendBroadcastToFragment(ACTION_NEXT) }
-            override fun onSkipToPrevious() { sendBroadcastToFragment(ACTION_PREV) }
+            override fun onPlay() {
+                sendBroadcastToFragment(ACTION_PLAY)
+            }
+
+            override fun onPause() {
+                sendBroadcastToFragment(ACTION_PAUSE)
+            }
+
+            override fun onSkipToNext() {
+                sendBroadcastToFragment(ACTION_NEXT)
+            }
+
+            override fun onSkipToPrevious() {
+                sendBroadcastToFragment(ACTION_PREV)
+            }
         })
         mediaSession.isActive = true
     }
@@ -64,31 +75,31 @@ class YouTubeNotificationService : Service() {
             }
         }
 
-         if (intent?.hasExtra("TITLE") == true) {
+        if (intent?.hasExtra("TITLE") == true) {
             val title = intent.getStringExtra("TITLE") ?: "Unknown"
             val author = intent.getStringExtra("AUTHOR") ?: "Unknown"
             val url = intent.getStringExtra("THUMBNAIL_URL") ?: "Unknown"
             val isPlaying = intent.getBooleanExtra("IS_PLAYING", false)
-             if (url != null && url.isNotEmpty()) {
-                 Glide.with(this)
-                     .asBitmap()
-                     .load(url)
-                     .into(object : CustomTarget<Bitmap>() {
+            if (url != null && url.isNotEmpty()) {
+                Glide.with(this)
+                    .asBitmap()
+                    .load(url)
+                    .into(object : CustomTarget<Bitmap>() {
 
-                         override fun onResourceReady(
-                             resource: Bitmap,
-                             transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
-                         ) {
-                             showNotification(title, author, isPlaying, resource)
-                         }
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
+                        ) {
+                            showNotification(title, author, isPlaying, resource)
+                        }
 
-                         override fun onLoadCleared(placeholder: Drawable?) {
+                        override fun onLoadCleared(placeholder: Drawable?) {
 
-                         }
-                     })
-             } else {
-                 showNotification(title, author, isPlaying, null)
-             }
+                        }
+                    })
+            } else {
+                showNotification(title, author, isPlaying, null)
+            }
         }
 
         return START_NOT_STICKY
@@ -105,11 +116,17 @@ class YouTubeNotificationService : Service() {
         startForeground(NOTIFICATION_ID, placeholderNotification)
     }
 
-    private fun showNotification(title: String, author: String, isPlaying: Boolean, bitmap: Bitmap?) {
+    private fun showNotification(
+        title: String,
+        author: String,
+        isPlaying: Boolean,
+        bitmap: Bitmap?
+    ) {
 
         updatePlaybackState(isPlaying)
 
-        val playPauseIcon = if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_arrow_24
+        val playPauseIcon =
+            if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_arrow_24
 
         val playPauseAction = if (isPlaying) ACTION_PAUSE else ACTION_PLAY
 
@@ -123,9 +140,11 @@ class YouTubeNotificationService : Service() {
             .addAction(playPauseIcon, "Play/Pause", getActionIntent(playPauseAction))
             .addAction(R.drawable.baseline_skip_next, "Next", getActionIntent(ACTION_NEXT))
 
-            .setStyle(androidx.media.app.NotificationCompat.MediaStyle()
-                .setMediaSession(mediaSession.sessionToken)
-                .setShowActionsInCompactView(0, 1, 2))
+            .setStyle(
+                androidx.media.app.NotificationCompat.MediaStyle()
+                    .setMediaSession(mediaSession.sessionToken)
+                    .setShowActionsInCompactView(0, 1, 2)
+            )
             .setOnlyAlertOnce(true)
             .build()
 
@@ -171,7 +190,8 @@ class YouTubeNotificationService : Service() {
     }
 
     private fun updatePlaybackState(isPlaying: Boolean) {
-        val state = if (isPlaying) PlaybackStateCompat.STATE_PLAYING else PlaybackStateCompat.STATE_PAUSED
+        val state =
+            if (isPlaying) PlaybackStateCompat.STATE_PLAYING else PlaybackStateCompat.STATE_PAUSED
 
         val playbackSpeed = if (isPlaying) 1.0f else 0f
 

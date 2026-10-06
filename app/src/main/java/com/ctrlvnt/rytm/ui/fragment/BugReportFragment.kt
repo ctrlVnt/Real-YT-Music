@@ -35,7 +35,8 @@ class ReportedIssuesAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IssueViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_reported_issue, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_reported_issue, parent, false)
         return IssueViewHolder(view)
     }
 
@@ -105,7 +106,8 @@ class BugReportFragment : Fragment() {
                 reportedIssues.removeAt(position)
                 adapter.notifyItemRemoved(position)
                 saveIssues()
-                Toast.makeText(requireContext(), "Issue rimosso dalla lista", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Issue rimosso dalla lista", Toast.LENGTH_SHORT)
+                    .show()
             }
         )
         recyclerView.adapter = adapter
@@ -139,13 +141,15 @@ class BugReportFragment : Fragment() {
                     recyclerView.scrollToPosition(0)
                     saveIssues()
 
-                    Toast.makeText(requireContext(), "Report sent successfully!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Report sent successfully!", Toast.LENGTH_LONG)
+                        .show()
                 }
             },
             onError = {
                 requireActivity().runOnUiThread {
                     submitButton.isEnabled = true
-                    Toast.makeText(requireContext(), "Failed to send report", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Failed to send report", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         )

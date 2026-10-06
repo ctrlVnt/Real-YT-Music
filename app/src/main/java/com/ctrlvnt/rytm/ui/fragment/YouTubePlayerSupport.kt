@@ -56,11 +56,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
 import java.util.Collections
 import java.util.Locale
 import kotlin.random.Random
@@ -96,14 +96,14 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private var saveMinutesHandler: Handler? = null
     private var saveMinutesRunnable: Runnable? = null
     private var isFullscreen = false
-    private lateinit var timer_text : TextView
-    private var fromoutside : Boolean = false
-    private var originalHeight : Int = 0
+    private lateinit var timer_text: TextView
+    private var fromoutside: Boolean = false
+    private var originalHeight: Int = 0
 
     // With this tracker we can change the logic of control notification and, maybe, implement headphone controls
     private val tracker = YouTubePlayerTracker()
 
-    private var nextVideo : MutableList<Video> = mutableListOf()
+    private var nextVideo: MutableList<Video> = mutableListOf()
 
     private val notificationReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -112,14 +112,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 YouTubeNotificationService.ACTION_NEXT -> nextButton.performClick()
                 YouTubeNotificationService.ACTION_PREV -> prevButton.performClick()
                 YouTubeNotificationService.ACTION_PAUSE -> {
-                val playerCallback = object : YouTubePlayerCallback {
-                    override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
-                        youTubePlayer.pause()
+                    val playerCallback = object : YouTubePlayerCallback {
+                        override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
+                            youTubePlayer.pause()
+                        }
                     }
+                    youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
                 }
-                youTubePlayerView.getYouTubePlayerWhenReady(playerCallback)
-            }
-                YouTubeNotificationService.ACTION_PLAY-> {
+
+                YouTubeNotificationService.ACTION_PLAY -> {
                     val playerCallback = object : YouTubePlayerCallback {
                         override fun onYouTubePlayer(youTubePlayer: YouTubePlayer) {
                             youTubePlayer.play()
@@ -161,9 +162,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val isSaveEnabled = prefs.getBoolean("save_minutes_enabled", false)
 
-        val videoCaptions = if(prefs.getBoolean("captions_option", false)){
+        val videoCaptions = if (prefs.getBoolean("captions_option", false)) {
             1
-        }else{
+        } else {
             0
         }
 
@@ -188,17 +189,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val layoutManager = LinearLayoutManager(context)
         videoList.layoutManager = layoutManager
 
-        if(playlistTitle == null || playlistTitle == ""){
+        if (playlistTitle == null || playlistTitle == "") {
             playlisName.text = getString(R.string.prev_search)
             buttonEditName.visibility = View.GONE
             videos = MainActivity.database.videoDao().getAll()
 
-        }else{
+        } else {
             playlisName.text = playlistTitle
             videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistTitle)
         }
 
-        if(playlistTitle == "fromoutside"){
+        if (playlistTitle == "fromoutside") {
             nextButton.visibility = View.GONE
             prevButton.visibility = View.GONE
             shuffle.visibility = View.GONE
@@ -212,7 +213,11 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 if (video != null) {
                     MainActivity.database.insertVideo(video)
                 } else {
-                    Toast.makeText(requireContext(), "Data of video can't be fetched now, but enjoy", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Data of video can't be fetched now, but enjoy",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -226,7 +231,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             )
             val snippet = Snippet(it.title, it.channelTitle, thumbnails)
             VideoItem("youtube#video", videoId, snippet)
-        } ?.toMutableList() ?: mutableListOf()
+        }?.toMutableList() ?: mutableListOf()
 
         val videoAdapter = VideoAdapter(videoItems, null, "yt_player")
 
@@ -239,7 +244,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
 
         val itemTouchHelper = ItemTouchHelper(object :
-            ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT) {
+            ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+                ItemTouchHelper.LEFT
+            ) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 source: RecyclerView.ViewHolder,
@@ -253,7 +261,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 val title: String = playlistTitle.toString()
                 videos.forEachIndexed { index, video ->
-                    MainActivity.database.playlisVideotDao().updateVideoPosition(title, video.id, index)
+                    MainActivity.database.playlisVideotDao()
+                        .updateVideoPosition(title, video.id, index)
                 }
                 indexVideo = targetPosition
                 return true
@@ -273,19 +282,19 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         })
         itemTouchHelper.attachToRecyclerView(videoList)
 
-        backButton.setOnClickListener{
+        backButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
         repeat.setOnClickListener {
             repeatOption = !repeatOption
-            if(shuffleOption){
+            if (shuffleOption) {
                 shuffleOption = false
             }
-            if (repeatOption){
+            if (repeatOption) {
                 val color = ContextCompat.getColor(requireContext(), R.color.red)
                 repeat.setColorFilter(color)
-            }else{
+            } else {
                 repeat.clearColorFilter()
             }
         }
@@ -319,15 +328,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
 
         shuffle.setOnClickListener {
-            if(videos.size > 2){
+            if (videos.size > 2) {
                 shuffleOption = !shuffleOption
-                if(repeatOption){
+                if (repeatOption) {
                     repeatOption = false
                 }
-                if (shuffleOption){
+                if (shuffleOption) {
                     val color = ContextCompat.getColor(requireContext(), R.color.red)
                     shuffle.setColorFilter(color)
-                }else{
+                } else {
                     shuffle.clearColorFilter()
                 }
             }
@@ -346,7 +355,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         lockButton.setOnClickListener {
             lock = !lock
 
-            if(lock){
+            if (lock) {
                 lockButton.setImageResource(R.drawable.baseline_lock_24)
                 overlay.visibility = View.VISIBLE
                 playlistAdd.visibility = View.GONE
@@ -362,8 +371,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     layoutParams.screenBrightness = 0f
                     it.window.attributes = layoutParams
                 }
-            }else{
-                if(playlistTitle != "fromoutside"){
+            } else {
+                if (playlistTitle != "fromoutside") {
                     playlistAdd.visibility = View.VISIBLE
                     prevButton.visibility = View.VISIBLE
                     nextButton.visibility = View.VISIBLE
@@ -391,7 +400,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             }
 
             override fun onQueryTextChange(text: String?): Boolean {
-                if(text.isNullOrBlank()){
+                if (text.isNullOrBlank()) {
                     val recyclerView = rootView.findViewById<RecyclerView>(R.id.videos_list_player)
                     recyclerView.adapter = null
                 }
@@ -429,7 +438,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
 
                 // optionally request landscape orientation
-                requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                requireActivity().requestedOrientation =
+                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
             }
 
             override fun onExitFullscreen() {
@@ -464,25 +474,28 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                     }
 
-                    nextButton.setOnClickListener{
-                        if(!repeatOption){
-                            if(shuffleOption){
-                                if(shuffleindex >= shuffleMode.size - 1){
+                    nextButton.setOnClickListener {
+                        if (!repeatOption) {
+                            if (shuffleOption) {
+                                if (shuffleindex >= shuffleMode.size - 1) {
                                     var randomIndex: Int
-                                    do{
+                                    do {
                                         randomIndex = Random.nextInt(0, nextVideo.size)
-                                    }while (randomIndex == indexVideo)
+                                    } while (randomIndex == indexVideo)
 
                                     videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                                     youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                                     shuffleMode.add(randomIndex)
                                     shuffleindex++
-                                }else{
+                                } else {
                                     shuffleindex++
                                     videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
-                                    youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
+                                    youTubePlayer.loadVideo(
+                                        nextVideo[shuffleMode[shuffleindex]].id,
+                                        0f
+                                    )
                                 }
-                            }else {
+                            } else {
                                 indexVideo++
                                 if (indexVideo >= nextVideo.size) {
                                     indexVideo = 0
@@ -492,17 +505,17 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                             }
                         }
                     }
-                    prevButton.setOnClickListener{
+                    prevButton.setOnClickListener {
 
-                        if(!repeatOption){
-                            if(shuffleOption){
-                                if(shuffleindex <= 0){
+                        if (!repeatOption) {
+                            if (shuffleOption) {
+                                if (shuffleindex <= 0) {
                                     shuffleindex = shuffleMode.size
                                 }
                                 shuffleindex--
                                 videoAdapter.setBranoInRiproduzionePosition(shuffleMode[shuffleindex])
                                 youTubePlayer.loadVideo(nextVideo[shuffleMode[shuffleindex]].id, 0f)
-                            }else {
+                            } else {
                                 indexVideo--
                                 if (indexVideo < 0) {
                                     indexVideo = nextVideo.size - 1
@@ -514,6 +527,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     }
                 }
             }
+
             override fun onStateChange(
                 youTubePlayer: YouTubePlayer,
                 state: PlayerConstants.PlayerState
@@ -521,9 +535,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 super.onStateChange(youTubePlayer, state)
                 val playlistName = arguments?.getString("playlist_name")
 
-                if (state == PlayerConstants.PlayerState.ENDED){
+                if (state == PlayerConstants.PlayerState.ENDED) {
                     MainActivity.database.deleteMinutes(videoId.toString())
-                    if(repeatOption || playlistName == "fromoutside"){
+                    if (repeatOption || playlistName == "fromoutside") {
                         videoId?.let {
                             youTubePlayer.loadVideo(it, 0f)
 
@@ -531,28 +545,28 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                                 showPlaylistDialog(nextVideo[indexVideo])
                             }
                         }
-                    }else if(shuffleOption) {
+                    } else if (shuffleOption) {
                         var randomIndex: Int
-                        do{
+                        do {
                             randomIndex = Random.nextInt(0, nextVideo.size)
-                        }while (randomIndex == indexVideo)
+                        } while (randomIndex == indexVideo)
                         videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                         youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                         playlistAdd.setOnClickListener {
                             showPlaylistDialog(nextVideo[randomIndex])
                         }
                         shuffleMode.add(randomIndex)
-                    }else{
+                    } else {
                         //if there is one video
-                        if(nextVideo.size == 1){
+                        if (nextVideo.size == 1) {
                             indexVideo = 0
-                        //if the video is the firstone, I'll return to lastone
-                        }else if(indexVideo < 0){
+                            //if the video is the firstone, I'll return to lastone
+                        } else if (indexVideo < 0) {
                             indexVideo = nextVideo.size - 1
-                        //if if the last video to the list return to firstone
+                            //if if the last video to the list return to firstone
                         } else if (indexVideo >= nextVideo.size - 1) {
                             indexVideo = 0
-                        }else{
+                        } else {
                             indexVideo++
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
@@ -567,12 +581,15 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
 
                 if (state == PlayerConstants.PlayerState.PLAYING || state == PlayerConstants.PlayerState.PAUSED) {
-                    if( playlistName != "fromoutside" && indexVideo in nextVideo.indices){
+                    if (playlistName != "fromoutside" && indexVideo in nextVideo.indices) {
                         val filter = android.content.IntentFilter("PLAYER_ACTION")
-                        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
-                        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(notificationReceiver, filter)
+                        LocalBroadcastManager.getInstance(requireContext())
+                            .unregisterReceiver(notificationReceiver)
+                        LocalBroadcastManager.getInstance(requireContext())
+                            .registerReceiver(notificationReceiver, filter)
 
-                        val intent = Intent(requireContext(), YouTubeNotificationService::class.java)
+                        val intent =
+                            Intent(requireContext(), YouTubeNotificationService::class.java)
                         intent.putExtra("TITLE", nextVideo[indexVideo].title)
                         intent.putExtra("AUTHOR", nextVideo[indexVideo].channelTitle)
                         intent.putExtra("THUMBNAIL_URL", nextVideo[indexVideo].thumbnailUrl)
@@ -583,7 +600,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 }
             }
         }, iFramePlayerOptions)
-        originalMarginTop = (youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams).topMargin
+        originalMarginTop =
+            (youTubePlayerView.layoutParams as ViewGroup.MarginLayoutParams).topMargin
 
         return rootView
     }
@@ -602,13 +620,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     private fun forceDisableCaptions() {
         try {
             val webView = findWebView(youTubePlayerView)
-            webView?.evaluateJavascript("javascript:if(typeof player !== 'undefined') { player.unloadModule('captions'); }", null)
+            webView?.evaluateJavascript(
+                "javascript:if(typeof player !== 'undefined') { player.unloadModule('captions'); }",
+                null
+            )
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun launchSearch(query: String, rootView: View){
+    fun launchSearch(query: String, rootView: View) {
         if (query.startsWith("https://")) {
             val videoId = extractYoutubeId(query)
             if (videoId != null) {
@@ -680,7 +701,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             activity?.actionBar?.show()
 
             buttonPannel.visibility = View.VISIBLE
-            if(!fromoutside){
+            if (!fromoutside) {
                 playlistAdd.visibility = View.VISIBLE
             }
         }
@@ -690,7 +711,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         val playlists = MainActivity.database.playlistDao().getAllPlaylists()
 
         if (playlists.isEmpty()) {
-            Toast.makeText(requireContext(), R.string.create_playlist_first, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.create_playlist_first, Toast.LENGTH_LONG)
+                .show()
             return
         }
 
@@ -702,12 +724,23 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 val selectedPlaylist = playlists[which]
 
-                val element = PlaylistVideo(selectedPlaylist.playlistName, video.id, video.title, video.channelTitle, video.thumbnailUrl, playlists.size - 1)
+                val element = PlaylistVideo(
+                    selectedPlaylist.playlistName,
+                    video.id,
+                    video.title,
+                    video.channelTitle,
+                    video.thumbnailUrl,
+                    playlists.size - 1
+                )
 
-                if(!alreadyExist(selectedPlaylist.playlistName, video.id)){
+                if (!alreadyExist(selectedPlaylist.playlistName, video.id)) {
                     MainActivity.database.playlisVideotDao().insertVideoToPlaylist(element)
-                }else{
-                    Toast.makeText(requireContext(), R.string.error_element_playlist_already_exist, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.error_element_playlist_already_exist,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -715,17 +748,19 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         dialog.show()
     }
 
-    private fun alreadyExist(playlistName: String, videoId: String): Boolean{
+    private fun alreadyExist(playlistName: String, videoId: String): Boolean {
         return MainActivity.database.playlisVideotDao().alreadyExist(playlistName, videoId) > 0
     }
 
     private fun showDeleteConfirmationDialog(videoItem: VideoItem, playlistName: String) {
-        val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
+        val alertDialogBuilder =
+            MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
         alertDialogBuilder.setTitle(R.string.delete_confirmation_title)
         alertDialogBuilder.setMessage(R.string.delete_confirmation)
 
         alertDialogBuilder.setPositiveButton(R.string.delete) { _, _ ->
-            MainActivity.database.playlisVideotDao().deleteVideoFromPlaylist(playlistName, videoItem.id.videoId.toString())
+            MainActivity.database.playlisVideotDao()
+                .deleteVideoFromPlaylist(playlistName, videoItem.id.videoId.toString())
             refreshAdapter(playlistName)
         }
         alertDialogBuilder.setNegativeButton(R.string.restore) { dialog, _ ->
@@ -736,7 +771,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         alertDialog.show()
     }
 
-    private fun refreshAdapter(playlistName:String) {
+    private fun refreshAdapter(playlistName: String) {
         val videos = MainActivity.database.playlisVideotDao().getPlaylistVideos(playlistName)
 
         val videoItems = videos.map {
@@ -750,7 +785,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             VideoItem("youtube#video", videoId, snippet)
         } ?: emptyList()
 
-        val videoAdapter = VideoAdapter(videoItems,null, "yt_player")
+        val videoAdapter = VideoAdapter(videoItems, null, "yt_player")
         videoAdapter.setOnPlaybackClickListener(object : VideoAdapter.OnPlaybackClickListener {
             override fun onPlaybackClick(videoItem: VideoItem) {
                 onItemClick(videoItem)
@@ -769,8 +804,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         builder.setView(dialogView)
             .setTitle(R.string.edit_playlist_name)
             .setPositiveButton("OK") { dialog, _ ->
-                val name =  editTextName.text.toString()
-                if (name.isNotBlank() && MainActivity.database.playlistDao().alreadyExist(name) == 0) {
+                val name = editTextName.text.toString()
+                if (name.isNotBlank() && MainActivity.database.playlistDao()
+                        .alreadyExist(name) == 0
+                ) {
                     MainActivity.database.editPlaylistName(currentName, name)
                     val newFragment = YouTubePlayerSupport.newInstance(videoId, name)
 
@@ -778,7 +815,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         .replace(R.id.main_activity, newFragment)
                         .commit()
 
-                }else {
+                } else {
                     if (name.isBlank()) {
                         Toast.makeText(
                             requireContext(),
@@ -855,15 +892,16 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 .setNegativeButton("Cancel", null)
                 .create()
             dialog.show()
-        }else{
+        } else {
             val dialog = MaterialAlertDialogBuilder(requireContext(), R.style.RoundedAlertDialog)
                 .setTitle(R.string.timer_exit)
                 .setMessage(R.string.timer_exit_text)
-                .setPositiveButton("Yes"){ _, _ ->
+                .setPositiveButton("Yes") { _, _ ->
                     timerOption = false
                     timer.clearColorFilter()
                     cancelExitTimer()
-                    Toast.makeText(requireContext(), "Exit timer cancelled", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Exit timer cancelled", Toast.LENGTH_SHORT)
+                        .show()
                 }
                 .setNegativeButton("No", null)
                 .create()
@@ -875,7 +913,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     fun startExitTimer(minutes: Long) {
         val millis = minutes * 60 * 1000
 
-        Toast.makeText(requireContext(), "App will close in $minutes minute(s)", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "App will close in $minutes minute(s)", Toast.LENGTH_SHORT)
+            .show()
         timer_text.visibility = View.VISIBLE
         timer_text.text = "Timer: $minutes minutes"
         exitTimer = object : CountDownTimer(millis, 1000) {
@@ -909,7 +948,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
     }
 
 
-
     override fun onDestroy() {
         super.onDestroy()
         requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
@@ -927,6 +965,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         youTubePlayerView.enableBackgroundPlayback(true)
         return
     }
+
     override fun onResume() {
         super.onResume()
         youTubePlayerView.enableBackgroundPlayback(false)

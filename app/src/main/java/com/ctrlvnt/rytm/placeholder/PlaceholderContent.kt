@@ -1,8 +1,5 @@
 package com.ctrlvnt.rytm.placeholder
 
-import java.util.ArrayList
-import java.util.HashMap
-
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.

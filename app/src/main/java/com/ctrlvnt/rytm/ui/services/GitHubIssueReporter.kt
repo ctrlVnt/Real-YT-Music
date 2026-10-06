@@ -60,8 +60,20 @@ object GithubIssueReporter {
             appendLine("---")
             appendLine(context.getString(R.string.github_issue_device_info))
             appendLine(context.getString(R.string.github_issue_app_version, appVersion))
-            appendLine(context.getString(R.string.github_issue_android_version, Build.VERSION.RELEASE, Build.VERSION.SDK_INT))
-            appendLine(context.getString(R.string.github_issue_device, Build.MANUFACTURER, Build.MODEL))
+            appendLine(
+                context.getString(
+                    R.string.github_issue_android_version,
+                    Build.VERSION.RELEASE,
+                    Build.VERSION.SDK_INT
+                )
+            )
+            appendLine(
+                context.getString(
+                    R.string.github_issue_device,
+                    Build.MANUFACTURER,
+                    Build.MODEL
+                )
+            )
         }
 
 

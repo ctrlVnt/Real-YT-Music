@@ -90,7 +90,8 @@ fun performYouTubeSearch(
                         MainActivity.database.videoDao().insert(videoToQueue)
 
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "Added to the queue!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Added to the queue!", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                 }
@@ -119,14 +120,19 @@ fun performYouTubeSearch(
                     loadFromCache(context, recyclerView, searchQuery)
                 } catch (e: JSONException) {
                     Log.e("YouTubeSearch", "Errore parsing JSON", e)
-                    Toast.makeText(context, context.getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.generic_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
 
         override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
             Log.e("YouTubeSearch", "Errore API: ${t.message}")
-            Toast.makeText(context, context.getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.generic_error), Toast.LENGTH_SHORT)
+                .show()
         }
     })
 }
@@ -159,7 +165,8 @@ fun extractPlaylistId(url: String): String? {
 fun fetchYoutubeVideoAsync(videoId: String, onResult: (Video?) -> Unit) {
     CoroutineScope(Dispatchers.IO).launch {
         val video = try {
-            val url = "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=$videoId&format=json"
+            val url =
+                "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=$videoId&format=json"
             val client = OkHttpClient()
             val request = Request.Builder().url(url).build()
 
@@ -239,84 +246,98 @@ fun getLAResetTimeMessage(context: Context): String {
 fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
     val playlistId = currentItem.id.playlistId ?: return
 
-    YouTubeApiManager().getPlaylistName(APIKEY, playlistId, object : Callback<PlaylistMetadataResponse> {
-        override fun onResponse(
-            call: Call<PlaylistMetadataResponse?>,
-            response: Response<PlaylistMetadataResponse?>
-        ) {
-            if (!response.isSuccessful) {
-                val errorBody = response.errorBody()?.string().orEmpty()
-                Log.e("API Error", "code=${response.code()} body=$errorBody")
-                Toast.makeText(context, "Generic error", Toast.LENGTH_SHORT).show()
-                return
+    YouTubeApiManager().getPlaylistName(
+        APIKEY,
+        playlistId,
+        object : Callback<PlaylistMetadataResponse> {
+            override fun onResponse(
+                call: Call<PlaylistMetadataResponse?>,
+                response: Response<PlaylistMetadataResponse?>
+            ) {
+                if (!response.isSuccessful) {
+                    val errorBody = response.errorBody()?.string().orEmpty()
+                    Log.e("API Error", "code=${response.code()} body=$errorBody")
+                    Toast.makeText(context, "Generic error", Toast.LENGTH_SHORT).show()
+                    return
+                }
+
+                val item = response.body()?.items
+                val playlistName = item?.get(0)?.snippet?.title
+                    ?: (generateRandomName() + " (to renameeee)")
+
+                val newPlaylist = Playlist(playlistName = playlistName)
+
+                YouTubeApiManager().getPlaylistsVideos(
+                    APIKEY,
+                    playlistId,
+                    null,
+                    object : Callback<PlaylistItemsResponse> {
+
+                        override fun onResponse(
+                            call: Call<PlaylistItemsResponse>,
+                            response: Response<PlaylistItemsResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val body = response.body()
+                                val videos = body?.items ?: emptyList()
+
+                                val playlistVideos = videos.mapIndexed { index, item ->
+                                    PlaylistVideo(
+                                        playlistName = playlistName,
+                                        videoId = item.snippet.resourceId.videoId,
+                                        title = item.snippet.title,
+                                        channelTitle = item.snippet.channelTitle,
+                                        thumbnailUrl = item.snippet.thumbnails.high?.url ?: "",
+                                        position = index
+                                    )
+                                }
+
+                                if (MainActivity.database.playlistDao()
+                                        .alreadyExist(playlistName) == 0
+                                ) {
+                                    MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
+                                    MainActivity.database.playlisVideotDao()
+                                        .insertVideos(playlistVideos)
+                                }
+
+                                if (playlistVideos.isNotEmpty()) {
+                                    val fragment = YouTubePlayerSupport.newInstance(
+                                        playlistVideos[0].videoId,
+                                        playlistName
+                                    )
+                                    (context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                                        .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
+                                        .replace(R.id.main_activity, fragment)
+                                        .addToBackStack(null)
+                                        .commit()
+                                    Toast.makeText(context, "Playlist saved", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+
+                            } else {
+                                val errorBody = response.errorBody()?.string().orEmpty()
+                                Log.e("API Error", "code=${response.code()} body=$errorBody")
+
+                                Toast.makeText(context, "Generic error", Toast.LENGTH_SHORT).show()
+
+                            }
+                        }
+
+                        override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
+                            Log.e("API ERROR", t.message.toString())
+                            Toast.makeText(context, "Network issue", Toast.LENGTH_SHORT).show()
+                        }
+                    })
             }
 
-            val item = response.body()?.items
-            val playlistName = item?.get(0)?.snippet?.title
-                ?: (generateRandomName() + " (to renameeee)")
-
-            val newPlaylist = Playlist(playlistName = playlistName)
-
-            YouTubeApiManager().getPlaylistsVideos(APIKEY, playlistId, null, object : Callback<PlaylistItemsResponse> {
-
-                override fun onResponse(call: Call<PlaylistItemsResponse>, response: Response<PlaylistItemsResponse>) {
-                    if (response.isSuccessful) {
-                        val body = response.body()
-                        val videos = body?.items ?: emptyList()
-
-                        val playlistVideos = videos.mapIndexed { index, item ->
-                            PlaylistVideo(
-                                playlistName = playlistName,
-                                videoId = item.snippet.resourceId.videoId,
-                                title = item.snippet.title,
-                                channelTitle = item.snippet.channelTitle,
-                                thumbnailUrl = item.snippet.thumbnails.high?.url ?: "",
-                                position = index
-                            )
-                        }
-
-                        if (MainActivity.database.playlistDao().alreadyExist(playlistName) == 0) {
-                            MainActivity.database.playlistDao().insertPlaylist(newPlaylist)
-                            MainActivity.database.playlisVideotDao().insertVideos(playlistVideos)
-                        }
-
-                        if (playlistVideos.isNotEmpty()) {
-                            val fragment = YouTubePlayerSupport.newInstance(
-                                playlistVideos[0].videoId,
-                                playlistName
-                            )
-                            (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                                .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
-                                .replace(R.id.main_activity, fragment)
-                                .addToBackStack(null)
-                                .commit()
-                            Toast.makeText(context, "Playlist saved", Toast.LENGTH_SHORT).show()
-                        }
-
-                    } else {
-                        val errorBody = response.errorBody()?.string().orEmpty()
-                        Log.e("API Error", "code=${response.code()} body=$errorBody")
-
-                        Toast.makeText(context, "Generic error", Toast.LENGTH_SHORT).show()
-
-                    }
-                }
-
-                override fun onFailure(call: Call<PlaylistItemsResponse>, t: Throwable) {
-                    Log.e("API ERROR", t.message.toString())
-                    Toast.makeText(context, "Network issue", Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
-
-        override fun onFailure(
-            call: Call<PlaylistMetadataResponse?>,
-            t: Throwable
-        ) {
-            Toast.makeText(context, "Errore API metadati", Toast.LENGTH_SHORT).show()
-            Log.e("API ERROR", t.message.toString())
-        }
-    })
+            override fun onFailure(
+                call: Call<PlaylistMetadataResponse?>,
+                t: Throwable
+            ) {
+                Toast.makeText(context, "Errore API metadati", Toast.LENGTH_SHORT).show()
+                Log.e("API ERROR", t.message.toString())
+            }
+        })
 }
 
 fun generateRandomName(length: Int = 6): String {

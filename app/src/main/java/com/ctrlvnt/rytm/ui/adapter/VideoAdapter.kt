@@ -46,6 +46,7 @@ class VideoAdapter(
     fun setOnPlaybackClickListener(listener: OnPlaybackClickListener) {
         this.onPlaybackClickListener = listener
     }
+
     interface OnPlaybackClickListener {
         fun onPlaybackClick(videoItem: VideoItem)
     }
@@ -53,7 +54,8 @@ class VideoAdapter(
     inner class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val videoTitle: TextView = itemView.findViewById(R.id.video_title)
         val channelTitle: TextView = itemView.findViewById(R.id.channel_title)
-        val isPlaylist: com.google.android.material.button.MaterialButton = itemView.findViewById(R.id.isPlaylist)
+        val isPlaylist: com.google.android.material.button.MaterialButton =
+            itemView.findViewById(R.id.isPlaylist)
         val videoThumbnail: ImageView = itemView.findViewById(R.id.video_thumbnail)
 
         val btnAddToQueue: ImageButton = itemView.findViewById(R.id.btn_add_to_queue)
@@ -74,11 +76,16 @@ class VideoAdapter(
         return VideoViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: VideoViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(
+        holder: VideoViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         val currentItem = videoList[position]
 
-        holder.videoTitle.text = Html.fromHtml(currentItem.snippet.title, Html.FROM_HTML_MODE_LEGACY).toString()
-        holder.channelTitle.text = Html.fromHtml(currentItem.snippet.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString()
+        holder.videoTitle.text =
+            Html.fromHtml(currentItem.snippet.title, Html.FROM_HTML_MODE_LEGACY).toString()
+        holder.channelTitle.text =
+            Html.fromHtml(currentItem.snippet.channelTitle, Html.FROM_HTML_MODE_LEGACY).toString()
 
         if (currentItem.id.videoId == null) {
             holder.isPlaylist.visibility = View.VISIBLE
@@ -107,9 +114,9 @@ class VideoAdapter(
 
         if (currentFragmentTag == "home" || currentFragmentTag == "search") {
             holder.itemView.setOnClickListener {
-                if(currentItem.id.videoId == null){
+                if (currentItem.id.videoId == null) {
                     savePlaylistFromApi(holder.itemView.context, currentItem)
-                }else{
+                } else {
                     val video = Video(
                         videoList[position].id.videoId.toString(),
                         videoList[position].snippet.title,
@@ -120,7 +127,10 @@ class VideoAdapter(
                         //Add video to history
                         MainActivity.database.insertVideo(video)
                     }
-                    val fragment = YouTubePlayerSupport.newInstance(videoList[position].id.videoId.toString(), "")
+                    val fragment = YouTubePlayerSupport.newInstance(
+                        videoList[position].id.videoId.toString(),
+                        ""
+                    )
                     (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.fade, 0, R.anim.fade, 0)
                         .replace(R.id.main_activity, fragment)
