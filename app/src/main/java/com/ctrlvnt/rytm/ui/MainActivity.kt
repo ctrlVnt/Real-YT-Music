@@ -296,6 +296,7 @@ class MainActivity : AppCompatActivity() {
             You’ve just installed a new version! Here’s what’s new:
             
             • bug wrong playlist position
+            • extended playlist number limit
            
             """.trimIndent()
             )
