@@ -79,7 +79,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
     }
 
-    var isVideoPlaying: Boolean = false
+    var isVideoPlaying: Boolean = true
 
     private lateinit var videoList: RecyclerView
     private lateinit var youTubePlayerView: YouTubePlayerView
@@ -535,7 +535,6 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 state: PlayerConstants.PlayerState
             ) {
                 super.onStateChange(youTubePlayer, state)
-                isVideoPlaying = (state == PlayerConstants.PlayerState.PLAYING)
                 val playlistName = arguments?.getString("playlist_name")
 
                 if (state == PlayerConstants.PlayerState.ENDED) {
@@ -953,6 +952,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        isVideoPlaying = false
         requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         (activity as? MainActivity)?.setBottomNavVisibility(true)
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(notificationReceiver)
