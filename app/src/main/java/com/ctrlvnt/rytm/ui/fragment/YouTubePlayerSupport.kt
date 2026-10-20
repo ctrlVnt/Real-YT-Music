@@ -79,6 +79,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
         }
     }
 
+    var isVideoPlaying: Boolean = false
+
     private lateinit var videoList: RecyclerView
     private lateinit var youTubePlayerView: YouTubePlayerView
     private lateinit var playlisName: TextView
@@ -533,6 +535,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 state: PlayerConstants.PlayerState
             ) {
                 super.onStateChange(youTubePlayer, state)
+                isVideoPlaying = (state == PlayerConstants.PlayerState.PLAYING)
                 val playlistName = arguments?.getString("playlist_name")
 
                 if (state == PlayerConstants.PlayerState.ENDED) {
