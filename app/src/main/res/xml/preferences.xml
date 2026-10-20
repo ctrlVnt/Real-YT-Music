@@ -40,6 +40,11 @@
             app:title="@string/system_nav_bar_title"
             app:summary="@string/system_nav_bar_summary"
             app:defaultValue="false" />
+        <SwitchPreferenceCompat
+            app:key="autoplay_enabled"
+            app:title="Autoplay"
+            app:summary="Automatically play the next video after the song ends"
+            app:defaultValue="true" />
     </PreferenceCategory>
     <PreferenceCategory app:title="@string/something_wrong">
         <Preference

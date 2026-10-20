@@ -31,6 +31,7 @@ import com.ctrlvnt.rytm.data.database.LocalDataBase
 import com.ctrlvnt.rytm.ui.fragment.HomeActivity
 import com.ctrlvnt.rytm.ui.fragment.Settings
 import com.ctrlvnt.rytm.ui.fragment.YouTubePlayerSupport
+import com.ctrlvnt.rytm.ui.services.GithubUpdateChecker
 import com.ctrlvnt.rytm.utils.extractYoutubeId
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -50,6 +51,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // TRUE if is for GitHub
+        val isGitHubRelease = false
+
+        if (isGitHubRelease) {
+            GithubUpdateChecker.check(this)
+        }
 
         bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)!!
 

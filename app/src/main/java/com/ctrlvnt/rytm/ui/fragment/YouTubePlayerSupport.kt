@@ -539,6 +539,8 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
 
                 if (state == PlayerConstants.PlayerState.ENDED) {
                     MainActivity.database.deleteMinutes(videoId.toString())
+                    val autoplayEnabled = prefs.getBoolean("autoplay_enabled", true)
+
                     if (repeatOption || playlistName == "fromoutside") {
                         videoId?.let {
                             youTubePlayer.loadVideo(it, 0f)
@@ -547,6 +549,10 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                                 showPlaylistDialog(nextVideo[indexVideo])
                             }
                         }
+                    } else if (!autoplayEnabled) {
+                        val stopIntent = Intent(requireContext(), YouTubeNotificationService::class.java)
+                        requireContext().stopService(stopIntent)
+                        return
                     } else if (shuffleOption) {
                         var randomIndex: Int
                         do {
