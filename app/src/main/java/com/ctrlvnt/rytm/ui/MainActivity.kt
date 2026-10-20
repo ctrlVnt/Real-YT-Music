@@ -223,10 +223,12 @@ class MainActivity : AppCompatActivity() {
     override fun onUserLeaveHint() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val pipMode = prefs.getBoolean("activate_pip_mode", true)
-        if (pipMode) {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.main_activity)
+        val isPlayerVisible = currentFragment is YouTubePlayerSupport
+        val isPlaying = (currentFragment as? YouTubePlayerSupport)?.isVideoPlaying == true
+        if (pipMode && isPlayerVisible && isPlaying) {
             val layoutParams = window.attributes
-            layoutParams.screenBrightness =
-                WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+            layoutParams.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
             window.attributes = layoutParams
 
             enterPictureInPictureMode(
@@ -236,7 +238,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
     override fun attachBaseContext(newBase: Context) {
         val prefs = newBase.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         val lang = prefs.getString("app_lang", "en") ?: "en"
