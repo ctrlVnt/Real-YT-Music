@@ -304,8 +304,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • bug wrong playlist position
-            • extended playlist number limit
+            • fix: video PIP mode only for player
+            • fix: added autoplay settings
            
             """.trimIndent()
             )
