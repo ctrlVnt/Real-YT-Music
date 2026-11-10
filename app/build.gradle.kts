@@ -16,8 +16,8 @@ android {
         applicationId = "com.ctrlvnt.rytm"
         minSdk = 24
         targetSdk = 36
-        versionCode = 90
-        versionName = "9.0"
+        versionCode = 91
+        versionName = "9.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -85,7 +85,7 @@ dependencies {
     implementation("androidx.navigation:navigation-runtime-ktx:2.9.7")
     implementation("androidx.media:media:1.7.1")
 
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.1.0")
 
     implementation ("com.github.bumptech.glide:glide:5.0.5")
 
