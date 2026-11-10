@@ -422,6 +422,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
             .controls(1)
             .fullscreen(1)
             .ccLoadPolicy(videoCaptions)
+            .privacyEnhancedMode(true)
             .build()
 
         val youTubePlayerView = rootView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
