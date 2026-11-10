@@ -542,23 +542,25 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     MainActivity.database.deleteMinutes(videoId.toString())
                     val autoplayEnabled = prefs.getBoolean("autoplay_enabled", true)
 
-                    if (repeatOption || playlistName == "fromoutside") {
-                        videoId?.let {
-                            youTubePlayer.loadVideo(it, 0f)
 
-                            playlistAdd.setOnClickListener {
-                                showPlaylistDialog(nextVideo[indexVideo])
-                            }
-                        }
-                    } else if (!autoplayEnabled) {
+                    if (!autoplayEnabled || playlistName == "fromoutside") {
+                        youTubePlayer.pause()
                         val stopIntent = Intent(requireContext(), YouTubeNotificationService::class.java)
                         requireContext().stopService(stopIntent)
+                        return
+                    }
+
+                    if (repeatOption) {
+                        val currentId = if (indexVideo in nextVideo.indices) nextVideo[indexVideo].id else videoId
+                        currentId?.let { youTubePlayer.loadVideo(it, 0f) }
                         return
                     } else if (shuffleOption) {
                         var randomIndex: Int
                         do {
                             randomIndex = Random.nextInt(0, nextVideo.size)
-                        } while (randomIndex == indexVideo)
+                        } while (randomIndex == indexVideo && nextVideo.size > 1)
+
+                        indexVideo = randomIndex
                         videoAdapter.setBranoInRiproduzionePosition(randomIndex)
                         youTubePlayer.loadVideo(nextVideo[randomIndex].id, 0f)
                         playlistAdd.setOnClickListener {
@@ -566,13 +568,12 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         shuffleMode.add(randomIndex)
                     } else {
-                        //if there is one video
-                        if (nextVideo.size == 1) {
+                        if (nextVideo.size <= 1) {
                             indexVideo = 0
-                            //if the video is the firstone, I'll return to lastone
-                        } else if (indexVideo < 0) {
-                            indexVideo = nextVideo.size - 1
-                            //if if the last video to the list return to firstone
+                            youTubePlayer.pause()
+                            val stopIntent = Intent(requireContext(), YouTubeNotificationService::class.java)
+                            requireContext().stopService(stopIntent)
+                            return
                         } else if (indexVideo >= nextVideo.size - 1) {
                             indexVideo = 0
                         } else {
@@ -580,6 +581,9 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                         }
                         videoAdapter.setBranoInRiproduzionePosition(indexVideo)
                         youTubePlayer.loadVideo(nextVideo[indexVideo].id, 0f)
+                        playlistAdd.setOnClickListener {
+                            showPlaylistDialog(nextVideo[indexVideo])
+                        }
                     }
                 }
 
