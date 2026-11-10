@@ -22,6 +22,8 @@ class YouTubeNotificationService : Service() {
 
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var notificationManager: NotificationManagerCompat
+    private var lastThumbnailUrl: String? = null
+    private var cachedBitmap: Bitmap? = null
 
     companion object {
         const val CHANNEL_ID = "music_channel_id"
@@ -80,22 +82,22 @@ class YouTubeNotificationService : Service() {
             val author = intent.getStringExtra("AUTHOR") ?: "Unknown"
             val url = intent.getStringExtra("THUMBNAIL_URL") ?: "Unknown"
             val isPlaying = intent.getBooleanExtra("IS_PLAYING", false)
-            if (url != null && url.isNotEmpty()) {
+            if (url.isNotEmpty() && url == lastThumbnailUrl && cachedBitmap != null) {
+                showNotification(title, author, isPlaying, cachedBitmap)
+            } else if (url.isNotEmpty()) {
+                lastThumbnailUrl = url
                 Glide.with(this)
                     .asBitmap()
                     .load(url)
                     .into(object : CustomTarget<Bitmap>() {
-
                         override fun onResourceReady(
                             resource: Bitmap,
                             transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
                         ) {
+                            cachedBitmap = resource
                             showNotification(title, author, isPlaying, resource)
                         }
-
-                        override fun onLoadCleared(placeholder: Drawable?) {
-
-                        }
+                        override fun onLoadCleared(placeholder: Drawable?) {}
                     })
             } else {
                 showNotification(title, author, isPlaying, null)

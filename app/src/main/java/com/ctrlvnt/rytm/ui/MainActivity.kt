@@ -306,6 +306,7 @@ class MainActivity : AppCompatActivity() {
             
             • fix: Autoplay doesn't turn off
             • fix: Playlist videos not looping correctly
+            • fix: Improved battery usage
            
             """.trimIndent()
             )

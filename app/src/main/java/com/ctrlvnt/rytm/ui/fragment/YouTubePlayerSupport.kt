@@ -367,6 +367,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                 repeat.visibility = View.GONE
                 timer.visibility = View.GONE
                 languageButton.visibility = View.GONE
+                youTubePlayerView.visibility = View.INVISIBLE
 
                 (activity as? AppCompatActivity)?.let {
                     val layoutParams = it.window.attributes
@@ -374,6 +375,7 @@ class YouTubePlayerSupport : Fragment(), VideoAdapter.OnItemClickListener {
                     it.window.attributes = layoutParams
                 }
             } else {
+                youTubePlayerView.visibility = View.VISIBLE
                 if (playlistTitle != "fromoutside") {
                     playlistAdd.visibility = View.VISIBLE
                     prevButton.visibility = View.VISIBLE
