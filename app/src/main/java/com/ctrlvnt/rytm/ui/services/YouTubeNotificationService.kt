@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.IBinder
+import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
@@ -22,14 +23,17 @@ class YouTubeNotificationService : Service() {
 
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var notificationManager: NotificationManagerCompat
-    private var lastThumbnailUrl: String? = null
-    private var cachedBitmap: Bitmap? = null
+
+    private var isForegroundStarted = false
+    private var currentTitle: String = "Unknown"
+    private var currentAuthor: String = "Unknown"
+    private var currentThumbnailUrl: String? = null
+    private var currentBitmap: Bitmap? = null
+    private var currentIsPlaying: Boolean = false
 
     companion object {
         const val CHANNEL_ID = "music_channel_id"
         const val NOTIFICATION_ID = 1
-
-
         const val ACTION_PLAY = "action_play"
         const val ACTION_PAUSE = "action_pause"
         const val ACTION_NEXT = "action_next"
@@ -62,30 +66,45 @@ class YouTubeNotificationService : Service() {
         mediaSession.isActive = true
     }
 
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
-        ensureForegroundStarted()
-
         val action = intent?.action
         if (action != null) {
             when (action) {
                 ACTION_NEXT -> sendBroadcastToFragment(ACTION_NEXT)
                 ACTION_PREV -> sendBroadcastToFragment(ACTION_PREV)
-                ACTION_PLAY -> sendBroadcastToFragment(ACTION_PLAY)
-                ACTION_PAUSE -> sendBroadcastToFragment(ACTION_PAUSE)
+                ACTION_PLAY -> {
+                    currentIsPlaying = true
+                    showNotification(currentTitle, currentAuthor, true, currentBitmap)
+                    sendBroadcastToFragment(ACTION_PLAY)
+                }
+                ACTION_PAUSE -> {
+                    currentIsPlaying = false
+                    showNotification(currentTitle, currentAuthor, false, currentBitmap)
+                    sendBroadcastToFragment(ACTION_PAUSE)
+                }
             }
+            return START_STICKY
+        }
+
+        if (!isForegroundStarted) {
+            showNotification(currentTitle, currentAuthor, currentIsPlaying, currentBitmap)
         }
 
         if (intent?.hasExtra("TITLE") == true) {
             val title = intent.getStringExtra("TITLE") ?: "Unknown"
             val author = intent.getStringExtra("AUTHOR") ?: "Unknown"
-            val url = intent.getStringExtra("THUMBNAIL_URL") ?: "Unknown"
+            val url = intent.getStringExtra("THUMBNAIL_URL") ?: ""
             val isPlaying = intent.getBooleanExtra("IS_PLAYING", false)
-            if (url.isNotEmpty() && url == lastThumbnailUrl && cachedBitmap != null) {
-                showNotification(title, author, isPlaying, cachedBitmap)
+
+            currentTitle = title
+            currentAuthor = author
+            currentIsPlaying = isPlaying
+
+            if (url.isNotEmpty() && url == currentThumbnailUrl && currentBitmap != null) {
+                showNotification(title, author, isPlaying, currentBitmap)
             } else if (url.isNotEmpty()) {
-                lastThumbnailUrl = url
+                currentThumbnailUrl = url
+                showNotification(title, author, isPlaying, currentBitmap)
                 Glide.with(this)
                     .asBitmap()
                     .load(url)
@@ -94,9 +113,10 @@ class YouTubeNotificationService : Service() {
                             resource: Bitmap,
                             transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
                         ) {
-                            cachedBitmap = resource
-                            showNotification(title, author, isPlaying, resource)
+                            currentBitmap = resource
+                            showNotification(currentTitle, currentAuthor, currentIsPlaying, resource)
                         }
+
                         override fun onLoadCleared(placeholder: Drawable?) {}
                     })
             } else {
@@ -104,18 +124,7 @@ class YouTubeNotificationService : Service() {
             }
         }
 
-        return START_NOT_STICKY
-    }
-
-    private fun ensureForegroundStarted() {
-        val placeholderNotification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Loading")
-            .setContentText("...")
-            .setSmallIcon(R.drawable.notify_logo)
-            .setOnlyAlertOnce(true)
-            .build()
-
-        startForeground(NOTIFICATION_ID, placeholderNotification)
+        return START_STICKY
     }
 
     private fun showNotification(
@@ -124,12 +133,11 @@ class YouTubeNotificationService : Service() {
         isPlaying: Boolean,
         bitmap: Bitmap?
     ) {
-
         updatePlaybackState(isPlaying)
+        updateMediaMetadata(title, author, bitmap)
 
         val playPauseIcon =
             if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_arrow_24
-
         val playPauseAction = if (isPlaying) ACTION_PAUSE else ACTION_PLAY
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -147,12 +155,24 @@ class YouTubeNotificationService : Service() {
                     .setMediaSession(mediaSession.sessionToken)
                     .setShowActionsInCompactView(0, 1, 2)
             )
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setOngoing(isPlaying)
             .setOnlyAlertOnce(true)
             .build()
 
         startForeground(NOTIFICATION_ID, notification)
+        isForegroundStarted = true
     }
 
+    private fun updateMediaMetadata(title: String, author: String, bitmap: Bitmap?) {
+        val metadataBuilder = MediaMetadataCompat.Builder()
+            .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
+            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, author)
+        if (bitmap != null) {
+            metadataBuilder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, bitmap)
+        }
+        mediaSession.setMetadata(metadataBuilder.build())
+    }
 
     private fun getActionIntent(action: String): PendingIntent {
         val intent = Intent(this, YouTubeNotificationService::class.java)
@@ -160,7 +180,7 @@ class YouTubeNotificationService : Service() {
 
         return PendingIntent.getService(
             this,
-            0,
+            action.hashCode(), // RequestCode univoco per ogni azione
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
@@ -194,7 +214,6 @@ class YouTubeNotificationService : Service() {
     private fun updatePlaybackState(isPlaying: Boolean) {
         val state =
             if (isPlaying) PlaybackStateCompat.STATE_PLAYING else PlaybackStateCompat.STATE_PAUSED
-
         val playbackSpeed = if (isPlaying) 1.0f else 0f
 
         val actions = PlaybackStateCompat.ACTION_PLAY or
