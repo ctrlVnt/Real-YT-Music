@@ -160,4 +160,5 @@
     <string name="bug_report_success_message">Отчет успешно создан!\n\n%1$s</string>
     <string name="cancel">Отмена</string>
     <string name="ok">OK</string>
+    <string name="error_youtube_mix_import">Автоматические миксы YouTube нельзя импортировать как плейлисты.</string>
 </resources>

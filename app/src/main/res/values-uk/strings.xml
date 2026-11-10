@@ -161,4 +161,5 @@
     <string name="bug_report_success_message">Звіт успішно створено!\n\n%1$s</string>
     <string name="cancel">Скасувати</string>
     <string name="ok">OK</string>
+    <string name="error_youtube_mix_import">Автоматичні мікси YouTube не можна імпортувати як плейлисти.</string>
 </resources>

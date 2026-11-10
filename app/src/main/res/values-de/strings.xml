@@ -160,4 +160,5 @@
     <string name="bug_report_success_message">Problem erfolgreich erstellt!\n\n%1$s</string>
     <string name="cancel">Abbrechen</string>
     <string name="ok">OK</string>
+    <string name="error_youtube_mix_import">Automatische YouTube-Mixe können nicht als Playlists importiert werden.</string>
 </resources>

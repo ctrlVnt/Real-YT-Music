@@ -304,8 +304,8 @@ class MainActivity : AppCompatActivity() {
                 """
             You’ve just installed a new version! Here’s what’s new:
             
-            • fix: video PIP mode only for player
-            • fix: added autoplay settings
+            • fix: Autoplay doesn't turn off
+            • fix: Playlist videos not looping correctly
            
             """.trimIndent()
             )

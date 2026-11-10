@@ -194,6 +194,7 @@
     <string name="bug_report_failed">Failed to send report, please try again</string>
     <string name="bug_report_success_title">Success</string>
     <string name="bug_report_success_message">Issue created successfully!\n\n%1$s</string>
+    <string name="error_youtube_mix_import">Automatic YouTube mixes cannot be imported as playlists.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
 </resources>

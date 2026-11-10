@@ -146,4 +146,5 @@
     <string name="bug_report_success_message">Ticket créé avec succès !\n\n%1$s</string>
     <string name="cancel">Annuler</string>
     <string name="ok">OK</string>
+    <string name="error_youtube_mix_import">Les mixes automatiques de YouTube ne peuvent pas être importés comme playlists.</string>
 </resources>

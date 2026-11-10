@@ -160,4 +160,5 @@
     <string name="bug_report_success_message">¡Problema creado con éxito!\n\n%1$s</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">Aceptar</string>
+    <string name="error_youtube_mix_import">Las mezclas automáticas de YouTube no se pueden importar como listas de reproducción.</string>
 </resources>

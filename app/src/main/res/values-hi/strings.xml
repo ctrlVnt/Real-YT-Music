@@ -147,4 +147,5 @@
     <string name="bug_report_success_message">समस्या सफलतापूर्वक बनाई गई!\n\n%1$s</string>
     <string name="cancel">रद्द करें</string>
     <string name="ok">ठीक है</string>
+    <string name="error_youtube_mix_import">ऑटोमैटिक यूट्यूब मिक्स को प्लेलिस्ट के रूप में इम्पोर्ट नहीं किया जा सकता है।</string>
 </resources>

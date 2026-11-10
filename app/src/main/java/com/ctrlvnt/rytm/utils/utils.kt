@@ -272,6 +272,15 @@ fun savePlaylistFromApi(context: Context, currentItem: VideoItem) {
                 }
 
                 val item = response.body()?.items
+                if (item.isNullOrEmpty()) {
+                    Toast.makeText(
+                        context,
+                        R.string.error_youtube_mix_import,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return
+                }
+
                 val playlistName = item?.get(0)?.snippet?.title
                     ?: (generateRandomName() + " (to renameeee)")
 

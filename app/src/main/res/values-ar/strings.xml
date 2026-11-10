@@ -158,4 +158,5 @@
     <string name="bug_report_success_message">تم إنشاء المشكلة بنجاح!\n\n%1$s</string>
     <string name="cancel">إلغاء</string>
     <string name="ok">موافق</string>
+    <string name="error_youtube_mix_import">لا يمكن استيراد خلطات YouTube التلقائية كقوائم تشغيل.</string>
 </resources>

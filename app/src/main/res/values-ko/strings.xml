@@ -129,4 +129,5 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">버그 제보</string>
     <string name="system_nav_bar_title">영구 시스템 명령</string>
     <string name="system_nav_bar_summary">하단에 시스템 탐색 명령 표시(홈, 뒤로)</string>
+    <string name="error_youtube_mix_import">YouTube 자동 믹스는 재생목록으로 가져올 수 없습니다.</string>
 </resources>

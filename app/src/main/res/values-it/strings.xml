@@ -116,4 +116,5 @@
     <string name="shake_sdk_dialog_feedback_type_item_bug">Segnala un bug</string>
     <string name="system_nav_bar_title">Comandi di sistema permanenti</string>
     <string name="system_nav_bar_summary">Mostra i comandi di navigazione di sistema in basso (Home, Indietro)</string>
+    <string name="error_youtube_mix_import">I mix automatici di YouTube non possono essere importati come playlist.</string>
 </resources>
